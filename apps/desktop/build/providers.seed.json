@@ -1,0 +1,22 @@
+{
+  "keys": {
+    "supertonic": "",
+    "localimage": "",
+    "tavily": "tvly-YosWj-l7vbq0GY9en3uKa4zVbf2i50om914sH3FgSBEhgofZ",
+    "pixabay": "22487803-31408b20fd2499a8fd4561ce3",
+    "voicestudio": ""
+  },
+  "use": {
+    "tts": "supertonic",
+    "image": "localimage",
+    "web-search": "tavily",
+    "image-search": "pixabay",
+    "video-search": "pixabay",
+    "asr": "voicestudio"
+  },
+  "model": {},
+  "off": [],
+  "custom": [],
+  "accounts": {},
+  "libraryOff": false
+}

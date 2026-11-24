@@ -1,0 +1,29 @@
+{
+  "order": 22,
+  "category": "customize",
+  "icon": "shapes",
+  "title": {
+    "en": "GSAP",
+    "zh-CN": "GSAP 动画",
+    "ja": "GSAP アニメーション",
+    "ko": "GSAP 애니메이션",
+    "es": "GSAP",
+    "pt-BR": "GSAP"
+  },
+  "summary": {
+    "en": "GSAP with all its plugins (SplitText, MorphSVG, DrawSVG, MotionPath…), served offline and exact on every frame.",
+    "zh-CN": "带全部插件的 GSAP（SplitText、MorphSVG、DrawSVG、MotionPath…），离线可用，每一帧都精确。",
+    "ja": "全プラグイン（SplitText、MorphSVG、DrawSVG、MotionPath…）付きの GSAP。オフラインで、どのフレームも正確。",
+    "ko": "모든 플러그인(SplitText, MorphSVG, DrawSVG, MotionPath…)을 갖춘 GSAP. 오프라인으로, 모든 프레임이 정확합니다.",
+    "es": "GSAP con todos sus plugins (SplitText, MorphSVG, DrawSVG, MotionPath…), sin conexión y exacto en cada fotograma.",
+    "pt-BR": "GSAP com todos os plugins (SplitText, MorphSVG, DrawSVG, MotionPath…), offline e exato em cada quadro."
+  },
+  "details": {
+    "en": "When it is used: when a page animates with GSAP or you name one of its plugins, or a title needs per-letter or per-line motion.\nWhat it teaches: one timeline per page handed to the film's clock, fromTo tweens, which plugins suit a video, and the official GSAP skills as reference.\nTurned off: agents can still use GSAP, without these rules.",
+    "pt-BR": "Quando é usada: quando uma página anima com GSAP, quando você cita um plugin dele, ou quando um título precisa de movimento letra a letra.\nO que ensina: uma timeline por página ligada ao relógio do filme, tweens fromTo, quais plugins servem para vídeo, e as skills oficiais da GSAP como referência.\nDesligada: os agentes ainda usam GSAP, sem essas regras.",
+    "es": "Cuándo se usa: cuando una página anima con GSAP, cuando nombras uno de sus plugins o un título necesita movimiento letra a letra.\nQué enseña: una línea de tiempo por página atada al reloj del film, tweens fromTo, qué plugins sirven para vídeo y las skills oficiales de GSAP como referencia.\nSi se desactiva: los agentes siguen usando GSAP, sin estas reglas.",
+    "zh-CN": "When it is used: when a page animates with GSAP or you name one of its plugins, or a title needs per-letter or per-line motion.\nWhat it teaches: one timeline per page handed to the film's clock, fromTo tweens, which plugins suit a video, and the official GSAP skills as reference.\nTurned off: agents can still use GSAP, without these rules.",
+    "ja": "When it is used: when a page animates with GSAP or you name one of its plugins, or a title needs per-letter or per-line motion.\nWhat it teaches: one timeline per page handed to the film's clock, fromTo tweens, which plugins suit a video, and the official GSAP skills as reference.\nTurned off: agents can still use GSAP, without these rules.",
+    "ko": "When it is used: when a page animates with GSAP or you name one of its plugins, or a title needs per-letter or per-line motion.\nWhat it teaches: one timeline per page handed to the film's clock, fromTo tweens, which plugins suit a video, and the official GSAP skills as reference.\nTurned off: agents can still use GSAP, without these rules."
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "order": 9,
+  "category": "edit",
+  "icon": "book-open",
+  "title": {
+    "en": "Explainers",
+    "zh-CN": "讲解视频",
+    "ja": "解説動画",
+    "ko": "설명 영상",
+    "es": "Explicativos"
+  },
+  "summary": {
+    "en": "Explainers and tutorials: one question, script for the ear, scenes that show before they tell.",
+    "zh-CN": "讲解和教程视频：一个问题、适合听的脚本、先展示再讲述的场景。",
+    "ja": "解説・チュートリアル：ひとつの問い、耳で聞く台本、見せてから語る場面。",
+    "ko": "설명·튜토리얼 영상: 하나의 질문, 귀로 듣는 대본, 보여 준 뒤 말하는 장면.",
+    "es": "Explicativos y tutoriales: una pregunta, guion para el oído y escenas que muestran antes de contar."
+  },
+  "details": {
+    "en": "When it is used: when the person asks for an explainer, a tutorial, a lesson or a walkthrough.\nWhat it teaches: to plan one question, write for the ear and build scenes that show before they tell.\nTurned off: agents still try, but explainers are made without a plan or script rules.",
+    "zh-CN": "什么时候用：用到这个主题时。\n它教什么：讲解和教程视频：一个问题、适合听的脚本、先展示再讲述的场景。\n关掉后：智能体仍会尝试，但没有这些规则。",
+    "ja": "使うとき：この話題のとき。\n教えること：解説・チュートリアル：ひとつの問い、耳で聞く台本、見せてから語る場面。\nオフにすると：エージェントは試みますが、この規則はなくなります。",
+    "ko": "언제 쓰나요: 이 주제를 요청할 때.\n무엇을 알려 주나요: 설명·튜토리얼 영상: 하나의 질문, 귀로 듣는 대본, 보여 준 뒤 말하는 장면.\n끄면: 에이전트는 시도하지만 이 규칙은 없습니다.",
+    "es": "Cuándo se usa: cuando el tema aparece en el pedido.\nQué enseña: Explicativos y tutoriales: una pregunta, guion para el oído y escenas que muestran antes de contar.\nSi se desactiva: los agentes lo intentan, pero sin estas reglas."
+  }
+}

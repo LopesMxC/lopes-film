@@ -1,0 +1,26 @@
+{
+  "order": 7,
+  "category": "edit",
+  "icon": "scissors",
+  "title": {
+    "en": "Shorts",
+    "zh-CN": "短视频",
+    "ja": "ショート動画",
+    "ko": "숏폼",
+    "es": "Shorts"
+  },
+  "summary": {
+    "en": "Vertical 9:16 videos: hook, pacing, safe areas, captions and cutting long videos into clips.",
+    "zh-CN": "竖屏 9:16 视频：开头钩子、节奏、安全区、字幕，以及把长视频剪成短片。",
+    "ja": "縦型 9:16 動画：フック、テンポ、セーフエリア、字幕、長尺からの切り出し。",
+    "ko": "세로 9:16 영상: 훅, 속도, 안전 영역, 자막, 긴 영상에서 클립 만들기.",
+    "es": "Vídeos verticales 9:16: gancho, ritmo, zonas seguras, subtítulos y recortar vídeos largos."
+  },
+  "details": {
+    "en": "When it is used: when the person asks for a short, a reel, a TikTok or a vertical video.\nWhat it teaches: to hook in two seconds, frame for 9:16, caption and cut long videos into clips.\nTurned off: agents still try, but shorts are made without these rules.",
+    "zh-CN": "什么时候用：用到这个主题时。\n它教什么：竖屏 9:16 视频：开头钩子、节奏、安全区、字幕，以及把长视频剪成短片。\n关掉后：智能体仍会尝试，但没有这些规则。",
+    "ja": "使うとき：この話題のとき。\n教えること：縦型 9:16 動画：フック、テンポ、セーフエリア、字幕、長尺からの切り出し。\nオフにすると：エージェントは試みますが、この規則はなくなります。",
+    "ko": "언제 쓰나요: 이 주제를 요청할 때.\n무엇을 알려 주나요: 세로 9:16 영상: 훅, 속도, 안전 영역, 자막, 긴 영상에서 클립 만들기.\n끄면: 에이전트는 시도하지만 이 규칙은 없습니다.",
+    "es": "Cuándo se usa: cuando el tema aparece en el pedido.\nQué enseña: Vídeos verticales 9:16: gancho, ritmo, zonas seguras, subtítulos y recortar vídeos largos.\nSi se desactiva: los agentes lo intentan, pero sin estas reglas."
+  }
+}

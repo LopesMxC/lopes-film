@@ -1,0 +1,19 @@
+{
+  "order": 21,
+  "category": "edit",
+  "icon": "zap",
+  "title": {
+    "en": "Smooth and tight",
+    "zh-CN": "流畅与紧凑",
+    "ja": "滑らかさとカット",
+    "ko": "부드럽게 그리고 타이트하게",
+    "es": "Fluido y ajustado"
+  },
+  "summary": {
+    "en": "Smooth slow motion, 60 fps, and automatic cuts of silences.",
+    "zh-CN": "流畅慢动作、60帧，以及自动剪掉静音。",
+    "ja": "滑らかなスローモーション、60fps、無音の自動カット。",
+    "ko": "부드러운 슬로모션, 60fps, 무음 자동 컷.",
+    "es": "Cámara lenta fluida, 60 fps y cortes automáticos de silencios."
+  }
+}

@@ -1,0 +1,492 @@
+{
+ "version": 1,
+ "items": [
+  {
+   "id": "effects/nebula",
+   "cat": "effect",
+   "group": "ambience",
+   "name": {
+    "en": "Nebula",
+    "pt-BR": "Nebulosa",
+    "es": "Nebulosa",
+    "zh-CN": "Nebula",
+    "ja": "Nebula",
+    "ko": "Nebula"
+   },
+   "kind": "page",
+   "durationMs": 4000,
+   "src": "nebula.html",
+   "about": "Clouds of colored gas drifting through deep space, folding into one another in two tones, with tiny stars twinkling through the gaps.",
+   "tags": [
+    "space",
+    "dreamy",
+    "night"
+   ]
+  },
+  {
+   "id": "effects/neon-tunnel",
+   "cat": "effect",
+   "group": "retro",
+   "name": {
+    "en": "Neon tunnel",
+    "pt-BR": "Túnel neon",
+    "es": "Túnel neón",
+    "zh-CN": "Neon tunnel",
+    "ja": "Neon tunnel",
+    "ko": "Neon tunnel"
+   },
+   "kind": "page",
+   "durationMs": 4000,
+   "src": "neon-tunnel.html",
+   "about": "Glowing rings rush toward the viewer through a tunnel of neon, spokes of light lining its walls and the color shifting between two tones as it flies.",
+   "tags": [
+    "neon",
+    "retro",
+    "holiday"
+   ]
+  },
+  {
+   "id": "effects/laser-show",
+   "cat": "effect",
+   "group": "party",
+   "name": {
+    "en": "Laser show",
+    "pt-BR": "Show de laser",
+    "es": "Show de láser",
+    "zh-CN": "Laser show",
+    "ja": "Laser show",
+    "ko": "Laser show"
+   },
+   "kind": "page",
+   "durationMs": 4000,
+   "src": "laser-show.html",
+   "about": "Laser beams fan out from the bottom of the frame and sweep through the haze in three colors, as in a club or a concert.",
+   "tags": [
+    "holiday",
+    "electronic",
+    "neon"
+   ]
+  },
+  {
+   "id": "effects/stage-lights",
+   "cat": "effect",
+   "group": "party",
+   "name": {
+    "en": "Stage lights",
+    "pt-BR": "Luzes de palco",
+    "es": "Luces de escenario",
+    "zh-CN": "Stage lights",
+    "ja": "Stage lights",
+    "ko": "Stage lights"
+   },
+   "kind": "page",
+   "durationMs": 4000,
+   "src": "stage-lights.html",
+   "about": "Five spotlight cones hang over the frame and sway through a smoky stage haze, warm and cool beams crossing as they move.",
+   "tags": [
+    "holiday",
+    "light"
+   ]
+  },
+  {
+   "id": "effects/sun-glint",
+   "cat": "effect",
+   "group": "light",
+   "name": {
+    "en": "Sun glints",
+    "pt-BR": "Reflexos de sol",
+    "es": "Destellos de sol",
+    "zh-CN": "Sun glints",
+    "ja": "Sun glints",
+    "ko": "Sun glints"
+   },
+   "kind": "page",
+   "durationMs": 4000,
+   "src": "sun-glint.html",
+   "about": "Sunlight sparkling on water: tiny glints flash on and off across the lower part of the frame, the brightest ones flaring into little crosses.",
+   "tags": [
+    "water",
+    "weather",
+    "light"
+   ]
+  },
+  {
+   "id": "effects/holo-scan",
+   "cat": "effect",
+   "group": "variety",
+   "name": {
+    "en": "Hologram scan",
+    "pt-BR": "Varredura holográfica",
+    "es": "Escaneo holográfico",
+    "zh-CN": "Hologram scan",
+    "ja": "Hologram scan",
+    "ko": "Hologram scan"
+   },
+   "kind": "page",
+   "durationMs": 4000,
+   "src": "holo-scan.html",
+   "about": "A hologram scan: a bright band sweeps down the frame lighting up a fine grid behind it, over faint flickering scanlines.",
+   "tags": [
+    "tech",
+    "space",
+    "hud"
+   ]
+  },
+  {
+   "id": "effects/hex-pulse",
+   "cat": "effect",
+   "group": "frame",
+   "name": {
+    "en": "Hex grid",
+    "pt-BR": "Grade hexagonal",
+    "es": "Rejilla hexagonal",
+    "zh-CN": "Hex grid",
+    "ja": "Hex grid",
+    "ko": "Hex grid"
+   },
+   "kind": "page",
+   "durationMs": 4000,
+   "src": "hex-pulse.html",
+   "about": "A honeycomb of thin glowing hexagons over the frame, strongest toward the edges, with pulses of light rippling out from the middle and a few cells flickering on.",
+   "tags": [
+    "tech",
+    "space"
+   ]
+  },
+  {
+   "id": "effects/digital-noise",
+   "cat": "effect",
+   "group": "texture",
+   "name": {
+    "en": "Digital noise",
+    "pt-BR": "Ruído digital",
+    "es": "Ruido digital",
+    "zh-CN": "Digital noise",
+    "ja": "Digital noise",
+    "ko": "Digital noise"
+   },
+   "kind": "page",
+   "durationMs": 4000,
+   "src": "digital-noise.html",
+   "about": "Bursts of broken digital signal: colored blocks and torn lines flash over the frame for a frame or two at a time, over a fine grain.",
+   "tags": [
+    "glitch",
+    "tech",
+    "error"
+   ]
+  },
+  {
+   "id": "effects/chroma-fringe",
+   "cat": "effect",
+   "group": "frame",
+   "name": {
+    "en": "Chromatic edges",
+    "pt-BR": "Bordas cromáticas",
+    "es": "Bordes cromáticos",
+    "zh-CN": "Chromatic edges",
+    "ja": "Chromatic edges",
+    "ko": "Chromatic edges"
+   },
+   "kind": "page",
+   "durationMs": 4000,
+   "src": "chroma-fringe.html",
+   "about": "Prism-like color fringes glow around the edges of the frame, magenta and green splitting apart and breathing, like light through an old lens.",
+   "tags": [
+    "cinematic",
+    "dreamy",
+    "frame"
+   ]
+  },
+  {
+   "id": "effects/burn-edges",
+   "cat": "effect",
+   "group": "retro",
+   "name": {
+    "en": "Burning edges",
+    "pt-BR": "Bordas queimando",
+    "es": "Bordes en llamas",
+    "zh-CN": "Burning edges",
+    "ja": "Burning edges",
+    "ko": "Burning edges"
+   },
+   "kind": "page",
+   "durationMs": 4000,
+   "src": "burn-edges.html",
+   "about": "The edges of the frame char and smolder like burning film: a ragged black border eaten in from the sides with a glowing orange line of embers flickering along it.",
+   "tags": [
+    "film",
+    "nostalgic",
+    "fire",
+    "retro",
+    "warm"
+   ]
+  },
+  {
+   "id": "effects/dream-glow",
+   "cat": "effect",
+   "group": "dreamy",
+   "name": {
+    "en": "Dream glow",
+    "pt-BR": "Brilho de sonho",
+    "es": "Brillo de ensueño",
+    "zh-CN": "Dream glow",
+    "ja": "Dream glow",
+    "ko": "Dream glow"
+   },
+   "kind": "page",
+   "durationMs": 4000,
+   "src": "dream-glow.html",
+   "about": "Soft pastel glows drift slowly over the picture in two tones, with tiny sparkles twinkling up through them: a dreamy, romantic haze.",
+   "tags": [
+    "dreamy",
+    "soft",
+    "romantic",
+    "pastel",
+    "nostalgic"
+   ]
+  },
+  {
+   "id": "effects/prism-sweep",
+   "cat": "effect",
+   "group": "light",
+   "name": {
+    "en": "Prism sweep",
+    "pt-BR": "Varredura de prisma",
+    "es": "Barrido de prisma",
+    "zh-CN": "Prism sweep",
+    "ja": "Prism sweep",
+    "ko": "Prism sweep"
+   },
+   "kind": "page",
+   "durationMs": 4000,
+   "src": "prism-sweep.html",
+   "about": "A wide band of rainbow light, as split by a prism, sweeps diagonally across the frame again and again, streaked like light through glass.",
+   "tags": [
+    "light",
+    "vivid",
+    "happy",
+    "dreamy"
+   ]
+  },
+  {
+   "id": "effects/underwater",
+   "cat": "effect",
+   "group": "ambience",
+   "name": {
+    "en": "Underwater",
+    "pt-BR": "Embaixo d’água",
+    "es": "Bajo el agua",
+    "zh-CN": "Underwater",
+    "ja": "Underwater",
+    "ko": "Underwater"
+   },
+   "kind": "page",
+   "durationMs": 4000,
+   "src": "underwater.html",
+   "about": "The scene sinks underwater: a blue depth tint deepens toward the bottom, shimmering rays fall from the surface and little bubbles rise.",
+   "tags": [
+    "water",
+    "nature",
+    "calm",
+    "cool-tone"
+   ]
+  },
+  {
+   "id": "effects/arc-frame",
+   "cat": "effect",
+   "group": "frame",
+   "name": {
+    "en": "Electric frame",
+    "pt-BR": "Moldura elétrica",
+    "es": "Marco eléctrico",
+    "zh-CN": "Electric frame",
+    "ja": "Electric frame",
+    "ko": "Electric frame"
+   },
+   "kind": "page",
+   "durationMs": 4000,
+   "src": "arc-frame.html",
+   "about": "Crackling electric arcs run around the frame like a live wire, jittering and flickering, with a blue glow seeping in from the edges.",
+   "tags": [
+    "neon"
+   ]
+  },
+  {
+   "id": "effects/portal",
+   "cat": "effect",
+   "group": "variety",
+   "name": {
+    "en": "Portal",
+    "pt-BR": "Portal",
+    "es": "Portal",
+    "zh-CN": "Portal",
+    "ja": "Portal",
+    "ko": "Portal"
+   },
+   "kind": "page",
+   "durationMs": 4000,
+   "src": "portal.html",
+   "about": "A magic portal opens in the middle of the frame: a ring of swirling fire-like energy, sparks spinning off it and a faint glow inside.",
+   "tags": [
+    "magic",
+    "space"
+   ]
+  },
+  {
+   "id": "effects/speed-streaks",
+   "cat": "effect",
+   "group": "rhythm",
+   "name": {
+    "en": "Speed streaks",
+    "pt-BR": "Rastros de velocidade",
+    "es": "Estelas de velocidad",
+    "zh-CN": "Speed streaks",
+    "ja": "Speed streaks",
+    "ko": "Speed streaks"
+   },
+   "kind": "page",
+   "durationMs": 4000,
+   "src": "speed-streaks.html",
+   "about": "Thin streaks of light race across the frame sideways at different speeds and lengths, like wind past a fast camera: for action and sport.",
+   "tags": [
+    "action",
+    "intense"
+   ]
+  },
+  {
+   "id": "effects/pulse-rings",
+   "cat": "effect",
+   "group": "rhythm",
+   "name": {
+    "en": "Pulse rings",
+    "pt-BR": "Anéis de pulso",
+    "es": "Anillos de pulso",
+    "zh-CN": "Pulse rings",
+    "ja": "Pulse rings",
+    "ko": "Pulse rings"
+   },
+   "kind": "page",
+   "durationMs": 4000,
+   "src": "pulse-rings.html",
+   "about": "Rings of light pulse out from the middle of the frame on a steady beat, fading as they grow, with a soft thump of glow at each beat.",
+   "tags": [
+    "electronic",
+    "holiday"
+   ]
+  },
+  {
+   "id": "effects/vignette-pulse",
+   "cat": "effect",
+   "group": "rhythm",
+   "name": {
+    "en": "Pulsing vignette",
+    "pt-BR": "Vinheta pulsante",
+    "es": "Viñeta pulsante",
+    "zh-CN": "Pulsing vignette",
+    "ja": "Pulsing vignette",
+    "ko": "Pulsing vignette"
+   },
+   "kind": "page",
+   "durationMs": 4000,
+   "src": "vignette-pulse.html",
+   "about": "Dark edges close in and let go on a double heartbeat rhythm, squeezing the frame for tension, suspense and drama.",
+   "tags": [
+    "electronic",
+    "tense",
+    "cinematic-look",
+    "heartbeat",
+    "scary"
+   ]
+  },
+  {
+   "id": "effects/glow-dust",
+   "cat": "effect",
+   "group": "dreamy",
+   "name": {
+    "en": "Glowing dust",
+    "pt-BR": "Poeira brilhante",
+    "es": "Polvo brillante",
+    "zh-CN": "Glowing dust",
+    "ja": "Glowing dust",
+    "ko": "Glowing dust"
+   },
+   "kind": "page",
+   "durationMs": 4000,
+   "src": "glow-dust.html",
+   "about": "Specks of glowing dust float and drift through the air in three depths, each twinkling on its own: a gentle, magical shimmer.",
+   "tags": [
+    "magic",
+    "dreamy",
+    "soft"
+   ]
+  },
+  {
+   "id": "effects/storm",
+   "cat": "effect",
+   "group": "ambience",
+   "name": {
+    "en": "Storm clouds",
+    "pt-BR": "Tempestade",
+    "es": "Tormenta",
+    "zh-CN": "Storm clouds",
+    "ja": "Storm clouds",
+    "ko": "Storm clouds"
+   },
+   "kind": "page",
+   "durationMs": 4000,
+   "src": "storm.html",
+   "about": "Heavy dark storm clouds roll across the top of the frame, now and then lit from within by a flash of lightning.",
+   "tags": [
+    "weather",
+    "dark",
+    "cinematic-look",
+    "scary"
+   ]
+  },
+  {
+   "id": "effects/ground-fog",
+   "cat": "effect",
+   "group": "ambience",
+   "name": {
+    "en": "Ground fog",
+    "pt-BR": "Neblina baixa",
+    "es": "Niebla baja",
+    "zh-CN": "Ground fog",
+    "ja": "Ground fog",
+    "ko": "Ground fog"
+   },
+   "kind": "page",
+   "durationMs": 4000,
+   "src": "ground-fog.html",
+   "about": "A thick layer of fog hangs low over the ground, rolling slowly sideways and rising in wisps: for mystery, horror and early mornings.",
+   "tags": [
+    "weather-fx",
+    "mysterious",
+    "scary",
+    "calm",
+    "nature"
+   ]
+  },
+  {
+   "id": "effects/kaleido",
+   "cat": "effect",
+   "group": "party",
+   "name": {
+    "en": "Kaleidoscope",
+    "pt-BR": "Caleidoscópio",
+    "es": "Caleidoscopio",
+    "zh-CN": "Kaleidoscope",
+    "ja": "Kaleidoscope",
+    "ko": "Kaleidoscope"
+   },
+   "kind": "page",
+   "durationMs": 4000,
+   "src": "kaleido.html",
+   "about": "A turning kaleidoscope of glowing colored lines mirrored eight ways around the middle, rippling and shifting hue like a light show.",
+   "tags": [
+    "holiday",
+    "vivid"
+   ]
+  }
+ ]
+}

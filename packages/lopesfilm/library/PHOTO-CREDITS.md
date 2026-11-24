@@ -1,0 +1,107 @@
+# Fotos de exemplo
+
+As fotos de exemplo dos modelos, filtros e efeitos vêm do Unsplash (via Lorem Picsum) e seguem a Unsplash License (uso livre, atribuição opcional): https://unsplash.com/license
+
+- 2: Alejandro Escamilla — https://unsplash.com/photos/N7XodRrbzS0
+- 10: Paul Jarvis — https://unsplash.com/photos/6J--NXulQCs
+- 12: Paul Jarvis — https://unsplash.com/photos/I_9ILwtsl_k
+- 17: Paul Jarvis — https://unsplash.com/photos/Ven2CV8IJ5A
+- 26: Vadim Sherbakov — https://unsplash.com/photos/tCICLJ5ktBE
+- 28: Jerry Adney — https://unsplash.com/photos/_WiFMBRT7Aw
+- 39: Luke Chesser — https://unsplash.com/photos/pFqrYbhIAXs
+- 41: Nithya Ramanujam — https://unsplash.com/photos/fTKetYpEKNQ
+- 43: Oleg Chursin — https://unsplash.com/photos/IoCWq07GaG4
+- 47: Christopher Sardegna — https://unsplash.com/photos/uDUiRS8YroY
+- 49: Margaret Barley — https://unsplash.com/photos/Qo51KwK1dKg
+- 54: Nicholas Swanson — https://unsplash.com/photos/d19by2PLaPc
+- 56: Sebastian Muller — https://unsplash.com/photos/VLdaxYyXJvw
+- 58: Tony Naccarato — https://unsplash.com/photos/-kEr-QltARg
+- 62: Daniel Genser — https://unsplash.com/photos/PzPbh-faPgU
+- 63: Justin Leibow — https://unsplash.com/photos/ZJsseAxEcqM
+- 64: Alexander Shustov — https://unsplash.com/photos/AHBiSKaENwc
+- 70: Dorothy Lin — https://unsplash.com/photos/OokBLPrkCNk
+- 82: Rula Sibai — https://unsplash.com/photos/-vq7mi4oF0s
+- 91: Jennifer Trovato — https://unsplash.com/photos/baRYCsjO6z4
+- 96: Pawel Kadysz — https://unsplash.com/photos/CuFYW1c97w8
+- 110: Kenneth Thewissen — https://unsplash.com/photos/D76DklsG-5U
+- 111: Gabe Rodriguez — https://unsplash.com/photos/eLUegVAjN7s
+- 116: Anton Sulsky — https://unsplash.com/photos/YcfCXxo7rpc
+- 119: Nadir Balcikli — https://unsplash.com/photos/wE9nUW7tMmk
+- 127: Marcin Czerwinski — https://unsplash.com/photos/rf-0DQu5M6Y
+- 128: Matteo Minelli — https://unsplash.com/photos/hlnucYOsL-c
+- 129: Charlie Foster — https://unsplash.com/photos/A88emaZe7d8
+- 144: Mouly Kumar — https://unsplash.com/photos/TuOiIpkIea8
+- 158: Daniel Robert — https://unsplash.com/photos/MRxD-J9-4ps
+- 160: Thom — https://unsplash.com/photos/Zdcq3iKly6g
+- 163: Linh Nguyen — https://unsplash.com/photos/oFAVqfTSby8
+- 164: Linh Nguyen — https://unsplash.com/photos/agkblvPff5U
+- 166: Romain Briaux — https://unsplash.com/photos/yD3PXDV7Sjc
+- 167: petradr — https://unsplash.com/photos/WqK_xV_hbug
+- 170: Noel Lopez — https://unsplash.com/photos/LbS_k_c3BYA
+- 174: Linh Nguyen — https://unsplash.com/photos/YYegjUYIVeg
+- 175: petradr — https://unsplash.com/photos/8hgm6mKK04U
+- 180: Galymzhan Abdugalimov — https://unsplash.com/photos/ICW6QYOcdlg
+- 191: Alex Talmon — https://unsplash.com/photos/6iat9p85VnQ
+- 201: Craig Garner — https://unsplash.com/photos/YoadQb46v6k
+- 204: Tiago Gerken — https://unsplash.com/photos/vCqmY3bfqfo
+- 206: Philipp Reiner — https://unsplash.com/photos/qPJ6eRAMmCM
+- 293: Paul E. Harrer — https://unsplash.com/photos/AJqHzUbc1io
+- 299: Matthew Wiebe — https://unsplash.com/photos/nOhUx3tiaQQ
+- 304: Drew Patrick Miller — https://unsplash.com/photos/_o6AAx9dl_Y
+- 312: Sonja Langford — https://unsplash.com/photos/RQHzRELE2Ss
+- 319: Kristian Karlsson — https://unsplash.com/photos/3V6ZTpZS-ag
+- 322: Afroz Nawaf — https://unsplash.com/photos/dSyWD7oRns8
+- 323: Paweł Wojciechowski — https://unsplash.com/photos/QYAojSRu82c
+- 324: Sonja Langford — https://unsplash.com/photos/L_F8jAsRWtU
+- 327: Ryan Schroeder — https://unsplash.com/photos/Gg7uKdHFb_c
+- 336: Sylwia Bartyzel — https://unsplash.com/photos/7_cSSarxoAA
+- 345: Mario Calvo — https://unsplash.com/photos/S_mEIfXRzIk
+- 348: Anna Dziubinska — https://unsplash.com/photos/mVhd5QVlDWw
+- 349: Caleb George — https://unsplash.com/photos/FmMivfgHCiM
+- 351: Rafael Fabricio — https://unsplash.com/photos/nKRVmvjW3rE
+- 352: Caleb George — https://unsplash.com/photos/URmkfvtK3Qw
+- 355: Mario Calvo — https://unsplash.com/photos/YOT6kS8YtEA
+- 360: Cas Cornelissen — https://unsplash.com/photos/G2UTNecskWg
+- 365: Carli Jean — https://unsplash.com/photos/15YDf39RIVc
+- 987: Sebastien Gabriel — https://unsplash.com/photos/2W5LoumSdfw
+- 1000: Lukas Budimaier — https://unsplash.com/photos/6cY-FvMlmkQ
+- 1001: Danielle MacInnes — https://unsplash.com/photos/1DkWWN1dr-s
+- 1004: Greg Rakozy — https://unsplash.com/photos/SSxIGsySh8o
+- 1005: Matthew Wiebe — https://unsplash.com/photos/tBtuxtLvAZs
+- 1008: Benjamin Combs — https://unsplash.com/photos/5L4XAgMSno0
+- 1011: Roberto Nickson — https://unsplash.com/photos/7BjmDICVloE
+- 1012: Scott Webb — https://unsplash.com/photos/uAgLGG1WBd4
+- 1013: Cayton Heath — https://unsplash.com/photos/D8LcRLwZyPs
+- 1015: Alexey Topolyanskiy — https://unsplash.com/photos/-oWyJoSqBRM
+- 1019: Patrick Fore — https://unsplash.com/photos/V6s1cmE39XM
+- 1020: Adam Willoughby-Knox — https://unsplash.com/photos/_snqARKTgoc
+- 1022: Vashishtha Jogi — https://unsplash.com/photos/bClr95glx6k
+- 1023: William Hook — https://unsplash.com/photos/93Ep1dhTd2s
+- 1024: Niko Virtanen — https://nikovirtanen.com
+- 1025: Matthew Wiebe — https://unsplash.com/photos/U5rMrSI7Pn4
+- 1029: freddie marriage — https://unsplash.com/photos/utwYoEu9SU8
+- 1033: Erez Attias — https://unsplash.com/photos/KqVHRmHVwwM
+- 1036: Wolfgang Lutz — https://unsplash.com/photos/yOujaSETXlo
+- 1037: Jordan McQueen — https://unsplash.com/photos/93g2k8D1Mi8
+- 1039: Andrew Coelho — https://unsplash.com/photos/VB-w_3dnyvI
+- 1041: Tim Marshall — https://unsplash.com/photos/yEOCA6oiVqg
+- 1043: Christian Joudrey — https://unsplash.com/photos/mWRR1xj95hg
+- 1044: Steve Carter — https://unsplash.com/photos/Ixp4YhCKZkI
+- 1045: Aleksandra Boguslawska — https://unsplash.com/photos/USOu_Ob9rxo
+- 1048: Anthony DELANOIX — https://unsplash.com/photos/b5POxb2aL9o
+- 1051: Ales Krivec — https://unsplash.com/photos/HkTMcmlMOUQ
+- 1055: Neil Thomas — https://unsplash.com/photos/12rzbJhQ89E
+- 1059: Clark Street Mercantile — https://unsplash.com/photos/vC-GqGbakJo
+- 1060: Karl Fredrickson — https://unsplash.com/photos/TYIzeCiZ_60
+- 1062: Matthew Wiebe — https://unsplash.com/photos/2Ts5HnA67k8
+- 1064: Olivier Miche — https://unsplash.com/photos/iIg4F2IWbTM
+- 1067: Kevin Young — https://unsplash.com/photos/-icmOdYWXuQ
+- 1069: Marat Gilyadzinov — https://unsplash.com/photos/wpTWYBll4_w
+- 1071: Tim Stief — https://unsplash.com/photos/uzBiLWpjQEQ
+- 1072: jamie mink — https://unsplash.com/photos/5Qwz2KyfIBE
+- 1075: Verne Ho — https://unsplash.com/photos/dccIfU1V1VU
+- 1076: Samuel Zeller — https://unsplash.com/photos/WlD3vixTVUg
+- 1077: Maico Amorim — https://unsplash.com/photos/SJWPKMb9u-k
+- 1078: Vladimir Kudinov — https://unsplash.com/photos/KBX9XHk266s
+- 1079: Kamesh Vedula — https://unsplash.com/photos/ISL7czxIP-k
+- 1080: veeterzy — https://unsplash.com/photos/OJJIaFZOeX4

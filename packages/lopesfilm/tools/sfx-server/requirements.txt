@@ -1,0 +1,7 @@
+torch
+diffusers>=0.30
+transformers
+accelerate
+sentencepiece
+soundfile
+numpy

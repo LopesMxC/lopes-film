@@ -1,0 +1,14 @@
+Options -Indexes
+DirectoryIndex index.php index.html
+# nada de data/ sai pela web (senha, lista de versões)
+RedirectMatch 404 ^/?(.*/)?data/
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "same-origin"
+  # o feed e o instalador não ficam em cache de borda: o app precisa ver a versão nova na hora
+  <FilesMatch "\.(yml|json)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+</IfModule>
+AddType application/octet-stream .exe
+AddType text/yaml .yml

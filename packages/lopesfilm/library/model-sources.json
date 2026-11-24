@@ -1,0 +1,21 @@
+{
+ "models/onnxruntime-web-1.31.1/ort.wasm.min.mjs": "https://cdn.jsdelivr.net/npm/onnxruntime-web@1.31.1/dist/ort.wasm.min.mjs",
+ "models/onnxruntime-web-1.31.1/ort-wasm-simd-threaded.mjs": "https://cdn.jsdelivr.net/npm/onnxruntime-web@1.31.1/dist/ort-wasm-simd-threaded.mjs",
+ "models/onnxruntime-web-1.31.1/ort-wasm-simd-threaded.wasm": "https://cdn.jsdelivr.net/npm/onnxruntime-web@1.31.1/dist/ort-wasm-simd-threaded.wasm",
+ "models/transformers-4.3.2/transformers.min.js": "https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.3.2/dist/transformers.min.js",
+ "models/whisper-small/config.json": "https://huggingface.co/Xenova/whisper-small/resolve/main/config.json",
+ "models/whisper-small/generation_config.json": "https://huggingface.co/Xenova/whisper-small/resolve/main/generation_config.json",
+ "models/whisper-small/preprocessor_config.json": "https://huggingface.co/Xenova/whisper-small/resolve/main/preprocessor_config.json",
+ "models/whisper-small/tokenizer.json": "https://huggingface.co/Xenova/whisper-small/resolve/main/tokenizer.json",
+ "models/whisper-small/tokenizer_config.json": "https://huggingface.co/Xenova/whisper-small/resolve/main/tokenizer_config.json",
+ "models/whisper-small/onnx/encoder_model_quantized.onnx": "https://huggingface.co/Xenova/whisper-small/resolve/main/onnx/encoder_model_quantized.onnx",
+ "models/whisper-small/onnx/decoder_model_merged_quantized.onnx": "https://huggingface.co/Xenova/whisper-small/resolve/main/onnx/decoder_model_merged_quantized.onnx",
+ "models/whisper-large-v3-turbo/config.json": "https://huggingface.co/onnx-community/whisper-large-v3-turbo_timestamped/resolve/main/config.json",
+ "models/whisper-large-v3-turbo/generation_config.json": "https://huggingface.co/onnx-community/whisper-large-v3-turbo_timestamped/resolve/main/generation_config.json",
+ "models/whisper-large-v3-turbo/preprocessor_config.json": "https://huggingface.co/onnx-community/whisper-large-v3-turbo_timestamped/resolve/main/preprocessor_config.json",
+ "models/whisper-large-v3-turbo/tokenizer.json": "https://huggingface.co/onnx-community/whisper-large-v3-turbo_timestamped/resolve/main/tokenizer.json",
+ "models/whisper-large-v3-turbo/tokenizer_config.json": "https://huggingface.co/onnx-community/whisper-large-v3-turbo_timestamped/resolve/main/tokenizer_config.json",
+ "models/whisper-large-v3-turbo/onnx/encoder_model_quantized.onnx": "https://huggingface.co/onnx-community/whisper-large-v3-turbo_timestamped/resolve/main/onnx/encoder_model_quantized.onnx",
+ "models/whisper-large-v3-turbo/onnx/decoder_model_merged_quantized.onnx": "https://huggingface.co/onnx-community/whisper-large-v3-turbo_timestamped/resolve/main/onnx/decoder_model_merged_quantized.onnx",
+ "models/isnet-general/model.onnx": "https://huggingface.co/Ko033/isnet-general-use-onnx/resolve/main/onnx/model_quantized.onnx"
+}

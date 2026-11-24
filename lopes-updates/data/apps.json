@@ -1,0 +1,17 @@
+[
+    {
+        "slug": "lopes-film",
+        "name": "Lopes.Film",
+        "description": "Editor de vídeo com IA que roda no seu PC"
+    },
+    {
+        "slug": "verkz-film",
+        "name": "VerkzFilm",
+        "description": "O editor de vídeo com IA na versão Verkz"
+    },
+    {
+        "slug": "global-film",
+        "name": "GlobalFilm",
+        "description": "O editor de vídeo com IA na versão Global"
+    }
+]

@@ -1,0 +1,26 @@
+{
+  "order": 11,
+  "category": "edit",
+  "icon": "music",
+  "title": {
+    "en": "Sound",
+    "zh-CN": "声音",
+    "ja": "サウンド",
+    "ko": "사운드",
+    "es": "Sonido"
+  },
+  "summary": {
+    "en": "Dialogue clarity, music and ducking, effects, ambience and loudness.",
+    "zh-CN": "对白清晰度、音乐与闪避、音效、环境声和响度。",
+    "ja": "台詞の明瞭さ、音楽とダッキング、効果音、環境音、ラウドネス。",
+    "ko": "대사 명료도, 음악과 더킹, 효과음, 환경음, 라우드니스.",
+    "es": "Claridad del diálogo, música y ducking, efectos, ambiente y volumen."
+  },
+  "details": {
+    "en": "When it is used: when the person asks for better sound, a mix, music and effects, or quiet, noisy or uneven audio.\nWhat it teaches: to layer ambience, music, effects and dialogue, set levels and check loudness.\nTurned off: agents still try, but sound is mixed without levels or order.",
+    "zh-CN": "什么时候用：用到这个主题时。\n它教什么：对白清晰度、音乐与闪避、音效、环境声和响度。\n关掉后：智能体仍会尝试，但没有这些规则。",
+    "ja": "使うとき：この話題のとき。\n教えること：台詞の明瞭さ、音楽とダッキング、効果音、環境音、ラウドネス。\nオフにすると：エージェントは試みますが、この規則はなくなります。",
+    "ko": "언제 쓰나요: 이 주제를 요청할 때.\n무엇을 알려 주나요: 대사 명료도, 음악과 더킹, 효과음, 환경음, 라우드니스.\n끄면: 에이전트는 시도하지만 이 규칙은 없습니다.",
+    "es": "Cuándo se usa: cuando el tema aparece en el pedido.\nQué enseña: Claridad del diálogo, música y ducking, efectos, ambiente y volumen.\nSi se desactiva: los agentes lo intentan, pero sin estas reglas."
+  }
+}

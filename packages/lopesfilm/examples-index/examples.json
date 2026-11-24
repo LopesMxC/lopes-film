@@ -1,0 +1,13 @@
+{
+  "examples": [
+    {
+      "folder": "abertura-lopes",
+      "title": "Abertura Lopes.Film",
+      "description": "A abertura da marca, feita e exportada no próprio Lopes.Film: logotipo, luz carmesim e partículas.",
+      "poster": "abertura-lopes/poster.jpg",
+      "video": "abertura-lopes/abertura.mp4",
+      "duration": "0:24",
+      "category": "abertura"
+    }
+  ]
+}

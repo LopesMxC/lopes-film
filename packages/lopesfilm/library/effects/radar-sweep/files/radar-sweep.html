@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Radar sweep</title>
+<style>
+  /* what a clip of it may change: its main color, how much of it shows (0 to 1), how fast it moves */
+  :root { --color: #4dffb0; --amount: 1; --speed: 1; }
+  html, body { margin: 0; height: 100%; overflow: hidden; background: transparent; }
+  canvas { position: fixed; inset: 0; width: 100%; height: 100%; }
+</style>
+</head>
+<body>
+<canvas></canvas>
+<script>
+/*
+ * Radar sweep: A radar scope in the corner: rings, a turning beam leaving a fading trail, and blips that light up as it passes. A page of Lopes.Film's library (CC0): everything drawn is worked out from t alone.
+ */
+const hash = (n) => { const x = Math.sin(n * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); };
+const root = document.documentElement;
+const css = (name) => getComputedStyle(root).getPropertyValue(name).trim();
+const num = (name, fallback) => { const v = parseFloat(css(name)); return Number.isFinite(v) ? v : fallback; };
+const probe = document.createElement('canvas').getContext('2d');
+const rgb = (name, fallback) => {
+  probe.fillStyle = fallback; probe.fillStyle = css(name) || fallback;
+  const s = probe.fillStyle;
+  return s[0] === '#' ? [1, 3, 5].map((i) => parseInt(s.slice(i, i + 2), 16)) : s.match(/[\d.]+/g).slice(0, 3).map(Number);
+};
+const canvas = document.querySelector('canvas'), ctx = canvas.getContext('2d');
+function fit() {
+  const d = devicePixelRatio || 1, w = Math.round(innerWidth * d), h = Math.round(innerHeight * d);
+  if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
+  ctx.setTransform(d, 0, 0, d, 0, 0);
+  ctx.clearRect(0, 0, innerWidth, innerHeight);
+}
+window.film = {
+  frame(t) {
+    fit();
+    const w = innerWidth, h = innerHeight, u = Math.min(w, h) / 100;
+    const amount = Math.max(0, Math.min(1, num('--amount', 1))), speed = num('--speed', 1), c = rgb('--color', '#4dffb0');
+    const col = (a) => `rgba(${c[0]},${c[1]},${c[2]},${a})`;
+    const tt = t * speed;
+    const R = 22 * u, cx = w - R - 5 * u, cy = h - R - 5 * u, a = tt * 1.6;
+    ctx.fillStyle = 'rgba(0,20,12,0.35)'; ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fill();
+    ctx.globalAlpha = amount; ctx.strokeStyle = col(0.75); ctx.lineWidth = 0.3 * u;
+    for (let k = 1; k <= 3; k++) { ctx.beginPath(); ctx.arc(cx, cy, R * k / 3, 0, Math.PI * 2); ctx.stroke(); }
+    ctx.beginPath(); ctx.moveTo(cx - R, cy); ctx.lineTo(cx + R, cy); ctx.moveTo(cx, cy - R); ctx.lineTo(cx, cy + R); ctx.stroke();
+    for (let s = 0; s < 30; s++) { const b = a - s * 0.03; ctx.fillStyle = col(0.3 * (1 - s / 30)); ctx.beginPath(); ctx.moveTo(cx, cy); ctx.arc(cx, cy, R, b - 0.03, b); ctx.fill(); }
+    for (let i = 0; i < 6; i++) { const ba = hash(i) * Math.PI * 2, br = R * (0.25 + 0.7 * hash(i + 1)); const since = ((a - ba) % (Math.PI * 2) + Math.PI * 2) % (Math.PI * 2); ctx.fillStyle = col(Math.max(0, 1 - since / 3)); ctx.beginPath(); ctx.arc(cx + Math.cos(ba) * br, cy + Math.sin(ba) * br, 0.6 * u, 0, Math.PI * 2); ctx.fill(); }
+    ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
+  },
+};
+if (!window.filmHost) {
+  const t0 = performance.now();
+  const loop = () => { window.film.frame((performance.now() - t0) / 1000); requestAnimationFrame(loop); };
+  loop();
+}
+</script>
+</body>
+</html>

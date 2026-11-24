@@ -1,0 +1,26 @@
+{
+  "title": {
+    "en": "Skill from a video",
+    "zh-CN": "从视频做技能",
+    "ja": "動画からスキルを作る",
+    "ko": "영상으로 스킬 만들기",
+    "es": "Skill desde un vídeo"
+  },
+  "summary": {
+    "en": "Turn a reference video into a skill: study its structure, pacing, type, colour, motion and sound, and write it as rules.",
+    "zh-CN": "把参考视频变成技能：分析结构、节奏、字体、颜色、动效和声音，并写成规则。",
+    "ja": "参考動画をスキルにします。構成、テンポ、文字、色、動き、音を調べ、ルールとして書きます。",
+    "ko": "참고 영상을 스킬로 만듭니다. 구성, 속도, 글자, 색, 움직임, 소리를 분석해 규칙으로 씁니다.",
+    "es": "Convierte un vídeo de referencia en una skill: estudia estructura, ritmo, tipografía, color, movimiento y sonido y lo escribe como reglas."
+  },
+  "details": {
+    "en": "When it is used: when you give a reference video and ask for a skill, a style or films made like it.\nWhat it teaches: to study the video with numbers (beats, shot lengths, type, colour, easing, sound) and write them as a skill that follows the technique, never copying its words, pictures or music.\nTurned off: agents can still try, but without a method or the rules against copying.",
+    "zh-CN": "什么时候用：你给出参考视频并要一个技能、一种风格或“做成这样”的片子时。\n它教什么：用数字分析视频（节拍、镜头时长、字体、颜色、缓动、声音），并写成遵循其手法的技能，绝不照搬原视频的文字、画面或音乐。\n关掉后：智能体仍会尝试，但没有方法，也没有不得照搬的规则。",
+    "ja": "使うとき：参考動画を渡して、スキルやスタイル、同じ作り方の映像を頼んだとき。\n教えること：動画を数値で調べ（拍、ショットの長さ、文字、色、イージング、音）、手法に従うスキルとして書くこと。元の文字・映像・音楽は写しません。\nオフにすると：エージェントは試みますが、方法も複製を避ける規則もありません。",
+    "ko": "언제 쓰나요: 참고 영상을 주고 스킬이나 스타일, 같은 방식의 영상을 요청할 때.\n무엇을 알려 주나요: 영상을 숫자로 분석하고(박자, 샷 길이, 글자, 색, 이징, 소리) 기법만 따르는 스킬로 쓰는 법. 원본의 글, 화면, 음악은 베끼지 않습니다.\n끄면: 에이전트는 시도하지만 방법도 베끼지 않는 규칙도 없습니다.",
+    "es": "Cuándo se usa: cuando das un vídeo de referencia y pides una skill, un estilo o vídeos hechos como ese.\nQué enseña: a estudiar el vídeo con números (compases, duración de planos, tipografía, color, easing, sonido) y escribir una skill que sigue la técnica, sin copiar sus textos, imágenes ni música.\nSi se desactiva: los agentes lo intentan, pero sin método ni la regla de no copiar."
+  },
+  "order": 13,
+  "category": "customize",
+  "icon": "palette"
+}

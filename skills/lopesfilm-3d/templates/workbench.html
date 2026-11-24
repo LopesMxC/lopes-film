@@ -1,0 +1,200 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1920, height=1080">
+<title>Workbench: a terminal and a 3D modeler, driven by a cursor</title>
+<style>
+  html, body { margin: 0; background: #17181c; overflow: hidden; }
+  #stage { position: relative; width: 1920px; height: 1080px; font-family: Inter, 'Segoe UI', system-ui, sans-serif; color: #d8dae0; background: #17181c; }
+  .win { position: absolute; background: #1f2127; border: 1px solid #30333b; border-radius: 10px; overflow: hidden; box-shadow: 0 20px 60px #0008; }
+  .bar { height: 38px; background: #272a31; display: flex; align-items: center; gap: 8px; padding: 0 14px; font-size: 15px; color: #9aa0ad; }
+  .dot { width: 12px; height: 12px; border-radius: 50%; }
+  #menu { position: absolute; left: 0; top: 0; width: 1920px; height: 44px; background: #232529; display: flex; align-items: center; gap: 26px; padding: 0 24px; font-size: 17px; color: #b4b8c2; box-sizing: border-box; }
+  #menu .tab { padding: 6px 14px; border-radius: 6px; }
+  #menu .on { background: #3a3e48; color: #fff; }
+  #term { left: 40px; top: 70px; width: 780px; height: 930px; }
+  #term pre { margin: 0; padding: 18px 22px; font: 21px/31px 'JetBrains Mono', Consolas, monospace; color: #cfd3dc; white-space: pre-wrap; }
+  .p { color: #6ee7a8 } .k { color: #c792ea } .s { color: #f9c46b } .o { color: #7f8696 } .e { color: #8ab4ff }
+  #view { left: 850px; top: 70px; width: 1030px; height: 640px; }
+  #cv { display: block; width: 1030px; height: 602px; background: #3b3d44; }
+  #side { left: 850px; top: 730px; width: 500px; height: 270px; }
+  #props { left: 1370px; top: 730px; width: 510px; height: 270px; }
+  .row { display: flex; justify-content: space-between; padding: 7px 18px; font-size: 17px; border-bottom: 1px solid #2a2d34; }
+  .row b { color: #e8eaf0; font-weight: 500 } .row span { color: #8a90a0 }
+  .sel { background: #2f4a7a }
+  #keys { position: absolute; left: 0; width: 1920px; bottom: 26px; display: flex; justify-content: center; gap: 12px; pointer-events: none; }
+  .cap { background: #f1f2f5; color: #1c1d22; font: 600 26px 'JetBrains Mono', Consolas, monospace; padding: 10px 20px; border-radius: 10px; box-shadow: 0 4px 0 #9ca0ab, 0 10px 24px #0007; }
+  #cur { position: absolute; left: 0; top: 0; width: 34px; height: 34px; pointer-events: none; filter: drop-shadow(0 3px 5px #000a); }
+  #rip { position: absolute; width: 20px; height: 20px; margin: -10px 0 0 -10px; border: 3px solid #8ab4ff; border-radius: 50%; opacity: 0; pointer-events: none; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="menu"><span>File</span><span>Edit</span><span>Render</span><span>Window</span><span>Help</span>
+    <span class="tab">Layout</span><span class="tab on">Modeling</span><span class="tab">Sculpting</span><span class="tab">Shading</span><span class="tab">Animation</span></div>
+  <div class="win" id="term"><div class="bar"><i class="dot" style="background:#ff5f57"></i><i class="dot" style="background:#febc2e"></i><i class="dot" style="background:#28c840"></i>&nbsp;terminal</div><pre id="tt"></pre></div>
+  <div class="win" id="view"><div class="bar" id="vbar">3D Viewport · Object Mode</div><canvas id="cv" width="1030" height="602"></canvas></div>
+  <div class="win" id="side"><div class="bar">Outliner</div><div id="outl"></div></div>
+  <div class="win" id="props"><div class="bar">Properties</div><div id="pr"></div></div>
+  <div id="keys"></div>
+  <div id="rip"></div>
+  <svg id="cur" viewBox="0 0 34 34"><path d="M5 3 L5 27 L11 21 L15 30 L19 28 L15 19 L24 19 Z" fill="#fff" stroke="#111" stroke-width="2" stroke-linejoin="round"/></svg>
+</div>
+<script>
+/* ---- Edit these: the whole film is this SCRIPT ----
+   term:  lines in the terminal. `cmd` is typed (cps characters a second), `out` appears at once.
+   mouse: waypoints [t, x, y, click?]. The cursor eases between them; click:1 shows a ripple.
+   keys:  [t, seconds shown, 'Key', 'Key'…]  caps shown at the bottom.
+   build: when the model changes. Everything is a pure function of t. */
+const SCRIPT = {
+  duration: 24,
+  cps: 34,
+  term: [
+    [0.6, 'cmd', 'python3 scene.py --new "Ship hull"'],
+    [3.2, 'out', 'creating mesh  Cube  (8 verts, 6 faces)'],
+    [4.4, 'cmd', 'bpy.ops.object.mode_set(mode="EDIT")'],
+    [7.0, 'out', 'edit mode  ·  face select'],
+    [8.0, 'cmd', 'bpy.ops.mesh.extrude_region_move(z=1.2)'],
+    [11.2, 'out', 'extruded 1 face  (12 verts, 10 faces)'],
+    [12.4, 'cmd', 'bpy.ops.mesh.bevel(offset=0.06, segments=3)'],
+    [15.4, 'out', 'bevel applied'],
+    [16.4, 'cmd', 'bpy.ops.object.shade_smooth()'],
+    [18.6, 'out', 'render ready  →  hull.glb'],
+  ],
+  mouse: [
+    [0, 1500, 900], [1.2, 1500, 900], [2.6, 1330, 400, 1], [3.6, 1380, 420], [6.0, 1380, 420], [6.8, 1260, 360, 1],
+    [8.6, 1300, 380], [9.4, 1440, 330, 1], [10.0, 1440, 250], [11.0, 1440, 250], [12.2, 1330, 400], [14.8, 1330, 400],
+    [15.6, 1160, 300, 1], [17.0, 1440, 340], [17.4, 1210, 330], [21.0, 1590, 360], [22.4, 1590, 360], [23.6, 1700, 820, 1],
+  ],
+  keys: [[3.4, 1.4, 'Shift', 'A'], [6.0, 1.2, 'Tab'], [8.0, 1.2, 'E'], [9.6, 1.2, 'Z'], [12.2, 1.4, 'Ctrl', 'B'], [16.2, 1.4, 'Shift', 'S']],
+  build: { cube: [2.6, 3.4], edit: [6.0, 15.4], extrude: [9.4, 11.2], bevel: [13.0, 15.0], smooth: [18.0, 19.0], orbit: [17.0, 22.0] },
+};
+
+const ease = (x) => x < 0 ? 0 : x > 1 ? 1 : x * x * (3 - 2 * x);
+const span = ([a, b], t) => ease((t - a) / (b - a));
+const $ = (id) => document.getElementById(id);
+
+/* ---- terminal ---- */
+function paint(s) {
+  const esc = (x) => x.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+  return s.replace(/(bpy\.ops\.[\w.]+)|("[^"]*")|\b(mode|z|offset|segments)(?==)/g,
+    (m, op, str, kw) => `<span class="${op ? 'e' : str ? 's' : 'k'}">${esc(m)}</span>`);
+}
+function terminal(t) {
+  let html = '';
+  let last = null;
+  for (const [at, kind, text] of SCRIPT.term) {
+    if (t < at) break;
+    if (kind === 'cmd') {
+      const n = Math.min(text.length, Math.floor((t - at) * SCRIPT.cps));
+      html += `<span class="p">$ </span>${paint(text.slice(0, n))}\n`;
+      last = n < text.length ? 'typing' : 'idle';
+    } else { html += `<span class="o">${text}</span>\n`; last = 'idle'; }
+  }
+  const blink = Math.floor(t * 2) % 2 === 0 || last === 'typing';
+  if (last === null || !html.endsWith('\n')) html += blink ? '█' : '';
+  else html += `<span class="p">$ </span>${blink ? '█' : ''}`;
+  $('tt').innerHTML = html;
+}
+
+/* ---- the model: boxes in world space, projected by hand ---- */
+const W = 1030, H = 602;
+function project(p, yaw, pitch, dist) {
+  const cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch);
+  const x = p[0] * cy - p[2] * sy, z0 = p[0] * sy + p[2] * cy;
+  const y = p[1] * cp - z0 * sp, z = p[1] * sp + z0 * cp;
+  const k = 640 / (dist + z);
+  return [W / 2 + x * k, H / 2 + 190 - y * k, z];
+}
+const FACES = [[0, 1, 2, 3, [0, 0, -1]], [4, 5, 6, 7, [0, 0, 1]], [0, 1, 5, 4, [0, -1, 0]], [3, 2, 6, 7, [0, 1, 0]], [0, 3, 7, 4, [-1, 0, 0]], [1, 2, 6, 5, [1, 0, 0]]];
+function box(cx, cy, cz, sx, sy, sz) {
+  const v = [];
+  for (const [a, b, c] of [[-1, -1, -1], [1, -1, -1], [1, 1, -1], [-1, 1, -1], [-1, -1, 1], [1, -1, 1], [1, 1, 1], [-1, 1, 1]]) v.push([cx + a * sx, cy + b * sy, cz + c * sz]);
+  return v;
+}
+function view(t) {
+  const cv = $('cv'), g = cv.getContext('2d');
+  g.clearRect(0, 0, W, H);
+  g.fillStyle = '#3b3d44'; g.fillRect(0, 0, W, H);
+  const B = SCRIPT.build;
+  const orbit = span(B.orbit, t);
+  const yaw = 0.62 + orbit * 1.5, pitch = 0.42 + Math.sin(orbit * Math.PI) * 0.1, dist = 9;
+  /* grid floor */
+  g.lineWidth = 1;
+  for (let i = -8; i <= 8; i++) {
+    g.strokeStyle = i === 0 ? '#6a4d4d' : '#4b4e57';
+    let a = project([i, 0, -8], yaw, pitch, dist), b = project([i, 0, 8], yaw, pitch, dist);
+    g.beginPath(); g.moveTo(a[0], a[1]); g.lineTo(b[0], b[1]); g.stroke();
+    g.strokeStyle = i === 0 ? '#4d6a4d' : '#4b4e57';
+    a = project([-8, 0, i], yaw, pitch, dist); b = project([8, 0, i], yaw, pitch, dist);
+    g.beginPath(); g.moveTo(a[0], a[1]); g.lineTo(b[0], b[1]); g.stroke();
+  }
+  const grow = span(B.cube, t);
+  const edit = t >= B.edit[0] && t < B.edit[1];
+  const ext = span(B.extrude.map((x, i) => x + i * 0), t) * (1.2 / 1);
+  const bev = span(B.bevel, t) * 0.06;
+  const solids = [];
+  if (grow > 0) solids.push(box(0, grow, 0, 1.1 * grow, grow, 1.1 * grow));
+  if (ext > 0.001) solids.push(box(0, 2 * grow + ext, 0, 0.7 * grow, ext, 0.7 * grow));
+  const light = [0.4, 0.8, 0.45], smooth = span(B.smooth, t);
+  const draw = [];
+  for (const v of solids) for (const f of FACES) {
+    const n = f[4], ys = Math.cos(yaw), ss = Math.sin(yaw);
+    const nx = n[0] * ys - n[2] * ss, nz0 = n[0] * ss + n[2] * ys;
+    const ny = n[1] * Math.cos(pitch) - nz0 * Math.sin(pitch), nz = n[1] * Math.sin(pitch) + nz0 * Math.cos(pitch);
+    if (nz > 0.02) continue;                                    /* facing away */
+    const pts = f.slice(0, 4).map((i) => project(v[i], yaw, pitch, dist));
+    const lit = Math.max(0, n[0] * light[0] + n[1] * light[1] + n[2] * light[2]);
+    draw.push({ pts, lit, d: pts.reduce((s, p) => s + p[2], 0) / 4 });
+  }
+  draw.sort((a, b) => b.d - a.d);
+  for (const f of draw) {
+    const shade = Math.round(70 + (smooth > 0 ? 0.5 + f.lit * 0.5 : f.lit) * 120);
+    g.fillStyle = edit ? `rgb(${shade},${shade - 8},${shade - 14})` : `rgb(${shade},${shade},${shade + 6})`;
+    g.strokeStyle = edit ? '#f59e42' : bev > 0.01 ? '#cfd3dc' : '#15161a';
+    g.lineWidth = edit ? 2 : 1.5 + bev * 20;
+    g.lineJoin = 'round';
+    g.beginPath(); f.pts.forEach((p, i) => (i ? g.lineTo(p[0], p[1]) : g.moveTo(p[0], p[1]))); g.closePath(); g.fill(); g.stroke();
+    if (edit) for (const p of f.pts) { g.fillStyle = '#ffb056'; g.beginPath(); g.arc(p[0], p[1], 5, 0, 7); g.fill(); }
+  }
+  $('vbar').textContent = `3D Viewport · ${edit ? 'Edit Mode · Face Select' : 'Object Mode'}`;
+  /* panels */
+  const objs = grow > 0 ? [['Cube', 'Mesh']] : [];
+  $('outl').innerHTML = `<div class="row"><b>Collection</b><span>▾</span></div><div class="row"><b>Camera</b><span>Camera</span></div><div class="row"><b>Light</b><span>Point</span></div>`
+    + objs.map(([n, k]) => `<div class="row sel"><b>${n}</b><span>${k}</span></div>`).join('');
+  const verts = ext > 0.001 ? 12 : grow > 0 ? 8 : 0;
+  $('pr').innerHTML = [['Location', '0, 0, 0'], ['Scale', grow > 0 ? (1 + Math.round(grow * 10) / 10).toFixed(1) : '—'], ['Vertices', verts], ['Faces', ext > 0.001 ? 10 : grow > 0 ? 6 : 0], ['Bevel', bev > 0.001 ? bev.toFixed(2) : '—'], ['Shading', smooth > 0.5 ? 'Smooth' : 'Flat']]
+    .map(([k, v]) => `<div class="row"><span>${k}</span><b>${v}</b></div>`).join('');
+}
+
+/* ---- cursor and key caps ---- */
+function cursor(t) {
+  const m = SCRIPT.mouse;
+  let i = 0;
+  while (i < m.length - 1 && t >= m[i + 1][0]) i++;
+  const a = m[i], b = m[Math.min(i + 1, m.length - 1)];
+  const u = b[0] === a[0] ? 1 : ease((t - a[0]) / (b[0] - a[0]));
+  const x = a[1] + (b[1] - a[1]) * u, y = a[2] + (b[2] - a[2]) * u;
+  $('cur').style.transform = `translate(${x - 5}px, ${y - 3}px)`;
+  /* ripple at the last click within 0.5 s */
+  let rip = 0, rx = 0, ry = 0;
+  for (const [ct, cx, cy, click] of m) if (click && t >= ct && t - ct < 0.5) { rip = (t - ct) / 0.5; rx = cx; ry = cy; }
+  const r = $('rip');
+  r.style.opacity = rip ? String(1 - rip) : '0';
+  r.style.transform = `translate(${rx}px, ${ry}px) scale(${1 + rip * 2.4})`;
+  r.style.left = '0'; r.style.top = '0';
+}
+function keys(t) {
+  const hit = SCRIPT.keys.find(([at, len]) => t >= at && t < at + len);
+  $('keys').innerHTML = hit ? hit.slice(2).map((k) => `<div class="cap">${k}</div>`).join('') : '';
+}
+
+window.film = {
+  duration: SCRIPT.duration,
+  frame(t) { terminal(t); view(t); cursor(t); keys(t); },
+};
+window.film.frame(0);
+</script>
+</body>
+</html>

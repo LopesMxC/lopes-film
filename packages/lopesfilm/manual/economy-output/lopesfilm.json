@@ -1,0 +1,19 @@
+{
+  "order": 5,
+  "category": "optimize",
+  "icon": "zap",
+  "title": {
+    "en": "Economy: output",
+    "zh-CN": "节省：输出",
+    "ja": "節約：出力",
+    "ko": "절약: 출력",
+    "es": "Economía: salida"
+  },
+  "summary": {
+    "en": "Say and write less for the same result: patches not rewrites, one-line reports, no recap. On by default.",
+    "zh-CN": "结果不变，说得写得更少：打补丁而非重写、一行汇报、不复述。默认开启。",
+    "ja": "結果は同じで出力を減らす：書き直しでなく差分、一行報告、要約の繰り返しなし。標準でオン。",
+    "ko": "같은 결과에 더 적게 쓰기: 재작성 대신 패치, 한 줄 보고, 되풀이 없음. 기본으로 켜짐.",
+    "es": "Decir y escribir menos con el mismo resultado: parches y no reescrituras, informe de una línea, sin resumen. Activada por defecto."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "order": 4,
+  "category": "optimize",
+  "icon": "zap",
+  "title": {
+    "en": "Economy: input",
+    "zh-CN": "节省：输入",
+    "ja": "節約：入力",
+    "ko": "절약: 입력",
+    "es": "Economía: entrada"
+  },
+  "summary": {
+    "en": "Read less to know the same: ranges instead of whole files, one listing, no rereading. On by default.",
+    "zh-CN": "读得更少，知道得一样多：按范围读取而非整文件，只列一次，不重复读。默认开启。",
+    "ja": "読む量を減らして同じだけ把握：ファイル全体でなく範囲、一覧は一度、再読なし。標準でオン。",
+    "ko": "덜 읽고 같은 걸 알기: 전체 파일 대신 범위, 목록은 한 번, 다시 읽지 않기. 기본으로 켜짐.",
+    "es": "Leer menos y saber lo mismo: rangos en vez de archivos enteros, un solo listado, sin releer. Activada por defecto."
+  }
+}

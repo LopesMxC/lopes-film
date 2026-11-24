@@ -1,0 +1,19 @@
+{
+  "order": 4,
+  "category": "edit",
+  "icon": "scissors",
+  "title": {
+    "en": "Cutting",
+    "zh-CN": "剪辑节奏",
+    "ja": "カットのリズム",
+    "ko": "컷 편집",
+    "es": "Montaje"
+  },
+  "summary": {
+    "en": "Rhythm, where to cut, b-roll, sound and captions so the edit feels made by a person.",
+    "zh-CN": "节奏、剪切点、补充镜头、声音和字幕，让剪辑像真人做的。",
+    "ja": "リズム、カットの位置、Bロール、音、字幕で、人の手で編集したような仕上がりに。",
+    "ko": "리듬, 컷 위치, B롤, 소리, 자막으로 사람이 편집한 느낌을 냅니다.",
+    "es": "Ritmo, dónde cortar, b-roll, sonido y subtítulos para que el montaje parezca hecho por una persona."
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "kind": "clip",
+  "clip": {
+    "src": "hex-reveal.html",
+    "attrs": {
+      "data-props": "[{\"name\": \"Color\", \"type\": \"var\", \"var\": \"--color\"}, {\"name\": \"Edge color\", \"type\": \"var\", \"var\": \"--edge\"}]"
+    }
+  },
+  "durationMs": 1000
+}

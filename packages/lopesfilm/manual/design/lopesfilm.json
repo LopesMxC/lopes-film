@@ -1,0 +1,19 @@
+{
+  "order": 5,
+  "category": "customize",
+  "icon": "palette",
+  "title": {
+    "en": "Design",
+    "zh-CN": "设计",
+    "ja": "デザイン",
+    "ko": "디자인",
+    "es": "Diseño"
+  },
+  "summary": {
+    "en": "Type, colour, spacing and motion rules for titles, captions and graphics.",
+    "zh-CN": "标题、字幕和图形的字体、色彩、间距与动效规则。",
+    "ja": "タイトル・字幕・グラフィックの書体、色、余白、動きのルール。",
+    "ko": "제목, 자막, 그래픽의 서체, 색, 여백, 모션 규칙.",
+    "es": "Reglas de tipografía, color, espaciado y movimiento para títulos, subtítulos y gráficos."
+  }
+}

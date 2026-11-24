@@ -1,0 +1,29 @@
+{
+  "order": 24,
+  "category": "customize",
+  "icon": "film",
+  "title": {
+    "en": "Video breakdown",
+    "zh-CN": "视频拆解",
+    "ja": "動画の分解",
+    "ko": "영상 분해",
+    "es": "Desglose de vídeo",
+    "pt-BR": "Decupagem de vídeo"
+  },
+  "summary": {
+    "en": "A reference video taken apart shot by shot with rea-video: filmed, AI or code, framing, camera, light, sound, and how to remake it.",
+    "zh-CN": "用 rea-video 逐镜头拆解参考视频：实拍、AI 还是代码，构图、运镜、光线、声音，以及如何复刻。",
+    "ja": "rea-video で参考動画をショットごとに分解：実写か AI かコードか、構図、カメラ、照明、音、作り直し方。",
+    "ko": "rea-video로 참고 영상을 샷별로 분해: 실사·AI·코드 여부, 구도, 카메라, 조명, 사운드, 다시 만드는 법.",
+    "es": "Un vídeo de referencia desarmado plano a plano con rea-video: grabado, IA o código, encuadre, cámara, luz, sonido y cómo rehacerlo.",
+    "pt-BR": "Um vídeo de referência desmontado plano a plano com o rea-video: filmado, IA ou código, enquadramento, câmera, luz, som e como refazer."
+  },
+  "details": {
+    "en": "When it is used: when you give a reference video or a link and ask how it was made, to remake it or to make something like it.\nWhat it teaches: fetching it (yt-dlp), breaking it down into VIDEO.md and a report, checking its uncertain shots, and remaking each kind of shot in Lopes.Film.\nTurned off: agents study references by eye only.",
+    "pt-BR": "Quando é usada: quando você dá um vídeo ou link de referência e pede como foi feito, para refazer ou fazer algo parecido.\nO que ensina: baixar (yt-dlp), decupar em VIDEO.md e num relatório, conferir os planos duvidosos e refazer cada tipo de plano no Lopes.Film.\nDesligada: os agentes estudam referências só olhando.",
+    "es": "Cuándo se usa: cuando das un vídeo o enlace de referencia y pides cómo se hizo, rehacerlo o hacer algo parecido.\nQué enseña: descargarlo (yt-dlp), desglosarlo en VIDEO.md y un informe, revisar sus planos dudosos y rehacer cada tipo de plano en Lopes.Film.\nSi se desactiva: los agentes estudian referencias solo mirando.",
+    "zh-CN": "When it is used: when you give a reference video or a link and ask how it was made, to remake it or to make something like it.\nWhat it teaches: fetching it (yt-dlp), breaking it down into VIDEO.md and a report, checking its uncertain shots, and remaking each kind of shot in Lopes.Film.\nTurned off: agents study references by eye only.",
+    "ja": "When it is used: when you give a reference video or a link and ask how it was made, to remake it or to make something like it.\nWhat it teaches: fetching it (yt-dlp), breaking it down into VIDEO.md and a report, checking its uncertain shots, and remaking each kind of shot in Lopes.Film.\nTurned off: agents study references by eye only.",
+    "ko": "When it is used: when you give a reference video or a link and ask how it was made, to remake it or to make something like it.\nWhat it teaches: fetching it (yt-dlp), breaking it down into VIDEO.md and a report, checking its uncertain shots, and remaking each kind of shot in Lopes.Film.\nTurned off: agents study references by eye only."
+  }
+}

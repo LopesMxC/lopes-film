@@ -1,0 +1,19 @@
+{
+  "order": 3,
+  "category": "optimize",
+  "icon": "zap",
+  "title": {
+    "en": "Economy",
+    "zh-CN": "省钱",
+    "ja": "節約",
+    "ko": "절약",
+    "es": "Ahorro"
+  },
+  "summary": {
+    "en": "Fewer tokens, same result: short replies, targeted edits, no rereading.",
+    "zh-CN": "结果不变，少用令牌：回复简短、精准修改、不重复阅读。",
+    "ja": "結果は同じまま、トークンを節約：短い返答、必要な箇所だけの編集、再読なし。",
+    "ko": "결과는 그대로, 토큰은 적게: 짧은 답변, 필요한 부분만 수정, 다시 읽지 않기.",
+    "es": "Menos tokens, mismo resultado: respuestas cortas, cambios puntuales, sin releer."
+  }
+}

@@ -1,0 +1,1 @@
+RNNoise models (bd.rnnn "beguiling-drafter", sh.rnnn "somnolent-hogwash") by Gregor Richards, https://github.com/GregorR/rnnoise-models, BSD 3-Clause. Used by ffmpeg arnndn for noise removal and voice isolation.

@@ -1,0 +1,54 @@
+{
+  "id": "global",
+  "name": "GlobalFilm",
+  "company": "Lopes",
+  "appId": "dev.globalfilm.desktop",
+  "homeDir": ".globalfilm",
+  "libraryDir": "GlobalFilm",
+  "studioPort": 4787,
+  "website": "https://lightgoldenrodyellow-wombat-163159.hostingersite.com",
+  "updates": "https://lightgoldenrodyellow-wombat-163159.hostingersite.com/feed/global-film",
+  "mark": {
+    "viewBox": "0 0 100 100",
+    "w": 100,
+    "h": 100,
+    "svg": "<circle cx=\"50\" cy=\"50\" r=\"44\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"5\"/><ellipse cx=\"50\" cy=\"50\" rx=\"19\" ry=\"44\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.6\" opacity=\".55\"/><path d=\"M10 33H90M10 67H90\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.6\" opacity=\".55\"/><path d=\"M42 22H58V42H78V58H58V78H42V58H22V42H42Z\" fill=\"currentColor\"/>"
+  },
+  "theme": {
+    "dark": {
+      "bgApp": "#04051a",
+      "bgTitlebar": "#090b28",
+      "bgPanel": "#090b28",
+      "bgRaised": "#10143a",
+      "bgViewer": "#02030f",
+      "dockLine": "#1a1f52",
+      "border": "#1a1f52",
+      "accent": "#6f90ff",
+      "logoFill": "#ffffff",
+      "onAccent": "#050a30",
+      "switchOn": "#4d6df0",
+      "rgb": "111,144,255"
+    },
+    "light": {
+      "bgApp": "#dfe3f3",
+      "bgTitlebar": "#dfe3f3",
+      "bgPanel": "#f7f8fd",
+      "bgRaised": "#ffffff",
+      "bgViewer": "#f7f8fd",
+      "dockLine": "#c8cee8",
+      "border": "rgba(8,14,80,.10)",
+      "accent": "#2438c4",
+      "logoFill": "#0b1370",
+      "onAccent": "#ffffff",
+      "switchOn": "#3550e0",
+      "rgb": "36,56,196"
+    }
+  },
+  "icon": {
+    "kind": "globe",
+    "bg1": "#0a1070",
+    "bg2": "#00023a",
+    "fg": "#ffffff"
+  },
+  "internal": "globalfilm"
+}

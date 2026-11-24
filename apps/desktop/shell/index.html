@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lopes.Film</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%2088%22%20color%3D%22%23efede9%22%3E%3Cpath%20d%3D%22M0%2087.4461L93.0846%200H134.578L65.3839%2065.9199H179.553V87.4461H0Z%22%20fill%3D%22currentColor%22%2F%3E%3Cpath%20d%3D%22M300%2032.9905V87.4461H188.181V65.9199H278.535V54.5167H208.285L140.414%2032.9294V0H300V21.5262H175.539L211.579%2032.9905H300Z%22%20fill%3D%22currentColor%22%2F%3E%3C%2Fsvg%3E">
+<script>
+  /* the theme before the first paint, so the wrong one never flashes: dark unless the person chose another */
+  (function () {
+    var t = 'dark', a;
+    var kept = null;
+    try { kept = window.lopesfilmNative && window.lopesfilmNative.look && window.lopesfilmNative.look.get(); } catch (e) {}
+    try { t = localStorage.getItem('lopesfilm.theme') || ''; a = localStorage.getItem('lopesfilm.accent'); } catch (e) {}
+    /* the page's own storage empty (a new address, cleared data): the app's copy of the choice is the answer */
+    if (!t && kept && kept.theme) { t = kept.theme; try { localStorage.setItem('lopesfilm.theme', t); } catch (e) {} }
+    if (!a && kept && kept.accent) { a = kept.accent; try { localStorage.setItem('lopesfilm.accent', a); } catch (e) {} }
+    t = t || 'dark';
+    if (t === 'system') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    var skin = /^(coffee|night|oled|forest|ocean|sunset|grape|graphite|contrast)$/.test(t);
+    document.documentElement.dataset.theme = t === 'dark' || skin ? 'dark' : 'light';
+    if (skin) document.documentElement.dataset.skin = t;
+    try { if (a && a !== 'brand') document.documentElement.dataset.accent = a; } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+<div id="root"></div>
+<!-- the chat's column beside Studio (the panel Studio leaves room for), and its layer for what floats. Both are
+     Studio's host panel (its keys leave them alone) and take focus: a click anywhere in the chat, not only in its
+     fields, keeps the keyboard in the chat (Space, Delete, ⌘A there never reach Studio). -->
+<div id="of-chat" class="of-chat" data-studio-host-panel tabindex="-1"></div>
+<div id="of-chat-layer" class="of-chat" data-studio-host-panel tabindex="-1"></div>
+<script type="module" src="./main.tsx"></script>
+</body>
+</html>

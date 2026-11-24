@@ -1,0 +1,222 @@
+{
+ "version": 1,
+ "items": [
+  {
+   "id": "effects/matrix-rain",
+   "cat": "effect",
+   "group": "variety",
+   "name": {
+    "en": "Matrix rain",
+    "pt-BR": "Chuva digital",
+    "es": "Matrix rain",
+    "zh-CN": "Matrix rain",
+    "ja": "Matrix rain",
+    "ko": "Matrix rain"
+   },
+   "kind": "page",
+   "durationMs": 4000,
+   "src": "matrix-rain.html",
+   "about": "Columns of glowing glyphs fall down the screen, the head of each one brightest, fading behind it.",
+   "tags": [
+    "tech",
+    "glitch",
+    "hud"
+   ]
+  },
+  {
+   "id": "effects/starfield-warp",
+   "cat": "effect",
+   "group": "variety",
+   "name": {
+    "en": "Warp speed",
+    "pt-BR": "Velocidade de dobra",
+    "es": "Warp speed",
+    "zh-CN": "Warp speed",
+    "ja": "Warp speed",
+    "ko": "Warp speed"
+   },
+   "kind": "page",
+   "durationMs": 4000,
+   "src": "starfield-warp.html",
+   "about": "Stars stream out from the middle toward the edges, stretching into lines as they speed up: a jump to hyperspace.",
+   "tags": [
+    "space"
+   ]
+  },
+  {
+   "id": "effects/lightning",
+   "cat": "effect",
+   "group": "variety",
+   "name": {
+    "en": "Lightning",
+    "pt-BR": "Relâmpagos",
+    "es": "Lightning",
+    "zh-CN": "Lightning",
+    "ja": "Lightning",
+    "ko": "Lightning"
+   },
+   "kind": "page",
+   "durationMs": 4000,
+   "src": "lightning.html",
+   "about": "Branching bolts strike from the top now and then, the whole frame flashing as each one hits.",
+   "tags": [
+    "weather",
+    "cinematic-look",
+    "camera"
+   ]
+  },
+  {
+   "id": "effects/synth-grid",
+   "cat": "effect",
+   "group": "retro",
+   "name": {
+    "en": "Synthwave grid",
+    "pt-BR": "Grade synthwave",
+    "es": "Synthwave grid",
+    "zh-CN": "Synthwave grid",
+    "ja": "Synthwave grid",
+    "ko": "Synthwave grid"
+   },
+   "kind": "page",
+   "durationMs": 4000,
+   "src": "synth-grid.html",
+   "about": "A glowing perspective grid scrolls toward the viewer along the bottom of the frame under a soft horizon glow, 80s synthwave style.",
+   "tags": [
+    "retro",
+    "neon",
+    "electronic"
+   ]
+  },
+  {
+   "id": "effects/electric-sparks",
+   "cat": "effect",
+   "group": "party",
+   "name": {
+    "en": "Electric sparks",
+    "pt-BR": "Faíscas elétricas",
+    "es": "Electric sparks",
+    "zh-CN": "Electric sparks",
+    "ja": "Electric sparks",
+    "ko": "Electric sparks"
+   },
+   "kind": "page",
+   "durationMs": 4000,
+   "src": "electric-sparks.html",
+   "about": "Bursts of hot sparks fly out from points around the frame, arcing down as they cool and fade.",
+   "tags": [
+    "fire",
+    "action"
+   ]
+  },
+  {
+   "id": "effects/ripple-rings",
+   "cat": "effect",
+   "group": "dreamy",
+   "name": {
+    "en": "Ripple rings",
+    "pt-BR": "Ondas de anel",
+    "es": "Ripple rings",
+    "zh-CN": "Ripple rings",
+    "ja": "Ripple rings",
+    "ko": "Ripple rings"
+   },
+   "kind": "page",
+   "durationMs": 4000,
+   "src": "ripple-rings.html",
+   "about": "Thin rings spread out from a few points and fade, like drops landing on still water.",
+   "tags": [
+    "water",
+    "calm",
+    "minimal"
+   ]
+  },
+  {
+   "id": "effects/radar-sweep",
+   "cat": "effect",
+   "group": "frame",
+   "name": {
+    "en": "Radar sweep",
+    "pt-BR": "Varredura de radar",
+    "es": "Radar sweep",
+    "zh-CN": "Radar sweep",
+    "ja": "Radar sweep",
+    "ko": "Radar sweep"
+   },
+   "kind": "page",
+   "durationMs": 4000,
+   "src": "radar-sweep.html",
+   "about": "A radar scope in the corner: rings, a turning beam leaving a fading trail, and blips that light up as it passes.",
+   "tags": [
+    "hud",
+    "tech",
+    "space"
+   ]
+  },
+  {
+   "id": "effects/hud-frame",
+   "cat": "effect",
+   "group": "frame",
+   "name": {
+    "en": "Sci-fi HUD",
+    "pt-BR": "HUD futurista",
+    "es": "Sci-fi HUD",
+    "zh-CN": "Sci-fi HUD",
+    "ja": "Sci-fi HUD",
+    "ko": "Sci-fi HUD"
+   },
+   "kind": "page",
+   "durationMs": 4000,
+   "src": "hud-frame.html",
+   "about": "A heads-up display around the frame: corner brackets, a moving scan line, ticking numbers and a pulsing target in the middle.",
+   "tags": [
+    "hud",
+    "tech",
+    "frame",
+    "space"
+   ]
+  },
+  {
+   "id": "effects/meteor-shower",
+   "cat": "effect",
+   "group": "dreamy",
+   "name": {
+    "en": "Meteor shower",
+    "pt-BR": "Chuva de meteoros",
+    "es": "Meteor shower",
+    "zh-CN": "Meteor shower",
+    "ja": "Meteor shower",
+    "ko": "Meteor shower"
+   },
+   "kind": "page",
+   "durationMs": 4000,
+   "src": "meteor-shower.html",
+   "about": "Shooting stars streak diagonally across the sky, each a bright head with a long fading tail.",
+   "tags": [
+    "night",
+    "space",
+    "dreamy"
+   ]
+  },
+  {
+   "id": "effects/equalizer-bars",
+   "cat": "effect",
+   "group": "party",
+   "name": {
+    "en": "Equalizer bars",
+    "pt-BR": "Barras de equalizador",
+    "es": "Equalizer bars",
+    "zh-CN": "Equalizer bars",
+    "ja": "Equalizer bars",
+    "ko": "Equalizer bars"
+   },
+   "kind": "page",
+   "durationMs": 4000,
+   "src": "equalizer-bars.html",
+   "about": "A row of equalizer bars along the bottom jumping to a beat, each with a falling peak cap.",
+   "tags": [
+    "electronic",
+    "holiday"
+   ]
+  }
+ ]
+}

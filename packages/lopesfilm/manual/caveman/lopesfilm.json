@@ -1,0 +1,26 @@
+{
+  "order": 3,
+  "category": "optimize",
+  "icon": "zap",
+  "title": {
+    "en": "Caveman",
+    "zh-CN": "穴居人模式",
+    "ja": "ケイブマン",
+    "ko": "케이브맨",
+    "es": "Caveman"
+  },
+  "summary": {
+    "en": "Terse answers that keep every technical fact: fewer tokens, less reading. On by default in every session.",
+    "zh-CN": "简短回答，保留全部技术信息：更省 token、更少阅读。默认在每个会话中开启。",
+    "ja": "技術的な事実はそのままに簡潔に答えます。トークンと読む量を節約。すべてのセッションで標準オン。",
+    "ko": "기술적 사실은 모두 지키며 짧게 답합니다. 토큰과 읽을 양을 줄입니다. 모든 세션에서 기본으로 켜져 있습니다.",
+    "es": "Respuestas escuetas que conservan todos los datos técnicos: menos tokens y menos lectura. Activada por defecto en cada sesión."
+  },
+  "details": {
+    "en": "When it is used: in every session by default; say \"stop caveman\" or \"normal mode\" to switch it off for a conversation.\nWhat it teaches: answer first, no filler, every fact, command, path and number kept exactly.\nTurned off: replies go back to normal length. Made by Julius Brussee, Apache-2.0.",
+    "zh-CN": "什么时候用：默认每个会话都启用；说“stop caveman”或“normal mode”可在当前对话中关闭。\n它教什么：先给答案、不说废话，所有事实、命令、路径和数字原样保留。\n关掉后：回复恢复正常长度。作者 Julius Brussee，Apache-2.0。",
+    "ja": "使うとき：標準ですべてのセッションで有効。「stop caveman」「normal mode」と言えばその会話では解除。\n教えること：結論を先に、余計な言葉なし、事実・コマンド・パス・数値はそのまま。\nオフにすると：返答は通常の長さに戻ります。作者 Julius Brussee、Apache-2.0。",
+    "ko": "언제 쓰나요: 기본으로 모든 세션에서 적용. \"stop caveman\" 또는 \"normal mode\"라고 하면 그 대화에서 꺼집니다.\n무엇을 알려 주나요: 답을 먼저, 군더더기 없이, 사실·명령·경로·숫자는 그대로.\n끄면: 답변이 보통 길이로 돌아옵니다. 제작 Julius Brussee, Apache-2.0.",
+    "es": "Cuándo se usa: por defecto en cada sesión; di \"stop caveman\" o \"normal mode\" para apagarla en una conversación.\nQué enseña: respuesta primero, sin relleno, y cada dato, comando, ruta y número tal cual.\nSi se desactiva: las respuestas vuelven a su longitud normal. De Julius Brussee, Apache-2.0."
+  }
+}

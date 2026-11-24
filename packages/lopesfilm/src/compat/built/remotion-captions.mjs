@@ -1,0 +1,6 @@
+import"./chunk-2FENWRJE.mjs";function l({input:o}){let e=t=>{let[n,r,a]=t.trim().split(":"),[c,i="0"]=a.replace(",",".").split(".");return Math.round(((+n*60+ +r)*60+ +c)*1e3+ +`0.${i}`*1e3)},s=[];for(let t of o.replace(/\r/g,"").split(/\n\s*\n/)){let n=t.split(`
+`).filter(Boolean),r=n.findIndex(p=>p.includes("-->"));if(r<0)continue;let[a,c]=n[r].split("-->"),i=e(a),M=e(c.split(/\s/).filter(Boolean)[0]);s.push({text:n.slice(r+1).join(" "),startMs:i,endMs:M,timestampMs:(i+M)/2,confidence:null})}return{captions:s}}function f({lines:o}){let e=s=>{let t=Math.floor(s/36e5),n=Math.floor(s/6e4)%60,r=Math.floor(s/1e3)%60,a=Math.round(s%1e3);return`${String(t).padStart(2,"0")}:${String(n).padStart(2,"0")}:${String(r).padStart(2,"0")},${String(a).padStart(3,"0")}`};return o.map((s,t)=>`${t+1}
+${e(s[0].startMs)} --> ${e(s[s.length-1].endMs)}
+${s.map(n=>n.text).join("")}
+`).join(`
+`)}function d({captions:o,combineTokensWithinMilliseconds:e=800}){let s=[];for(let t of o){let n=s[s.length-1];n&&t.startMs-n.startMs<e?(n.text+=t.text,n.tokens.push({text:t.text,fromMs:t.startMs,toMs:t.endMs}),n.durationMs=t.endMs-n.startMs):s.push({text:t.text,startMs:t.startMs,durationMs:t.endMs-t.startMs,tokens:[{text:t.text,fromMs:t.startMs,toMs:t.endMs}]})}return{pages:s}}export{d as createTikTokStyleCaptions,l as parseSrt,f as serializeSrt};

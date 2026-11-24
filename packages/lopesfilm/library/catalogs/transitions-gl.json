@@ -1,0 +1,563 @@
+{
+ "version": 1,
+ "items": [
+  {
+   "id": "transitions/noise-dissolve",
+   "cat": "transition",
+   "group": "fade",
+   "name": {
+    "en": "Noise dissolve",
+    "pt-BR": "Dissolução de ruído",
+    "es": "Disolución de ruido",
+    "zh-CN": "Noise dissolve",
+    "ja": "Noise dissolve",
+    "ko": "Noise dissolve"
+   },
+   "kind": "page",
+   "durationMs": 900,
+   "src": "noise-dissolve.html",
+   "place": "cut",
+   "about": "The frame dissolves away in soft cloudy patches, covering it in an organic pattern, then clears the same way onto the next shot.",
+   "tags": [
+    "fade",
+    "transition"
+   ]
+  },
+  {
+   "id": "transitions/ink-bleed",
+   "cat": "transition",
+   "group": "mask",
+   "name": {
+    "en": "Ink bleed",
+    "pt-BR": "Tinta escorrendo",
+    "es": "Mancha de tinta",
+    "zh-CN": "Ink bleed",
+    "ja": "Ink bleed",
+    "ko": "Ink bleed"
+   },
+   "kind": "page",
+   "durationMs": 1100,
+   "src": "ink-bleed.html",
+   "place": "cut",
+   "about": "Ink blooms from the middle and bleeds outward with ragged, feathered edges until the frame is soaked, then draws back the same way.",
+   "tags": [
+    "ink",
+    "transition"
+   ]
+  },
+  {
+   "id": "transitions/burn-away",
+   "cat": "transition",
+   "group": "film",
+   "name": {
+    "en": "Burn away",
+    "pt-BR": "Queimar",
+    "es": "Quemar",
+    "zh-CN": "Burn away",
+    "ja": "Burn away",
+    "ko": "Burn away"
+   },
+   "kind": "page",
+   "durationMs": 1200,
+   "src": "burn-away.html",
+   "place": "cut",
+   "about": "The picture burns away like paper: holes open and spread from charred, glowing orange edges until it is all ash, then the next shot burns back in.",
+   "tags": [
+    "fire",
+    "film",
+    "cinematic-look",
+    "nostalgic",
+    "transition"
+   ]
+  },
+  {
+   "id": "transitions/pixel-dissolve",
+   "cat": "transition",
+   "group": "glitch",
+   "name": {
+    "en": "Pixel dissolve",
+    "pt-BR": "Dissolução em pixels",
+    "es": "Disolución en píxeles",
+    "zh-CN": "Pixel dissolve",
+    "ja": "Pixel dissolve",
+    "ko": "Pixel dissolve"
+   },
+   "kind": "page",
+   "durationMs": 800,
+   "src": "pixel-dissolve.html",
+   "place": "cut",
+   "about": "Square pixels pop on at random all over the frame until it is filled, then pop off at random onto the next shot.",
+   "tags": [
+    "chiptune",
+    "tech",
+    "retro",
+    "transition"
+   ]
+  },
+  {
+   "id": "transitions/hex-reveal",
+   "cat": "transition",
+   "group": "shape",
+   "name": {
+    "en": "Honeycomb",
+    "pt-BR": "Colmeia",
+    "es": "Panal",
+    "zh-CN": "Honeycomb",
+    "ja": "Honeycomb",
+    "ko": "Honeycomb"
+   },
+   "kind": "page",
+   "durationMs": 1000,
+   "src": "hex-reveal.html",
+   "place": "cut",
+   "about": "Hexagon cells flip on in a wave spreading from the middle, each one lit along its rim for a moment, then flip off the same way.",
+   "tags": [
+    "tech",
+    "transition"
+   ]
+  },
+  {
+   "id": "transitions/triangles",
+   "cat": "transition",
+   "group": "shape",
+   "name": {
+    "en": "Triangles",
+    "pt-BR": "Triângulos",
+    "es": "Triángulos",
+    "zh-CN": "Triangles",
+    "ja": "Triangles",
+    "ko": "Triangles"
+   },
+   "kind": "page",
+   "durationMs": 1000,
+   "src": "triangles.html",
+   "place": "cut",
+   "about": "A grid of triangles grows in from the left, each one scaling up from its own middle, covers the frame, and shrinks away to the right.",
+   "tags": [
+    "minimal",
+    "transition"
+   ]
+  },
+  {
+   "id": "transitions/spiral",
+   "cat": "transition",
+   "group": "shape",
+   "name": {
+    "en": "Spiral",
+    "pt-BR": "Espiral",
+    "es": "Espiral",
+    "zh-CN": "Spiral",
+    "ja": "Spiral",
+    "ko": "Spiral"
+   },
+   "kind": "page",
+   "durationMs": 1100,
+   "src": "spiral.html",
+   "place": "cut",
+   "about": "A spiral arm sweeps around from the middle, winding the frame shut, then winds open again onto the next shot.",
+   "tags": [
+    "spin",
+    "happy",
+    "transition"
+   ]
+  },
+  {
+   "id": "transitions/clock-wipe",
+   "cat": "transition",
+   "group": "mask",
+   "name": {
+    "en": "Clock wipe",
+    "pt-BR": "Relógio",
+    "es": "Reloj",
+    "zh-CN": "Clock wipe",
+    "ja": "Clock wipe",
+    "ko": "Clock wipe"
+   },
+   "kind": "page",
+   "durationMs": 900,
+   "src": "clock-wipe.html",
+   "place": "cut",
+   "about": "A hand sweeps once around the middle like a clock, covering the frame behind it, then sweeps around again uncovering the next shot.",
+   "tags": [
+    "clock",
+    "nostalgic",
+    "transition"
+   ]
+  },
+  {
+   "id": "transitions/star-wipe",
+   "cat": "transition",
+   "group": "shape",
+   "name": {
+    "en": "Star",
+    "pt-BR": "Estrela",
+    "es": "Estrella",
+    "zh-CN": "Star",
+    "ja": "Star",
+    "ko": "Star"
+   },
+   "kind": "page",
+   "durationMs": 900,
+   "src": "star-wipe.html",
+   "place": "cut",
+   "about": "A five-pointed star spins and grows from the middle until it covers the frame, then shrinks away revealing the next shot.",
+   "tags": [
+    "happy",
+    "kids",
+    "celebration",
+    "transition"
+   ]
+  },
+  {
+   "id": "transitions/dot-grow",
+   "cat": "transition",
+   "group": "shape",
+   "name": {
+    "en": "Growing dots",
+    "pt-BR": "Bolinhas",
+    "es": "Puntos crecientes",
+    "zh-CN": "Growing dots",
+    "ja": "Growing dots",
+    "ko": "Growing dots"
+   },
+   "kind": "page",
+   "durationMs": 1000,
+   "src": "dot-grow.html",
+   "place": "cut",
+   "about": "A grid of dots grows in a diagonal wave until they merge and cover the frame, then shrink away in the same wave.",
+   "tags": [
+    "shapes",
+    "pop",
+    "happy",
+    "transition"
+   ]
+  },
+  {
+   "id": "transitions/stagger-bars",
+   "cat": "transition",
+   "group": "slide",
+   "name": {
+    "en": "Staggered bars",
+    "pt-BR": "Barras escalonadas",
+    "es": "Barras escalonadas",
+    "zh-CN": "Staggered bars",
+    "ja": "Staggered bars",
+    "ko": "Staggered bars"
+   },
+   "kind": "page",
+   "durationMs": 900,
+   "src": "stagger-bars.html",
+   "place": "cut",
+   "about": "Vertical bars drop down one after another from left to right until they close the frame, then fall away in the same order.",
+   "tags": [
+    "shapes",
+    "minimal",
+    "transition"
+   ]
+  },
+  {
+   "id": "transitions/liquid-flood",
+   "cat": "transition",
+   "group": "cover",
+   "name": {
+    "en": "Liquid",
+    "pt-BR": "Líquido",
+    "es": "Líquido",
+    "zh-CN": "Liquid",
+    "ja": "Liquid",
+    "ko": "Liquid"
+   },
+   "kind": "page",
+   "durationMs": 1100,
+   "src": "liquid-flood.html",
+   "place": "cut",
+   "about": "A wave of liquid color floods up from the bottom with a rippling, dripping edge, fills the frame and drains off the top.",
+   "tags": [
+    "water",
+    "transition"
+   ]
+  },
+  {
+   "id": "transitions/smoke-wipe",
+   "cat": "transition",
+   "group": "cover",
+   "name": {
+    "en": "Smoke",
+    "pt-BR": "Fumaça",
+    "es": "Humo",
+    "zh-CN": "Smoke",
+    "ja": "Smoke",
+    "ko": "Smoke"
+   },
+   "kind": "page",
+   "durationMs": 1300,
+   "src": "smoke-wipe.html",
+   "place": "cut",
+   "about": "Thick billowing smoke rolls in from the left and swallows the frame, then drifts on to the right, thinning onto the next shot.",
+   "tags": [
+    "weather-fx",
+    "mysterious",
+    "soft",
+    "cinematic",
+    "transition"
+   ]
+  },
+  {
+   "id": "transitions/glitch-blocks",
+   "cat": "transition",
+   "group": "glitch",
+   "name": {
+    "en": "Glitch blocks",
+    "pt-BR": "Blocos de glitch",
+    "es": "Bloques glitch",
+    "zh-CN": "Glitch blocks",
+    "ja": "Glitch blocks",
+    "ko": "Glitch blocks"
+   },
+   "kind": "page",
+   "durationMs": 700,
+   "src": "glitch-blocks.html",
+   "place": "cut",
+   "about": "Torn blocks of broken signal flicker across the frame in red and cyan, jamming it solid at the cut, then break apart onto the next shot.",
+   "tags": [
+    "glitch",
+    "tech",
+    "error",
+    "transition"
+   ]
+  },
+  {
+   "id": "transitions/light-blade",
+   "cat": "transition",
+   "group": "light",
+   "name": {
+    "en": "Light sweep",
+    "pt-BR": "Varredura de luz",
+    "es": "Barrido de luz",
+    "zh-CN": "Light sweep",
+    "ja": "Light sweep",
+    "ko": "Light sweep"
+   },
+   "kind": "page",
+   "durationMs": 900,
+   "src": "light-blade.html",
+   "place": "cut",
+   "about": "A blinding band of warm light sweeps across the frame on a slant, burning it white at the cut, and carries on, fading onto the next shot.",
+   "tags": [
+    "light",
+    "camera",
+    "cinematic",
+    "happy",
+    "transition"
+   ]
+  },
+  {
+   "id": "transitions/shatter",
+   "cat": "transition",
+   "group": "glitch",
+   "name": {
+    "en": "Shatter",
+    "pt-BR": "Estilhaçar",
+    "es": "Estallido",
+    "zh-CN": "Shatter",
+    "ja": "Shatter",
+    "ko": "Shatter"
+   },
+   "kind": "page",
+   "durationMs": 900,
+   "src": "shatter.html",
+   "place": "cut",
+   "about": "The frame cracks into irregular shards that slam in one by one with bright cracked edges, then fall out one by one onto the next shot.",
+   "tags": [
+    "split",
+    "action",
+    "cinematic-look",
+    "transition"
+   ]
+  },
+  {
+   "id": "transitions/wave-wipe",
+   "cat": "transition",
+   "group": "slide",
+   "name": {
+    "en": "Wave",
+    "pt-BR": "Onda",
+    "es": "Ola",
+    "zh-CN": "Wave",
+    "ja": "Wave",
+    "ko": "Wave"
+   },
+   "kind": "page",
+   "durationMs": 900,
+   "src": "wave-wipe.html",
+   "place": "cut",
+   "about": "A rolling wave with a white crest sweeps across the frame from left to right, covering it, then the next shot is uncovered behind a second wave.",
+   "tags": [
+    "nature",
+    "happy",
+    "transition"
+   ]
+  },
+  {
+   "id": "transitions/ripple-out",
+   "cat": "transition",
+   "group": "shape",
+   "name": {
+    "en": "Water ripple",
+    "pt-BR": "Ondulação",
+    "es": "Onda de agua",
+    "zh-CN": "Water ripple",
+    "ja": "Water ripple",
+    "ko": "Water ripple"
+   },
+   "kind": "page",
+   "durationMs": 1100,
+   "src": "ripple-out.html",
+   "place": "cut",
+   "about": "Rings ripple out from the middle as from a drop in still water, filling the frame band by band, then ripple outward again onto the next shot.",
+   "tags": [
+    "water",
+    "calm",
+    "soft",
+    "transition"
+   ]
+  },
+  {
+   "id": "transitions/brush-stroke",
+   "cat": "transition",
+   "group": "mask",
+   "name": {
+    "en": "Brush strokes",
+    "pt-BR": "Pinceladas",
+    "es": "Pinceladas",
+    "zh-CN": "Brush strokes",
+    "ja": "Brush strokes",
+    "ko": "Brush strokes"
+   },
+   "kind": "page",
+   "durationMs": 1100,
+   "src": "brush-stroke.html",
+   "place": "cut",
+   "about": "Broad brush strokes paint across the frame row by row with ragged dry-brush edges, then strokes of the next shot paint over them the same way.",
+   "tags": [
+    "transition"
+   ]
+  },
+  {
+   "id": "transitions/vortex",
+   "cat": "transition",
+   "group": "shape",
+   "name": {
+    "en": "Vortex",
+    "pt-BR": "Vórtice",
+    "es": "Vórtice",
+    "zh-CN": "Vortex",
+    "ja": "Vortex",
+    "ko": "Vortex"
+   },
+   "kind": "page",
+   "durationMs": 1100,
+   "src": "vortex.html",
+   "place": "cut",
+   "about": "Swirling arms twist in toward the middle like a whirlpool, closing the frame, then spin outward again onto the next shot.",
+   "tags": [
+    "spin",
+    "cinematic-look",
+    "transition"
+   ]
+  },
+  {
+   "id": "transitions/plasma",
+   "cat": "transition",
+   "group": "light",
+   "name": {
+    "en": "Plasma",
+    "pt-BR": "Plasma",
+    "es": "Plasma",
+    "zh-CN": "Plasma",
+    "ja": "Plasma",
+    "ko": "Plasma"
+   },
+   "kind": "page",
+   "durationMs": 1000,
+   "src": "plasma.html",
+   "place": "cut",
+   "about": "A churning field of electric color boils up from nothing, flooding the frame at the cut, and boils away onto the next shot.",
+   "tags": [
+    "vivid",
+    "holiday",
+    "transition"
+   ]
+  },
+  {
+   "id": "transitions/crt-squeeze",
+   "cat": "transition",
+   "group": "glitch",
+   "name": {
+    "en": "TV switch",
+    "pt-BR": "Troca de canal",
+    "es": "Cambio de canal",
+    "zh-CN": "TV switch",
+    "ja": "TV switch",
+    "ko": "TV switch"
+   },
+   "kind": "page",
+   "durationMs": 800,
+   "src": "crt-squeeze.html",
+   "place": "cut",
+   "about": "Like switching channels on an old TV: the picture is squeezed into a bright line and a dot of light, the screen goes dark, and the next shot springs open from the line.",
+   "tags": [
+    "retro",
+    "nostalgic",
+    "transition"
+   ]
+  },
+  {
+   "id": "transitions/confetti-burst",
+   "cat": "transition",
+   "group": "social",
+   "name": {
+    "en": "Confetti wipe",
+    "pt-BR": "Chuva de confete",
+    "es": "Lluvia de confeti",
+    "zh-CN": "Confetti wipe",
+    "ja": "Confetti wipe",
+    "ko": "Confetti wipe"
+   },
+   "kind": "page",
+   "durationMs": 1200,
+   "src": "confetti-burst.html",
+   "place": "cut",
+   "about": "A storm of colored confetti pieces pours down and piles up until it fills the frame, then falls away onto the next shot.",
+   "tags": [
+    "celebration",
+    "holiday",
+    "happy",
+    "transition"
+   ]
+  },
+  {
+   "id": "transitions/zoom-blast",
+   "cat": "transition",
+   "group": "light",
+   "name": {
+    "en": "Zoom blast",
+    "pt-BR": "Explosão de zoom",
+    "es": "Estallido de zoom",
+    "zh-CN": "Zoom blast",
+    "ja": "Zoom blast",
+    "ko": "Zoom blast"
+   },
+   "kind": "page",
+   "durationMs": 700,
+   "src": "zoom-blast.html",
+   "place": "cut",
+   "about": "Streaks of light shoot out from the middle like a jump to hyperspace, whiting out the frame at the cut, then streak away onto the next shot.",
+   "tags": [
+    "impact",
+    "action",
+    "transition"
+   ]
+  }
+ ]
+}

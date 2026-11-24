@@ -1,0 +1,29 @@
+{
+  "order": 23,
+  "category": "edit",
+  "icon": "music",
+  "title": {
+    "en": "Listening",
+    "zh-CN": "听声",
+    "ja": "聴き取り",
+    "ko": "듣기",
+    "es": "Escucha",
+    "pt-BR": "Escuta"
+  },
+  "summary": {
+    "en": "The agents hear sound with earshot: what each sound is, the best moments, a review of the film's sound, 252 effects made in code.",
+    "zh-CN": "智能体用 earshot 听声音：每个声音是什么、最好的片段、整片声音评审，以及 252 个代码生成的音效。",
+    "ja": "エージェントが earshot で音を聴きます：音の正体、最適な瞬間、作品全体の音の講評、コードで作る 252 の効果音。",
+    "ko": "에이전트가 earshot으로 소리를 듣습니다: 각 소리가 무엇인지, 가장 좋은 순간, 영상 전체 사운드 리뷰, 코드로 만든 252개 효과음.",
+    "es": "Los agentes oyen con earshot: qué es cada sonido, los mejores momentos, una revisión del sonido del film y 252 efectos hechos en código.",
+    "pt-BR": "Os agentes ouvem com o earshot: o que é cada som, os melhores trechos, uma avaliação do som do filme e 252 efeitos feitos em código."
+  },
+  "details": {
+    "en": "When it is used: before choosing, trimming or judging a sound, and when a film needs its effects.\nWhat it teaches: earshot's readings and how to quote them, finding moments, reviewing the mix, and rendering effects from its bank on the cut.\nTurned off: agents choose sounds without hearing them.",
+    "pt-BR": "Quando é usada: antes de escolher, cortar ou julgar um som, e quando um filme precisa de efeitos.\nO que ensina: as leituras do earshot e como citá-las, achar trechos, avaliar a mixagem e gerar efeitos do banco dele no ponto do corte.\nDesligada: os agentes escolhem sons sem ouvi-los.",
+    "es": "Cuándo se usa: antes de elegir, recortar o juzgar un sonido, y cuando un film necesita sus efectos.\nQué enseña: las lecturas de earshot y cómo citarlas, encontrar momentos, revisar la mezcla y generar efectos de su banco en el corte.\nSi se desactiva: los agentes eligen sonidos sin oírlos.",
+    "zh-CN": "When it is used: before choosing, trimming or judging a sound, and when a film needs its effects.\nWhat it teaches: earshot's readings and how to quote them, finding moments, reviewing the mix, and rendering effects from its bank on the cut.\nTurned off: agents choose sounds without hearing them.",
+    "ja": "When it is used: before choosing, trimming or judging a sound, and when a film needs its effects.\nWhat it teaches: earshot's readings and how to quote them, finding moments, reviewing the mix, and rendering effects from its bank on the cut.\nTurned off: agents choose sounds without hearing them.",
+    "ko": "When it is used: before choosing, trimming or judging a sound, and when a film needs its effects.\nWhat it teaches: earshot's readings and how to quote them, finding moments, reviewing the mix, and rendering effects from its bank on the cut.\nTurned off: agents choose sounds without hearing them."
+  }
+}

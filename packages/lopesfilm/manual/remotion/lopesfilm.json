@@ -1,0 +1,26 @@
+{
+  "order": 15,
+  "category": "customize",
+  "icon": "film",
+  "title": {
+    "en": "Remotion",
+    "zh-CN": "Remotion",
+    "ja": "Remotion",
+    "ko": "Remotion",
+    "es": "Remotion"
+  },
+  "summary": {
+    "en": "Remotion projects written in the chat (TSX, JSX, compositions, transitions, shapes, Lottie), run as they are: nothing to install or compile.",
+    "zh-CN": "直接在聊天中编写 Remotion 项目（TSX、JSX、合成、转场、形状、Lottie），原样运行：无需安装或编译。",
+    "ja": "チャットで書く Remotion プロジェクト（TSX、JSX、コンポジション、トランジション、シェイプ、Lottie）をそのまま実行。インストールもコンパイルも不要です。",
+    "ko": "채팅에서 작성하는 Remotion 프로젝트(TSX, JSX, 컴포지션, 트랜지션, 셰이프, Lottie)를 그대로 실행합니다. 설치도 컴파일도 필요 없습니다.",
+    "es": "Proyectos Remotion escritos en el chat (TSX, JSX, composiciones, transiciones, formas, Lottie) que se ejecutan tal cual: nada que instalar ni compilar."
+  },
+  "details": {
+    "en": "When it is used: when you ask for Remotion, bring a Remotion project or template, or want a React composition.\nWhat it teaches: how to lay out a project (index.html, Root, components, public/), which Remotion packages are available here, what is not (audio in the page, Tailwind, React Three Fiber) and how to build it instead.\nTurned off: agents still write Remotion-style code, but without knowing what this app supports.",
+    "zh-CN": "什么时候用：你要求使用 Remotion、带来 Remotion 项目或模板，或想要 React 合成时。\n它教什么：如何组织项目（index.html、Root、组件、public/）、这里有哪些 Remotion 包、哪些没有（页面内音频、Tailwind、React Three Fiber）以及如何替代实现。\n关掉后：智能体仍会写 Remotion 风格代码，但不清楚本应用支持什么。",
+    "ja": "使うとき：Remotion を頼んだとき、Remotion のプロジェクトやテンプレートを持ち込んだとき、React のコンポジションが欲しいとき。\n教えること：プロジェクトの構成（index.html、Root、コンポーネント、public/）、使える Remotion パッケージ、使えないもの（ページ内の音声、Tailwind、React Three Fiber）とその代替。\nオフにすると：Remotion 風のコードは書けますが、このアプリが対応する範囲が分かりません。",
+    "ko": "언제 쓰나요: Remotion을 요청하거나, Remotion 프로젝트·템플릿을 가져오거나, React 컴포지션을 원할 때.\n무엇을 알려 주나요: 프로젝트 구성(index.html, Root, 컴포넌트, public/), 여기서 쓸 수 있는 Remotion 패키지, 안 되는 것(페이지 내 오디오, Tailwind, React Three Fiber)과 대안.\n끄면: Remotion 스타일 코드는 작성하지만 이 앱이 무엇을 지원하는지 모릅니다.",
+    "es": "Cuándo se usa: cuando pides Remotion, traes un proyecto o plantilla de Remotion, o quieres una composición de React.\nQué enseña: cómo organizar el proyecto (index.html, Root, componentes, public/), qué paquetes de Remotion hay aquí, qué no (audio en la página, Tailwind, React Three Fiber) y cómo hacerlo con lo que hay.\nSi se desactiva: los agentes siguen escribiendo código estilo Remotion, pero sin saber qué admite esta aplicación."
+  }
+}

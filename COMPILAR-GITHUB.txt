@@ -1,0 +1,10 @@
+COMPILAR (Windows aqui, Mac pelo GitHub)
+
+Rode COMPILAR.bat e escolha o sistema (Windows, Mac ou os dois) e a versao (Lopes.Film, GlobalFilm, VerkzFilm ou as tres).
+
+No Mac, o COMPILAR.bat faz tudo sozinho: entra no GitHub (abre o navegador na primeira vez), cria o repositorio
+publico lopes-film, envia o codigo, pede o build, espera e baixa o .dmg para a pasta INSTALADORES
+(arm64 = Apple Silicon M1/M2/M3, x64 = Intel). Repositorio publico: o codigo fica publico, mas os minutos de Mac sao gratis.
+
+O app do Mac sai sem assinatura da Apple. Na primeira vez: botao direito no app > Abrir,
+ou no Terminal: xattr -dr com.apple.quarantine /Applications/Lopes.Film.app

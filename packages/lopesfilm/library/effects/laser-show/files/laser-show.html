@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Laser show</title>
+<style>
+  /* what a clip of it may change: its color, its second color, how much of it shows (0 to 1), how fast it moves */
+  :root { --color: #3fff7a; --second: #ff3f6e; --amount: 1; --speed: 1; }
+  html, body { margin: 0; height: 100%; overflow: hidden; background: transparent; }
+  canvas { position: fixed; inset: 0; width: 100%; height: 100%; }
+</style>
+</head>
+<body>
+<canvas></canvas>
+<script>
+/*
+ * Laser show: Laser beams fan out from the bottom of the frame and sweep through the haze in three colors, as in a club or a concert.
+ * A page of Lopes.Film's library (CC0), by Lopes. Drawn on the GPU by one shader, every pixel worked out from t alone,
+ * so each frame comes out the same in the preview and in the export.
+ */
+const root = document.documentElement;
+const css = (name) => getComputedStyle(root).getPropertyValue(name).trim();
+const num = (name, fallback) => { const v = parseFloat(css(name)); return Number.isFinite(v) ? v : fallback; };
+const probe = document.createElement('canvas').getContext('2d');
+const rgb = (name, fallback) => {
+  probe.fillStyle = fallback; probe.fillStyle = css(name) || fallback;
+  const s = probe.fillStyle;
+  const c = s[0] === '#' ? [1, 3, 5].map((i) => parseInt(s.slice(i, i + 2), 16)) : s.match(/[\d.]+/g).slice(0, 3).map(Number);
+  return c.map((v) => v / 255);
+};
+const canvas = document.querySelector('canvas');
+const gl = canvas.getContext('webgl', { premultipliedAlpha: true, alpha: true, preserveDrawingBuffer: true, antialias: false });
+const VERT = 'attribute vec2 p; void main() { gl_Position = vec4(p, 0.0, 1.0); }';
+const FRAG = `precision highp float;
+uniform vec2 R; uniform float T, AMOUNT, SPEED; uniform vec3 C1, C2;
+float h11(float n) { return fract(sin(n * 127.1 + 311.7) * 43758.5453); }
+float h21(vec2 p) { p = fract(p * vec2(233.34, 851.73)); p += dot(p, p + 23.45); return fract(p.x * p.y); }
+vec2 h22(vec2 p) { float n = h21(p); return vec2(n, h21(p + n * 19.19)); }
+float noise(vec2 p) { vec2 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f);
+  return mix(mix(h21(i), h21(i + vec2(1, 0)), f.x), mix(h21(i + vec2(0, 1)), h21(i + vec2(1, 1)), f.x), f.y); }
+float fbm(vec2 p) { float v = 0.0, a = 0.5; for (int i = 0; i < 5; i++) { v += a * noise(p); p = p * 2.03 + vec2(17.1, 9.2); a *= 0.5; } return v; }
+vec3 hue(vec3 c, float a) { const vec3 k = vec3(0.57735); float co = cos(a); return c * co + cross(k, c) * sin(a) + k * dot(k, c) * (1.0 - co); }
+vec4 fx(vec2 uv, vec2 q, float t) {
+  vec3 col = vec3(0.0); float a = 0.0;
+  for (int i = 0; i < 10; i++) {
+    float fi = float(i);
+    vec2 src = vec2((fi / 9.0 - 0.5) * 1.4 * R.x / R.y, -0.55);
+    float ang = 1.5708 + sin(t * (0.7 + 0.3 * h11(fi)) + fi * 1.7) * 0.9;
+    vec2 dir = vec2(cos(ang), sin(ang));
+    vec2 d = q - src;
+    float along = dot(d, dir);
+    float across = abs(d.x * dir.y - d.y * dir.x);
+    float beam = exp(-across * 260.0) * 1.2 + exp(-across * 30.0) * 0.12;
+    beam *= step(0.0, along) * exp(-along * 0.6);
+    vec3 c = mod(fi, 3.0) < 1.0 ? C1 : (mod(fi, 3.0) < 2.0 ? C2 : hue(C1, 2.0));
+    col += c * beam; a += beam;
+  }
+  float haze = 0.06 * fbm(q * 3.0 + t * 0.2) * smoothstep(0.9, 0.0, uv.y);
+  col += C1 * haze; a += haze;
+  return vec4(col / max(a, 1e-3), clamp(a, 0.0, 1.0) * AMOUNT);
+}
+void main() {
+  vec2 uv = gl_FragCoord.xy / R;           /* 0..1, y up */
+  vec2 q = (gl_FragCoord.xy - 0.5 * R) / R.y; /* centred, height 1 */
+  vec4 o = fx(uv, q, T * SPEED);
+  o = clamp(o, 0.0, 1.0);
+  gl_FragColor = vec4(o.rgb * o.a, o.a);
+}`;
+const shader = (type, src) => { const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s)); return s; };
+const prog = gl.createProgram();
+gl.attachShader(prog, shader(gl.VERTEX_SHADER, VERT)); gl.attachShader(prog, shader(gl.FRAGMENT_SHADER, FRAG));
+gl.linkProgram(prog); gl.useProgram(prog);
+gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+const loc = gl.getAttribLocation(prog, 'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+const U = Object.fromEntries(['R', 'T', 'AMOUNT', 'SPEED', 'C1', 'C2'].map((n) => [n, gl.getUniformLocation(prog, n)]));
+window.film = {
+  frame(t) {
+    const d = Math.min(devicePixelRatio || 1, 2), w = Math.round(innerWidth * d), h = Math.round(innerHeight * d);
+    if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
+    gl.viewport(0, 0, w, h);
+    gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.uniform2f(U.R, w, h); gl.uniform1f(U.T, t);
+    gl.uniform1f(U.AMOUNT, Math.max(0, Math.min(1.5, num('--amount', 1))));
+    gl.uniform1f(U.SPEED, num('--speed', 1));
+    gl.uniform3fv(U.C1, rgb('--color', '#3fff7a'));
+    gl.uniform3fv(U.C2, rgb('--second', '#ff3f6e'));
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+  },
+};
+if (!window.filmHost) {
+  const t0 = performance.now();
+  const loop = () => { window.film.frame((performance.now() - t0) / 1000); requestAnimationFrame(loop); };
+  loop();
+}
+</script>
+</body>
+</html>

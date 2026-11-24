@@ -1,0 +1,26 @@
+{
+  "order": 12,
+  "category": "customize",
+  "icon": "bar-chart",
+  "title": {
+    "en": "Data charts",
+    "zh-CN": "数据图表",
+    "ja": "データ表現",
+    "ko": "데이터 차트",
+    "es": "Gráficos de datos"
+  },
+  "summary": {
+    "en": "Animated charts, counters and data stories that stay accurate and readable.",
+    "zh-CN": "准确易读的动画图表、计数器和数据故事。",
+    "ja": "正確で読みやすいアニメーションのグラフ、カウンター、データストーリー。",
+    "ko": "정확하고 읽기 쉬운 애니메이션 차트, 카운터, 데이터 스토리.",
+    "es": "Gráficos animados, contadores e historias de datos precisos y legibles."
+  },
+  "details": {
+    "en": "When it is used: when the person asks for a chart, a graph, a statistic, a counter or an infographic.\nWhat it teaches: to pick the chart for the point, keep it accurate, label it directly and animate it from the data.\nTurned off: agents still try, but charts are made without accuracy rules.",
+    "zh-CN": "什么时候用：用到这个主题时。\n它教什么：准确易读的动画图表、计数器和数据故事。\n关掉后：智能体仍会尝试，但没有这些规则。",
+    "ja": "使うとき：この話題のとき。\n教えること：正確で読みやすいアニメーションのグラフ、カウンター、データストーリー。\nオフにすると：エージェントは試みますが、この規則はなくなります。",
+    "ko": "언제 쓰나요: 이 주제를 요청할 때.\n무엇을 알려 주나요: 정확하고 읽기 쉬운 애니메이션 차트, 카운터, 데이터 스토리.\n끄면: 에이전트는 시도하지만 이 규칙은 없습니다.",
+    "es": "Cuándo se usa: cuando el tema aparece en el pedido.\nQué enseña: Gráficos animados, contadores e historias de datos precisos y legibles.\nSi se desactiva: los agentes lo intentan, pero sin estas reglas."
+  }
+}

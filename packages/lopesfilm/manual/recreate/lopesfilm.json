@@ -1,0 +1,26 @@
+{
+  "title": {
+    "en": "Recreate a video",
+    "zh-CN": "复刻参考视频",
+    "ja": "参考動画を再現",
+    "ko": "참고 영상 재현",
+    "es": "Recrear un vídeo"
+  },
+  "summary": {
+    "en": "Rebuild a reference video with your own content and check it against the original with measured numbers: cuts, easing, type size, colour.",
+    "zh-CN": "用你自己的内容复刻参考视频，并用测量数据对照原片检查：剪辑点、缓动、字号、颜色。",
+    "ja": "参考動画を自分の素材で作り直し、カット、イージング、文字サイズ、色を数値で原本と照合します。",
+    "ko": "참고 영상을 내 소재로 다시 만들고 컷, 이징, 글자 크기, 색을 측정한 숫자로 원본과 비교합니다.",
+    "es": "Reconstruye un vídeo de referencia con tu contenido y lo compara con el original con números medidos: cortes, easing, tamaño de letra, color."
+  },
+  "details": {
+    "en": "When it is used: when you give a video or link and ask for one like it, for your product or brand.\nWhat it teaches: to take the video apart with `lopesfilm measure` (shots, cuts, move curves, text size, colours, sound onsets), rebuild it as pages with your content, and check every shot against the reference with numbers before saying it is done.\nTurned off: agents can still try, but eyeball the result instead of measuring it.",
+    "zh-CN": "什么时候用：你给出视频或链接，并要为你的产品或品牌做一个类似的。\n它教什么：用 `lopesfilm measure` 拆解视频（镜头、剪辑点、运动曲线、字号、颜色、声音起点），用你的内容重建为页面，并在完成前逐镜头用数字对照原片。\n关掉后：智能体仍会尝试，但只靠肉眼，不做测量。",
+    "ja": "使うとき：動画やリンクを渡して、自分の商品やブランド向けに同じような映像を頼んだとき。\n教えること：`lopesfilm measure` で動画を分解し（ショット、カット、動きの曲線、文字サイズ、色、音の立ち上がり）、自分の内容でページとして作り直し、完成前に全ショットを数値で原本と照合すること。\nオフにすると：エージェントは試みますが、測らず目分量になります。",
+    "ko": "언제 쓰나요: 영상이나 링크를 주고 내 제품이나 브랜드용으로 비슷하게 만들어 달라고 할 때.\n무엇을 알려 주나요: `lopesfilm measure`로 영상을 분해하고(샷, 컷, 움직임 곡선, 글자 크기, 색, 소리 시작점) 내 내용으로 페이지를 다시 만든 뒤, 끝내기 전에 모든 샷을 숫자로 원본과 비교하는 법.\n끄면: 에이전트는 시도하지만 측정 없이 눈대중으로 합니다.",
+    "es": "Cuándo se usa: cuando das un vídeo o enlace y pides uno parecido para tu producto o marca.\nQué enseña: a desmontar el vídeo con `lopesfilm measure` (planos, cortes, curvas de movimiento, tamaño de letra, colores, inicios de sonido), reconstruirlo como páginas con tu contenido y comprobar cada plano contra la referencia con números antes de darlo por hecho.\nSi se desactiva: los agentes lo intentan, pero a ojo, sin medir."
+  },
+  "order": 14,
+  "category": "edit",
+  "icon": "film"
+}

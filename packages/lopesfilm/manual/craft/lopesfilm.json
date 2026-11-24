@@ -1,0 +1,19 @@
+{
+  "order": 20,
+  "category": "customize",
+  "icon": "palette",
+  "title": {
+    "en": "Graphics",
+    "zh-CN": "图形设计",
+    "ja": "グラフィック",
+    "ko": "그래픽",
+    "es": "Gráficos"
+  },
+  "summary": {
+    "en": "Title cards, lower thirds, logos and icons drawn on this computer.",
+    "zh-CN": "在本机绘制标题卡、字幕条、标志和图标。",
+    "ja": "タイトルカード、ローワーサード、ロゴ、アイコンをこのPCで描画。",
+    "ko": "타이틀 카드, 로어서드, 로고, 아이콘을 이 컴퓨터에서 그립니다.",
+    "es": "Rótulos, tercios inferiores, logos e iconos dibujados en este equipo."
+  }
+}

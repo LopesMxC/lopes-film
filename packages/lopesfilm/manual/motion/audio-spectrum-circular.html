@@ -1,0 +1,154 @@
+<!doctype html>
+<!--
+  Circular audio spectrum (the radial "Audio Spectrum" of Premiere Pro and DaVinci Resolve's Fusion): bars around a ring,
+  mirrored left/right, low notes at the bottom, rounded caps with a peak dot, soft glow, an inner thin ring that breathes.
+  It reads the REAL sound: the file is decoded once and each frame t is analysed with an FFT (Hann window, 4096), so it
+  is a pure function of t: scrubbing, previews and exports all show the same picture.
+
+  Use it as a clip (transparent background, drop it on a track over the picture) or alone. Set on <body>:
+    data-audio   the sound file of the project, e.g. "assets/audio/music.mp3" (a video file works too)
+    data-offset  seconds into that file where this clip's t = 0 (default 0)
+  Look (all optional, CSS variables on :root or on the clip's style): --c1 / --c2 colours (start / end of the gradient),
+    --bars (even number, default 96), --radius (share of the shorter side, default .2), --reach (longest bar, .24),
+    --thick (bar width as a share of the gap, .55), --glow (px, 14), --sens (sensitivity, 1.0), --spin (turns per minute, 0).
+-->
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  :root { --c1: #4de0ff; --c2: #b06bff; --bars: 96; --radius: .2; --reach: .24; --thick: .55; --glow: 14; --sens: 1; --spin: 0; }
+  html, body { margin: 0; width: 100%; height: 100%; background: transparent; overflow: hidden; }
+  canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+</style>
+</head>
+<body data-audio="" data-offset="0">
+<canvas id="c"></canvas>
+<script>
+(() => {
+  const body = document.body, css = getComputedStyle(document.documentElement);
+  const q = new URLSearchParams(location.search);
+  const num = (name, fallback) => { const v = parseFloat(css.getPropertyValue(name)); return Number.isFinite(v) ? v : fallback; };
+  const SRC = q.get('audio') || body.dataset.audio || '';
+  const OFFSET = parseFloat(q.get('offset') || body.dataset.offset || '0') || 0;
+  const BARS = Math.max(16, Math.round(num('--bars', 96) / 2) * 2), HALF = BARS / 2;
+  const WIN = 4096, FLOOR = 45, CEIL = 14000, STEP = 1 / 30, HOLD = 12;
+  const canvas = document.getElementById('c'), g = canvas.getContext('2d');
+  let pcm = null, rate = 44100;
+
+  /* ── analysis ── */
+  const cos = new Float64Array(WIN / 2), sin = new Float64Array(WIN / 2), hann = new Float64Array(WIN), rev = new Uint16Array(WIN);
+  for (let i = 0; i < WIN / 2; i++) { cos[i] = Math.cos((2 * Math.PI * i) / WIN); sin[i] = -Math.sin((2 * Math.PI * i) / WIN); }
+  for (let i = 0; i < WIN; i++) hann[i] = 0.5 - 0.5 * Math.cos((2 * Math.PI * i) / (WIN - 1));
+  for (let i = 0, bits = Math.log2(WIN); i < WIN; i++) { let r = 0; for (let b = 0; b < bits; b++) if (i & (1 << b)) r |= 1 << (bits - 1 - b); rev[i] = r; }
+  const re = new Float64Array(WIN), im = new Float64Array(WIN);
+  function fft() {
+    for (let i = 0; i < WIN; i++) { const j = rev[i]; if (j > i) { [re[i], re[j]] = [re[j], re[i]]; [im[i], im[j]] = [im[j], im[i]]; } }
+    for (let len = 2; len <= WIN; len <<= 1) {
+      const half = len >> 1, stride = WIN / len;
+      for (let i = 0; i < WIN; i += len) for (let k = 0; k < half; k++) {
+        const wr = cos[k * stride], wi = sin[k * stride], a = i + k, b = a + half;
+        const xr = re[b] * wr - im[b] * wi, xi = re[b] * wi + im[b] * wr;
+        re[b] = re[a] - xr; im[b] = im[a] - xi; re[a] += xr; im[a] += xi;
+      }
+    }
+  }
+  /* band edges, log-spaced between FLOOR and CEIL Hz */
+  const edges = Array.from({ length: HALF + 1 }, (_, i) => FLOOR * Math.pow(CEIL / FLOOR, i / HALF));
+  /** the level (0…1) of each of the HALF bands at `at` seconds into the sound */
+  function bands(at) {
+    const out = new Float64Array(HALF);
+    if (!pcm) return out;
+    const start = Math.round(at * rate) - WIN / 2;
+    for (let i = 0; i < WIN; i++) { re[i] = (pcm[start + i] ?? 0) * hann[i]; im[i] = 0; }
+    fft();
+    const hz = rate / WIN;
+    for (let b = 0; b < HALF; b++) {
+      const lo = Math.max(1, Math.floor(edges[b] / hz)), hi = Math.max(lo + 1, Math.ceil(edges[b + 1] / hz));
+      let peak = 0;
+      for (let k = lo; k < hi && k < WIN / 2; k++) peak = Math.max(peak, Math.hypot(re[k], im[k]));
+      const db = 20 * Math.log10(peak / WIN * 4 + 1e-7);
+      /* -62 dB … -12 dB onto 0…1, a little tilt so the highs (quiet in music) still move */
+      out[b] = Math.min(1, Math.max(0, ((db + 62) / 50) * (1 + 0.5 * (b / HALF))));
+    }
+    /* a little spread to the neighbours, as a real analyser's bands overlap: no lone needles */
+    const soft = new Float64Array(HALF);
+    for (let b = 0; b < HALF; b++) soft[b] = out[b] * 0.5 + (out[b - 1] ?? out[b]) * 0.25 + (out[b + 1] ?? out[b]) * 0.25;
+    return soft;
+  }
+  /** attack fast, release slow, from the past only: the same for every t */
+  function smooth(t) {
+    const lvl = new Float64Array(HALF), peak = new Float64Array(HALF), age = new Float64Array(HALF);
+    const steps = 18;
+    for (let s = steps; s >= 0; s--) {
+      const raw = bands(t - s * STEP);
+      for (let b = 0; b < HALF; b++) {
+        lvl[b] = raw[b] > lvl[b] ? lvl[b] + (raw[b] - lvl[b]) * 0.85 : lvl[b] + (raw[b] - lvl[b]) * 0.22;
+        if (lvl[b] >= peak[b]) { peak[b] = lvl[b]; age[b] = 0; } else { age[b]++; if (age[b] > HOLD / 3) peak[b] = Math.max(lvl[b], peak[b] - 0.035); }
+      }
+    }
+    return { lvl, peak };
+  }
+
+  /* ── drawing ── */
+  function draw(t) {
+    const W = canvas.clientWidth || 1920, H = canvas.clientHeight || 1080, dpr = devicePixelRatio || 1;
+    if (canvas.width !== Math.round(W * dpr)) { canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr); }
+    g.setTransform(dpr, 0, 0, dpr, 0, 0);
+    g.clearRect(0, 0, W, H);
+    const m = Math.min(W, H), cx = W / 2, cy = H / 2;
+    const R = m * num('--radius', 0.2), reach = m * num('--reach', 0.24), sens = num('--sens', 1), glow = num('--glow', 14);
+    const thick = num('--thick', 0.55), spin = num('--spin', 0) * 2 * Math.PI * (t / 60);
+    const c1 = css.getPropertyValue('--c1').trim() || '#4de0ff', c2 = css.getPropertyValue('--c2').trim() || '#b06bff';
+    const { lvl, peak } = smooth(OFFSET + t);
+    const energy = lvl.reduce((a, v) => a + v, 0) / HALF;
+    const gap = (2 * Math.PI * R) / BARS, w = Math.max(2, gap * thick * 0.8);
+
+    const mix = (u) => `color-mix(in srgb, ${c1} ${Math.round((1 - u) * 100)}%, ${c2})`;
+    /* inner ring: thin, breathes with the whole sound */
+    g.lineWidth = Math.max(1.5, m * 0.0024);
+    g.strokeStyle = mix(0.5); g.globalAlpha = 0.55 + 0.4 * energy;
+    g.beginPath(); g.arc(cx, cy, R - m * 0.012 - energy * m * 0.008, 0, 2 * Math.PI); g.stroke();
+    g.globalAlpha = 0.18; g.beginPath(); g.arc(cx, cy, R - m * 0.03, 0, 2 * Math.PI); g.stroke();
+    g.globalAlpha = 1;
+
+    g.lineCap = 'round';
+    g.shadowBlur = glow; 
+    for (let i = 0; i < BARS; i++) {
+      /* mirrored: band 0 (lows) at the bottom, the highs meet at the top; right half i < HALF, left half mirrors it */
+      const side = i < HALF ? i : BARS - 1 - i;
+      const a = Math.PI / 2 + (i < HALF ? 1 : -1) * ((side + 0.5) / HALF) * Math.PI + spin;
+      const v = Math.min(1, Math.pow(lvl[side] * sens, 1.15)), p = Math.min(1, Math.pow(peak[side] * sens, 1.15));
+      const len = Math.max(w * 0.9, v * reach), dx = Math.cos(a), dy = Math.sin(a);
+      const u = side / (HALF - 1), col = mix(u);
+      g.strokeStyle = col; g.shadowColor = col; g.lineWidth = w;
+      g.beginPath(); g.moveTo(cx + dx * R, cy + dy * R); g.lineTo(cx + dx * (R + len), cy + dy * (R + len)); g.stroke();
+      /* peak dot */
+      if (p > v + 0.02) { g.globalAlpha = 0.9; g.fillStyle = col; g.beginPath(); g.arc(cx + dx * (R + p * reach + w * 1.4), cy + dy * (R + p * reach + w * 1.4), w * 0.45, 0, 2 * Math.PI); g.fill(); g.globalAlpha = 1; }
+    }
+    g.shadowBlur = 0;
+  }
+
+  /* ── the sound, decoded once ── */
+  async function load() {
+    if (!SRC) return;
+    try {
+      const bytes = await (await fetch(SRC)).arrayBuffer();
+      const ctx = new (window.OfflineAudioContext || window.webkitOfflineAudioContext)(1, 1, 44100);
+      const buf = await ctx.decodeAudioData(bytes);
+      rate = buf.sampleRate;
+      const L = buf.getChannelData(0), R = buf.numberOfChannels > 1 ? buf.getChannelData(1) : L;
+      pcm = new Float32Array(L.length);
+      for (let i = 0; i < L.length; i++) pcm[i] = (L[i] + R[i]) / 2;
+    } catch (e) { console.warn('audio-spectrum: could not read', SRC, e); }
+  }
+
+  window.film = {
+    duration: 10,
+    ready: load(),
+    frame(t) { draw(t); },
+  };
+  draw(0);
+})();
+</script>
+</body>
+</html>

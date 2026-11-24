@@ -1,0 +1,26 @@
+{
+  "order": 10,
+  "category": "edit",
+  "icon": "palette",
+  "title": {
+    "en": "Colour",
+    "zh-CN": "调色",
+    "ja": "色調整",
+    "ko": "색보정",
+    "es": "Color"
+  },
+  "summary": {
+    "en": "Correct exposure and white balance, match shots, then give the film a look.",
+    "zh-CN": "先校正曝光和白平衡、统一镜头，再给影片加风格。",
+    "ja": "露出とホワイトバランスを整え、ショットを揃えてからルックを付けます。",
+    "ko": "노출과 화이트 밸런스를 바로잡고 장면을 맞춘 뒤 룩을 입힙니다.",
+    "es": "Corrige exposición y balance de blancos, iguala planos y luego da un aspecto al vídeo."
+  },
+  "details": {
+    "en": "When it is used: when the person asks for footage whose colour or mood needs fixing or changing.\nWhat it teaches: to correct first, match shots, then grade with a few moves and check skin tones.\nTurned off: agents still try, but colour is changed without a method.",
+    "zh-CN": "什么时候用：用到这个主题时。\n它教什么：先校正曝光和白平衡、统一镜头，再给影片加风格。\n关掉后：智能体仍会尝试，但没有这些规则。",
+    "ja": "使うとき：この話題のとき。\n教えること：露出とホワイトバランスを整え、ショットを揃えてからルックを付けます。\nオフにすると：エージェントは試みますが、この規則はなくなります。",
+    "ko": "언제 쓰나요: 이 주제를 요청할 때.\n무엇을 알려 주나요: 노출과 화이트 밸런스를 바로잡고 장면을 맞춘 뒤 룩을 입힙니다.\n끄면: 에이전트는 시도하지만 이 규칙은 없습니다.",
+    "es": "Cuándo se usa: cuando el tema aparece en el pedido.\nQué enseña: Corrige exposición y balance de blancos, iguala planos y luego da un aspecto al vídeo.\nSi se desactiva: los agentes lo intentan, pero sin estas reglas."
+  }
+}

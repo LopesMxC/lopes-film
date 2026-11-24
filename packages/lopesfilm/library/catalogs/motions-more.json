@@ -1,0 +1,2486 @@
+{
+ "version": 1,
+ "groups": {
+  "effect": [
+   {
+    "id": "clip-in",
+    "name": {
+     "en": "Clip in",
+     "zh-CN": "入场动画",
+     "ja": "イン",
+     "ko": "등장 애니메이션",
+     "es": "Entrada"
+    }
+   },
+   {
+    "id": "clip-out",
+    "name": {
+     "en": "Clip out",
+     "zh-CN": "出场动画",
+     "ja": "アウト",
+     "ko": "퇴장 애니메이션",
+     "es": "Salida"
+    }
+   },
+   {
+    "id": "clip-loop",
+    "name": {
+     "en": "Clip loop",
+     "zh-CN": "循环动画",
+     "ja": "ループ",
+     "ko": "반복 애니메이션",
+     "es": "Bucle"
+    }
+   }
+  ],
+  "transition": [
+   {
+    "id": "camera",
+    "name": {
+     "en": "Camera moves",
+     "zh-CN": "运镜",
+     "ja": "カメラワーク",
+     "ko": "카메라 무브",
+     "es": "Movimientos de cámara"
+    }
+   }
+  ]
+ },
+ "items": [
+  {
+   "id": "motions/in-rise-far",
+   "cat": "effect",
+   "group": "clip-in",
+   "name": {
+    "en": "Rise from below",
+    "zh-CN": "从下方升起",
+    "ja": "下から上昇",
+    "ko": "아래에서 상승",
+    "es": "Subir desde abajo"
+   },
+   "kind": "motion",
+   "durationMs": 600,
+   "motion": {
+    "in": {
+     "name": "motion-in-rise-far",
+     "body": "from { translate: 0 40vh; opacity: 0 }",
+     "secs": 0.6,
+     "ease": "cubic-bezier(0, 0, 0.58, 1)"
+    }
+   },
+   "about": "The clip rises from far below the frame while fading in. For big, confident entrances.",
+   "tags": [
+    "slide",
+    "riser"
+   ]
+  },
+  {
+   "id": "motions/in-sink-far",
+   "cat": "effect",
+   "group": "clip-in",
+   "name": {
+    "en": "Descend from above",
+    "zh-CN": "从上方落下",
+    "ja": "上から降下",
+    "ko": "위에서 하강",
+    "es": "Bajar desde arriba"
+   },
+   "kind": "motion",
+   "durationMs": 600,
+   "motion": {
+    "in": {
+     "name": "motion-in-sink-far",
+     "body": "from { translate: 0 -40vh; opacity: 0 }",
+     "secs": 0.6,
+     "ease": "cubic-bezier(0, 0, 0.58, 1)"
+    }
+   },
+   "about": "The clip comes down from far above the frame while fading in.",
+   "tags": [
+    "slide",
+    "drop"
+   ]
+  },
+  {
+   "id": "motions/in-nudge-left",
+   "cat": "effect",
+   "group": "clip-in",
+   "name": {
+    "en": "Soft slide from left",
+    "zh-CN": "从左轻滑入",
+    "ja": "左から軽くスライド",
+    "ko": "왼쪽에서 부드럽게 슬라이드",
+    "es": "Deslizar suave izquierda"
+   },
+   "kind": "motion",
+   "durationMs": 500,
+   "motion": {
+    "in": {
+     "name": "motion-in-nudge-left",
+     "body": "from { translate: -8vw 0; opacity: 0 }",
+     "secs": 0.5,
+     "ease": "cubic-bezier(0, 0, 0.58, 1)"
+    }
+   },
+   "about": "A short, gentle slide in from the left. For subtle, elegant entrances.",
+   "tags": [
+    "slide",
+    "soft",
+    "calm"
+   ]
+  },
+  {
+   "id": "motions/in-nudge-right",
+   "cat": "effect",
+   "group": "clip-in",
+   "name": {
+    "en": "Soft slide from right",
+    "zh-CN": "从右轻滑入",
+    "ja": "右から軽くスライド",
+    "ko": "오른쪽에서 부드럽게 슬라이드",
+    "es": "Deslizar suave derecha"
+   },
+   "kind": "motion",
+   "durationMs": 500,
+   "motion": {
+    "in": {
+     "name": "motion-in-nudge-right",
+     "body": "from { translate: 8vw 0; opacity: 0 }",
+     "secs": 0.5,
+     "ease": "cubic-bezier(0, 0, 0.58, 1)"
+    }
+   },
+   "about": "A short, gentle slide in from the right. For subtle, elegant entrances.",
+   "tags": [
+    "slide",
+    "soft",
+    "calm"
+   ]
+  },
+  {
+   "id": "motions/in-corner-tl",
+   "cat": "effect",
+   "group": "clip-in",
+   "name": {
+    "en": "From top left",
+    "zh-CN": "从左上角",
+    "ja": "左上から",
+    "ko": "왼쪽 위에서",
+    "es": "Desde arriba izquierda"
+   },
+   "kind": "motion",
+   "durationMs": 600,
+   "motion": {
+    "in": {
+     "name": "motion-in-corner-tl",
+     "body": "from { translate: -20vw -20vh; opacity: 0 }",
+     "secs": 0.6,
+     "ease": "cubic-bezier(0, 0, 0.58, 1)"
+    }
+   },
+   "about": "The clip glides in diagonally from the top-left corner.",
+   "tags": [
+    "slide"
+   ]
+  },
+  {
+   "id": "motions/in-corner-tr",
+   "cat": "effect",
+   "group": "clip-in",
+   "name": {
+    "en": "From top right",
+    "zh-CN": "从右上角",
+    "ja": "右上から",
+    "ko": "오른쪽 위에서",
+    "es": "Desde arriba derecha"
+   },
+   "kind": "motion",
+   "durationMs": 600,
+   "motion": {
+    "in": {
+     "name": "motion-in-corner-tr",
+     "body": "from { translate: 20vw -20vh; opacity: 0 }",
+     "secs": 0.6,
+     "ease": "cubic-bezier(0, 0, 0.58, 1)"
+    }
+   },
+   "about": "The clip glides in diagonally from the top-right corner.",
+   "tags": [
+    "slide"
+   ]
+  },
+  {
+   "id": "motions/in-corner-bl",
+   "cat": "effect",
+   "group": "clip-in",
+   "name": {
+    "en": "From bottom left",
+    "zh-CN": "从左下角",
+    "ja": "左下から",
+    "ko": "왼쪽 아래에서",
+    "es": "Desde abajo izquierda"
+   },
+   "kind": "motion",
+   "durationMs": 600,
+   "motion": {
+    "in": {
+     "name": "motion-in-corner-bl",
+     "body": "from { translate: -20vw 20vh; opacity: 0 }",
+     "secs": 0.6,
+     "ease": "cubic-bezier(0, 0, 0.58, 1)"
+    }
+   },
+   "about": "The clip glides in diagonally from the bottom-left corner.",
+   "tags": [
+    "slide"
+   ]
+  },
+  {
+   "id": "motions/in-corner-br",
+   "cat": "effect",
+   "group": "clip-in",
+   "name": {
+    "en": "From bottom right",
+    "zh-CN": "从右下角",
+    "ja": "右下から",
+    "ko": "오른쪽 아래에서",
+    "es": "Desde abajo derecha"
+   },
+   "kind": "motion",
+   "durationMs": 600,
+   "motion": {
+    "in": {
+     "name": "motion-in-corner-br",
+     "body": "from { translate: 20vw 20vh; opacity: 0 }",
+     "secs": 0.6,
+     "ease": "cubic-bezier(0, 0, 0.58, 1)"
+    }
+   },
+   "about": "The clip glides in diagonally from the bottom-right corner.",
+   "tags": [
+    "slide"
+   ]
+  },
+  {
+   "id": "motions/in-zoom-huge",
+   "cat": "effect",
+   "group": "clip-in",
+   "name": {
+    "en": "Zoom from huge",
+    "zh-CN": "从巨大缩小",
+    "ja": "巨大からズーム",
+    "ko": "거대에서 줌",
+    "es": "Zoom desde enorme"
+   },
+   "kind": "motion",
+   "durationMs": 600,
+   "motion": {
+    "in": {
+     "name": "motion-in-zoom-huge",
+     "body": "from { scale: 2.2; opacity: 0 }",
+     "secs": 0.6,
+     "ease": "cubic-bezier(0, 0, 0.58, 1)"
+    }
+   },
+   "about": "The clip shrinks down to size from a huge scale while fading in. For impact openers.",
+   "tags": [
+    "zoom",
+    "intense"
+   ]
+  },
+  {
+   "id": "motions/in-zoom-gentle",
+   "cat": "effect",
+   "group": "clip-in",
+   "name": {
+    "en": "Gentle zoom in",
+    "zh-CN": "轻柔放大",
+    "ja": "やさしいズームイン",
+    "ko": "부드러운 줌 인",
+    "es": "Zoom suave"
+   },
+   "kind": "motion",
+   "durationMs": 700,
+   "motion": {
+    "in": {
+     "name": "motion-in-zoom-gentle",
+     "body": "from { scale: 0.88; opacity: 0 }",
+     "secs": 0.7,
+     "ease": "cubic-bezier(0, 0, 0.58, 1)"
+    }
+   },
+   "about": "A small, soft zoom up to full size while fading in. For calm, premium reveals.",
+   "tags": [
+    "zoom",
+    "soft",
+    "calm"
+   ]
+  },
+  {
+   "id": "motions/in-bounce-up",
+   "cat": "effect",
+   "group": "clip-in",
+   "name": {
+    "en": "Bounce up",
+    "zh-CN": "向上弹入",
+    "ja": "バウンドで上へ",
+    "ko": "위로 바운스",
+    "es": "Rebote hacia arriba"
+   },
+   "kind": "motion",
+   "durationMs": 700,
+   "motion": {
+    "in": {
+     "name": "motion-in-bounce-up",
+     "body": "0% { translate: 0 30vh; opacity: 0 } 60% { translate: 0 -3vh; opacity: 1 } 80% { translate: 0 1vh } 100% { translate: 0 0 }",
+     "secs": 0.7,
+     "ease": "cubic-bezier(0, 0, 0.58, 1)"
+    }
+   },
+   "about": "The clip jumps up from below, overshoots and settles. For playful, lively entrances.",
+   "tags": [
+    "bounce",
+    "playful"
+   ]
+  },
+  {
+   "id": "motions/in-bounce-down",
+   "cat": "effect",
+   "group": "clip-in",
+   "name": {
+    "en": "Bounce down",
+    "zh-CN": "向下弹入",
+    "ja": "バウンドで下へ",
+    "ko": "아래로 바운스",
+    "es": "Rebote hacia abajo"
+   },
+   "kind": "motion",
+   "durationMs": 700,
+   "motion": {
+    "in": {
+     "name": "motion-in-bounce-down",
+     "body": "0% { translate: 0 -30vh; opacity: 0 } 60% { translate: 0 3vh; opacity: 1 } 80% { translate: 0 -1vh } 100% { translate: 0 0 }",
+     "secs": 0.7,
+     "ease": "cubic-bezier(0, 0, 0.58, 1)"
+    }
+   },
+   "about": "The clip drops from above, bounces once and settles.",
+   "tags": [
+    "bounce",
+    "playful"
+   ]
+  },
+  {
+   "id": "motions/in-elastic",
+   "cat": "effect",
+   "group": "clip-in",
+   "name": {
+    "en": "Elastic",
+    "zh-CN": "弹性",
+    "ja": "エラスティック",
+    "ko": "탄성",
+    "es": "Elástico"
+   },
+   "kind": "motion",
+   "durationMs": 800,
+   "motion": {
+    "in": {
+     "name": "motion-in-elastic",
+     "body": "0% { scale: 0; opacity: 0 } 55% { scale: 1.15; opacity: 1 } 75% { scale: 0.95 } 100% { scale: 1 }",
+     "secs": 0.8,
+     "ease": "cubic-bezier(0, 0, 0.58, 1)"
+    }
+   },
+   "about": "The clip stretches up like rubber: overshoots, dips under and settles. For fun, springy entrances.",
+   "tags": [
+    "bounce",
+    "playful"
+   ]
+  },
+  {
+   "id": "motions/in-spin-zoom",
+   "cat": "effect",
+   "group": "clip-in",
+   "name": {
+    "en": "Spin and zoom in",
+    "zh-CN": "旋转放大",
+    "ja": "回転ズームイン",
+    "ko": "회전 줌 인",
+    "es": "Girar y acercar"
+   },
+   "kind": "motion",
+   "durationMs": 700,
+   "motion": {
+    "in": {
+     "name": "motion-in-spin-zoom",
+     "body": "from { rotate: -180deg; scale: 0.1; opacity: 0 }",
+     "secs": 0.7,
+     "ease": "cubic-bezier(0, 0, 0.58, 1)"
+    }
+   },
+   "about": "The clip spins in from a tiny size, a half turn. For energetic, attention-grabbing entrances.",
+   "tags": [
+    "spin",
+    "zoom",
+    "intense"
+   ]
+  },
+  {
+   "id": "motions/in-turn-cw",
+   "cat": "effect",
+   "group": "clip-in",
+   "name": {
+    "en": "Turn clockwise in",
+    "zh-CN": "顺时针轻转",
+    "ja": "時計回りにゆるく回転",
+    "ko": "시계 방향 살짝 회전",
+    "es": "Giro horario suave"
+   },
+   "kind": "motion",
+   "durationMs": 500,
+   "motion": {
+    "in": {
+     "name": "motion-in-turn-cw",
+     "body": "from { rotate: 15deg; opacity: 0 }",
+     "secs": 0.5,
+     "ease": "cubic-bezier(0, 0, 0.58, 1)"
+    }
+   },
+   "about": "The clip straightens up from a slight clockwise tilt while fading in.",
+   "tags": [
+    "spin",
+    "soft"
+   ]
+  },
+  {
+   "id": "motions/in-turn-ccw",
+   "cat": "effect",
+   "group": "clip-in",
+   "name": {
+    "en": "Turn counter-clockwise in",
+    "zh-CN": "逆时针轻转",
+    "ja": "反時計回りにゆるく回転",
+    "ko": "반시계 방향 살짝 회전",
+    "es": "Giro antihorario suave"
+   },
+   "kind": "motion",
+   "durationMs": 500,
+   "motion": {
+    "in": {
+     "name": "motion-in-turn-ccw",
+     "body": "from { rotate: -15deg; opacity: 0 }",
+     "secs": 0.5,
+     "ease": "cubic-bezier(0, 0, 0.58, 1)"
+    }
+   },
+   "about": "The clip straightens up from a slight counter-clockwise tilt while fading in.",
+   "tags": [
+    "spin",
+    "soft"
+   ]
+  },
+  {
+   "id": "motions/in-tilt-left",
+   "cat": "effect",
+   "group": "clip-in",
+   "name": {
+    "en": "Tilt in from left",
+    "zh-CN": "左侧倾斜入场",
+    "ja": "左から傾けて入る",
+    "ko": "왼쪽에서 기울여 등장",
+    "es": "Inclinar desde izquierda"
+   },
+   "kind": "motion",
+   "durationMs": 550,
+   "motion": {
+    "in": {
+     "name": "motion-in-tilt-left",
+     "body": "from { rotate: -8deg; translate: -6vw 0; opacity: 0 }",
+     "secs": 0.55,
+     "ease": "cubic-bezier(0, 0, 0.58, 1)"
+    }
+   },
+   "about": "The clip slides in from the left while straightening from a tilt.",
+   "tags": [
+    "slide",
+    "spin"
+   ]
+  },
+  {
+   "id": "motions/in-tilt-right",
+   "cat": "effect",
+   "group": "clip-in",
+   "name": {
+    "en": "Tilt in from right",
+    "zh-CN": "右侧倾斜入场",
+    "ja": "右から傾けて入る",
+    "ko": "오른쪽에서 기울여 등장",
+    "es": "Inclinar desde derecha"
+   },
+   "kind": "motion",
+   "durationMs": 550,
+   "motion": {
+    "in": {
+     "name": "motion-in-tilt-right",
+     "body": "from { rotate: 8deg; translate: 6vw 0; opacity: 0 }",
+     "secs": 0.55,
+     "ease": "cubic-bezier(0, 0, 0.58, 1)"
+    }
+   },
+   "about": "The clip slides in from the right while straightening from a tilt.",
+   "tags": [
+    "slide",
+    "spin"
+   ]
+  },
+  {
+   "id": "motions/in-blur-zoom",
+   "cat": "effect",
+   "group": "clip-in",
+   "name": {
+    "en": "Blur zoom in",
+    "zh-CN": "模糊缩放入场",
+    "ja": "ぼかしズームイン",
+    "ko": "블러 줌 인",
+    "es": "Zoom con desenfoque"
+   },
+   "kind": "motion",
+   "durationMs": 700,
+   "motion": {
+    "in": {
+     "name": "motion-in-blur-zoom",
+     "body": "from { filter: blur(30px); scale: 1.3; opacity: 0 }",
+     "secs": 0.7,
+     "ease": "cubic-bezier(0, 0, 0.58, 1)"
+    }
+   },
+   "about": "The clip pulls into focus from a heavy blur while settling to size. For dreamy reveals.",
+   "tags": [
+    "blur",
+    "zoom",
+    "dreamy"
+   ]
+  },
+  {
+   "id": "motions/in-blur-rise",
+   "cat": "effect",
+   "group": "clip-in",
+   "name": {
+    "en": "Blur rise",
+    "zh-CN": "模糊上升",
+    "ja": "ぼかしながら上昇",
+    "ko": "블러 상승",
+    "es": "Subir desenfocado"
+   },
+   "kind": "motion",
+   "durationMs": 600,
+   "motion": {
+    "in": {
+     "name": "motion-in-blur-rise",
+     "body": "from { filter: blur(16px); translate: 0 8vh; opacity: 0 }",
+     "secs": 0.6,
+     "ease": "cubic-bezier(0, 0, 0.58, 1)"
+    }
+   },
+   "about": "The clip rises a little and sharpens from a blur.",
+   "tags": [
+    "blur",
+    "riser",
+    "soft"
+   ]
+  },
+  {
+   "id": "motions/in-flicker-on",
+   "cat": "effect",
+   "group": "clip-in",
+   "name": {
+    "en": "Flicker on",
+    "zh-CN": "闪烁亮起",
+    "ja": "点滅しながら点灯",
+    "ko": "깜빡이며 켜짐",
+    "es": "Encendido parpadeante"
+   },
+   "kind": "motion",
+   "durationMs": 600,
+   "motion": {
+    "in": {
+     "name": "motion-in-flicker-on",
+     "body": "0% { opacity: 0 } 15% { opacity: 1 } 25% { opacity: 0.1 } 40% { opacity: 1 } 55% { opacity: 0.3 } 100% { opacity: 1 }",
+     "secs": 0.6,
+     "ease": "linear"
+    }
+   },
+   "about": "The clip flickers on like a faulty light before staying lit. For tech, neon or horror.",
+   "tags": [
+    "tense"
+   ]
+  },
+  {
+   "id": "motions/in-glitch",
+   "cat": "effect",
+   "group": "clip-in",
+   "name": {
+    "en": "Glitch in",
+    "zh-CN": "故障入场",
+    "ja": "グリッチイン",
+    "ko": "글리치 인",
+    "es": "Glitch"
+   },
+   "kind": "motion",
+   "durationMs": 450,
+   "motion": {
+    "in": {
+     "name": "motion-in-glitch",
+     "body": "0% { translate: -2vw 0; opacity: 0 } 20% { translate: 1.5vw 0.5vh; opacity: 1 } 40% { translate: -1vw -0.5vh } 60% { translate: 0.8vw 0 } 80% { translate: -0.3vw 0 } 100% { translate: 0 0 }",
+     "secs": 0.45,
+     "ease": "linear"
+    }
+   },
+   "about": "The clip jumps in with a few sideways glitch jitters. For digital, techy or edgy styles.",
+   "tags": [
+    "glitch",
+    "intense",
+    "tech"
+   ]
+  },
+  {
+   "id": "motions/in-grow-up",
+   "cat": "effect",
+   "group": "clip-in",
+   "name": {
+    "en": "Grow upward",
+    "zh-CN": "向上展开",
+    "ja": "縦に展開",
+    "ko": "위로 펼치기",
+    "es": "Crecer hacia arriba"
+   },
+   "kind": "motion",
+   "durationMs": 500,
+   "motion": {
+    "in": {
+     "name": "motion-in-grow-up",
+     "body": "from { scale: 1 0.05; opacity: 0 }",
+     "secs": 0.5,
+     "ease": "cubic-bezier(0, 0, 0.58, 1)"
+    }
+   },
+   "about": "The clip unfolds vertically from a thin line, like a blind opening.",
+   "tags": [
+    "trailer"
+   ]
+  },
+  {
+   "id": "motions/in-grow-side",
+   "cat": "effect",
+   "group": "clip-in",
+   "name": {
+    "en": "Grow sideways",
+    "zh-CN": "向两侧展开",
+    "ja": "横に展開",
+    "ko": "양옆으로 펼치기",
+    "es": "Crecer a los lados"
+   },
+   "kind": "motion",
+   "durationMs": 500,
+   "motion": {
+    "in": {
+     "name": "motion-in-grow-side",
+     "body": "from { scale: 0.05 1; opacity: 0 }",
+     "secs": 0.5,
+     "ease": "cubic-bezier(0, 0, 0.58, 1)"
+    }
+   },
+   "about": "The clip unfolds horizontally from a thin vertical line.",
+   "tags": [
+    "trailer"
+   ]
+  },
+  {
+   "id": "motions/in-whip-right",
+   "cat": "effect",
+   "group": "clip-in",
+   "name": {
+    "en": "Whip in from right",
+    "zh-CN": "右侧甩入",
+    "ja": "右からウィップイン",
+    "ko": "오른쪽에서 휘익",
+    "es": "Látigo desde derecha"
+   },
+   "kind": "motion",
+   "durationMs": 400,
+   "motion": {
+    "in": {
+     "name": "motion-in-whip-right",
+     "body": "from { translate: 30vw 0; filter: blur(18px); opacity: 0 }",
+     "secs": 0.4,
+     "ease": "cubic-bezier(0, 0.55, 0.45, 1)"
+    }
+   },
+   "about": "The clip whips in quickly from the right, blurred, and snaps into focus.",
+   "tags": [
+    "slide",
+    "intense"
+   ]
+  },
+  {
+   "id": "motions/in-whip-up",
+   "cat": "effect",
+   "group": "clip-in",
+   "name": {
+    "en": "Whip in from below",
+    "zh-CN": "下方甩入",
+    "ja": "下からウィップイン",
+    "ko": "아래에서 휘익",
+    "es": "Látigo desde abajo"
+   },
+   "kind": "motion",
+   "durationMs": 400,
+   "motion": {
+    "in": {
+     "name": "motion-in-whip-up",
+     "body": "from { translate: 0 30vh; filter: blur(18px); opacity: 0 }",
+     "secs": 0.4,
+     "ease": "cubic-bezier(0, 0.55, 0.45, 1)"
+    }
+   },
+   "about": "The clip whips up quickly from below, blurred, and snaps into focus.",
+   "tags": [
+    "slide",
+    "intense"
+   ]
+  },
+  {
+   "id": "motions/in-whip-down",
+   "cat": "effect",
+   "group": "clip-in",
+   "name": {
+    "en": "Whip in from above",
+    "zh-CN": "上方甩入",
+    "ja": "上からウィップイン",
+    "ko": "위에서 휘익",
+    "es": "Látigo desde arriba"
+   },
+   "kind": "motion",
+   "durationMs": 400,
+   "motion": {
+    "in": {
+     "name": "motion-in-whip-down",
+     "body": "from { translate: 0 -30vh; filter: blur(18px); opacity: 0 }",
+     "secs": 0.4,
+     "ease": "cubic-bezier(0, 0.55, 0.45, 1)"
+    }
+   },
+   "about": "The clip whips down quickly from above, blurred, and snaps into focus.",
+   "tags": [
+    "slide",
+    "intense"
+   ]
+  },
+  {
+   "id": "motions/in-heavy-drop",
+   "cat": "effect",
+   "group": "clip-in",
+   "name": {
+    "en": "Heavy drop",
+    "zh-CN": "重重落下",
+    "ja": "重い落下",
+    "ko": "묵직한 낙하",
+    "es": "Caída pesada"
+   },
+   "kind": "motion",
+   "durationMs": 900,
+   "motion": {
+    "in": {
+     "name": "motion-in-heavy-drop",
+     "body": "0% { translate: 0 -45vh; opacity: 0 } 55% { translate: 0 0; opacity: 1 } 70% { translate: 0 -4vh } 85% { translate: 0 0 } 92% { translate: 0 -1vh } 100% { translate: 0 0 }",
+     "secs": 0.9,
+     "ease": "cubic-bezier(0.55, 0, 1, 0.45)"
+    }
+   },
+   "about": "The clip falls from above, hits the floor and bounces twice, smaller each time.",
+   "tags": [
+    "bounce",
+    "drop",
+    "playful"
+   ]
+  },
+  {
+   "id": "motions/in-twist-pop",
+   "cat": "effect",
+   "group": "clip-in",
+   "name": {
+    "en": "Twist pop",
+    "zh-CN": "旋转弹出",
+    "ja": "ひねってポップ",
+    "ko": "비틀며 팝",
+    "es": "Giro y rebote"
+   },
+   "kind": "motion",
+   "durationMs": 550,
+   "motion": {
+    "in": {
+     "name": "motion-in-twist-pop",
+     "body": "from { rotate: -25deg; scale: 0.3; opacity: 0 }",
+     "secs": 0.55,
+     "ease": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+    }
+   },
+   "about": "The clip pops up from small with a twist and an overshoot. For stickers and logos.",
+   "tags": [
+    "spin",
+    "bounce",
+    "playful"
+   ]
+  },
+  {
+   "id": "motions/in-slow-fade",
+   "cat": "effect",
+   "group": "clip-in",
+   "name": {
+    "en": "Slow fade in",
+    "zh-CN": "缓慢渐显",
+    "ja": "ゆっくりフェードイン",
+    "ko": "느린 페이드 인",
+    "es": "Aparición lenta"
+   },
+   "kind": "motion",
+   "durationMs": 1200,
+   "motion": {
+    "in": {
+     "name": "motion-in-slow-fade",
+     "body": "from { opacity: 0 }",
+     "secs": 1.2,
+     "ease": "linear"
+    }
+   },
+   "about": "A slow fade from transparent over about a second. For cinematic, emotional openings.",
+   "tags": [
+    "fade",
+    "calm",
+    "cinematic"
+   ]
+  },
+  {
+   "id": "motions/out-rise-far",
+   "cat": "effect",
+   "group": "clip-out",
+   "name": {
+    "en": "Rise away",
+    "zh-CN": "向上飘走",
+    "ja": "上へ消える",
+    "ko": "위로 사라짐",
+    "es": "Subir y salir"
+   },
+   "kind": "motion",
+   "durationMs": 600,
+   "motion": {
+    "out": {
+     "name": "motion-out-rise-far",
+     "body": "to { translate: 0 -40vh; opacity: 0 }",
+     "secs": 0.6,
+     "ease": "cubic-bezier(0.55, 0, 1, 0.45)"
+    }
+   },
+   "about": "The clip rises out through the top of the frame while fading.",
+   "tags": [
+    "slide",
+    "riser"
+   ]
+  },
+  {
+   "id": "motions/out-sink-far",
+   "cat": "effect",
+   "group": "clip-out",
+   "name": {
+    "en": "Sink away",
+    "zh-CN": "向下沉没",
+    "ja": "下へ沈む",
+    "ko": "아래로 가라앉음",
+    "es": "Hundirse"
+   },
+   "kind": "motion",
+   "durationMs": 600,
+   "motion": {
+    "out": {
+     "name": "motion-out-sink-far",
+     "body": "to { translate: 0 40vh; opacity: 0 }",
+     "secs": 0.6,
+     "ease": "cubic-bezier(0.55, 0, 1, 0.45)"
+    }
+   },
+   "about": "The clip falls out through the bottom of the frame while fading.",
+   "tags": [
+    "slide",
+    "drop"
+   ]
+  },
+  {
+   "id": "motions/out-nudge-left",
+   "cat": "effect",
+   "group": "clip-out",
+   "name": {
+    "en": "Soft slide out left",
+    "zh-CN": "向左轻滑出",
+    "ja": "左へ軽くスライドアウト",
+    "ko": "왼쪽으로 부드럽게 퇴장",
+    "es": "Deslizar suave a la izquierda"
+   },
+   "kind": "motion",
+   "durationMs": 500,
+   "motion": {
+    "out": {
+     "name": "motion-out-nudge-left",
+     "body": "to { translate: -8vw 0; opacity: 0 }",
+     "secs": 0.5,
+     "ease": "cubic-bezier(0.55, 0, 1, 0.45)"
+    }
+   },
+   "about": "A short, gentle slide out to the left while fading.",
+   "tags": [
+    "slide",
+    "soft",
+    "calm"
+   ]
+  },
+  {
+   "id": "motions/out-nudge-right",
+   "cat": "effect",
+   "group": "clip-out",
+   "name": {
+    "en": "Soft slide out right",
+    "zh-CN": "向右轻滑出",
+    "ja": "右へ軽くスライドアウト",
+    "ko": "오른쪽으로 부드럽게 퇴장",
+    "es": "Deslizar suave a la derecha"
+   },
+   "kind": "motion",
+   "durationMs": 500,
+   "motion": {
+    "out": {
+     "name": "motion-out-nudge-right",
+     "body": "to { translate: 8vw 0; opacity: 0 }",
+     "secs": 0.5,
+     "ease": "cubic-bezier(0.55, 0, 1, 0.45)"
+    }
+   },
+   "about": "A short, gentle slide out to the right while fading.",
+   "tags": [
+    "slide",
+    "soft",
+    "calm"
+   ]
+  },
+  {
+   "id": "motions/out-corner-tl",
+   "cat": "effect",
+   "group": "clip-out",
+   "name": {
+    "en": "To top left",
+    "zh-CN": "飞向左上角",
+    "ja": "左上へ",
+    "ko": "왼쪽 위로",
+    "es": "Hacia arriba izquierda"
+   },
+   "kind": "motion",
+   "durationMs": 600,
+   "motion": {
+    "out": {
+     "name": "motion-out-corner-tl",
+     "body": "to { translate: -20vw -20vh; opacity: 0 }",
+     "secs": 0.6,
+     "ease": "cubic-bezier(0.55, 0, 1, 0.45)"
+    }
+   },
+   "about": "The clip glides out diagonally to the top-left corner.",
+   "tags": [
+    "slide"
+   ]
+  },
+  {
+   "id": "motions/out-corner-tr",
+   "cat": "effect",
+   "group": "clip-out",
+   "name": {
+    "en": "To top right",
+    "zh-CN": "飞向右上角",
+    "ja": "右上へ",
+    "ko": "오른쪽 위로",
+    "es": "Hacia arriba derecha"
+   },
+   "kind": "motion",
+   "durationMs": 600,
+   "motion": {
+    "out": {
+     "name": "motion-out-corner-tr",
+     "body": "to { translate: 20vw -20vh; opacity: 0 }",
+     "secs": 0.6,
+     "ease": "cubic-bezier(0.55, 0, 1, 0.45)"
+    }
+   },
+   "about": "The clip glides out diagonally to the top-right corner.",
+   "tags": [
+    "slide"
+   ]
+  },
+  {
+   "id": "motions/out-corner-bl",
+   "cat": "effect",
+   "group": "clip-out",
+   "name": {
+    "en": "To bottom left",
+    "zh-CN": "飞向左下角",
+    "ja": "左下へ",
+    "ko": "왼쪽 아래로",
+    "es": "Hacia abajo izquierda"
+   },
+   "kind": "motion",
+   "durationMs": 600,
+   "motion": {
+    "out": {
+     "name": "motion-out-corner-bl",
+     "body": "to { translate: -20vw 20vh; opacity: 0 }",
+     "secs": 0.6,
+     "ease": "cubic-bezier(0.55, 0, 1, 0.45)"
+    }
+   },
+   "about": "The clip glides out diagonally to the bottom-left corner.",
+   "tags": [
+    "slide"
+   ]
+  },
+  {
+   "id": "motions/out-corner-br",
+   "cat": "effect",
+   "group": "clip-out",
+   "name": {
+    "en": "To bottom right",
+    "zh-CN": "飞向右下角",
+    "ja": "右下へ",
+    "ko": "오른쪽 아래로",
+    "es": "Hacia abajo derecha"
+   },
+   "kind": "motion",
+   "durationMs": 600,
+   "motion": {
+    "out": {
+     "name": "motion-out-corner-br",
+     "body": "to { translate: 20vw 20vh; opacity: 0 }",
+     "secs": 0.6,
+     "ease": "cubic-bezier(0.55, 0, 1, 0.45)"
+    }
+   },
+   "about": "The clip glides out diagonally to the bottom-right corner.",
+   "tags": [
+    "slide"
+   ]
+  },
+  {
+   "id": "motions/out-zoom-huge",
+   "cat": "effect",
+   "group": "clip-out",
+   "name": {
+    "en": "Zoom out to huge",
+    "zh-CN": "放大到巨大",
+    "ja": "巨大へズーム",
+    "ko": "거대하게 줌 아웃",
+    "es": "Zoom a enorme"
+   },
+   "kind": "motion",
+   "durationMs": 600,
+   "motion": {
+    "out": {
+     "name": "motion-out-zoom-huge",
+     "body": "to { scale: 2.2; opacity: 0 }",
+     "secs": 0.6,
+     "ease": "cubic-bezier(0.55, 0, 1, 0.45)"
+    }
+   },
+   "about": "The clip swells to a huge scale while fading away. For impact endings.",
+   "tags": [
+    "zoom",
+    "intense"
+   ]
+  },
+  {
+   "id": "motions/out-zoom-gentle",
+   "cat": "effect",
+   "group": "clip-out",
+   "name": {
+    "en": "Gentle shrink out",
+    "zh-CN": "轻柔缩小",
+    "ja": "やさしく縮小",
+    "ko": "부드럽게 축소",
+    "es": "Encoger suave"
+   },
+   "kind": "motion",
+   "durationMs": 700,
+   "motion": {
+    "out": {
+     "name": "motion-out-zoom-gentle",
+     "body": "to { scale: 0.88; opacity: 0 }",
+     "secs": 0.7,
+     "ease": "cubic-bezier(0.55, 0, 1, 0.45)"
+    }
+   },
+   "about": "A small, soft shrink while fading. For calm, premium exits.",
+   "tags": [
+    "zoom",
+    "soft",
+    "calm"
+   ]
+  },
+  {
+   "id": "motions/out-bounce-up",
+   "cat": "effect",
+   "group": "clip-out",
+   "name": {
+    "en": "Bounce up and out",
+    "zh-CN": "弹起飞出",
+    "ja": "バウンドして上へ",
+    "ko": "바운스 후 위로",
+    "es": "Rebote y subir"
+   },
+   "kind": "motion",
+   "durationMs": 600,
+   "motion": {
+    "out": {
+     "name": "motion-out-bounce-up",
+     "body": "0% { translate: 0 0 } 25% { translate: 0 3vh } 100% { translate: 0 -40vh; opacity: 0 }",
+     "secs": 0.6,
+     "ease": "cubic-bezier(0.55, 0, 1, 0.45)"
+    }
+   },
+   "about": "The clip dips a little, then leaps up out of the frame.",
+   "tags": [
+    "bounce",
+    "playful"
+   ]
+  },
+  {
+   "id": "motions/out-bounce-down",
+   "cat": "effect",
+   "group": "clip-out",
+   "name": {
+    "en": "Bounce down and out",
+    "zh-CN": "弹起落出",
+    "ja": "バウンドして下へ",
+    "ko": "바운스 후 아래로",
+    "es": "Rebote y bajar"
+   },
+   "kind": "motion",
+   "durationMs": 600,
+   "motion": {
+    "out": {
+     "name": "motion-out-bounce-down",
+     "body": "0% { translate: 0 0 } 25% { translate: 0 -3vh } 100% { translate: 0 40vh; opacity: 0 }",
+     "secs": 0.6,
+     "ease": "cubic-bezier(0.55, 0, 1, 0.45)"
+    }
+   },
+   "about": "The clip rises a little, then drops out of the frame.",
+   "tags": [
+    "bounce",
+    "playful"
+   ]
+  },
+  {
+   "id": "motions/out-spin-zoom",
+   "cat": "effect",
+   "group": "clip-out",
+   "name": {
+    "en": "Spin and zoom out",
+    "zh-CN": "旋转缩小",
+    "ja": "回転ズームアウト",
+    "ko": "회전 줌 아웃",
+    "es": "Girar y alejar"
+   },
+   "kind": "motion",
+   "durationMs": 700,
+   "motion": {
+    "out": {
+     "name": "motion-out-spin-zoom",
+     "body": "to { rotate: 180deg; scale: 0.1; opacity: 0 }",
+     "secs": 0.7,
+     "ease": "cubic-bezier(0.55, 0, 1, 0.45)"
+    }
+   },
+   "about": "The clip spins half a turn while shrinking to nothing.",
+   "tags": [
+    "spin",
+    "zoom",
+    "intense"
+   ]
+  },
+  {
+   "id": "motions/out-turn-cw",
+   "cat": "effect",
+   "group": "clip-out",
+   "name": {
+    "en": "Turn clockwise out",
+    "zh-CN": "顺时针轻转出",
+    "ja": "時計回りに回転退場",
+    "ko": "시계 방향 퇴장",
+    "es": "Giro horario de salida"
+   },
+   "kind": "motion",
+   "durationMs": 500,
+   "motion": {
+    "out": {
+     "name": "motion-out-turn-cw",
+     "body": "to { rotate: 15deg; opacity: 0 }",
+     "secs": 0.5,
+     "ease": "cubic-bezier(0.55, 0, 1, 0.45)"
+    }
+   },
+   "about": "The clip tilts slightly clockwise while fading out.",
+   "tags": [
+    "spin",
+    "soft"
+   ]
+  },
+  {
+   "id": "motions/out-turn-ccw",
+   "cat": "effect",
+   "group": "clip-out",
+   "name": {
+    "en": "Turn counter-clockwise out",
+    "zh-CN": "逆时针轻转出",
+    "ja": "反時計回りに回転退場",
+    "ko": "반시계 방향 퇴장",
+    "es": "Giro antihorario de salida"
+   },
+   "kind": "motion",
+   "durationMs": 500,
+   "motion": {
+    "out": {
+     "name": "motion-out-turn-ccw",
+     "body": "to { rotate: -15deg; opacity: 0 }",
+     "secs": 0.5,
+     "ease": "cubic-bezier(0.55, 0, 1, 0.45)"
+    }
+   },
+   "about": "The clip tilts slightly counter-clockwise while fading out.",
+   "tags": [
+    "spin",
+    "soft"
+   ]
+  },
+  {
+   "id": "motions/out-tilt-left",
+   "cat": "effect",
+   "group": "clip-out",
+   "name": {
+    "en": "Tilt out left",
+    "zh-CN": "向左倾斜出",
+    "ja": "左へ傾けて退場",
+    "ko": "왼쪽으로 기울여 퇴장",
+    "es": "Inclinar y salir izquierda"
+   },
+   "kind": "motion",
+   "durationMs": 550,
+   "motion": {
+    "out": {
+     "name": "motion-out-tilt-left",
+     "body": "to { rotate: -8deg; translate: -6vw 0; opacity: 0 }",
+     "secs": 0.55,
+     "ease": "cubic-bezier(0.55, 0, 1, 0.45)"
+    }
+   },
+   "about": "The clip tilts and slides away to the left.",
+   "tags": [
+    "slide",
+    "spin"
+   ]
+  },
+  {
+   "id": "motions/out-tilt-right",
+   "cat": "effect",
+   "group": "clip-out",
+   "name": {
+    "en": "Tilt out right",
+    "zh-CN": "向右倾斜出",
+    "ja": "右へ傾けて退場",
+    "ko": "오른쪽으로 기울여 퇴장",
+    "es": "Inclinar y salir derecha"
+   },
+   "kind": "motion",
+   "durationMs": 550,
+   "motion": {
+    "out": {
+     "name": "motion-out-tilt-right",
+     "body": "to { rotate: 8deg; translate: 6vw 0; opacity: 0 }",
+     "secs": 0.55,
+     "ease": "cubic-bezier(0.55, 0, 1, 0.45)"
+    }
+   },
+   "about": "The clip tilts and slides away to the right.",
+   "tags": [
+    "slide",
+    "spin"
+   ]
+  },
+  {
+   "id": "motions/out-blur-zoom",
+   "cat": "effect",
+   "group": "clip-out",
+   "name": {
+    "en": "Blur zoom out",
+    "zh-CN": "模糊缩放出场",
+    "ja": "ぼかしズームアウト",
+    "ko": "블러 줌 아웃",
+    "es": "Zoom con desenfoque de salida"
+   },
+   "kind": "motion",
+   "durationMs": 700,
+   "motion": {
+    "out": {
+     "name": "motion-out-blur-zoom",
+     "body": "to { filter: blur(30px); scale: 1.3; opacity: 0 }",
+     "secs": 0.7,
+     "ease": "cubic-bezier(0.55, 0, 1, 0.45)"
+    }
+   },
+   "about": "The clip drifts out of focus while swelling and fading. For dreamy endings.",
+   "tags": [
+    "blur",
+    "zoom",
+    "dreamy"
+   ]
+  },
+  {
+   "id": "motions/out-blur-fall",
+   "cat": "effect",
+   "group": "clip-out",
+   "name": {
+    "en": "Blur fall",
+    "zh-CN": "模糊下落",
+    "ja": "ぼかしながら落下",
+    "ko": "블러 낙하",
+    "es": "Caer desenfocado"
+   },
+   "kind": "motion",
+   "durationMs": 600,
+   "motion": {
+    "out": {
+     "name": "motion-out-blur-fall",
+     "body": "to { filter: blur(16px); translate: 0 8vh; opacity: 0 }",
+     "secs": 0.6,
+     "ease": "cubic-bezier(0.55, 0, 1, 0.45)"
+    }
+   },
+   "about": "The clip sinks a little and blurs away.",
+   "tags": [
+    "blur",
+    "drop",
+    "soft"
+   ]
+  },
+  {
+   "id": "motions/out-flicker-off",
+   "cat": "effect",
+   "group": "clip-out",
+   "name": {
+    "en": "Flicker off",
+    "zh-CN": "闪烁熄灭",
+    "ja": "点滅しながら消灯",
+    "ko": "깜빡이며 꺼짐",
+    "es": "Apagado parpadeante"
+   },
+   "kind": "motion",
+   "durationMs": 600,
+   "motion": {
+    "out": {
+     "name": "motion-out-flicker-off",
+     "body": "0% { opacity: 1 } 20% { opacity: 0.2 } 35% { opacity: 1 } 55% { opacity: 0.1 } 70% { opacity: 0.6 } 100% { opacity: 0 }",
+     "secs": 0.6,
+     "ease": "linear"
+    }
+   },
+   "about": "The clip flickers like a failing light before going dark.",
+   "tags": [
+    "tense"
+   ]
+  },
+  {
+   "id": "motions/out-glitch",
+   "cat": "effect",
+   "group": "clip-out",
+   "name": {
+    "en": "Glitch out",
+    "zh-CN": "故障出场",
+    "ja": "グリッチアウト",
+    "ko": "글리치 아웃",
+    "es": "Glitch de salida"
+   },
+   "kind": "motion",
+   "durationMs": 450,
+   "motion": {
+    "out": {
+     "name": "motion-out-glitch",
+     "body": "0% { translate: 0 0 } 20% { translate: 1.5vw 0.5vh } 40% { translate: -1vw -0.5vh } 60% { translate: 2vw 0 } 80% { translate: -2vw 0; opacity: 0.4 } 100% { translate: 0 0; opacity: 0 }",
+     "secs": 0.45,
+     "ease": "linear"
+    }
+   },
+   "about": "The clip jitters sideways in a glitch and cuts out. For digital or edgy styles.",
+   "tags": [
+    "glitch",
+    "intense",
+    "tech"
+   ]
+  },
+  {
+   "id": "motions/out-squash-v",
+   "cat": "effect",
+   "group": "clip-out",
+   "name": {
+    "en": "Squash vertically",
+    "zh-CN": "垂直压扁",
+    "ja": "縦につぶす",
+    "ko": "세로로 찌그러짐",
+    "es": "Aplastar vertical"
+   },
+   "kind": "motion",
+   "durationMs": 500,
+   "motion": {
+    "out": {
+     "name": "motion-out-squash-v",
+     "body": "to { scale: 1 0.05; opacity: 0 }",
+     "secs": 0.5,
+     "ease": "cubic-bezier(0.55, 0, 1, 0.45)"
+    }
+   },
+   "about": "The clip collapses to a thin horizontal line, like an old TV turning off.",
+   "tags": [
+    "retro"
+   ]
+  },
+  {
+   "id": "motions/out-squash-h",
+   "cat": "effect",
+   "group": "clip-out",
+   "name": {
+    "en": "Squash horizontally",
+    "zh-CN": "水平压扁",
+    "ja": "横につぶす",
+    "ko": "가로로 찌그러짐",
+    "es": "Aplastar horizontal"
+   },
+   "kind": "motion",
+   "durationMs": 500,
+   "motion": {
+    "out": {
+     "name": "motion-out-squash-h",
+     "body": "to { scale: 0.05 1; opacity: 0 }",
+     "secs": 0.5,
+     "ease": "cubic-bezier(0.55, 0, 1, 0.45)"
+    }
+   },
+   "about": "The clip collapses to a thin vertical line.",
+   "tags": [
+    "transition"
+   ]
+  },
+  {
+   "id": "motions/out-whip-right",
+   "cat": "effect",
+   "group": "clip-out",
+   "name": {
+    "en": "Whip out right",
+    "zh-CN": "向右甩出",
+    "ja": "右へウィップアウト",
+    "ko": "오른쪽으로 휘익",
+    "es": "Látigo a la derecha"
+   },
+   "kind": "motion",
+   "durationMs": 400,
+   "motion": {
+    "out": {
+     "name": "motion-out-whip-right",
+     "body": "to { translate: 30vw 0; filter: blur(18px); opacity: 0 }",
+     "secs": 0.4,
+     "ease": "cubic-bezier(0.55, 0, 1, 0.45)"
+    }
+   },
+   "about": "The clip whips away to the right, blurring as it goes.",
+   "tags": [
+    "slide",
+    "intense"
+   ]
+  },
+  {
+   "id": "motions/out-whip-up",
+   "cat": "effect",
+   "group": "clip-out",
+   "name": {
+    "en": "Whip out up",
+    "zh-CN": "向上甩出",
+    "ja": "上へウィップアウト",
+    "ko": "위로 휘익",
+    "es": "Látigo hacia arriba"
+   },
+   "kind": "motion",
+   "durationMs": 400,
+   "motion": {
+    "out": {
+     "name": "motion-out-whip-up",
+     "body": "to { translate: 0 -30vh; filter: blur(18px); opacity: 0 }",
+     "secs": 0.4,
+     "ease": "cubic-bezier(0.55, 0, 1, 0.45)"
+    }
+   },
+   "about": "The clip whips up and away, blurring as it goes.",
+   "tags": [
+    "slide",
+    "intense"
+   ]
+  },
+  {
+   "id": "motions/out-whip-down",
+   "cat": "effect",
+   "group": "clip-out",
+   "name": {
+    "en": "Whip out down",
+    "zh-CN": "向下甩出",
+    "ja": "下へウィップアウト",
+    "ko": "아래로 휘익",
+    "es": "Látigo hacia abajo"
+   },
+   "kind": "motion",
+   "durationMs": 400,
+   "motion": {
+    "out": {
+     "name": "motion-out-whip-down",
+     "body": "to { translate: 0 30vh; filter: blur(18px); opacity: 0 }",
+     "secs": 0.4,
+     "ease": "cubic-bezier(0.55, 0, 1, 0.45)"
+    }
+   },
+   "about": "The clip whips down and away, blurring as it goes.",
+   "tags": [
+    "slide",
+    "intense"
+   ]
+  },
+  {
+   "id": "motions/out-tumble",
+   "cat": "effect",
+   "group": "clip-out",
+   "name": {
+    "en": "Tumble down",
+    "zh-CN": "翻滚坠落",
+    "ja": "回転しながら落下",
+    "ko": "구르며 낙하",
+    "es": "Caída con giro"
+   },
+   "kind": "motion",
+   "durationMs": 700,
+   "motion": {
+    "out": {
+     "name": "motion-out-tumble",
+     "body": "to { translate: 0 40vh; rotate: 25deg; opacity: 0 }",
+     "secs": 0.7,
+     "ease": "cubic-bezier(0.55, 0, 1, 0.45)"
+    }
+   },
+   "about": "The clip tumbles down and away, turning as it falls.",
+   "tags": [
+    "drop",
+    "spin",
+    "playful"
+   ]
+  },
+  {
+   "id": "motions/out-pop-out",
+   "cat": "effect",
+   "group": "clip-out",
+   "name": {
+    "en": "Pop out",
+    "zh-CN": "爆开消失",
+    "ja": "ポンと消える",
+    "ko": "팡 사라짐",
+    "es": "Estallar"
+   },
+   "kind": "motion",
+   "durationMs": 450,
+   "motion": {
+    "out": {
+     "name": "motion-out-pop-out",
+     "body": "0% { scale: 1 } 35% { scale: 1.15 } 100% { scale: 0; opacity: 0 }",
+     "secs": 0.45,
+     "ease": "cubic-bezier(0.55, 0, 1, 0.45)"
+    }
+   },
+   "about": "The clip swells slightly, then pops out of existence.",
+   "tags": [
+    "bounce",
+    "playful"
+   ]
+  },
+  {
+   "id": "motions/out-to-corner",
+   "cat": "effect",
+   "group": "clip-out",
+   "name": {
+    "en": "Shrink to corner",
+    "zh-CN": "缩小到角落",
+    "ja": "コーナーへ縮小",
+    "ko": "구석으로 축소",
+    "es": "Encoger a la esquina"
+   },
+   "kind": "motion",
+   "durationMs": 700,
+   "motion": {
+    "out": {
+     "name": "motion-out-to-corner",
+     "body": "to { translate: 40vw 40vh; scale: 0.1; opacity: 0 }",
+     "secs": 0.7,
+     "ease": "cubic-bezier(0.55, 0, 1, 0.45)"
+    }
+   },
+   "about": "The clip shrinks away into the bottom-right corner, like a window being minimized.",
+   "tags": [
+    "zoom",
+    "slide"
+   ]
+  },
+  {
+   "id": "motions/out-slow-fade",
+   "cat": "effect",
+   "group": "clip-out",
+   "name": {
+    "en": "Slow fade out",
+    "zh-CN": "缓慢渐隐",
+    "ja": "ゆっくりフェードアウト",
+    "ko": "느린 페이드 아웃",
+    "es": "Desvanecer lento"
+   },
+   "kind": "motion",
+   "durationMs": 1200,
+   "motion": {
+    "out": {
+     "name": "motion-out-slow-fade",
+     "body": "to { opacity: 0 }",
+     "secs": 1.2,
+     "ease": "linear"
+    }
+   },
+   "about": "A slow fade to transparent over about a second. For cinematic, emotional endings.",
+   "tags": [
+    "fade",
+    "calm",
+    "cinematic"
+   ]
+  },
+  {
+   "id": "motions/loop-sway",
+   "cat": "effect",
+   "group": "clip-loop",
+   "name": {
+    "en": "Sway",
+    "zh-CN": "摇摆",
+    "ja": "ゆらゆら",
+    "ko": "흔들흔들",
+    "es": "Balanceo"
+   },
+   "kind": "motion",
+   "durationMs": 3000,
+   "motion": {
+    "loop": {
+     "name": "motion-loop-sway",
+     "body": "0%, 100% { rotate: -2deg } 50% { rotate: 2deg }",
+     "secs": 3,
+     "ease": "cubic-bezier(0.42, 0, 0.58, 1)"
+    }
+   },
+   "about": "The clip sways slowly side to side, 2 degrees each way. For calm, organic life.",
+   "tags": [
+    "jazz",
+    "calm",
+    "soft"
+   ]
+  },
+  {
+   "id": "motions/loop-bob",
+   "cat": "effect",
+   "group": "clip-loop",
+   "name": {
+    "en": "Bob",
+    "zh-CN": "上下浮动",
+    "ja": "ぷかぷか",
+    "ko": "둥실둥실",
+    "es": "Cabeceo"
+   },
+   "kind": "motion",
+   "durationMs": 2400,
+   "motion": {
+    "loop": {
+     "name": "motion-loop-bob",
+     "body": "0%, 100% { translate: 0 0 } 50% { translate: 0 -1.2vh }",
+     "secs": 2.4,
+     "ease": "cubic-bezier(0.42, 0, 0.58, 1)"
+    }
+   },
+   "about": "The clip bobs gently up and down like it floats on water.",
+   "tags": [
+    "calm",
+    "soft"
+   ]
+  },
+  {
+   "id": "motions/loop-breathe",
+   "cat": "effect",
+   "group": "clip-loop",
+   "name": {
+    "en": "Breathe",
+    "zh-CN": "呼吸",
+    "ja": "呼吸",
+    "ko": "숨쉬기",
+    "es": "Respirar"
+   },
+   "kind": "motion",
+   "durationMs": 3600,
+   "motion": {
+    "loop": {
+     "name": "motion-loop-breathe",
+     "body": "0%, 100% { scale: 1 } 50% { scale: 1.04 }",
+     "secs": 3.6,
+     "ease": "cubic-bezier(0.42, 0, 0.58, 1)"
+    }
+   },
+   "about": "The clip slowly swells and relaxes like a breath. For calm, living pictures.",
+   "tags": [
+    "calm",
+    "soft"
+   ]
+  },
+  {
+   "id": "motions/loop-heartbeat",
+   "cat": "effect",
+   "group": "clip-loop",
+   "name": {
+    "en": "Heartbeat",
+    "zh-CN": "心跳",
+    "ja": "ハートビート",
+    "ko": "심장 박동",
+    "es": "Latido"
+   },
+   "kind": "motion",
+   "durationMs": 1200,
+   "motion": {
+    "loop": {
+     "name": "motion-loop-heartbeat",
+     "body": "0%, 60%, 100% { scale: 1 } 15% { scale: 1.08 } 30% { scale: 1 } 45% { scale: 1.05 }",
+     "secs": 1.2,
+     "ease": "cubic-bezier(0.42, 0, 0.58, 1)"
+    }
+   },
+   "about": "Two quick pulses then a rest, like a heartbeat. For love, tension and life.",
+   "tags": [
+    "electronic",
+    "tense"
+   ]
+  },
+  {
+   "id": "motions/loop-wobble",
+   "cat": "effect",
+   "group": "clip-loop",
+   "name": {
+    "en": "Wobble",
+    "zh-CN": "晃动",
+    "ja": "ぐらぐら",
+    "ko": "뒤뚱뒤뚱",
+    "es": "Tambaleo"
+   },
+   "kind": "motion",
+   "durationMs": 1200,
+   "motion": {
+    "loop": {
+     "name": "motion-loop-wobble",
+     "body": "0%, 100% { rotate: 0deg } 25% { rotate: 3deg } 75% { rotate: -3deg }",
+     "secs": 1.2,
+     "ease": "cubic-bezier(0.42, 0, 0.58, 1)"
+    }
+   },
+   "about": "The clip wobbles side to side in a quick, playful rhythm.",
+   "tags": [
+    "jazz",
+    "playful"
+   ]
+  },
+  {
+   "id": "motions/loop-swing-wide",
+   "cat": "effect",
+   "group": "clip-loop",
+   "name": {
+    "en": "Wide swing",
+    "zh-CN": "大幅摆动",
+    "ja": "大きなスイング",
+    "ko": "큰 스윙",
+    "es": "Columpio amplio"
+   },
+   "kind": "motion",
+   "durationMs": 2600,
+   "motion": {
+    "loop": {
+     "name": "motion-loop-swing-wide",
+     "body": "0%, 100% { rotate: -8deg } 50% { rotate: 8deg }",
+     "secs": 2.6,
+     "ease": "cubic-bezier(0.42, 0, 0.58, 1)"
+    }
+   },
+   "about": "The clip swings wide like a pendulum, 8 degrees each way.",
+   "tags": [
+    "jazz"
+   ]
+  },
+  {
+   "id": "motions/loop-spin-slow",
+   "cat": "effect",
+   "group": "clip-loop",
+   "name": {
+    "en": "Slow spin",
+    "zh-CN": "慢速旋转",
+    "ja": "ゆっくり回転",
+    "ko": "느린 회전",
+    "es": "Giro lento"
+   },
+   "kind": "motion",
+   "durationMs": 12000,
+   "motion": {
+    "loop": {
+     "name": "motion-loop-spin-slow",
+     "body": "from { rotate: 0deg } to { rotate: 360deg }",
+     "secs": 12,
+     "ease": "linear"
+    }
+   },
+   "about": "The clip turns around once every twelve seconds. For stickers, discs and logos.",
+   "tags": [
+    "spin",
+    "calm"
+   ]
+  },
+  {
+   "id": "motions/loop-spin-fast",
+   "cat": "effect",
+   "group": "clip-loop",
+   "name": {
+    "en": "Fast spin",
+    "zh-CN": "快速旋转",
+    "ja": "高速回転",
+    "ko": "빠른 회전",
+    "es": "Giro rápido"
+   },
+   "kind": "motion",
+   "durationMs": 2000,
+   "motion": {
+    "loop": {
+     "name": "motion-loop-spin-fast",
+     "body": "from { rotate: 0deg } to { rotate: 360deg }",
+     "secs": 2,
+     "ease": "linear"
+    }
+   },
+   "about": "The clip spins around twice a second. For loading, energy and chaos.",
+   "tags": [
+    "spin",
+    "intense"
+   ]
+  },
+  {
+   "id": "motions/loop-drift-x",
+   "cat": "effect",
+   "group": "clip-loop",
+   "name": {
+    "en": "Drift sideways",
+    "zh-CN": "左右漂移",
+    "ja": "横にドリフト",
+    "ko": "좌우 드리프트",
+    "es": "Deriva lateral"
+   },
+   "kind": "motion",
+   "durationMs": 5000,
+   "motion": {
+    "loop": {
+     "name": "motion-loop-drift-x",
+     "body": "0%, 100% { translate: -1.5vw 0 } 50% { translate: 1.5vw 0 }",
+     "secs": 5,
+     "ease": "cubic-bezier(0.42, 0, 0.58, 1)"
+    }
+   },
+   "about": "The clip drifts slowly left and right.",
+   "tags": [
+    "calm"
+   ]
+  },
+  {
+   "id": "motions/loop-drift-y",
+   "cat": "effect",
+   "group": "clip-loop",
+   "name": {
+    "en": "Drift vertically",
+    "zh-CN": "上下漂移",
+    "ja": "縦にドリフト",
+    "ko": "상하 드리프트",
+    "es": "Deriva vertical"
+   },
+   "kind": "motion",
+   "durationMs": 5000,
+   "motion": {
+    "loop": {
+     "name": "motion-loop-drift-y",
+     "body": "0%, 100% { translate: 0 -1.5vh } 50% { translate: 0 1.5vh }",
+     "secs": 5,
+     "ease": "cubic-bezier(0.42, 0, 0.58, 1)"
+    }
+   },
+   "about": "The clip drifts slowly up and down.",
+   "tags": [
+    "calm"
+   ]
+  },
+  {
+   "id": "motions/loop-orbit",
+   "cat": "effect",
+   "group": "clip-loop",
+   "name": {
+    "en": "Orbit",
+    "zh-CN": "环绕",
+    "ja": "オービット",
+    "ko": "궤도 회전",
+    "es": "Órbita"
+   },
+   "kind": "motion",
+   "durationMs": 6000,
+   "motion": {
+    "loop": {
+     "name": "motion-loop-orbit",
+     "body": "0%, 100% { translate: 0 -2vh } 25% { translate: 2vw 0 } 50% { translate: 0 2vh } 75% { translate: -2vw 0 }",
+     "secs": 6,
+     "ease": "linear"
+    }
+   },
+   "about": "The clip circles around its place in a small orbit.",
+   "tags": [
+    "spin"
+   ]
+  },
+  {
+   "id": "motions/loop-push-in",
+   "cat": "effect",
+   "group": "clip-loop",
+   "name": {
+    "en": "Slow push to 120%",
+    "zh-CN": "缓慢推进120%",
+    "ja": "ゆっくり120%へ",
+    "ko": "천천히 120%로 푸시",
+    "es": "Acercamiento lento 120%"
+   },
+   "kind": "motion",
+   "durationMs": 10000,
+   "motion": {
+    "loop": {
+     "name": "motion-loop-push-in",
+     "body": "from { scale: 1 } to { scale: 1.2 }",
+     "secs": 10,
+     "ease": "cubic-bezier(0.42, 0, 0.58, 1)"
+    }
+   },
+   "about": "A slow push in to 120 percent over ten seconds. For stills and calm shots.",
+   "tags": [
+    "zoom",
+    "calm",
+    "documentary"
+   ]
+  },
+  {
+   "id": "motions/loop-pull-out",
+   "cat": "effect",
+   "group": "clip-loop",
+   "name": {
+    "en": "Slow pull back",
+    "zh-CN": "缓慢拉远",
+    "ja": "ゆっくり引く",
+    "ko": "천천히 풀백",
+    "es": "Alejamiento lento"
+   },
+   "kind": "motion",
+   "durationMs": 10000,
+   "motion": {
+    "loop": {
+     "name": "motion-loop-pull-out",
+     "body": "from { scale: 1.2 } to { scale: 1 }",
+     "secs": 10,
+     "ease": "cubic-bezier(0.42, 0, 0.58, 1)"
+    }
+   },
+   "about": "A slow pull back from 120 percent to full size over ten seconds.",
+   "tags": [
+    "zoom",
+    "calm",
+    "documentary"
+   ]
+  },
+  {
+   "id": "motions/loop-pan-left",
+   "cat": "effect",
+   "group": "clip-loop",
+   "name": {
+    "en": "Pan left",
+    "zh-CN": "向左平移",
+    "ja": "左へパン",
+    "ko": "왼쪽 팬",
+    "es": "Paneo a la izquierda"
+   },
+   "kind": "motion",
+   "durationMs": 8000,
+   "motion": {
+    "loop": {
+     "name": "motion-loop-pan-left",
+     "body": "from { scale: 1.1; translate: 3vw 0 } to { scale: 1.1; translate: -3vw 0 }",
+     "secs": 8,
+     "ease": "cubic-bezier(0.42, 0, 0.58, 1)"
+    }
+   },
+   "about": "A slow camera pan to the left over an enlarged picture.",
+   "tags": [
+    "slide",
+    "camera",
+    "documentary"
+   ]
+  },
+  {
+   "id": "motions/loop-pan-right",
+   "cat": "effect",
+   "group": "clip-loop",
+   "name": {
+    "en": "Pan right",
+    "zh-CN": "向右平移",
+    "ja": "右へパン",
+    "ko": "오른쪽 팬",
+    "es": "Paneo a la derecha"
+   },
+   "kind": "motion",
+   "durationMs": 8000,
+   "motion": {
+    "loop": {
+     "name": "motion-loop-pan-right",
+     "body": "from { scale: 1.1; translate: -3vw 0 } to { scale: 1.1; translate: 3vw 0 }",
+     "secs": 8,
+     "ease": "cubic-bezier(0.42, 0, 0.58, 1)"
+    }
+   },
+   "about": "A slow camera pan to the right over an enlarged picture.",
+   "tags": [
+    "slide",
+    "camera",
+    "documentary"
+   ]
+  },
+  {
+   "id": "motions/loop-pan-up",
+   "cat": "effect",
+   "group": "clip-loop",
+   "name": {
+    "en": "Tilt up",
+    "zh-CN": "向上摇镜",
+    "ja": "上へチルト",
+    "ko": "위로 틸트",
+    "es": "Paneo hacia arriba"
+   },
+   "kind": "motion",
+   "durationMs": 8000,
+   "motion": {
+    "loop": {
+     "name": "motion-loop-pan-up",
+     "body": "from { scale: 1.1; translate: 0 3vh } to { scale: 1.1; translate: 0 -3vh }",
+     "secs": 8,
+     "ease": "cubic-bezier(0.42, 0, 0.58, 1)"
+    }
+   },
+   "about": "A slow camera tilt upward over an enlarged picture.",
+   "tags": [
+    "slide",
+    "camera",
+    "documentary"
+   ]
+  },
+  {
+   "id": "motions/loop-pan-down",
+   "cat": "effect",
+   "group": "clip-loop",
+   "name": {
+    "en": "Tilt down",
+    "zh-CN": "向下摇镜",
+    "ja": "下へチルト",
+    "ko": "아래로 틸트",
+    "es": "Paneo hacia abajo"
+   },
+   "kind": "motion",
+   "durationMs": 8000,
+   "motion": {
+    "loop": {
+     "name": "motion-loop-pan-down",
+     "body": "from { scale: 1.1; translate: 0 -3vh } to { scale: 1.1; translate: 0 3vh }",
+     "secs": 8,
+     "ease": "cubic-bezier(0.42, 0, 0.58, 1)"
+    }
+   },
+   "about": "A slow camera tilt downward over an enlarged picture.",
+   "tags": [
+    "slide",
+    "camera",
+    "documentary"
+   ]
+  },
+  {
+   "id": "motions/loop-roll",
+   "cat": "effect",
+   "group": "clip-loop",
+   "name": {
+    "en": "Slow roll",
+    "zh-CN": "缓慢滚转",
+    "ja": "ゆっくりロール",
+    "ko": "느린 롤",
+    "es": "Giro de cámara"
+   },
+   "kind": "motion",
+   "durationMs": 9000,
+   "motion": {
+    "loop": {
+     "name": "motion-loop-roll",
+     "body": "0%, 100% { rotate: 0deg; scale: 1.06 } 50% { rotate: 3deg; scale: 1.06 }",
+     "secs": 9,
+     "ease": "cubic-bezier(0.42, 0, 0.58, 1)"
+    }
+   },
+   "about": "The picture rolls slowly a few degrees, like a handheld camera.",
+   "tags": [
+    "camera",
+    "calm"
+   ]
+  },
+  {
+   "id": "motions/loop-jitter-soft",
+   "cat": "effect",
+   "group": "clip-loop",
+   "name": {
+    "en": "Soft jitter",
+    "zh-CN": "轻微抖动",
+    "ja": "やさしい手ブレ",
+    "ko": "부드러운 떨림",
+    "es": "Temblor suave"
+   },
+   "kind": "motion",
+   "durationMs": 600,
+   "motion": {
+    "loop": {
+     "name": "motion-loop-jitter-soft",
+     "body": "0%, 100% { translate: 0 0 } 20% { translate: -0.4vw 0.2vh } 40% { translate: 0.3vw -0.3vh } 60% { translate: -0.2vw -0.2vh } 80% { translate: 0.3vw 0.3vh }",
+     "secs": 0.6,
+     "ease": "linear"
+    }
+   },
+   "about": "Tiny, constant tremors like a handheld camera.",
+   "tags": [
+    "shake"
+   ]
+  },
+  {
+   "id": "motions/loop-buzz",
+   "cat": "effect",
+   "group": "clip-loop",
+   "name": {
+    "en": "Buzz",
+    "zh-CN": "嗡嗡震动",
+    "ja": "ブルブル",
+    "ko": "웅웅 진동",
+    "es": "Zumbido"
+   },
+   "kind": "motion",
+   "durationMs": 120,
+   "motion": {
+    "loop": {
+     "name": "motion-loop-buzz",
+     "body": "0%, 100% { translate: 0 0 } 25% { translate: -0.3vw 0 } 75% { translate: 0.3vw 0 }",
+     "secs": 0.12,
+     "ease": "linear"
+    }
+   },
+   "about": "A very fast, tiny vibration. For phones, engines and nerves.",
+   "tags": [
+    "shake",
+    "intense"
+   ]
+  },
+  {
+   "id": "motions/loop-flash",
+   "cat": "effect",
+   "group": "clip-loop",
+   "name": {
+    "en": "Flash",
+    "zh-CN": "明暗闪动",
+    "ja": "明滅",
+    "ko": "밝아졌다 어두워짐",
+    "es": "Destello"
+   },
+   "kind": "motion",
+   "durationMs": 800,
+   "motion": {
+    "loop": {
+     "name": "motion-loop-flash",
+     "body": "0%, 100% { opacity: 1 } 50% { opacity: 0.3 }",
+     "secs": 0.8,
+     "ease": "cubic-bezier(0.42, 0, 0.58, 1)"
+    }
+   },
+   "about": "The clip dims and brightens steadily.",
+   "tags": [
+    "transition"
+   ]
+  },
+  {
+   "id": "motions/loop-blink",
+   "cat": "effect",
+   "group": "clip-loop",
+   "name": {
+    "en": "Blink",
+    "zh-CN": "眨眼闪烁",
+    "ja": "まばたき",
+    "ko": "깜빡임",
+    "es": "Parpadeo"
+   },
+   "kind": "motion",
+   "durationMs": 1000,
+   "motion": {
+    "loop": {
+     "name": "motion-loop-blink",
+     "body": "0%, 45%, 100% { opacity: 1 } 50%, 95% { opacity: 0 }",
+     "secs": 1,
+     "ease": "steps(1, end)"
+    }
+   },
+   "about": "The clip blinks on and off once a second, like a cursor or a warning light.",
+   "tags": [
+    "tense"
+   ]
+  },
+  {
+   "id": "motions/loop-strobe",
+   "cat": "effect",
+   "group": "clip-loop",
+   "name": {
+    "en": "Strobe",
+    "zh-CN": "频闪",
+    "ja": "ストロボ",
+    "ko": "스트로브",
+    "es": "Estroboscopio"
+   },
+   "kind": "motion",
+   "durationMs": 200,
+   "motion": {
+    "loop": {
+     "name": "motion-loop-strobe",
+     "body": "0%, 100% { opacity: 1 } 50% { opacity: 0 }",
+     "secs": 0.2,
+     "ease": "steps(1, end)"
+    }
+   },
+   "about": "A hard strobe: on and off five times a second. Use with care.",
+   "tags": [
+    "intense"
+   ]
+  },
+  {
+   "id": "motions/loop-candle",
+   "cat": "effect",
+   "group": "clip-loop",
+   "name": {
+    "en": "Candle flicker",
+    "zh-CN": "烛光闪烁",
+    "ja": "キャンドルの揺らぎ",
+    "ko": "촛불 일렁임",
+    "es": "Vela"
+   },
+   "kind": "motion",
+   "durationMs": 1500,
+   "motion": {
+    "loop": {
+     "name": "motion-loop-candle",
+     "body": "0%, 100% { opacity: 1 } 15% { opacity: 0.85 } 35% { opacity: 0.95 } 55% { opacity: 0.8 } 80% { opacity: 0.92 }",
+     "secs": 1.5,
+     "ease": "linear"
+    }
+   },
+   "about": "The clip glows unevenly like candlelight.",
+   "tags": [
+    "warm",
+    "soft"
+   ]
+  },
+  {
+   "id": "motions/loop-glow-pulse",
+   "cat": "effect",
+   "group": "clip-loop",
+   "name": {
+    "en": "Glow pulse",
+    "zh-CN": "辉光脉动",
+    "ja": "グローパルス",
+    "ko": "글로우 펄스",
+    "es": "Pulso de brillo"
+   },
+   "kind": "motion",
+   "durationMs": 2000,
+   "motion": {
+    "loop": {
+     "name": "motion-loop-glow-pulse",
+     "body": "0%, 100% { filter: brightness(1) } 50% { filter: brightness(1.35) }",
+     "secs": 2,
+     "ease": "cubic-bezier(0.42, 0, 0.58, 1)"
+    }
+   },
+   "about": "The clip brightens and dims slowly, like a glowing light.",
+   "tags": [
+    "dreamy",
+    "soft"
+   ]
+  },
+  {
+   "id": "motions/loop-hover",
+   "cat": "effect",
+   "group": "clip-loop",
+   "name": {
+    "en": "Hover",
+    "zh-CN": "悬停漂浮",
+    "ja": "ホバー",
+    "ko": "호버",
+    "es": "Flotar"
+   },
+   "kind": "motion",
+   "durationMs": 3200,
+   "motion": {
+    "loop": {
+     "name": "motion-loop-hover",
+     "body": "0%, 100% { translate: 0 0; rotate: -1deg } 50% { translate: 0 -1.6vh; rotate: 1deg }",
+     "secs": 3.2,
+     "ease": "cubic-bezier(0.42, 0, 0.58, 1)"
+    }
+   },
+   "about": "The clip hovers up and down with a slight tilt, like a drone.",
+   "tags": [
+    "calm"
+   ]
+  },
+  {
+   "id": "motions/loop-ken-diag",
+   "cat": "effect",
+   "group": "clip-loop",
+   "name": {
+    "en": "Diagonal push",
+    "zh-CN": "斜向推进",
+    "ja": "斜めに寄る",
+    "ko": "대각선 푸시",
+    "es": "Empuje diagonal"
+   },
+   "kind": "motion",
+   "durationMs": 10000,
+   "motion": {
+    "loop": {
+     "name": "motion-loop-ken-diag",
+     "body": "from { scale: 1; translate: 0 0 } to { scale: 1.15; translate: -2vw -2vh }",
+     "secs": 10,
+     "ease": "cubic-bezier(0.42, 0, 0.58, 1)"
+    }
+   },
+   "about": "A slow push in on a diagonal. For documentary-style stills.",
+   "tags": [
+    "zoom",
+    "slide",
+    "documentary"
+   ]
+  },
+  {
+   "id": "motions/loop-bounce",
+   "cat": "effect",
+   "group": "clip-loop",
+   "name": {
+    "en": "Bounce",
+    "zh-CN": "持续弹跳",
+    "ja": "バウンド",
+    "ko": "계속 바운스",
+    "es": "Rebote continuo"
+   },
+   "kind": "motion",
+   "durationMs": 800,
+   "motion": {
+    "loop": {
+     "name": "motion-loop-bounce",
+     "body": "0%, 100% { translate: 0 0 } 50% { translate: 0 -3vh }",
+     "secs": 0.8,
+     "ease": "cubic-bezier(0.3, 0, 0.7, 1)"
+    }
+   },
+   "about": "The clip bounces up and down at a steady beat.",
+   "tags": [
+    "bounce",
+    "playful",
+    "electronic"
+   ]
+  },
+  {
+   "id": "motions/loop-jelly",
+   "cat": "effect",
+   "group": "clip-loop",
+   "name": {
+    "en": "Jelly",
+    "zh-CN": "果冻",
+    "ja": "ぷるぷる",
+    "ko": "젤리",
+    "es": "Gelatina"
+   },
+   "kind": "motion",
+   "durationMs": 1000,
+   "motion": {
+    "loop": {
+     "name": "motion-loop-jelly",
+     "body": "0%, 100% { scale: 1 1 } 30% { scale: 1.06 0.94 } 60% { scale: 0.96 1.04 }",
+     "secs": 1,
+     "ease": "cubic-bezier(0.42, 0, 0.58, 1)"
+    }
+   },
+   "about": "The clip squashes and stretches like jelly.",
+   "tags": [
+    "bounce",
+    "playful"
+   ]
+  },
+  {
+   "id": "motions/loop-tick",
+   "cat": "effect",
+   "group": "clip-loop",
+   "name": {
+    "en": "Tick",
+    "zh-CN": "滴答",
+    "ja": "チクタク",
+    "ko": "똑딱",
+    "es": "Tictac"
+   },
+   "kind": "motion",
+   "durationMs": 1000,
+   "motion": {
+    "loop": {
+     "name": "motion-loop-tick",
+     "body": "0%, 100% { rotate: -3deg } 50% { rotate: 3deg }",
+     "secs": 1,
+     "ease": "steps(1, end)"
+    }
+   },
+   "about": "The clip ticks left and right once a second, like a clock.",
+   "tags": [
+    "jazz",
+    "tense"
+   ]
+  }
+ ]
+}

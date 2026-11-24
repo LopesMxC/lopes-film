@@ -1,0 +1,67 @@
+name: Compilar (Lopes.Film / GlobalFilm / VerkzFilm)
+
+# Manual: Actions > Compilar > Run workflow > escolha a versao (ou "todas") e o sistema (windows, mac ou todos).
+on:
+  workflow_dispatch:
+    inputs:
+      marca:
+        description: "Versao do programa"
+        type: choice
+        default: todas
+        options: [todas, lopes, global, verkz]
+      sistema:
+        description: "Sistema"
+        type: choice
+        default: todos
+        options: [todos, windows, mac]
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.m.outputs.matrix }}
+    steps:
+      - id: m
+        shell: python
+        run: |
+          import json, os
+          marca, sistema = "${{ inputs.marca }}", "${{ inputs.sistema }}"
+          marcas = ["lopes", "global", "verkz"] if marca == "todas" else [marca]
+          alvos = [
+            ("windows-x64", "windows-latest", "--platform=win --arch=x64 --unsigned", "windows"),
+            ("mac-arm64", "macos-latest", "--arch=arm64 --unsigned", "mac"),
+            ("mac-x64", "macos-latest", "--arch=x64 --unsigned", "mac"),
+          ]
+          inc = [{"brand": b, "name": n, "os": o, "args": a} for b in marcas for (n, o, a, s) in alvos if sistema in ("todos", s)]
+          open(os.environ["GITHUB_OUTPUT"], "a").write("matrix=" + json.dumps({"include": inc}) + "\n")
+
+  build:
+    needs: plan
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    runs-on: ${{ matrix.os }}
+    name: ${{ matrix.brand }} ${{ matrix.name }}
+    env:
+      LOPESFILM_BRAND: ${{ matrix.brand }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --no-frozen-lockfile
+      - run: pnpm build
+      - run: pnpm release ${{ matrix.args }}
+        working-directory: apps/desktop
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.brand }}-${{ matrix.name }}
+          path: |
+            apps/desktop/.release/**/out/*.dmg
+            apps/desktop/.release/**/out/*.zip
+            apps/desktop/.release/**/out/*.exe
+          if-no-files-found: error

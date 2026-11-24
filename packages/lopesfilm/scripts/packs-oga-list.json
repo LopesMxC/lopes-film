@@ -1,0 +1,359 @@
+[
+ {
+  "slug": "3d-road-tile-pack",
+  "file": "dl/3d-road-tile-pack__3D_Road_pack.zip",
+  "url": "https://opengameart.org/sites/default/files/3D%20Road%20pack.zip",
+  "bytes": 3265217,
+  "sha256": "164ca3b4312e1b6f5e6d7f6bbdc81409e29610775a63090290bbcea1e679f741"
+ },
+ {
+  "slug": "3d-walls-props",
+  "file": "dl/3d-walls-props__labyrinth.zip",
+  "url": "https://opengameart.org/sites/default/files/labyrinth.zip",
+  "bytes": 3333131,
+  "sha256": "dcebb9e44cb7d42513ac50b32e71464942ce5d34aff2c864ff5b4208fae6c9f1"
+ },
+ {
+  "slug": "castle-kit",
+  "file": "dl/castle-kit__kenney_castle-kit.zip",
+  "url": "https://opengameart.org/sites/default/files/kenney_castle-kit.zip",
+  "bytes": 2232589,
+  "sha256": "921f3f73927bb23106cae34bc21d5ab4b033a9fc120475e96f714a406e3169df"
+ },
+ {
+  "slug": "cethiels-dragon-3d",
+  "file": "dl/cethiels-dragon-3d__dragon_oga.zip",
+  "url": "https://opengameart.org/sites/default/files/dragon_oga.zip",
+  "bytes": 1351111,
+  "sha256": "f6a8c25dd3b2abdb1e7830b0b88f9083052c0750e710e6439eceb320783a57c1"
+ },
+ {
+  "slug": "cethiels-weapons-3d",
+  "file": "dl/cethiels-weapons-3d__handpainted_weapons.zip",
+  "url": "https://opengameart.org/sites/default/files/handpainted%20weapons.zip",
+  "bytes": 2104476,
+  "sha256": "023c600f6727b7a80456656f030b0d2e83a6afe539d512851533d3c4c51d3051"
+ },
+ {
+  "slug": "chicken-animated",
+  "file": "dl/chicken-animated__chicken_0.zip",
+  "url": "https://opengameart.org/sites/default/files/chicken_0.zip",
+  "bytes": 6214921,
+  "sha256": "0e958040fdb855c192903657d8a9da2d95cf17ea23165676bae2ae1454baa284"
+ },
+ {
+  "slug": "fantasy-town-kit",
+  "file": "dl/fantasy-town-kit__kenney_fantasy-town-kit_2.0.zip",
+  "url": "https://opengameart.org/sites/default/files/kenney_fantasy-town-kit_2.0.zip",
+  "bytes": 3854691,
+  "sha256": "1a7530c09f4d2fa2cdee259876f089334f8b1f27fa86a0c4f54ef86cdd8676ef"
+ },
+ {
+  "slug": "ba-2-blast-all-bot-mark-2",
+  "file": "dl/ba-2-blast-all-bot-mark-2__Quandtum_BA-2_v1_1.zip",
+  "url": "https://opengameart.org/sites/default/files/Quandtum_BA-2_v1_1.zip",
+  "bytes": 16379378,
+  "sha256": "e73d1d6e52697315405c75dea4d530a6ffa1910288b40e150cda25adb031c893"
+ },
+ {
+  "slug": "food-kit",
+  "file": "dl/food-kit__kenney_food-kit.zip",
+  "url": "https://opengameart.org/sites/default/files/kenney_food-kit.zip",
+  "bytes": 4606270,
+  "sha256": "cdad90853682499b94c9fda2f87678b24bfd8f3264e0ed323f6b6a27fd7c6f6f"
+ },
+ {
+  "slug": "3d-castle-dungeon-tileset-extended",
+  "file": "dl/3d-castle-dungeon-tileset-extended__dungeon-tileset-extended.zip",
+  "url": "https://opengameart.org/sites/default/files/dungeon-tileset-extended.zip",
+  "bytes": 21887093,
+  "sha256": "ffe0deccc0f24006c5ce89632797865e6536d381dc45129bd5f2db6130cad39e"
+ },
+ {
+  "slug": "furniture-kit",
+  "file": "dl/furniture-kit__kenney_furniturePack.zip",
+  "url": "https://opengameart.org/sites/default/files/kenney_furniturePack.zip",
+  "bytes": 5580414,
+  "sha256": "68afa4e6dc8a53942379fb47f1e84ec735d46b77bb1c1ceb968e245693dde067"
+ },
+ {
+  "slug": "graveyard-kit",
+  "file": "dl/graveyard-kit__kenney_graveyard-kit_5.0.zip",
+  "url": "https://opengameart.org/sites/default/files/kenney_graveyard-kit_5.0.zip",
+  "bytes": 3623408,
+  "sha256": "1a93613f2e5675f3310acf49ec9ef13ae7adeb756ac3b205bfb6cc9311a81062"
+ },
+ {
+  "slug": "landscape-asset-v1",
+  "file": "dl/landscape-asset-v1__LandscapeAsset_v1.zip",
+  "url": "https://opengameart.org/sites/default/files/LandscapeAsset_v1.zip",
+  "bytes": 1369134,
+  "sha256": "90faebe2b58197dfe4c48061a9eefc5b5d46416ebdff55a2cce6194358a5e9fd"
+ },
+ {
+  "slug": "landscape-asset-v2",
+  "file": "dl/landscape-asset-v2__landscape_asset_v2a.zip",
+  "url": "https://opengameart.org/sites/default/files/landscape_asset_v2a.zip",
+  "bytes": 1141157,
+  "sha256": "ba8392f2451458c5a41119a87a1ea5f0749b13c4830e7fcae7a3a2203dfd1aa6"
+ },
+ {
+  "slug": "medieval-containers",
+  "file": "dl/medieval-containers__76295_ContainersUpload_blend.zip",
+  "url": "https://opengameart.org/sites/default/files/76295_ContainersUpload_blend.zip",
+  "bytes": 2430287,
+  "sha256": "311655e9ad16ccb9e7bd008a462a9cc475ac04d59b2c9b6c1a7b75858ea764d4"
+ },
+ {
+  "slug": "3td-fantasy-ruins-pack",
+  "file": "dl/3td-fantasy-ruins-pack__Fantasy_Ruins_Pack.zip",
+  "url": "https://opengameart.org/sites/default/files/Fantasy%20Ruins%20Pack.zip",
+  "bytes": 30991009,
+  "sha256": "12dad8708181bef31ac5e688fb61dc3232138206a6f004407044215f5fd64dfd"
+ },
+ {
+  "slug": "3rd-person-blender-sci-fi-pack",
+  "file": "dl/3rd-person-blender-sci-fi-pack__DeadProject_Goal2.zip",
+  "url": "https://opengameart.org/sites/default/files/DeadProject%20Goal2.zip",
+  "bytes": 33210331,
+  "sha256": "d71b7f3f95c90a1db11db73bfbc2393b6bbb73961d5e9608ee518c2c089d0379"
+ },
+ {
+  "slug": "medieval-house-pack",
+  "file": "dl/medieval-house-pack__75519_House1Upload_blend.zip",
+  "url": "https://opengameart.org/sites/default/files/75519_House1Upload_blend.zip",
+  "bytes": 5947310,
+  "sha256": "d7b53c94eb77fbba5e57360bbc8ac9889eff85340bf1e9a92d851e58b88cee0d"
+ },
+ {
+  "slug": "free-mine-assets-pack",
+  "file": "dl/free-mine-assets-pack__free_mine_assets.zip",
+  "url": "https://opengameart.org/sites/default/files/free_mine_assets.zip",
+  "bytes": 15879070,
+  "sha256": "526057cfbfa67933f7fe9173c730212b479a3fb3feb5a71f33ace377f0e4fcb5"
+ },
+ {
+  "slug": "modular-3d-buildings",
+  "file": "dl/modular-3d-buildings__modularBuildings.zip",
+  "url": "https://opengameart.org/sites/default/files/modularBuildings.zip",
+  "bytes": 1457275,
+  "sha256": "5dd5ad3ec45a1bbcc320f458839b4dffbea291b290c868a79a59968b070a4315"
+ },
+ {
+  "slug": "modular-dungeon-2-3d-models",
+  "file": "dl/modular-dungeon-2-3d-models__dungeon_collection_2.zip",
+  "url": "https://opengameart.org/sites/default/files/dungeon_collection_2.zip",
+  "bytes": 269466,
+  "sha256": "523de9cb06852f96b0dc4425b4438cf624e2dcef546b0c7fd936f0eebf25468a"
+ },
+ {
+  "slug": "modular-dungeon-3d-models",
+  "file": "dl/modular-dungeon-3d-models__dungeon_collection_for_assetforge.zip",
+  "url": "https://opengameart.org/sites/default/files/dungeon_collection_for_assetforge.zip",
+  "bytes": 78780,
+  "sha256": "ff73e2082318426399bbfa75aa06b2cb906bad693f21fb90785f5f53ff024faf"
+ },
+ {
+  "slug": "medieval-house-pack",
+  "file": "dl/medieval-house-pack__75861_House2_1Upload_blend.zip",
+  "url": "https://opengameart.org/sites/default/files/75861_House2_1Upload_blend.zip",
+  "bytes": 7218154,
+  "sha256": "601f13cbab73f4a100518194445867c8e9af1e7c268fb194304a0ebaa5043e07"
+ },
+ {
+  "slug": "modular-medieval-building-pack",
+  "file": "dl/modular-medieval-building-pack__74694_Windows1Upload_blend.zip",
+  "url": "https://opengameart.org/sites/default/files/74694_Windows1Upload_blend.zip",
+  "bytes": 4564042,
+  "sha256": "895547bbc0d61090b94d13626a063541b6ed2d456ad0a618df333aed2f4f8b00"
+ },
+ {
+  "slug": "medieval-house-pack",
+  "file": "dl/medieval-house-pack__75862_House3Upload_blend.zip",
+  "url": "https://opengameart.org/sites/default/files/75862_House3Upload_blend.zip",
+  "bytes": 6670672,
+  "sha256": "7247ff6632769f60648470adb965a7d48f887e30bbf52b9e2e37e0ff707050d2"
+ },
+ {
+  "slug": "modular-medieval-building-pack",
+  "file": "dl/modular-medieval-building-pack__74696_HousePack1_2Upload_blend.zip",
+  "url": "https://opengameart.org/sites/default/files/74696_HousePack1_2Upload_blend.zip",
+  "bytes": 2860605,
+  "sha256": "8898b6a150e1b8cabe82e38f5ea64bfcec4488714473de93dcabe5934fa9b8b5"
+ },
+ {
+  "slug": "modular-medieval-building-pack",
+  "file": "dl/modular-medieval-building-pack__74697_HousePack2_2Upload_blend.zip",
+  "url": "https://opengameart.org/sites/default/files/74697_HousePack2_2Upload_blend.zip",
+  "bytes": 2871471,
+  "sha256": "a0e1fad57e741e712717c661982cdc45fe5f735bbff05598ff8f234c6e45e363"
+ },
+ {
+  "slug": "medieval-house-pack",
+  "file": "dl/medieval-house-pack__75864_House4Upload_blend.zip",
+  "url": "https://opengameart.org/sites/default/files/75864_House4Upload_blend.zip",
+  "bytes": 9055910,
+  "sha256": "a218110510361b03a1cbdfe2e47776056abf7d6f04e6ab10746fb653ed99f866"
+ },
+ {
+  "slug": "modular-medieval-building-pack",
+  "file": "dl/modular-medieval-building-pack__74698_BalconyUpload_blend.zip",
+  "url": "https://opengameart.org/sites/default/files/74698_BalconyUpload_blend.zip",
+  "bytes": 1453825,
+  "sha256": "f6f8d63eb0c02ca9a93a64ec68dd9882fd3eb8f3937d8dad8a2bed2437b51dd1"
+ },
+ {
+  "slug": "modular-medieval-building-pack",
+  "file": "dl/modular-medieval-building-pack__74695_Doors1Upload_blend.zip",
+  "url": "https://opengameart.org/sites/default/files/74695_Doors1Upload_blend.zip",
+  "bytes": 5188926,
+  "sha256": "d739d9e441344a6b49b3f10afb36619368fb11100d5d56893d3c54e1e5a515f9"
+ },
+ {
+  "slug": "modular-medieval-building-pack",
+  "file": "dl/modular-medieval-building-pack__74699_ChimneyUpload_blend.zip",
+  "url": "https://opengameart.org/sites/default/files/74699_ChimneyUpload_blend.zip",
+  "bytes": 931201,
+  "sha256": "22ddbf0feab4116650c02358cdb0410cdb8862b223c3be4ea26a6d917fc6f960"
+ },
+ {
+  "slug": "modular-medieval-building-pack",
+  "file": "dl/modular-medieval-building-pack__74701_StairsUpload_blend.zip",
+  "url": "https://opengameart.org/sites/default/files/74701_StairsUpload_blend.zip",
+  "bytes": 1354521,
+  "sha256": "f21ee0dab32a75e5e0bf43a50a9958990f5590d3b2f0065e5f8d500766b6475c"
+ },
+ {
+  "slug": "modular-medieval-building-pack",
+  "file": "dl/modular-medieval-building-pack__74703_SignsUpload_blend.zip",
+  "url": "https://opengameart.org/sites/default/files/74703_SignsUpload_blend.zip",
+  "bytes": 668587,
+  "sha256": "356e33d3a2a4a4ca0db98b1b02199c22e9694e657444610f088600ffeb8587c3"
+ },
+ {
+  "slug": "modular-temple-3d-models",
+  "file": "dl/modular-temple-3d-models__temple_collection.zip",
+  "url": "https://opengameart.org/sites/default/files/temple_collection.zip",
+  "bytes": 172647,
+  "sha256": "134b9bec8ed656979c3c89f0db387103f608cdb10b7b7312dd3baf88ec172d4f"
+ },
+ {
+  "slug": "modular-temple-3d-models",
+  "file": "dl/modular-temple-3d-models__modular_temple_collection.zip",
+  "url": "https://opengameart.org/sites/default/files/modular_temple_collection.zip",
+  "bytes": 847498,
+  "sha256": "93abe0df8d11aa7d5d230817dbc9ab7aea543b1a27c5024389cb7bb90f8db85a"
+ },
+ {
+  "slug": "modular-terrain",
+  "file": "dl/modular-terrain__modular_terrain_collections.zip",
+  "url": "https://opengameart.org/sites/default/files/modular_terrain_collections.zip",
+  "bytes": 511263,
+  "sha256": "79915a60bf2c74f23aef7175134b19ad949ddd07d56d3b3bb9aa3374dfc5ba4d"
+ },
+ {
+  "slug": "modular-village",
+  "file": "dl/modular-village__modular_village_collection.zip",
+  "url": "https://opengameart.org/sites/default/files/modular_village_collection.zip",
+  "bytes": 648523,
+  "sha256": "cb1141480a79a6f5a58cb356667c976235542a40087ac5453a849d486702ad95"
+ },
+ {
+  "slug": "modular-medieval-building-pack",
+  "file": "dl/modular-medieval-building-pack__74702_ExtraRoof1Upload_blend.zip",
+  "url": "https://opengameart.org/sites/default/files/74702_ExtraRoof1Upload_blend.zip",
+  "bytes": 2368431,
+  "sha256": "85814107ba2a99f9c3187593fc36e94110c42bca1c0aef2bd4915fe8e7ac9e80"
+ },
+ {
+  "slug": "pirate-kit",
+  "file": "dl/pirate-kit__kenney_pirate-kit_2.1.zip",
+  "url": "https://opengameart.org/sites/default/files/kenney_pirate-kit_2.1.zip",
+  "bytes": 3154665,
+  "sha256": "667ed2caf92954ddb98f7b7cede831fe99ab75063c26b25e23d32715bee9c943"
+ },
+ {
+  "slug": "modular-medieval-building-pack",
+  "file": "dl/modular-medieval-building-pack__74700_BuildingExtensionsUpload_blend.zip",
+  "url": "https://opengameart.org/sites/default/files/74700_BuildingExtensionsUpload_blend.zip",
+  "bytes": 4809626,
+  "sha256": "4b303ac25e51f9b0aef5760984e512407581cc4c6f22c4ec39c82455b669cc1d"
+ },
+ {
+  "slug": "racing-assets-v1",
+  "file": "dl/racing-assets-v1__racing_assets_v1_oga.zip",
+  "url": "https://opengameart.org/sites/default/files/racing_assets_v1_oga.zip",
+  "bytes": 3866434,
+  "sha256": "b69a245d71b68d72ef4226509a1db424441be74562be844935e130ca08763087"
+ },
+ {
+  "slug": "animated-characters-pack",
+  "file": "dl/animated-characters-pack__ultimate_animated_character_pack_by_quaternius.zip",
+  "url": "https://opengameart.org/sites/default/files/ultimate_animated_character_pack_by_quaternius.zip",
+  "bytes": 48430012,
+  "sha256": "0295062cbc72da52ee804f39ac38694901a40458011f9b2638fc7ef13ed509da"
+ },
+ {
+  "slug": "racing-kit",
+  "file": "dl/racing-kit__Racing_Kit_1.2_.zip",
+  "url": "https://opengameart.org/sites/default/files/Racing%20Kit%20%281.2%29.zip",
+  "bytes": 3744999,
+  "sha256": "103acf8a85a04e94e2d3a9933fbcea12e9422c14d5e364eb013019a882af7f48"
+ },
+ {
+  "slug": "suburb-asset-pt1",
+  "file": "dl/suburb-asset-pt1__suburb_assets_pt1.zip",
+  "url": "https://opengameart.org/sites/default/files/suburb_assets_pt1.zip",
+  "bytes": 922419,
+  "sha256": "599edaaed4331ce87d21169c15f312e5b3ec4cf7d5e16be52f187a85e6b09824"
+ },
+ {
+  "slug": "simple-3d-crystals-unwrapped-simple-texture",
+  "file": "dl/simple-3d-crystals-unwrapped-simple-texture__3d_crystals_new.zip",
+  "url": "https://opengameart.org/sites/default/files/3d_crystals_new.zip",
+  "bytes": 4561938,
+  "sha256": "4d4cbeb76ce6d89b24162b8645be9c636ddd6d34c65fab1936e5af69a71b832e"
+ },
+ {
+  "slug": "treasure-chest-3",
+  "file": "dl/treasure-chest-3__TreasureChest.zip",
+  "url": "https://opengameart.org/sites/default/files/TreasureChest.zip",
+  "bytes": 2105028,
+  "sha256": "14a20eb5f6050521b09e6e4b68f5a733114fd89961b00e54161dce8f09dfb4e9"
+ },
+ {
+  "slug": "space-kit",
+  "file": "dl/space-kit__space-kit-1.0.zip",
+  "url": "https://opengameart.org/sites/default/files/space-kit-1.0.zip",
+  "bytes": 5297433,
+  "sha256": "9b96df4925fffb1b460d6479766fb977b604d391a7d7f4f074beab1cc9104512"
+ },
+ {
+  "slug": "vehicles-assets-pt1",
+  "file": "dl/vehicles-assets-pt1__vehicle_asset_v1.zip",
+  "url": "https://opengameart.org/sites/default/files/vehicle_asset_v1.zip",
+  "bytes": 3529075,
+  "sha256": "e78169bf9b8b583cae788ef7deccdd2526d9fc33242b8b77e5dfecf96d009a87"
+ },
+ {
+  "slug": "nature-kit",
+  "file": "dl/nature-kit__Nature_Kit_2.1_.zip",
+  "url": "https://opengameart.org/sites/default/files/Nature%20Kit%20%282.1%29.zip",
+  "bytes": 10537521,
+  "sha256": "fa7974a0d342bfe63c38664ba9f8ec1a4aab8ea25f099bdc56870e33588c4d9d"
+ },
+ {
+  "slug": "kaykit-dungeon-pack-10",
+  "file": "dl/kaykit-dungeon-pack-10__kaykit_dungeon_pack_1.0.zip",
+  "url": "https://opengameart.org/sites/default/files/kaykit_dungeon_pack_1.0.zip",
+  "bytes": 31032480,
+  "sha256": "36a9b8ba5c14397fd08ddbb49d616e1c6545e05167650cb9ace4314b23164f75"
+ },
+ {
+  "slug": "wood-barrels-pack",
+  "file": "dl/wood-barrels-pack__wood_barrels_0.zip",
+  "url": "https://opengameart.org/sites/default/files/wood_barrels_0.zip",
+  "bytes": 11487444,
+  "sha256": "256b48992f05f3de171e47780db3c0d233b5e9cd94472f46f6a93172324d648f"
+ }
+]

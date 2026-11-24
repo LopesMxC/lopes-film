@@ -1,0 +1,26 @@
+{
+  "order": 6,
+  "category": "customize",
+  "icon": "palette",
+  "title": {
+    "en": "Motion",
+    "zh-CN": "动态图形",
+    "ja": "モーショングラフィックス",
+    "ko": "모션 그래픽",
+    "es": "Motion graphics"
+  },
+  "summary": {
+    "en": "Animated titles, explainers and data animations written as code, with React, GSAP, Lottie or three.js, that stay exact on every frame.",
+    "zh-CN": "用代码写的动画标题、讲解和数据动画（React、GSAP、Lottie、three.js），每一帧都精确可复现。",
+    "ja": "React、GSAP、Lottie、three.js で書くアニメーションのタイトル・解説・データ演出。どのフレームも正確に再現されます。",
+    "ko": "React, GSAP, Lottie, three.js로 코드로 쓰는 애니메이션 타이틀·설명·데이터 연출. 모든 프레임이 정확하게 재현됩니다.",
+    "es": "Títulos animados, explicativos y animaciones de datos escritos como código, con React, GSAP, Lottie o three.js, exactos en cada fotograma."
+  },
+  "details": {
+    "en": "When it is used: when you ask for animated graphics, an intro, an explainer, animated charts, or a React or Remotion-style composition.\nWhat it teaches: to build a motion piece as a page that is a function of time, picking React, GSAP, Lottie or three.js for the job, with timing, easing, staggering and layout rules that make it look professional, and to check it frame by frame.\nTurned off: agents still animate, but without these rules or the compatibility layer.",
+    "zh-CN": "什么时候用：你要动画图形、片头、讲解视频、动态图表，或 React / Remotion 风格的合成时。\n它教什么：把动效做成随时间变化的网页，按需求选择 React、GSAP、Lottie 或 three.js，并给出节奏、缓动、错峰和版式规则，最后逐帧检查。\n关掉后：智能体仍能做动画，但没有这些规则和兼容层的指引。",
+    "ja": "使うとき：アニメーション、オープニング、解説、動くグラフ、React／Remotion 風の構成を頼んだとき。\n教えること：動きを時間の関数になるページとして作り、用途に応じて React・GSAP・Lottie・three.js を選ぶこと。タイミング、イージング、ずらし、レイアウトの規則と、フレームごとの確認。\nオフにすると：アニメーションは作れますが、これらの規則と互換レイヤーの案内がなくなります。",
+    "ko": "언제 쓰나요: 애니메이션 그래픽, 인트로, 설명 영상, 움직이는 차트, React/Remotion 스타일 구성을 요청할 때.\n무엇을 알려 주나요: 모션을 시간의 함수인 페이지로 만들고, 용도에 따라 React·GSAP·Lottie·three.js를 고르는 법. 타이밍, 이징, 시차, 레이아웃 규칙과 프레임별 확인.\n끄면: 애니메이션은 만들 수 있지만 이 규칙과 호환 레이어 안내가 없습니다.",
+    "es": "Cuándo se usa: cuando pides gráficos animados, una intro, un explicativo, gráficos de datos animados o una composición al estilo React o Remotion.\nQué enseña: a construir una pieza de movimiento como una página que es función del tiempo, eligiendo React, GSAP, Lottie o three.js según el trabajo, con reglas de tiempos, easing, escalonado y composición, y a revisarla fotograma a fotograma.\nSi se desactiva: los agentes siguen animando, pero sin estas reglas ni la capa de compatibilidad."
+  }
+}

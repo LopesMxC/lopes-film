@@ -1,0 +1,19 @@
+{
+  "order": 6,
+  "category": "optimize",
+  "icon": "zap",
+  "title": {
+    "en": "Economy: wording",
+    "zh-CN": "节省：措辞",
+    "ja": "節約：言い回し",
+    "ko": "절약: 표현",
+    "es": "Economía: formulación"
+  },
+  "summary": {
+    "en": "Ask and brief precisely the first time: exact tool calls, one question at most, tight briefs for helpers. On by default.",
+    "zh-CN": "一次问准：精确的工具调用，最多一个问题，给助手的简报要精炼。默认开启。",
+    "ja": "最初から的確に：正確なツール呼び出し、質問は多くて一つ、補助への指示は簡潔に。標準でオン。",
+    "ko": "처음부터 정확하게: 정확한 도구 호출, 질문은 최대 한 개, 보조 지시는 간결하게. 기본으로 켜짐.",
+    "es": "Preguntar y encargar con precisión a la primera: llamadas exactas, una pregunta como máximo, encargos ajustados a los ayudantes. Activada por defecto."
+  }
+}

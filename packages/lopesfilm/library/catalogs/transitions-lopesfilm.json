@@ -1,0 +1,177 @@
+{
+ "version": 1,
+ "groups": {
+  "transition": []
+ },
+ "items": [
+  {
+   "id": "transitions/diag-wipe",
+   "cat": "transition",
+   "group": "slide",
+   "name": {
+    "en": "Diagonal wipe",
+    "zh-CN": "斜向擦除",
+    "ja": "斜めワイプ",
+    "ko": "대각선 와이프",
+    "es": "Cortina diagonal"
+   },
+   "kind": "page",
+   "durationMs": 700,
+   "src": "diag-wipe.html",
+   "place": "cut",
+   "about": "A slanted band of colour sweeps across the frame, covers it, and sweeps on, uncovering the next shot.",
+   "tags": [
+    "wipe",
+    "slide",
+    "fade",
+    "transition"
+   ]
+  },
+  {
+   "id": "transitions/slats-shut",
+   "cat": "transition",
+   "group": "mask",
+   "name": {
+    "en": "Shutter",
+    "zh-CN": "百叶窗",
+    "ja": "シャッター",
+    "ko": "셔터",
+    "es": "Persiana"
+   },
+   "kind": "page",
+   "durationMs": 700,
+   "src": "slats-shut.html",
+   "place": "cut",
+   "about": "Horizontal slats turn shut one after another until the frame is covered, then open again onto the next shot.",
+   "tags": [
+    "wipe",
+    "transition"
+   ]
+  },
+  {
+   "id": "transitions/saw-edge",
+   "cat": "transition",
+   "group": "shape",
+   "name": {
+    "en": "Zigzag",
+    "zh-CN": "锯齿划过",
+    "ja": "ジグザグ",
+    "ko": "지그재그",
+    "es": "Zigzag"
+   },
+   "kind": "page",
+   "durationMs": 800,
+   "src": "saw-edge.html",
+   "place": "cut",
+   "about": "A sawtooth edge sweeps in from the left, covers the frame and leaves to the right, the teeth riding its front.",
+   "tags": [
+    "wipe",
+    "transition"
+   ]
+  },
+  {
+   "id": "transitions/ring-burst",
+   "cat": "transition",
+   "group": "shape",
+   "name": {
+    "en": "Ripple rings",
+    "zh-CN": "涟漪环",
+    "ja": "波紋",
+    "ko": "물결 링",
+    "es": "Ondas"
+   },
+   "kind": "page",
+   "durationMs": 900,
+   "src": "ring-burst.html",
+   "place": "cut",
+   "about": "Rings of colour spread from the middle one after another until they fill the frame, then clear away from the middle.",
+   "tags": [
+    "transition"
+   ]
+  },
+  {
+   "id": "transitions/bars-rise",
+   "cat": "transition",
+   "group": "cover",
+   "name": {
+    "en": "Rising bars",
+    "zh-CN": "升起条",
+    "ja": "ライジングバー",
+    "ko": "상승 막대",
+    "es": "Barras ascendentes"
+   },
+   "kind": "page",
+   "durationMs": 800,
+   "src": "bars-rise.html",
+   "place": "cut",
+   "about": "Vertical bars rise from the bottom at staggered moments until the frame is covered, then drop away in the same order.",
+   "tags": [
+    "wipe",
+    "transition"
+   ]
+  },
+  {
+   "id": "transitions/dot-grid",
+   "cat": "transition",
+   "group": "shape",
+   "name": {
+    "en": "Dot grid",
+    "zh-CN": "圆点矩阵",
+    "ja": "ドットグリッド",
+    "ko": "도트 그리드",
+    "es": "Cuadrícula de puntos"
+   },
+   "kind": "page",
+   "durationMs": 900,
+   "src": "dot-grid.html",
+   "place": "cut",
+   "about": "A grid of dots swells from the middle outward until they merge and cover the frame, then shrinks away the same way.",
+   "tags": [
+    "particles",
+    "transition"
+   ]
+  },
+  {
+   "id": "transitions/panel-doors",
+   "cat": "transition",
+   "group": "slide",
+   "name": {
+    "en": "Doors",
+    "zh-CN": "对开门",
+    "ja": "観音開き",
+    "ko": "양문",
+    "es": "Puertas"
+   },
+   "kind": "page",
+   "durationMs": 800,
+   "src": "panel-doors.html",
+   "place": "cut",
+   "about": "Two panels slide in from the sides and meet in the middle, covering the frame, then part again onto the next shot.",
+   "tags": [
+    "split",
+    "slide",
+    "transition"
+   ]
+  },
+  {
+   "id": "transitions/whip-streaks",
+   "cat": "transition",
+   "group": "camera",
+   "name": {
+    "en": "Whip streaks",
+    "zh-CN": "快甩拖影",
+    "ja": "ウィップ",
+    "ko": "휩 스트릭",
+    "es": "Estelas rápidas"
+   },
+   "kind": "page",
+   "durationMs": 600,
+   "src": "whip-streaks.html",
+   "place": "cut",
+   "about": "Fast horizontal streaks of colour whip across the frame as it cuts, like a camera whipping to the next shot.",
+   "tags": [
+    "transition"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,1997 @@
+{
+ "version": 1,
+ "groups": {
+  "sound": [
+   {
+    "id": "lopes-braam",
+    "name": {
+     "en": "Lopes Pack · Braam",
+     "zh-CN": "Lopes Pack · 布拉姆",
+     "ja": "Lopes Pack · ブラーム",
+     "ko": "Lopes Pack · 브람",
+     "es": "Lopes Pack · Braam"
+    }
+   },
+   {
+    "id": "lopes-downer",
+    "name": {
+     "en": "Lopes Pack · Downer",
+     "zh-CN": "Lopes Pack · 下沉",
+     "ja": "Lopes Pack · ダウナー",
+     "ko": "Lopes Pack · 다운",
+     "es": "Lopes Pack · Descenso"
+    }
+   },
+   {
+    "id": "lopes-drone",
+    "name": {
+     "en": "Lopes Pack · Drone",
+     "zh-CN": "Lopes Pack · 持续音",
+     "ja": "Lopes Pack · ドローン",
+     "ko": "Lopes Pack · 드론",
+     "es": "Lopes Pack · Drone"
+    }
+   },
+   {
+    "id": "lopes-impact",
+    "name": {
+     "en": "Lopes Pack · Impact",
+     "zh-CN": "Lopes Pack · 冲击",
+     "ja": "Lopes Pack · インパクト",
+     "ko": "Lopes Pack · 임팩트",
+     "es": "Lopes Pack · Impacto"
+    }
+   },
+   {
+    "id": "lopes-metal",
+    "name": {
+     "en": "Lopes Pack · Metal",
+     "zh-CN": "Lopes Pack · 金属",
+     "ja": "Lopes Pack · メタル",
+     "ko": "Lopes Pack · 메탈",
+     "es": "Lopes Pack · Metal"
+    }
+   },
+   {
+    "id": "lopes-noise",
+    "name": {
+     "en": "Lopes Pack · Noise",
+     "zh-CN": "Lopes Pack · 噪声",
+     "ja": "Lopes Pack · ノイズ",
+     "ko": "Lopes Pack · 노이즈",
+     "es": "Lopes Pack · Ruido"
+    }
+   },
+   {
+    "id": "lopes-punch",
+    "name": {
+     "en": "Lopes Pack · Punch",
+     "zh-CN": "Lopes Pack · 重击",
+     "ja": "Lopes Pack · パンチ",
+     "ko": "Lopes Pack · 펀치",
+     "es": "Lopes Pack · Golpe"
+    }
+   },
+   {
+    "id": "lopes-retro",
+    "name": {
+     "en": "Lopes Pack · Retro",
+     "zh-CN": "Lopes Pack · 复古",
+     "ja": "Lopes Pack · レトロ",
+     "ko": "Lopes Pack · 레트로",
+     "es": "Lopes Pack · Retro"
+    }
+   },
+   {
+    "id": "lopes-riser",
+    "name": {
+     "en": "Lopes Pack · Riser",
+     "zh-CN": "Lopes Pack · 上升",
+     "ja": "Lopes Pack · ライザー",
+     "ko": "Lopes Pack · 라이저",
+     "es": "Lopes Pack · Riser"
+    }
+   },
+   {
+    "id": "lopes-short",
+    "name": {
+     "en": "Lopes Pack · Short",
+     "zh-CN": "Lopes Pack · 短音",
+     "ja": "Lopes Pack · ショート",
+     "ko": "Lopes Pack · 숏",
+     "es": "Lopes Pack · Cortos"
+    }
+   },
+   {
+    "id": "lopes-sub",
+    "name": {
+     "en": "Lopes Pack · Sub",
+     "zh-CN": "Lopes Pack · 低频",
+     "ja": "Lopes Pack · サブ",
+     "ko": "Lopes Pack · 서브",
+     "es": "Lopes Pack · Sub"
+    }
+   },
+   {
+    "id": "lopes-swish",
+    "name": {
+     "en": "Lopes Pack · Swish",
+     "zh-CN": "Lopes Pack · 挥动",
+     "ja": "Lopes Pack · スウィッシュ",
+     "ko": "Lopes Pack · 스위시",
+     "es": "Lopes Pack · Silbido"
+    }
+   },
+   {
+    "id": "lopes-texture",
+    "name": {
+     "en": "Lopes Pack · Texture",
+     "zh-CN": "Lopes Pack · 质感",
+     "ja": "Lopes Pack · テクスチャ",
+     "ko": "Lopes Pack · 텍스처",
+     "es": "Lopes Pack · Textura"
+    }
+   },
+   {
+    "id": "lopes-whoosh",
+    "name": {
+     "en": "Lopes Pack · Whoosh",
+     "zh-CN": "Lopes Pack · 呼啸",
+     "ja": "Lopes Pack · ウーッシュ",
+     "ko": "Lopes Pack · 우쉬",
+     "es": "Lopes Pack · Whoosh"
+    }
+   }
+  ]
+ },
+ "items": [
+  {
+   "id": "sounds/lopes-braam-braamamma.mp3",
+   "cat": "sound",
+   "group": "lopes-braam",
+   "name": {
+    "en": "Braamamma",
+    "zh-CN": "Braamamma",
+    "ja": "Braamamma",
+    "ko": "Braamamma",
+    "es": "Braamamma"
+   },
+   "kind": "sound",
+   "durationMs": 7680,
+   "tags": [
+    "impact",
+    "braam",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-braam-distorted-warps.mp3",
+   "cat": "sound",
+   "group": "lopes-braam",
+   "name": {
+    "en": "Distorted Warps",
+    "zh-CN": "Distorted Warps",
+    "ja": "Distorted Warps",
+    "ko": "Distorted Warps",
+    "es": "Distorted Warps"
+   },
+   "kind": "sound",
+   "durationMs": 13427,
+   "tags": [
+    "impact",
+    "braam",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-braam-intensive-stare.mp3",
+   "cat": "sound",
+   "group": "lopes-braam",
+   "name": {
+    "en": "Intensive Stare",
+    "zh-CN": "Intensive Stare",
+    "ja": "Intensive Stare",
+    "ko": "Intensive Stare",
+    "es": "Intensive Stare"
+   },
+   "kind": "sound",
+   "durationMs": 3814,
+   "tags": [
+    "impact",
+    "braam",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-braam-melting-pot.mp3",
+   "cat": "sound",
+   "group": "lopes-braam",
+   "name": {
+    "en": "Melting Pot",
+    "zh-CN": "Melting Pot",
+    "ja": "Melting Pot",
+    "ko": "Melting Pot",
+    "es": "Melting Pot"
+   },
+   "kind": "sound",
+   "durationMs": 6165,
+   "tags": [
+    "impact",
+    "braam",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-braam-retro-pulse.mp3",
+   "cat": "sound",
+   "group": "lopes-braam",
+   "name": {
+    "en": "Retro Pulse",
+    "zh-CN": "Retro Pulse",
+    "ja": "Retro Pulse",
+    "ko": "Retro Pulse",
+    "es": "Retro Pulse"
+   },
+   "kind": "sound",
+   "durationMs": 6243,
+   "tags": [
+    "impact",
+    "braam",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-braam-show-title.mp3",
+   "cat": "sound",
+   "group": "lopes-braam",
+   "name": {
+    "en": "Show Title",
+    "zh-CN": "Show Title",
+    "ja": "Show Title",
+    "ko": "Show Title",
+    "es": "Show Title"
+   },
+   "kind": "sound",
+   "durationMs": 9639,
+   "tags": [
+    "impact",
+    "braam",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-braam-sneaky-cello.mp3",
+   "cat": "sound",
+   "group": "lopes-braam",
+   "name": {
+    "en": "Sneaky Cello",
+    "zh-CN": "Sneaky Cello",
+    "ja": "Sneaky Cello",
+    "ko": "Sneaky Cello",
+    "es": "Sneaky Cello"
+   },
+   "kind": "sound",
+   "durationMs": 9639,
+   "tags": [
+    "impact",
+    "braam",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-braam-zone-end.mp3",
+   "cat": "sound",
+   "group": "lopes-braam",
+   "name": {
+    "en": "Zone End",
+    "zh-CN": "Zone End",
+    "ja": "Zone End",
+    "ko": "Zone End",
+    "es": "Zone End"
+   },
+   "kind": "sound",
+   "durationMs": 6426,
+   "tags": [
+    "impact",
+    "braam",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-downer-flying-menace.mp3",
+   "cat": "sound",
+   "group": "lopes-downer",
+   "name": {
+    "en": "Flying Menace",
+    "zh-CN": "Flying Menace",
+    "ja": "Flying Menace",
+    "ko": "Flying Menace",
+    "es": "Flying Menace"
+   },
+   "kind": "sound",
+   "durationMs": 8829,
+   "tags": [
+    "drop",
+    "downer",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-downer-to-the-chopper.mp3",
+   "cat": "sound",
+   "group": "lopes-downer",
+   "name": {
+    "en": "To The Chopper",
+    "zh-CN": "To The Chopper",
+    "ja": "To The Chopper",
+    "ko": "To The Chopper",
+    "es": "To The Chopper"
+   },
+   "kind": "sound",
+   "durationMs": 7837,
+   "tags": [
+    "drop",
+    "downer",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-drone-alien-vhs.mp3",
+   "cat": "sound",
+   "group": "lopes-drone",
+   "name": {
+    "en": "Alien VHS",
+    "zh-CN": "Alien VHS",
+    "ja": "Alien VHS",
+    "ko": "Alien VHS",
+    "es": "Alien VHS"
+   },
+   "kind": "sound",
+   "durationMs": 10449,
+   "tags": [
+    "ambience",
+    "drone",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-drone-axe-on-fire.mp3",
+   "cat": "sound",
+   "group": "lopes-drone",
+   "name": {
+    "en": "Axe On Fire",
+    "zh-CN": "Axe On Fire",
+    "ja": "Axe On Fire",
+    "ko": "Axe On Fire",
+    "es": "Axe On Fire"
+   },
+   "kind": "sound",
+   "durationMs": 15464,
+   "tags": [
+    "ambience",
+    "drone",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-drone-crystal-cave.mp3",
+   "cat": "sound",
+   "group": "lopes-drone",
+   "name": {
+    "en": "Crystal Cave",
+    "zh-CN": "Crystal Cave",
+    "ja": "Crystal Cave",
+    "ko": "Crystal Cave",
+    "es": "Crystal Cave"
+   },
+   "kind": "sound",
+   "durationMs": 6896,
+   "tags": [
+    "ambience",
+    "drone",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-drone-distant-orchestra.mp3",
+   "cat": "sound",
+   "group": "lopes-drone",
+   "name": {
+    "en": "Distant Orchestra",
+    "zh-CN": "Distant Orchestra",
+    "ja": "Distant Orchestra",
+    "ko": "Distant Orchestra",
+    "es": "Distant Orchestra"
+   },
+   "kind": "sound",
+   "durationMs": 7314,
+   "tags": [
+    "ambience",
+    "drone",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-drone-foreign-signal.mp3",
+   "cat": "sound",
+   "group": "lopes-drone",
+   "name": {
+    "en": "Foreign Signal",
+    "zh-CN": "Foreign Signal",
+    "ja": "Foreign Signal",
+    "ko": "Foreign Signal",
+    "es": "Foreign Signal"
+   },
+   "kind": "sound",
+   "durationMs": 17189,
+   "tags": [
+    "ambience",
+    "drone",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-drone-holy-megalony.mp3",
+   "cat": "sound",
+   "group": "lopes-drone",
+   "name": {
+    "en": "Holy Megalony",
+    "zh-CN": "Holy Megalony",
+    "ja": "Holy Megalony",
+    "ko": "Holy Megalony",
+    "es": "Holy Megalony"
+   },
+   "kind": "sound",
+   "durationMs": 17607,
+   "tags": [
+    "ambience",
+    "drone",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-drone-magic-pill.mp3",
+   "cat": "sound",
+   "group": "lopes-drone",
+   "name": {
+    "en": "Magic Pill",
+    "zh-CN": "Magic Pill",
+    "ja": "Magic Pill",
+    "ko": "Magic Pill",
+    "es": "Magic Pill"
+   },
+   "kind": "sound",
+   "durationMs": 6426,
+   "tags": [
+    "ambience",
+    "drone",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-drone-ocean-cave.mp3",
+   "cat": "sound",
+   "group": "lopes-drone",
+   "name": {
+    "en": "Ocean Cave",
+    "zh-CN": "Ocean Cave",
+    "ja": "Ocean Cave",
+    "ko": "Ocean Cave",
+    "es": "Ocean Cave"
+   },
+   "kind": "sound",
+   "durationMs": 10188,
+   "tags": [
+    "ambience",
+    "drone",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-impact-cease-fire.mp3",
+   "cat": "sound",
+   "group": "lopes-impact",
+   "name": {
+    "en": "Cease Fire",
+    "zh-CN": "Cease Fire",
+    "ja": "Cease Fire",
+    "ko": "Cease Fire",
+    "es": "Cease Fire"
+   },
+   "kind": "sound",
+   "durationMs": 3918,
+   "tags": [
+    "impact",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-impact-cher-effect.mp3",
+   "cat": "sound",
+   "group": "lopes-impact",
+   "name": {
+    "en": "Cher Effect",
+    "zh-CN": "Cher Effect",
+    "ja": "Cher Effect",
+    "ko": "Cher Effect",
+    "es": "Cher Effect"
+   },
+   "kind": "sound",
+   "durationMs": 6034,
+   "tags": [
+    "impact",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-impact-deep-down.mp3",
+   "cat": "sound",
+   "group": "lopes-impact",
+   "name": {
+    "en": "Deep Down",
+    "zh-CN": "Deep Down",
+    "ja": "Deep Down",
+    "ko": "Deep Down",
+    "es": "Deep Down"
+   },
+   "kind": "sound",
+   "durationMs": 7288,
+   "tags": [
+    "impact",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-impact-dubby-slam.mp3",
+   "cat": "sound",
+   "group": "lopes-impact",
+   "name": {
+    "en": "Dubby Slam",
+    "zh-CN": "Dubby Slam",
+    "ja": "Dubby Slam",
+    "ko": "Dubby Slam",
+    "es": "Dubby Slam"
+   },
+   "kind": "sound",
+   "durationMs": 5277,
+   "tags": [
+    "impact",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-impact-jaw-breaker.mp3",
+   "cat": "sound",
+   "group": "lopes-impact",
+   "name": {
+    "en": "Jaw Breaker",
+    "zh-CN": "Jaw Breaker",
+    "ja": "Jaw Breaker",
+    "ko": "Jaw Breaker",
+    "es": "Jaw Breaker"
+   },
+   "kind": "sound",
+   "durationMs": 2011,
+   "tags": [
+    "impact",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-impact-lightweight.mp3",
+   "cat": "sound",
+   "group": "lopes-impact",
+   "name": {
+    "en": "Lightweight",
+    "zh-CN": "Lightweight",
+    "ja": "Lightweight",
+    "ko": "Lightweight",
+    "es": "Lightweight"
+   },
+   "kind": "sound",
+   "durationMs": 3840,
+   "tags": [
+    "impact",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-impact-low-blow.mp3",
+   "cat": "sound",
+   "group": "lopes-impact",
+   "name": {
+    "en": "Low Blow",
+    "zh-CN": "Low Blow",
+    "ja": "Low Blow",
+    "ko": "Low Blow",
+    "es": "Low Blow"
+   },
+   "kind": "sound",
+   "durationMs": 4049,
+   "tags": [
+    "impact",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-impact-million-merits.mp3",
+   "cat": "sound",
+   "group": "lopes-impact",
+   "name": {
+    "en": "Million Merits",
+    "zh-CN": "Million Merits",
+    "ja": "Million Merits",
+    "ko": "Million Merits",
+    "es": "Million Merits"
+   },
+   "kind": "sound",
+   "durationMs": 13636,
+   "tags": [
+    "impact",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-impact-nuclear-winter.mp3",
+   "cat": "sound",
+   "group": "lopes-impact",
+   "name": {
+    "en": "Nuclear Winter",
+    "zh-CN": "Nuclear Winter",
+    "ja": "Nuclear Winter",
+    "ko": "Nuclear Winter",
+    "es": "Nuclear Winter"
+   },
+   "kind": "sound",
+   "durationMs": 20245,
+   "tags": [
+    "impact",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-impact-robot-punch.mp3",
+   "cat": "sound",
+   "group": "lopes-impact",
+   "name": {
+    "en": "Robot Punch",
+    "zh-CN": "Robot Punch",
+    "ja": "Robot Punch",
+    "ko": "Robot Punch",
+    "es": "Robot Punch"
+   },
+   "kind": "sound",
+   "durationMs": 3239,
+   "tags": [
+    "impact",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-impact-stormy-one.mp3",
+   "cat": "sound",
+   "group": "lopes-impact",
+   "name": {
+    "en": "Stormy One",
+    "zh-CN": "Stormy One",
+    "ja": "Stormy One",
+    "ko": "Stormy One",
+    "es": "Stormy One"
+   },
+   "kind": "sound",
+   "durationMs": 5068,
+   "tags": [
+    "impact",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-impact-super-fast.mp3",
+   "cat": "sound",
+   "group": "lopes-impact",
+   "name": {
+    "en": "Super Fast",
+    "zh-CN": "Super Fast",
+    "ja": "Super Fast",
+    "ko": "Super Fast",
+    "es": "Super Fast"
+   },
+   "kind": "sound",
+   "durationMs": 3892,
+   "tags": [
+    "impact",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-impact-thunder-dome.mp3",
+   "cat": "sound",
+   "group": "lopes-impact",
+   "name": {
+    "en": "Thunder Dome",
+    "zh-CN": "Thunder Dome",
+    "ja": "Thunder Dome",
+    "ko": "Thunder Dome",
+    "es": "Thunder Dome"
+   },
+   "kind": "sound",
+   "durationMs": 6792,
+   "tags": [
+    "impact",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-impact-wait-for-it.mp3",
+   "cat": "sound",
+   "group": "lopes-impact",
+   "name": {
+    "en": "Wait For It",
+    "zh-CN": "Wait For It",
+    "ja": "Wait For It",
+    "ko": "Wait For It",
+    "es": "Wait For It"
+   },
+   "kind": "sound",
+   "durationMs": 3944,
+   "tags": [
+    "impact",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-metal-big-bell.mp3",
+   "cat": "sound",
+   "group": "lopes-metal",
+   "name": {
+    "en": "Big Bell",
+    "zh-CN": "Big Bell",
+    "ja": "Big Bell",
+    "ko": "Big Bell",
+    "es": "Big Bell"
+   },
+   "kind": "sound",
+   "durationMs": 24895,
+   "tags": [
+    "impact",
+    "metal",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-metal-jump-scare.mp3",
+   "cat": "sound",
+   "group": "lopes-metal",
+   "name": {
+    "en": "Jump Scare",
+    "zh-CN": "Jump Scare",
+    "ja": "Jump Scare",
+    "ko": "Jump Scare",
+    "es": "Jump Scare"
+   },
+   "kind": "sound",
+   "durationMs": 7027,
+   "tags": [
+    "impact",
+    "metal",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-metal-king-gong.mp3",
+   "cat": "sound",
+   "group": "lopes-metal",
+   "name": {
+    "en": "King Gong",
+    "zh-CN": "King Gong",
+    "ja": "King Gong",
+    "ko": "King Gong",
+    "es": "King Gong"
+   },
+   "kind": "sound",
+   "durationMs": 11180,
+   "tags": [
+    "impact",
+    "metal",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-metal-kung-boo.mp3",
+   "cat": "sound",
+   "group": "lopes-metal",
+   "name": {
+    "en": "Kung Boo",
+    "zh-CN": "Kung Boo",
+    "ja": "Kung Boo",
+    "ko": "Kung Boo",
+    "es": "Kung Boo"
+   },
+   "kind": "sound",
+   "durationMs": 8620,
+   "tags": [
+    "impact",
+    "metal",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-metal-spooky-midnight.mp3",
+   "cat": "sound",
+   "group": "lopes-metal",
+   "name": {
+    "en": "Spooky Midnight",
+    "zh-CN": "Spooky Midnight",
+    "ja": "Spooky Midnight",
+    "ko": "Spooky Midnight",
+    "es": "Spooky Midnight"
+   },
+   "kind": "sound",
+   "durationMs": 10318,
+   "tags": [
+    "impact",
+    "metal",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-noise-crash-machine.mp3",
+   "cat": "sound",
+   "group": "lopes-noise",
+   "name": {
+    "en": "Crash Machine",
+    "zh-CN": "Crash Machine",
+    "ja": "Crash Machine",
+    "ko": "Crash Machine",
+    "es": "Crash Machine"
+   },
+   "kind": "sound",
+   "durationMs": 10318,
+   "tags": [
+    "glitch",
+    "noise",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-noise-massive-passive.mp3",
+   "cat": "sound",
+   "group": "lopes-noise",
+   "name": {
+    "en": "Massive Passive",
+    "zh-CN": "Massive Passive",
+    "ja": "Massive Passive",
+    "ko": "Massive Passive",
+    "es": "Massive Passive"
+   },
+   "kind": "sound",
+   "durationMs": 34325,
+   "tags": [
+    "glitch",
+    "noise",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-noise-swirly-spinner.mp3",
+   "cat": "sound",
+   "group": "lopes-noise",
+   "name": {
+    "en": "Swirly Spinner",
+    "zh-CN": "Swirly Spinner",
+    "ja": "Swirly Spinner",
+    "ko": "Swirly Spinner",
+    "es": "Swirly Spinner"
+   },
+   "kind": "sound",
+   "durationMs": 15464,
+   "tags": [
+    "glitch",
+    "noise",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-noise-windy-cave.mp3",
+   "cat": "sound",
+   "group": "lopes-noise",
+   "name": {
+    "en": "Windy Cave",
+    "zh-CN": "Windy Cave",
+    "ja": "Windy Cave",
+    "ko": "Windy Cave",
+    "es": "Windy Cave"
+   },
+   "kind": "sound",
+   "durationMs": 6896,
+   "tags": [
+    "glitch",
+    "noise",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-punch-pop.mp3",
+   "cat": "sound",
+   "group": "lopes-punch",
+   "name": {
+    "en": "Pop",
+    "zh-CN": "Pop",
+    "ja": "Pop",
+    "ko": "Pop",
+    "es": "Pop"
+   },
+   "kind": "sound",
+   "durationMs": 1019,
+   "tags": [
+    "impact",
+    "punch",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-punch-splok.mp3",
+   "cat": "sound",
+   "group": "lopes-punch",
+   "name": {
+    "en": "Splok",
+    "zh-CN": "Splok",
+    "ja": "Splok",
+    "ko": "Splok",
+    "es": "Splok"
+   },
+   "kind": "sound",
+   "durationMs": 2038,
+   "tags": [
+    "impact",
+    "punch",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-punch-sploop.mp3",
+   "cat": "sound",
+   "group": "lopes-punch",
+   "name": {
+    "en": "Sploop",
+    "zh-CN": "Sploop",
+    "ja": "Sploop",
+    "ko": "Sploop",
+    "es": "Sploop"
+   },
+   "kind": "sound",
+   "durationMs": 575,
+   "tags": [
+    "impact",
+    "punch",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-punch-whack-a-bot.mp3",
+   "cat": "sound",
+   "group": "lopes-punch",
+   "name": {
+    "en": "Whack A Bot",
+    "zh-CN": "Whack A Bot",
+    "ja": "Whack A Bot",
+    "ko": "Whack A Bot",
+    "es": "Whack A Bot"
+   },
+   "kind": "sound",
+   "durationMs": 1959,
+   "tags": [
+    "impact",
+    "punch",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-retro-chip-power.mp3",
+   "cat": "sound",
+   "group": "lopes-retro",
+   "name": {
+    "en": "Chip Power",
+    "zh-CN": "Chip Power",
+    "ja": "Chip Power",
+    "ko": "Chip Power",
+    "es": "Chip Power"
+   },
+   "kind": "sound",
+   "durationMs": 1829,
+   "tags": [
+    "retro",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-retro-digital-eagle.mp3",
+   "cat": "sound",
+   "group": "lopes-retro",
+   "name": {
+    "en": "Digital Eagle",
+    "zh-CN": "Digital Eagle",
+    "ja": "Digital Eagle",
+    "ko": "Digital Eagle",
+    "es": "Digital Eagle"
+   },
+   "kind": "sound",
+   "durationMs": 3370,
+   "tags": [
+    "retro",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-retro-magic-respawn.mp3",
+   "cat": "sound",
+   "group": "lopes-retro",
+   "name": {
+    "en": "Magic Respawn",
+    "zh-CN": "Magic Respawn",
+    "ja": "Magic Respawn",
+    "ko": "Magic Respawn",
+    "es": "Magic Respawn"
+   },
+   "kind": "sound",
+   "durationMs": 1280,
+   "tags": [
+    "retro",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-retro-now-you-see-it.mp3",
+   "cat": "sound",
+   "group": "lopes-retro",
+   "name": {
+    "en": "Now You See It",
+    "zh-CN": "Now You See It",
+    "ja": "Now You See It",
+    "ko": "Now You See It",
+    "es": "Now You See It"
+   },
+   "kind": "sound",
+   "durationMs": 3239,
+   "tags": [
+    "retro",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-retro-rezo-sweep.mp3",
+   "cat": "sound",
+   "group": "lopes-retro",
+   "name": {
+    "en": "Rezo Sweep",
+    "zh-CN": "Rezo Sweep",
+    "ja": "Rezo Sweep",
+    "ko": "Rezo Sweep",
+    "es": "Rezo Sweep"
+   },
+   "kind": "sound",
+   "durationMs": 20846,
+   "tags": [
+    "retro",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-retro-shuriken-laser.mp3",
+   "cat": "sound",
+   "group": "lopes-retro",
+   "name": {
+    "en": "Shuriken Laser",
+    "zh-CN": "Shuriken Laser",
+    "ja": "Shuriken Laser",
+    "ko": "Shuriken Laser",
+    "es": "Shuriken Laser"
+   },
+   "kind": "sound",
+   "durationMs": 2638,
+   "tags": [
+    "retro",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-retro-slow-down-bro.mp3",
+   "cat": "sound",
+   "group": "lopes-retro",
+   "name": {
+    "en": "Slow Down Bro",
+    "zh-CN": "Slow Down Bro",
+    "ja": "Slow Down Bro",
+    "ko": "Slow Down Bro",
+    "es": "Slow Down Bro"
+   },
+   "kind": "sound",
+   "durationMs": 14838,
+   "tags": [
+    "retro",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-retro-swirly-reso.mp3",
+   "cat": "sound",
+   "group": "lopes-retro",
+   "name": {
+    "en": "Swirly Reso",
+    "zh-CN": "Swirly Reso",
+    "ja": "Swirly Reso",
+    "ko": "Swirly Reso",
+    "es": "Swirly Reso"
+   },
+   "kind": "sound",
+   "durationMs": 13166,
+   "tags": [
+    "retro",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-retro-teleport-time.mp3",
+   "cat": "sound",
+   "group": "lopes-retro",
+   "name": {
+    "en": "Teleport Time",
+    "zh-CN": "Teleport Time",
+    "ja": "Teleport Time",
+    "ko": "Teleport Time",
+    "es": "Teleport Time"
+   },
+   "kind": "sound",
+   "durationMs": 10318,
+   "tags": [
+    "retro",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-riser-abort-takeoff.mp3",
+   "cat": "sound",
+   "group": "lopes-riser",
+   "name": {
+    "en": "Abort Takeoff",
+    "zh-CN": "Abort Takeoff",
+    "ja": "Abort Takeoff",
+    "ko": "Abort Takeoff",
+    "es": "Abort Takeoff"
+   },
+   "kind": "sound",
+   "durationMs": 28656,
+   "tags": [
+    "riser",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-riser-gathering-mana.mp3",
+   "cat": "sound",
+   "group": "lopes-riser",
+   "name": {
+    "en": "Gathering Mana",
+    "zh-CN": "Gathering Mana",
+    "ja": "Gathering Mana",
+    "ko": "Gathering Mana",
+    "es": "Gathering Mana"
+   },
+   "kind": "sound",
+   "durationMs": 19043,
+   "tags": [
+    "riser",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-riser-noisy-ufo.mp3",
+   "cat": "sound",
+   "group": "lopes-riser",
+   "name": {
+    "en": "Noisy UFO",
+    "zh-CN": "Noisy UFO",
+    "ja": "Noisy UFO",
+    "ko": "Noisy UFO",
+    "es": "Noisy UFO"
+   },
+   "kind": "sound",
+   "durationMs": 16274,
+   "tags": [
+    "riser",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-riser-stormy-swarmy.mp3",
+   "cat": "sound",
+   "group": "lopes-riser",
+   "name": {
+    "en": "Stormy Swarmy",
+    "zh-CN": "Stormy Swarmy",
+    "ja": "Stormy Swarmy",
+    "ko": "Stormy Swarmy",
+    "es": "Stormy Swarmy"
+   },
+   "kind": "sound",
+   "durationMs": 13270,
+   "tags": [
+    "riser",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-short-bass-boy.mp3",
+   "cat": "sound",
+   "group": "lopes-short",
+   "name": {
+    "en": "Bass Boy",
+    "zh-CN": "Bass Boy",
+    "ja": "Bass Boy",
+    "ko": "Bass Boy",
+    "es": "Bass Boy"
+   },
+   "kind": "sound",
+   "durationMs": 6844,
+   "tags": [
+    "sting",
+    "short",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-short-digital-crystal.mp3",
+   "cat": "sound",
+   "group": "lopes-short",
+   "name": {
+    "en": "Digital Crystal",
+    "zh-CN": "Digital Crystal",
+    "ja": "Digital Crystal",
+    "ko": "Digital Crystal",
+    "es": "Digital Crystal"
+   },
+   "kind": "sound",
+   "durationMs": 1437,
+   "tags": [
+    "sting",
+    "short",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-short-digital-malfunction.mp3",
+   "cat": "sound",
+   "group": "lopes-short",
+   "name": {
+    "en": "Digital Malfunction",
+    "zh-CN": "Digital Malfunction",
+    "ja": "Digital Malfunction",
+    "ko": "Digital Malfunction",
+    "es": "Digital Malfunction"
+   },
+   "kind": "sound",
+   "durationMs": 3239,
+   "tags": [
+    "sting",
+    "short",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-short-mini-popup.mp3",
+   "cat": "sound",
+   "group": "lopes-short",
+   "name": {
+    "en": "Mini Popup",
+    "zh-CN": "Mini Popup",
+    "ja": "Mini Popup",
+    "ko": "Mini Popup",
+    "es": "Mini Popup"
+   },
+   "kind": "sound",
+   "durationMs": 2429,
+   "tags": [
+    "sting",
+    "short",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-short-ploppy-plop.mp3",
+   "cat": "sound",
+   "group": "lopes-short",
+   "name": {
+    "en": "Ploppy Plop",
+    "zh-CN": "Ploppy Plop",
+    "ja": "Ploppy Plop",
+    "ko": "Ploppy Plop",
+    "es": "Ploppy Plop"
+   },
+   "kind": "sound",
+   "durationMs": 1045,
+   "tags": [
+    "sting",
+    "short",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-short-pneumatic-woodpecker.mp3",
+   "cat": "sound",
+   "group": "lopes-short",
+   "name": {
+    "en": "Pneumatic Woodpecker",
+    "zh-CN": "Pneumatic Woodpecker",
+    "ja": "Pneumatic Woodpecker",
+    "ko": "Pneumatic Woodpecker",
+    "es": "Pneumatic Woodpecker"
+   },
+   "kind": "sound",
+   "durationMs": 2038,
+   "tags": [
+    "sting",
+    "short",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-short-sad-little-sonar.mp3",
+   "cat": "sound",
+   "group": "lopes-short",
+   "name": {
+    "en": "Sad Little Sonar",
+    "zh-CN": "Sad Little Sonar",
+    "ja": "Sad Little Sonar",
+    "ko": "Sad Little Sonar",
+    "es": "Sad Little Sonar"
+   },
+   "kind": "sound",
+   "durationMs": 4049,
+   "tags": [
+    "sting",
+    "short",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-short-springy-gun.mp3",
+   "cat": "sound",
+   "group": "lopes-short",
+   "name": {
+    "en": "Springy Gun",
+    "zh-CN": "Springy Gun",
+    "ja": "Springy Gun",
+    "ko": "Springy Gun",
+    "es": "Springy Gun"
+   },
+   "kind": "sound",
+   "durationMs": 2429,
+   "tags": [
+    "sting",
+    "short",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-short-stutter-303.mp3",
+   "cat": "sound",
+   "group": "lopes-short",
+   "name": {
+    "en": "Stutter 303",
+    "zh-CN": "Stutter 303",
+    "ja": "Stutter 303",
+    "ko": "Stutter 303",
+    "es": "Stutter 303"
+   },
+   "kind": "sound",
+   "durationMs": 1829,
+   "tags": [
+    "sting",
+    "short",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-short-swish.mp3",
+   "cat": "sound",
+   "group": "lopes-short",
+   "name": {
+    "en": "Swish",
+    "zh-CN": "Swish",
+    "ja": "Swish",
+    "ko": "Swish",
+    "es": "Swish"
+   },
+   "kind": "sound",
+   "durationMs": 1228,
+   "tags": [
+    "sting",
+    "short",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-short-tape-confusion.mp3",
+   "cat": "sound",
+   "group": "lopes-short",
+   "name": {
+    "en": "Tape Confusion",
+    "zh-CN": "Tape Confusion",
+    "ja": "Tape Confusion",
+    "ko": "Tape Confusion",
+    "es": "Tape Confusion"
+   },
+   "kind": "sound",
+   "durationMs": 2429,
+   "tags": [
+    "sting",
+    "short",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-short-uber-vacuum.mp3",
+   "cat": "sound",
+   "group": "lopes-short",
+   "name": {
+    "en": "Uber Vacuum",
+    "zh-CN": "Uber Vacuum",
+    "ja": "Uber Vacuum",
+    "ko": "Uber Vacuum",
+    "es": "Uber Vacuum"
+   },
+   "kind": "sound",
+   "durationMs": 3030,
+   "tags": [
+    "sting",
+    "short",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-sub-distant-stargate.mp3",
+   "cat": "sound",
+   "group": "lopes-sub",
+   "name": {
+    "en": "Distant Stargate",
+    "zh-CN": "Distant Stargate",
+    "ja": "Distant Stargate",
+    "ko": "Distant Stargate",
+    "es": "Distant Stargate"
+   },
+   "kind": "sound",
+   "durationMs": 5433,
+   "tags": [
+    "impact",
+    "sub",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-sub-mini-impact.mp3",
+   "cat": "sound",
+   "group": "lopes-sub",
+   "name": {
+    "en": "Mini Impact",
+    "zh-CN": "Mini Impact",
+    "ja": "Mini Impact",
+    "ko": "Mini Impact",
+    "es": "Mini Impact"
+   },
+   "kind": "sound",
+   "durationMs": 6034,
+   "tags": [
+    "impact",
+    "sub",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-sub-sub-bees.mp3",
+   "cat": "sound",
+   "group": "lopes-sub",
+   "name": {
+    "en": "Sub Bees",
+    "zh-CN": "Sub Bees",
+    "ja": "Sub Bees",
+    "ko": "Sub Bees",
+    "es": "Sub Bees"
+   },
+   "kind": "sound",
+   "durationMs": 11468,
+   "tags": [
+    "impact",
+    "sub",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-sub-subtle-meanie.mp3",
+   "cat": "sound",
+   "group": "lopes-sub",
+   "name": {
+    "en": "Subtle Meanie",
+    "zh-CN": "Subtle Meanie",
+    "ja": "Subtle Meanie",
+    "ko": "Subtle Meanie",
+    "es": "Subtle Meanie"
+   },
+   "kind": "sound",
+   "durationMs": 10449,
+   "tags": [
+    "impact",
+    "sub",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-swish-call-and-response.mp3",
+   "cat": "sound",
+   "group": "lopes-swish",
+   "name": {
+    "en": "Call And Response",
+    "zh-CN": "Call And Response",
+    "ja": "Call And Response",
+    "ko": "Call And Response",
+    "es": "Call And Response"
+   },
+   "kind": "sound",
+   "durationMs": 3631,
+   "tags": [
+    "whoosh",
+    "swish",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-swish-flicker-shoosh.mp3",
+   "cat": "sound",
+   "group": "lopes-swish",
+   "name": {
+    "en": "Flicker Shoosh",
+    "zh-CN": "Flicker Shoosh",
+    "ja": "Flicker Shoosh",
+    "ko": "Flicker Shoosh",
+    "es": "Flicker Shoosh"
+   },
+   "kind": "sound",
+   "durationMs": 3239,
+   "tags": [
+    "whoosh",
+    "swish",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-swish-gulpy-noise.mp3",
+   "cat": "sound",
+   "group": "lopes-swish",
+   "name": {
+    "en": "Gulpy Noise",
+    "zh-CN": "Gulpy Noise",
+    "ja": "Gulpy Noise",
+    "ko": "Gulpy Noise",
+    "es": "Gulpy Noise"
+   },
+   "kind": "sound",
+   "durationMs": 4049,
+   "tags": [
+    "whoosh",
+    "swish",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-swish-nano-chopper.mp3",
+   "cat": "sound",
+   "group": "lopes-swish",
+   "name": {
+    "en": "Nano Chopper",
+    "zh-CN": "Nano Chopper",
+    "ja": "Nano Chopper",
+    "ko": "Nano Chopper",
+    "es": "Nano Chopper"
+   },
+   "kind": "sound",
+   "durationMs": 4049,
+   "tags": [
+    "whoosh",
+    "swish",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-swish-nice-and-clean.mp3",
+   "cat": "sound",
+   "group": "lopes-swish",
+   "name": {
+    "en": "Nice And Clean",
+    "zh-CN": "Nice And Clean",
+    "ja": "Nice And Clean",
+    "ko": "Nice And Clean",
+    "es": "Nice And Clean"
+   },
+   "kind": "sound",
+   "durationMs": 6243,
+   "tags": [
+    "whoosh",
+    "swish",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-swish-noise-and-creme.mp3",
+   "cat": "sound",
+   "group": "lopes-swish",
+   "name": {
+    "en": "Noise And Creme",
+    "zh-CN": "Noise And Creme",
+    "ja": "Noise And Creme",
+    "ko": "Noise And Creme",
+    "es": "Noise And Creme"
+   },
+   "kind": "sound",
+   "durationMs": 3448,
+   "tags": [
+    "whoosh",
+    "swish",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-swish-pocket-waves.mp3",
+   "cat": "sound",
+   "group": "lopes-swish",
+   "name": {
+    "en": "Pocket Waves",
+    "zh-CN": "Pocket Waves",
+    "ja": "Pocket Waves",
+    "ko": "Pocket Waves",
+    "es": "Pocket Waves"
+   },
+   "kind": "sound",
+   "durationMs": 3631,
+   "tags": [
+    "whoosh",
+    "swish",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-swish-roraring-skies.mp3",
+   "cat": "sound",
+   "group": "lopes-swish",
+   "name": {
+    "en": "Roraring Skies",
+    "zh-CN": "Roraring Skies",
+    "ja": "Roraring Skies",
+    "ko": "Roraring Skies",
+    "es": "Roraring Skies"
+   },
+   "kind": "sound",
+   "durationMs": 10449,
+   "tags": [
+    "whoosh",
+    "swish",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-swish-shortnoise.mp3",
+   "cat": "sound",
+   "group": "lopes-swish",
+   "name": {
+    "en": "Shortnoise",
+    "zh-CN": "Shortnoise",
+    "ja": "Shortnoise",
+    "ko": "Shortnoise",
+    "es": "Shortnoise"
+   },
+   "kind": "sound",
+   "durationMs": 3239,
+   "tags": [
+    "whoosh",
+    "swish",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-texture-alien-facetime.mp3",
+   "cat": "sound",
+   "group": "lopes-texture",
+   "name": {
+    "en": "Alien Facetime",
+    "zh-CN": "Alien Facetime",
+    "ja": "Alien Facetime",
+    "ko": "Alien Facetime",
+    "es": "Alien Facetime"
+   },
+   "kind": "sound",
+   "durationMs": 58331,
+   "tags": [
+    "ambience",
+    "texture",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-texture-brain-worms.mp3",
+   "cat": "sound",
+   "group": "lopes-texture",
+   "name": {
+    "en": "Brain Worms",
+    "zh-CN": "Brain Worms",
+    "ja": "Brain Worms",
+    "ko": "Brain Worms",
+    "es": "Brain Worms"
+   },
+   "kind": "sound",
+   "durationMs": 30903,
+   "tags": [
+    "ambience",
+    "texture",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-texture-burning-data.mp3",
+   "cat": "sound",
+   "group": "lopes-texture",
+   "name": {
+    "en": "Burning Data",
+    "zh-CN": "Burning Data",
+    "ja": "Burning Data",
+    "ko": "Burning Data",
+    "es": "Burning Data"
+   },
+   "kind": "sound",
+   "durationMs": 64026,
+   "tags": [
+    "ambience",
+    "texture",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-texture-dark-side-of-the-quark.mp3",
+   "cat": "sound",
+   "group": "lopes-texture",
+   "name": {
+    "en": "Dark Side Of The Quark",
+    "zh-CN": "Dark Side Of The Quark",
+    "ja": "Dark Side Of The Quark",
+    "ko": "Dark Side Of The Quark",
+    "es": "Dark Side Of The Quark"
+   },
+   "kind": "sound",
+   "durationMs": 34743,
+   "tags": [
+    "ambience",
+    "texture",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-texture-goblet-of-wisdom.mp3",
+   "cat": "sound",
+   "group": "lopes-texture",
+   "name": {
+    "en": "Goblet Of Wisdom",
+    "zh-CN": "Goblet Of Wisdom",
+    "ja": "Goblet Of Wisdom",
+    "ko": "Goblet Of Wisdom",
+    "es": "Goblet Of Wisdom"
+   },
+   "kind": "sound",
+   "durationMs": 30903,
+   "tags": [
+    "ambience",
+    "texture",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-texture-is-there-anybody-out-there.mp3",
+   "cat": "sound",
+   "group": "lopes-texture",
+   "name": {
+    "en": "Is There Anybody Out There",
+    "zh-CN": "Is There Anybody Out There",
+    "ja": "Is There Anybody Out There",
+    "ko": "Is There Anybody Out There",
+    "es": "Is There Anybody Out There"
+   },
+   "kind": "sound",
+   "durationMs": 34325,
+   "tags": [
+    "ambience",
+    "texture",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-texture-it-appears.mp3",
+   "cat": "sound",
+   "group": "lopes-texture",
+   "name": {
+    "en": "It Appears",
+    "zh-CN": "It Appears",
+    "ja": "It Appears",
+    "ko": "It Appears",
+    "es": "It Appears"
+   },
+   "kind": "sound",
+   "durationMs": 54439,
+   "tags": [
+    "ambience",
+    "texture",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-texture-see-the-light.mp3",
+   "cat": "sound",
+   "group": "lopes-texture",
+   "name": {
+    "en": "See The Light",
+    "zh-CN": "See The Light",
+    "ja": "See The Light",
+    "ko": "See The Light",
+    "es": "See The Light"
+   },
+   "kind": "sound",
+   "durationMs": 37747,
+   "tags": [
+    "ambience",
+    "texture",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-texture-solar-shower.mp3",
+   "cat": "sound",
+   "group": "lopes-texture",
+   "name": {
+    "en": "Solar Shower",
+    "zh-CN": "Solar Shower",
+    "ja": "Solar Shower",
+    "ko": "Solar Shower",
+    "es": "Solar Shower"
+   },
+   "kind": "sound",
+   "durationMs": 86413,
+   "tags": [
+    "ambience",
+    "texture",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-texture-what-damage.mp3",
+   "cat": "sound",
+   "group": "lopes-texture",
+   "name": {
+    "en": "What Damage",
+    "zh-CN": "What Damage",
+    "ja": "What Damage",
+    "ko": "What Damage",
+    "es": "What Damage"
+   },
+   "kind": "sound",
+   "durationMs": 31896,
+   "tags": [
+    "ambience",
+    "texture",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-whoosh-land-speeder.mp3",
+   "cat": "sound",
+   "group": "lopes-whoosh",
+   "name": {
+    "en": "Land Speeder",
+    "zh-CN": "Land Speeder",
+    "ja": "Land Speeder",
+    "ko": "Land Speeder",
+    "es": "Land Speeder"
+   },
+   "kind": "sound",
+   "durationMs": 3291,
+   "tags": [
+    "whoosh",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-whoosh-mini-jet.mp3",
+   "cat": "sound",
+   "group": "lopes-whoosh",
+   "name": {
+    "en": "Mini Jet",
+    "zh-CN": "Mini Jet",
+    "ja": "Mini Jet",
+    "ko": "Mini Jet",
+    "es": "Mini Jet"
+   },
+   "kind": "sound",
+   "durationMs": 8594,
+   "tags": [
+    "whoosh",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-whoosh-nasty-transit.mp3",
+   "cat": "sound",
+   "group": "lopes-whoosh",
+   "name": {
+    "en": "Nasty Transit",
+    "zh-CN": "Nasty Transit",
+    "ja": "Nasty Transit",
+    "ko": "Nasty Transit",
+    "es": "Nasty Transit"
+   },
+   "kind": "sound",
+   "durationMs": 11964,
+   "tags": [
+    "whoosh",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-whoosh-rusty-ufo.mp3",
+   "cat": "sound",
+   "group": "lopes-whoosh",
+   "name": {
+    "en": "Rusty UFO",
+    "zh-CN": "Rusty UFO",
+    "ja": "Rusty UFO",
+    "ko": "Rusty UFO",
+    "es": "Rusty UFO"
+   },
+   "kind": "sound",
+   "durationMs": 5460,
+   "tags": [
+    "whoosh",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-whoosh-trapped-firecracker.mp3",
+   "cat": "sound",
+   "group": "lopes-whoosh",
+   "name": {
+    "en": "Trapped Firecracker",
+    "zh-CN": "Trapped Firecracker",
+    "ja": "Trapped Firecracker",
+    "ko": "Trapped Firecracker",
+    "es": "Trapped Firecracker"
+   },
+   "kind": "sound",
+   "durationMs": 2168,
+   "tags": [
+    "whoosh",
+    "lopes-pack"
+   ]
+  },
+  {
+   "id": "sounds/lopes-whoosh-triple-threat.mp3",
+   "cat": "sound",
+   "group": "lopes-whoosh",
+   "name": {
+    "en": "Triple Threat",
+    "zh-CN": "Triple Threat",
+    "ja": "Triple Threat",
+    "ko": "Triple Threat",
+    "es": "Triple Threat"
+   },
+   "kind": "sound",
+   "durationMs": 11233,
+   "tags": [
+    "whoosh",
+    "lopes-pack"
+   ]
+  }
+ ]
+}

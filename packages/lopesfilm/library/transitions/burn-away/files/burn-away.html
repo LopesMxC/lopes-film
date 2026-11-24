@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Burn away</title>
+<style>
+html, body { margin: 0; height: 100%; overflow: hidden; background: transparent; }
+canvas { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+/* what a clip of it may change: the color that covers the cut, the color of its edge */
+:root { --color: #050302; --edge: #ff7a1a; }
+</style>
+</head>
+<body>
+<canvas></canvas>
+<script>
+/*
+ * Burn away: The picture burns away like paper: holes open and spread from charred, glowing orange edges until it is all ash, then the next shot burns back in. It lasts 1.2 s and covers the cut at its middle: put its middle on the cut.
+ * A page of Lopes.Film's library (CC0), by Lopes. Drawn on the GPU by one shader, what it shows at t worked out from
+ * t alone, so it fits a stage of any shape and comes out the same in the preview and the export.
+ */
+const D = 1.2;
+const root = document.documentElement;
+const css = (name) => getComputedStyle(root).getPropertyValue(name).trim();
+const probe = document.createElement('canvas').getContext('2d');
+const rgb = (name, fallback) => {
+  probe.fillStyle = fallback; probe.fillStyle = css(name) || fallback;
+  const s = probe.fillStyle;
+  const c = s[0] === '#' ? [1, 3, 5].map((i) => parseInt(s.slice(i, i + 2), 16)) : s.match(/[\d.]+/g).slice(0, 3).map(Number);
+  return c.map((v) => v / 255);
+};
+const canvas = document.querySelector('canvas');
+const gl = canvas.getContext('webgl', { premultipliedAlpha: true, alpha: true, preserveDrawingBuffer: true, antialias: false });
+const VERT = 'attribute vec2 p; void main() { gl_Position = vec4(p, 0.0, 1.0); }';
+const FRAG = `precision highp float;
+uniform vec2 R; uniform float U; uniform vec3 C1, C2;
+float h11(float n) { return fract(sin(n * 127.1 + 311.7) * 43758.5453); }
+float h21(vec2 p) { p = fract(p * vec2(233.34, 851.73)); p += dot(p, p + 23.45); return fract(p.x * p.y); }
+vec2 h22(vec2 p) { float n = h21(p); return vec2(n, h21(p + n * 19.19)); }
+float noise(vec2 p) { vec2 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f);
+  return mix(mix(h21(i), h21(i + vec2(1, 0)), f.x), mix(h21(i + vec2(0, 1)), h21(i + vec2(1, 1)), f.x), f.y); }
+float fbm(vec2 p) { float v = 0.0, a = 0.5; for (int i = 0; i < 5; i++) { v += a * noise(p); p = p * 2.03 + vec2(17.1, 9.2); a *= 0.5; } return v; }
+float inOut(float x) { return x < 0.5 ? 4.0 * x * x * x : 1.0 - pow(-2.0 * x + 2.0, 3.0) / 2.0; }
+/* how much of the frame is covered where the transition's field is f (0..1, the order in which places are covered):
+   covered in that order in the first half, uncovered in the same order in the second, wholly covered at the middle */
+float cover(float f, float u, float w) {
+  if (u < 0.5) { float A = inOut(clamp(u * 2.0, 0.0, 1.0)) * (1.0 + w); return 1.0 - smoothstep(A - w, A, f); }
+  float B = inOut(clamp(u * 2.0 - 1.0, 0.0, 1.0)) * (1.0 + w); return smoothstep(B - w, B, f);
+}
+/* how near the moving edge a place is (0..1), for a glow along it */
+float rim(float a) { return clamp(a * (1.0 - a) * 4.0, 0.0, 1.0); }
+vec4 tr(vec2 uv, vec2 q, float u) {
+  float f = fbm(q * 3.0) * 0.75 + 0.25 * (1.0 - uv.y);
+  float a = cover(f, u, 0.035);
+  float e = rim(a);
+  vec3 fire = mix(C2, vec3(1.0, 0.92, 0.6), e * e);
+  float glow = smoothstep(0.0, 1.0, e) * 1.4;
+  return vec4(mix(C1, fire, clamp(glow, 0.0, 1.0)), max(a, e));
+}
+void main() {
+  vec2 uv = gl_FragCoord.xy / R;
+  vec2 q = (gl_FragCoord.xy - 0.5 * R) / R.y;
+  vec4 o = clamp(tr(uv, q, U), 0.0, 1.0);
+  gl_FragColor = vec4(o.rgb * o.a, o.a);
+}`;
+const shader = (type, src) => { const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s)); return s; };
+const prog = gl.createProgram();
+gl.attachShader(prog, shader(gl.VERTEX_SHADER, VERT)); gl.attachShader(prog, shader(gl.FRAGMENT_SHADER, FRAG));
+gl.linkProgram(prog); gl.useProgram(prog);
+gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+const loc = gl.getAttribLocation(prog, 'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+const L = Object.fromEntries(['R', 'U', 'C1', 'C2'].map((n) => [n, gl.getUniformLocation(prog, n)]));
+window.film = {
+  duration: D,
+  frame(t) {
+    const d = Math.min(devicePixelRatio || 1, 2), w = Math.round(innerWidth * d), h = Math.round(innerHeight * d);
+    if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
+    gl.viewport(0, 0, w, h);
+    gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT);
+    /* u: how far through the transition, 0 to 1; the cut is at 0.5 */
+    gl.uniform2f(L.R, w, h); gl.uniform1f(L.U, Math.min(Math.max(t / D, 0), 1));
+    gl.uniform3fv(L.C1, rgb('--color', '#050302'));
+    gl.uniform3fv(L.C2, rgb('--edge', '#ff7a1a'));
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+  },
+};
+if (!window.filmHost) {
+  const t0 = performance.now();
+  const loop = () => { const t = (performance.now() - t0) / 1000; window.film.frame(t % D); requestAnimationFrame(loop); };
+  loop();
+}
+</script>
+</body>
+</html>

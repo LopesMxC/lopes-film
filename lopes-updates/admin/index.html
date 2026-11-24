@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Lopes · Painel</title>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="preload" href="../assets/fonts/syne-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/site.css?v=2">
+<link rel="stylesheet" href="../assets/admin.css?v=2">
+</head><body>
+<div class="grain"></div><div class="spot"></div>
+<div class="aur fixed"><i></i><i></i><i></i></div>
+<div id="root"></div>
+<div id="toast" class="toast" role="status"></div>
+<script>
+'use strict';
+const API = '../api.php';
+const MARK = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 88" fill="currentColor" aria-hidden="true"><path d="M0 87.4461L93.0846 0H134.578L65.3839 65.9199H179.553V87.4461H0Z"/><path d="M300 32.9905V87.4461H188.181V65.9199H278.535V54.5167H208.285L140.414 32.9294V0H300V21.5262H175.539L211.579 32.9905H300Z"/></svg>';
+const CHUNK = 2 * 1024 * 1024;
+let S = { logged: false }, view = 'upload', csrf = '', busy = false;
+const $ = (s, r = document) => r.querySelector(s);
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const mb = (n) => n >= 1048576 ? Math.round(n / 1048576) + ' MB' : Math.max(1, Math.round(n / 1024)) + ' KB';
+function toast(msg, err) { const t = $('#toast'); t.textContent = msg; t.className = 'toast show' + (err ? ' err' : ''); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('show'), 4200); }
+
+async function api(action, { body, query = '', raw, signal } = {}) {
+  const init = { method: body || raw ? 'POST' : 'GET', headers: { 'X-CSRF': csrf }, credentials: 'same-origin', signal };
+  if (body) { init.headers['Content-Type'] = 'application/json'; init.body = JSON.stringify(body); }
+  if (raw) init.body = raw;
+  const res = await fetch(`${API}?action=${action}${query}`, init);
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || `Erro ${res.status}`);
+  return data;
+}
+async function load() { S = await api('state'); csrf = S.csrf || ''; render(); }
+
+function render() {
+  const root = $('#root');
+  if (!S.logged) {
+    const setup = S.needsSetup;
+    root.innerHTML = `<div class="login"><form class="panel bt" id="login"><svg class="big-ls" viewBox="0 0 300 88" aria-hidden="true"><path pathLength="1" d="M0 87.4461L93.0846 0H134.578L65.3839 65.9199H179.553V87.4461H0Z"/><path pathLength="1" d="M300 32.9905V87.4461H188.181V65.9199H278.535V54.5167H208.285L140.414 32.9294V0H300V21.5262H175.539L211.579 32.9905H300Z"/></svg>
+      <div class="brand">${MARK}LOPES</div>
+      <div><h2>${setup ? 'Crie a <em>senha</em> do painel' : 'Entrar no <em>painel</em>'}</h2>
+      <div class="hint">${setup ? 'Primeiro acesso: escolha uma senha forte (mínimo 10 caracteres). Ela fica guardada só como hash neste servidor.' : 'Digite a senha do painel para publicar versões.'}</div></div>
+      <label class="f">Senha<input type="password" name="password" autocomplete="${setup ? 'new-password' : 'current-password'}" required minlength="${setup ? 10 : 1}" autofocus></label>
+      <button class="btn red" type="submit">${setup ? 'Criar senha e entrar' : 'Entrar'}</button></form></div>`;
+    $('#login').onsubmit = async (e) => {
+      e.preventDefault();
+      try { await api(setup ? 'setup' : 'login', { body: { password: e.target.password.value } }); await load(); } catch (x) { toast(x.message, true); }
+    };
+    return;
+  }
+  root.innerHTML = `<header class="nav adm"><a class="logo" href="../">${MARK}<b>LOPES</b></a>
+    ${[['upload', 'Enviar versão'], ['releases', 'Versões'], ['apps', 'Aplicativos'], ['security', 'Segurança']].map(([k, l]) => `<a class="l ${view === k ? 'on' : ''}" data-v="${k}" href="#">${l}</a>`).join('')}
+    <button class="btn sm" id="out">Sair</button></header><main class="wrap adm-main" id="main"></main>`;
+  root.querySelectorAll('[data-v]').forEach((b) => b.onclick = (e) => { e.preventDefault(); if (busy) return toast('Aguarde o envio terminar.', true); view = b.dataset.v; render(); });
+  ({ upload: viewUpload, releases: viewReleases, apps: viewApps, security: viewSecurity })[view]($('#main'));
+}
+
+/* A versão e o nome do app vêm de dentro do próprio .exe (o bloco de versão que o Windows mostra em Propriedades > Detalhes);
+   o nome do arquivo não serve: o instalador tem sempre o mesmo nome, de versão em versão. */
+async function peInfo(file) {
+  try {
+    const u16 = (v, o) => v.getUint16(o, true), u32 = (v, o) => v.getUint32(o, true);
+    const head = new DataView(await file.slice(0, 4096).arrayBuffer());
+    if (u16(head, 0) !== 0x5a4d) return null;
+    const pe = u32(head, 0x3c), nsec = u16(head, pe + 6), opt = u16(head, pe + 20), first = pe + 24 + opt;
+    const rs = await file.slice(0, Math.max(4096, first + nsec * 40)).arrayBuffer();
+    const sv = new DataView(rs);
+    let raw = 0, size = 0;
+    for (let i = 0; i < nsec; i++) {
+      const o = first + i * 40, name = String.fromCharCode(...new Uint8Array(rs, o, 8)).replace(/\0+$/, '');
+      if (name === '.rsrc') { size = u32(sv, o + 16); raw = u32(sv, o + 20); }
+    }
+    if (!raw || !size) return null;
+    const bytes = new Uint8Array(await file.slice(raw, raw + Math.min(size, 8 * 1024 * 1024)).arrayBuffer());
+    /* os textos do bloco de versão estão em UTF-16: "ProductVersion", depois o valor */
+    const read = (key) => {
+      const k = new Uint8Array([...key].flatMap((c) => [c.charCodeAt(0), 0]));
+      for (let i = 0; i + k.length < bytes.length; i++) {
+        let ok = true; for (let j = 0; j < k.length; j++) if (bytes[i + j] !== k[j]) { ok = false; break; }
+        if (!ok) continue;
+        let p = i + k.length; while (p + 1 < bytes.length && bytes[p] === 0 && bytes[p + 1] === 0) p += 2;
+        let out = ''; while (p + 1 < bytes.length && !(bytes[p] === 0 && bytes[p + 1] === 0)) { out += String.fromCharCode(bytes[p] | (bytes[p + 1] << 8)); p += 2; }
+        if (out) return out;
+      }
+      return '';
+    };
+    const ver = (read('ProductVersion') || read('FileVersion')).match(/\d+\.\d+\.\d+(?:-[0-9A-Za-z.]+)?/);
+    return { version: ver ? ver[0] : '', product: read('ProductName') || read('FileDescription') };
+  } catch { return null; }
+}
+function guess(name) { const m = /(\d+\.\d+\.\d+(?:-[0-9A-Za-z.]+)?)/.exec(name); return m ? m[1] : ''; }
+
+function viewUpload(main) {
+  main.innerHTML = `<h1 class="adm-h">Enviar <em>nova versão</em></h1><form class="stack" id="up">
+    <div class="drop" id="drop" tabindex="0"><strong id="dtitle">Solte o instalador .exe aqui</strong><span class="mute" id="dsub">ou clique para escolher o arquivo</span>
+      <div class="prog" id="bar" hidden><i></i></div><div class="hint" id="pct" style="margin-top:14px" hidden></div></div>
+    <input type="file" id="file" accept=".exe" hidden>
+    <div class="row">
+      <label class="f">Aplicativo<select name="app">${S.apps.map((a) => `<option value="${esc(a.slug)}">${esc(a.name)}</option>`).join('')}</select></label>
+      <label class="f">Versão<input name="version" placeholder="0.3.3" pattern="\\d+\\.\\d+\\.\\d+(-[0-9A-Za-z.]+)?" required></label>
+      <label class="f">Canal<select name="channel"><option value="stable">Estável (todos)</option><option value="beta">Beta (só quem escolheu)</option></select></label>
+    </div>
+    <label class="f">Notas da versão (aparecem na janela de novidades do app)
+      <textarea name="notes" placeholder="+ Algo novo&#10;~ Algo que melhorou&#10;! Algo que foi corrigido"></textarea></label>
+    <div class="hint">Comece cada linha com <b>+</b> (novo), <b>~</b> (melhorado) ou <b>!</b> (corrigido). Linhas sem sinal viram texto simples.</div>
+    <div class="actions"><button class="btn red" id="go" type="submit" disabled>Publicar versão</button></div></form>`;
+  let file = null;
+  const squash = (t) => String(t).toLowerCase().replace(/[^a-z0-9]/g, '');
+  const pick = async (f) => {
+    if (!f) return;
+    if (!/\.exe$/i.test(f.name)) return toast('Escolha um arquivo .exe.', true);
+    file = f; $('#dtitle').textContent = f.name; $('#dsub').textContent = `${mb(f.size)} · lendo a versão…`;
+    const info = await peInfo(f);
+    if (file !== f) return;
+    /* a versão e o app vêm do próprio instalador; só se ele não disser, o nome do arquivo */
+    const v = info?.version || guess(f.name);
+    if (v) $('#up').version.value = v;
+    const byName = (t) => S.apps.find((a) => squash(t).includes(squash(a.slug)) || squash(t).includes(squash(a.name)));
+    const app = (info?.product && byName(info.product)) || byName(f.name);
+    if (app) $('#up').app.value = app.slug;
+    $('#dsub').textContent = `${mb(f.size)} · ${v ? `versão ${v} detectada` : 'não achei a versão: digite abaixo'}${app ? ` · ${app.name}` : ''}`;
+    $('#go').disabled = false;
+  };
+  const drop = $('#drop');
+  drop.onclick = () => $('#file').click();
+  drop.onkeydown = (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); $('#file').click(); } };
+  $('#file').onchange = (e) => pick(e.target.files[0]);
+  ['dragenter', 'dragover'].forEach((t) => drop.addEventListener(t, (e) => { e.preventDefault(); drop.classList.add('over'); }));
+  ['dragleave', 'drop'].forEach((t) => drop.addEventListener(t, (e) => { e.preventDefault(); drop.classList.remove('over'); }));
+  drop.addEventListener('drop', (e) => pick(e.dataTransfer.files[0]));
+  $('#up').onsubmit = async (e) => {
+    e.preventDefault();
+    if (!file || busy) return;
+    const f = e.target;
+    busy = true; $('#go').disabled = true; $('#bar').hidden = false; $('#pct').hidden = false;
+    const id = [...crypto.getRandomValues(new Uint8Array(12))].map((b) => b.toString(16).padStart(2, '0')).join('');
+    const t0 = Date.now();
+    try {
+      for (let off = 0, i = 0; off < file.size; off += CHUNK, i++) {
+        let tries = 0;
+        for (;;) {
+          try { await api('chunk', { raw: file.slice(off, off + CHUNK), query: `&id=${id}&index=${i}&offset=${off}` }); break; }
+          catch (x) { if (++tries >= 4) throw x; await new Promise((r) => setTimeout(r, 800 * tries)); }
+        }
+        const done = Math.min(file.size, off + CHUNK), rate = done / Math.max(1, (Date.now() - t0) / 1000);
+        $('#bar i').style.width = (done / file.size * 100).toFixed(1) + '%';
+        $('#pct').textContent = `${Math.round(done / file.size * 100)}% · ${mb(done)} de ${mb(file.size)} · ${(rate / 1048576).toFixed(1)} MB/s`;
+      }
+      $('#pct').textContent = 'Conferindo o arquivo e gerando o feed…';
+      await api('finish', { body: { id, app: f.app.value, version: f.version.value.trim(), channel: f.channel.value, notes: f.notes.value, filename: file.name, size: file.size } });
+      toast('Versão publicada. Os apps já podem baixá-la.');
+      busy = false; view = 'releases'; await load();
+    } catch (x) { busy = false; $('#go').disabled = false; $('#pct').textContent = ''; $('#bar').hidden = true; toast(x.message, true); }
+  };
+}
+
+function viewReleases(main) {
+  const name = (slug) => S.apps.find((a) => a.slug === slug)?.name || slug;
+  main.innerHTML = `<h1 class="adm-h">Versões <em>publicadas</em></h1>` + (S.releases.length ? `<div class="table">${S.releases.map((r) => `
+    <div class="tr"><div class="grow"><div class="name">${esc(name(r.app))} ${esc(r.version)}</div>
+    <div class="sub">${esc(r.file)} · ${mb(r.size)} · ${new Date(r.date).toLocaleString('pt-BR')}</div></div>
+    <span class="chip ${r.channel === 'beta' ? 'amber' : 'blue'}">${r.channel === 'beta' ? 'Beta' : 'Estável'}</span>
+    <a class="btn" href="../feed/${encodeURIComponent(r.app)}/${encodeURIComponent(r.file)}" download>Baixar</a>
+    <button class="btn danger" data-del="${esc(r.id)}">Excluir</button></div>`).join('')}</div>` : `<div class="panel empty">Nada publicado ainda. Envie o primeiro instalador em “Enviar versão”.</div>`);
+  main.querySelectorAll('[data-del]').forEach((b) => b.onclick = async () => {
+    if (!confirm('Excluir esta versão? Os apps deixam de vê-la.')) return;
+    try { await api('delete', { body: { id: b.dataset.del } }); toast('Versão excluída.'); await load(); } catch (x) { toast(x.message, true); }
+  });
+}
+
+function viewApps(main) {
+  main.innerHTML = `<h1 class="adm-h">Seus <em>aplicativos</em></h1><div class="stack">
+    <div class="table">${S.apps.map((a) => `<div class="tr"><div class="grow"><div class="name">${esc(a.name)}</div><div class="sub">${esc(a.description || '')}</div></div>
+      <code class="chip blue">${esc(a.slug)}</code></div>`).join('')}</div>
+    <form class="panel bt stack" id="na"><h2 style="margin:0">Adicionar ou editar aplicativo</h2>
+      <div class="row"><label class="f">Identificador<input name="slug" placeholder="lopes-tools" required pattern="[a-z0-9][a-z0-9\\-]{1,38}"></label>
+      <label class="f">Nome<input name="name" placeholder="Lopes Tools" required></label>
+      <label class="f">Descrição<input name="description" placeholder="Utilitários"></label></div>
+      <div class="hint">Usar um identificador que já existe edita o nome e a descrição. O endereço do feed do app é <b>${esc(location.origin)}${esc(location.pathname.replace(/admin\/?$/, ''))}feed/&lt;identificador&gt;</b>.</div>
+      <div class="actions"><button class="btn red">Salvar aplicativo</button></div></form></div>`;
+  $('#na').onsubmit = async (e) => {
+    e.preventDefault(); const f = e.target;
+    try { await api('app_save', { body: { slug: f.slug.value.trim(), name: f.name.value, description: f.description.value } }); toast('Aplicativo salvo.'); await load(); } catch (x) { toast(x.message, true); }
+  };
+}
+
+function viewSecurity(main) {
+  main.innerHTML = `<h1 class="adm-h"><em>Segurança</em></h1><form class="panel bt stack" id="pw" style="max-width:480px"><h2 style="margin:0">Trocar a senha</h2>
+    <label class="f">Senha atual<input type="password" name="current" autocomplete="current-password" required></label>
+    <label class="f">Nova senha (mínimo 10 caracteres)<input type="password" name="password" autocomplete="new-password" required minlength="10"></label>
+    <div class="actions"><button class="btn red">Trocar senha</button></div></form>`;
+  $('#pw').onsubmit = async (e) => {
+    e.preventDefault(); const f = e.target;
+    try { await api('password', { body: { current: f.current.value, password: f.password.value } }); f.reset(); toast('Senha trocada.'); } catch (x) { toast(x.message, true); }
+  };
+}
+addEventListener('pointermove', (e) => { document.documentElement.style.setProperty('--mx', e.clientX + 'px'); document.documentElement.style.setProperty('--my', e.clientY + 'px'); const b = e.target.closest?.('.bt'); if (b) { const r = b.getBoundingClientRect(); b.style.setProperty('--bx', e.clientX - r.left + 'px'); b.style.setProperty('--by', e.clientY - r.top + 'px'); } }, { passive: true });
+window.addEventListener('beforeunload', (e) => { if (busy) { e.preventDefault(); e.returnValue = ''; } });
+load().catch((x) => { $('#root').innerHTML = `<div class="login"><div class="panel"><h2>Não foi possível abrir o painel</h2><p class="mute">${esc(x.message)}</p></div></div>`; });
+</script>
+</body></html>

@@ -1,0 +1,26 @@
+{
+  "order": 8,
+  "category": "edit",
+  "icon": "megaphone",
+  "title": {
+    "en": "Ads",
+    "zh-CN": "广告",
+    "ja": "広告",
+    "ko": "광고",
+    "es": "Anuncios"
+  },
+  "summary": {
+    "en": "Product and brand ads of 6–60 seconds: structure, script, proof and a clear call to action.",
+    "zh-CN": "6–60 秒的产品和品牌广告：结构、脚本、证据和明确的行动号召。",
+    "ja": "6〜60秒の商品・ブランド広告：構成、台本、根拠、明確な行動喚起。",
+    "ko": "6–60초 제품·브랜드 광고: 구성, 대본, 근거, 분명한 행동 유도.",
+    "es": "Anuncios de producto y marca de 6 a 60 s: estructura, guion, pruebas y una llamada a la acción clara."
+  },
+  "details": {
+    "en": "When it is used: when the person asks for an ad, a promo, a product video or a launch video.\nWhat it teaches: to plan who, promise, proof and action, then script, shoot and cut it.\nTurned off: agents still try, but ads are made without a structure or the rule never to invent claims.",
+    "zh-CN": "什么时候用：用到这个主题时。\n它教什么：6–60 秒的产品和品牌广告：结构、脚本、证据和明确的行动号召。\n关掉后：智能体仍会尝试，但没有这些规则。",
+    "ja": "使うとき：この話題のとき。\n教えること：6〜60秒の商品・ブランド広告：構成、台本、根拠、明確な行動喚起。\nオフにすると：エージェントは試みますが、この規則はなくなります。",
+    "ko": "언제 쓰나요: 이 주제를 요청할 때.\n무엇을 알려 주나요: 6–60초 제품·브랜드 광고: 구성, 대본, 근거, 분명한 행동 유도.\n끄면: 에이전트는 시도하지만 이 규칙은 없습니다.",
+    "es": "Cuándo se usa: cuando el tema aparece en el pedido.\nQué enseña: Anuncios de producto y marca de 6 a 60 s: estructura, guion, pruebas y una llamada a la acción clara.\nSi se desactiva: los agentes lo intentan, pero sin estas reglas."
+  }
+}

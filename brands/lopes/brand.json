@@ -1,0 +1,55 @@
+{
+  "id": "lopes",
+  "name": "Lopes.Film",
+  "company": "Lopes",
+  "appId": "dev.lopesfilm.desktop",
+  "homeDir": ".lopesfilm",
+  "libraryDir": "Lopes.Film",
+  "studioPort": 4747,
+  "website": "https://lightgoldenrodyellow-wombat-163159.hostingersite.com",
+  "updates": "https://lightgoldenrodyellow-wombat-163159.hostingersite.com/feed/lopes-film",
+  "mark": {
+    "viewBox": "0 0 300 88",
+    "w": 300,
+    "h": 88,
+    "svg": "<path d=\"M0 87.4461L93.0846 0H134.578L65.3839 65.9199H179.553V87.4461H0Z\" fill=\"currentColor\"/><path d=\"M300 32.9905V87.4461H188.181V65.9199H278.535V54.5167H208.285L140.414 32.9294V0H300V21.5262H175.539L211.579 32.9905H300Z\" fill=\"currentColor\"/>"
+  },
+  "theme": {
+    "dark": {
+      "bgApp": "#0b0c0e",
+      "bgTitlebar": "#121315",
+      "bgPanel": "#121315",
+      "bgRaised": "#1b1c1f",
+      "bgViewer": "#08080a",
+      "dockLine": "#26272b",
+      "border": "#26272b",
+      "accent": "#e0384e",
+      "logoFill": "#efede9",
+      "onAccent": "#ffffff",
+      "switchOn": "#b3192f",
+      "rgb": "224,56,78"
+    },
+    "light": {
+      "bgApp": "#dcdad5",
+      "bgTitlebar": "#dcdad5",
+      "bgPanel": "#f4f2ee",
+      "bgRaised": "#ffffff",
+      "bgViewer": "#f4f2ee",
+      "dockLine": "#cdcbc6",
+      "border": "rgba(18,19,21,.10)",
+      "accent": "#8c1325",
+      "logoFill": "#1b1c1f",
+      "onAccent": "#ffffff",
+      "switchOn": "#8c1325",
+      "rgb": "140,19,37"
+    }
+  },
+  "icon": {
+    "kind": "ls",
+    "bg1": "#1b1c1f",
+    "bg2": "#0b0c0e",
+    "fg": "#efede9",
+    "bar": "#b3192f"
+  },
+  "internal": "lopesfilm"
+}
