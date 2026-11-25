@@ -1,8 +1,17 @@
 @echo off
-setlocal EnableExtensions EnableDelayedExpansion
 chcp 65001 >nul
+rem Roda uma COPIA deste arquivo: o git reescreve o COMPILAR.bat da pasta durante o envio, e o cmd le o .bat
+rem por posicao, entao mexer nele com o script rodando quebra os comandos no meio.
+if not defined LF_COPIA (
+  set "LF_COPIA=1"
+  set "LF_PASTA=%~dp0"
+  copy /y "%~f0" "%TEMP%\lopesfilm-compilar.bat" >nul
+  call "%TEMP%\lopesfilm-compilar.bat"
+  exit /b
+)
+setlocal EnableExtensions EnableDelayedExpansion
 title Lopes.Film - Compilador
-cd /d "%~dp0"
+cd /d "%LF_PASTA%"
 
 echo.
 echo  ===============================================
@@ -218,6 +227,14 @@ if not defined REMOTO (
     if errorlevel 1 exit /b 1
   )
   git remote add origin "https://github.com/%GHUSER%/%REPO%.git"
+)
+rem Garante que o repositorio e publico (privado gasta os minutos de Mac do plano)
+set "VISIB="
+for /f "usebackq delims=" %%v in (`gh repo view "%GHUSER%/%REPO%" --json visibility --jq .visibility 2^>nul`) do set "VISIB=%%v"
+if /i "%VISIB%"=="PRIVATE" (
+  echo [..] O repositorio estava privado. Mudando para publico...
+  gh repo edit "%GHUSER%/%REPO%" --visibility public --accept-visibility-change-consequences
+  if errorlevel 1 exit /b 1
 )
 
 rem Envia o codigo atual

@@ -64,4 +64,5 @@ jobs:
             apps/desktop/.release/**/out/*.dmg
             apps/desktop/.release/**/out/*.zip
             apps/desktop/.release/**/out/*.exe
+          include-hidden-files: true
           if-no-files-found: error

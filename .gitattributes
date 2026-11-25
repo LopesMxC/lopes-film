@@ -6,3 +6,5 @@
 *.mp3 binary
 *.mp4 binary
 *.woff2 binary
+# o COMPILAR.bat precisa de CRLF
+*.bat text eol=crlf
