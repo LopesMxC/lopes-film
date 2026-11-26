@@ -4220,7 +4220,7 @@ export function ProjectView({ projectId, onProject, onTimeline, nested, onLeave 
   }, [loaded, edit, toast, t]);
   /* a picture, a piece of music or a clip made by an AI service (the library's AI tabs), put on the film at the playhead:
      pictures and clips on a new track on top, music on a sound track; `yes`: the person saw the cost in the tab */
-  const generateMedia = React.useCallback(async (req: { verb: 'image' | 'music' | 'video'; via: string; model?: string; args: Record<string, unknown>; signal?: AbortSignal }): Promise<string | null> => {
+  const generateMedia = React.useCallback(async (req: { verb: 'image' | 'music' | 'video' | 'web-music'; via: string; model?: string; args: Record<string, unknown>; signal?: AbortSignal }): Promise<string | null> => {
     const folder = loaded?.project.path;
     if (!folder) return t('timeline.editFail');
     const atMs = snapToFrame(timeRef.current);
@@ -4235,7 +4235,7 @@ export function ProjectView({ projectId, onProject, onTimeline, nested, onLeave 
     const src = made?.src;
     if (!src) return t('timeline.editFail');
     const durMs = Math.round((made?.dur ?? 0) * 1000) || undefined;
-    const kind = req.verb === 'music' ? 'audio' : req.verb === 'image' ? 'image' : 'video';
+    const kind = req.verb === 'music' || req.verb === 'web-music' ? 'audio' : req.verb === 'image' ? 'image' : 'video';
     const items = [{ path: src, name: src.replace(/^.*\//, ''), kind, ...(durMs ? { durationMs: durMs } : {}) } as ResourceDragItem];
     const plan = kind === 'audio'
       ? assetRunInsert(items, tracksRef.current, soundLaneHit(tracksRef.current, atMs, assetRunMs(items)), atMs)

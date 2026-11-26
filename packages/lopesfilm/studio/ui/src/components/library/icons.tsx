@@ -37,6 +37,7 @@ const DRAWN: Record<string, Draw> = {
   genimage: ({ fill, ink }) => (<><path d="M4.5 6.5A2.5 2.5 0 0 1 7 4h10a2.5 2.5 0 0 1 2.5 2.5v11A2.5 2.5 0 0 1 17 20H7a2.5 2.5 0 0 1-2.5-2.5Z" {...fill} /><path d="m6.5 16.5 3.6-4 2.6 2.8 2-2.2 2.8 3.4" {...ink} /></>),
   genmusic: ({ fill, ink }) => (<><path d="M9 17.5V6.8l9-2v10.7" {...ink} /><path d="M4.5 17.6a2.3 2 0 1 0 4.6 0a2.3 2 0 1 0-4.6 0ZM13.5 15.6a2.3 2 0 1 0 4.6 0a2.3 2 0 1 0-4.6 0Z" {...fill} /></>),
   genvideo: ({ fill, ink }) => (<><path d="M4.5 7.5A2.5 2.5 0 0 1 7 5h7a2.5 2.5 0 0 1 2.5 2.5v9A2.5 2.5 0 0 1 14 19H7a2.5 2.5 0 0 1-2.5-2.5Z" {...fill} /><path d="m16.5 10.6 4-2.4v7.6l-4-2.4" {...ink} /></>),
+  freesound: ({ fill, ink }) => (<><path d="M3.5 12a8.5 8.5 0 1 0 17 0a8.5 8.5 0 1 0-17 0Z" {...fill} /><path d="M6.5 12h1.6l1.4-3.4 2 6.8 1.7-5 1 1.6h3.3" {...ink} /></>),
   faceswap: ({ fill, ink }) => (<><path d="M4.5 12a7.5 7.5 0 1 0 15 0a7.5 7.5 0 1 0-15 0Z" {...fill} /><path d="M9.2 10.6v.8M14.8 10.6v.8M9.4 14.6c1.4 1.3 3.8 1.3 5.2 0" {...ink} /></>),
   /* a sound: a short burst, struck once */
   sound: () => (

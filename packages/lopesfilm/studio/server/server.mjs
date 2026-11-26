@@ -70,6 +70,7 @@ import { moveToTrash } from './trash.mjs';
 import { coreSkills, isAlways, keeps, listSkills, offeredSkills, removeSkill, setSkillAlways, setSkillCover, setSkillOn, skillOrigins, skillsAlways, skillsOff, thisPlatform } from '../../src/skills.mjs';
 import { catalogSkills, installSkill, installedStanding, readCatalog, readDiscover, seedCatalog, uninstallSkill } from './skill-catalog.mjs';
 import { freshProviders, providersRoute } from './providers/index.mjs';
+import { freesoundRoute } from './freesound-route.mjs';
 import { localModelsRoute } from './local-models.mjs';
 import { localEnginesRoute } from './local-engines.mjs';
 import { captionRoutes, writeSubtitleStyle } from './captions.mjs';
@@ -351,6 +352,8 @@ export async function startStudio({ port = 4747, key, openBrowser = systemBrowse
     }
     /* ── own keys and who makes each kind of media (Settings → Services): never a key back; see providers/index.mjs ── */
     if (parts[0] === 'providers') return providersRoute(req, res, parts.slice(1), { openBrowser });
+    /* the Library's Freesound tab: sounds and music found there (freesound-route.mjs) */
+    if (parts[0] === 'freesound') return freesoundRoute(req, res, parts.slice(1), url);
     /* the models that run on this computer (Settings → Services → Local services; local-models.mjs) */
     if (parts[0] === 'local-models') return localModelsRoute(req, res, parts.slice(1));
     if (parts[0] === 'local-engines') { await readHardware(); return localEnginesRoute(req, res, parts.slice(1)); }

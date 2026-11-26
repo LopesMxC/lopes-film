@@ -42,7 +42,7 @@ import { tokenProxyEnv } from './lopesfilm-optimizer.mjs';
 import { AGENT_PROGRAMS, HOME_BIN_CANDIDATES, antigravityVersion, chosenProgram, claudeUpdate, claudeVersion, codexAppCopies, codexVersion, desktopApp, detectAgentInstallation, installCommand, laterVersion, notTheAgent, searchReport } from './agent-installation.mjs';
 import { logSwitches } from './agent-logs.mjs';
 import { afterFirstReading, firstWindowsApps, refreshWindowsApps } from './windows-apps.mjs';
-import { alwaysText, mergeConfig, sessionSkills } from './agent-skills.mjs';
+import { alwaysText, mergeConfig, sessionSkills, skillsFolderText } from './agent-skills.mjs';
 import { nodeBinary } from './node-runtime.mjs';
 import { lopesfilmCommand } from './lopesfilm-command.mjs';
 import { outOfBalance } from './pi-config.mjs';
@@ -1373,8 +1373,10 @@ export class AgentSession {
       ? await sessionSkills(this.opts.agent, { cwd: this.opts.cwd, env: shell, ...this.opts.skills }).catch(() => null) : null;
     /* the skills applied in every session (economy, ponytail, cutting, design, and the person's own "always"), whole */
     const always = this.opts.skills ? await alwaysText({ cwd: this.opts.cwd, run: runCommand, ...this.opts.skills }).catch(() => '') : '';
+    const keep = skills?.mine ? skillsFolderText(skills.mine) : '';
     if (always) instructions = `${instructions}\n\n${always}`;
-    if (harness) own.LOPESFILM_PI = JSON.stringify({ agentDir: harness.home, models: harness.models, model: harness.model, systemPrompt: `${ownAgentPrompt({ edit: skills?.piSkills?.names.includes('edit') ?? true })}${always ? `\n\n${always}` : ''}`, skills: skills?.piSkills ?? null });
+    if (keep) instructions = `${instructions}\n\n${keep}`;
+    if (harness) own.LOPESFILM_PI = JSON.stringify({ agentDir: harness.home, models: harness.models, model: harness.model, systemPrompt: `${ownAgentPrompt({ edit: skills?.piSkills?.names.includes('edit') ?? true })}${always ? `\n\n${always}` : ''}${keep ? `\n\n${keep}` : ''}`, skills: skills?.piSkills ?? null });
     /* Developer mode: the agent's own logging switch, so the turn log has what its model got; none when the person
        set its telemetry themselves (agent-logs.mjs) */
     this.logging = this.opts.logDir && cli && !this.spec.adapter

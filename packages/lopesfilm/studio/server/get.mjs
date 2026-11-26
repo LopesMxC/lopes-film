@@ -217,9 +217,9 @@ export const VERBS = /** @type {Record<string, VerbSpec>} */ ({
     options: { url: { value: 'https://…', required: true } },
   },
   'web-music': {
-    help: 'Find music on the web (Jamendo, Openverse) and download it (1 to 4), licensed for use: each comes with its artist, licence and page, the credit the film gives it. Returns their paths and lengths. Play the part you need with a media fragment on the clip\'s src (#t=in,out).',
+    help: 'Find music or sound effects on the web (Jamendo, Openverse, Freesound) and download them (1 to 4), licensed for use: each comes with its artist, licence and page, the credit the film gives it. With Freesound (--via freesound) --kind sfx finds sound effects (under 30 s, in assets/audio/sfx), --kind music (default) longer pieces, --id one sound by its Freesound number; read the freesound skill first (lopesfilm skill freesound). Returns their paths and lengths. Play the part you need with a media fragment on the clip\'s src (#t=in,out).',
     dir: 'assets/audio/music', timeoutSec: 600,
-    options: { out, prompt, n: { value: 'n', min: 1, max: 4, integer: true, default: 1, alias: 'limit' } },
+    options: { out, prompt: { ...prompt, required: false }, n: { value: 'n', min: 1, max: 4, integer: true, default: 1, alias: 'limit' }, kind: { value: 'kind', choices: ['music', 'sfx'], default: 'music' }, id: { value: 'n', min: 1, integer: true } },
   },
   image: {
     help: 'Make one picture, or a new one from pictures in the project (--ref, up to 16; with --mask, a PNG whose transparent part is what is redrawn of the first; or --markup, a transparent PNG the size of the first with what to change drawn or written on it). --quality low is quick and costs least, max is finest and slowest; --size 1k, 2k or 4k. --format gif makes a looping animation of --frames (2 to 16) frames of --frame-ms each: a GIF clip plays its frames by the film\'s time, looping, so one round lasts frames × frame-ms. --format svg makes a vector picture from the prompt alone, its shapes elements a page can change. Returns its path and size.',

@@ -25,6 +25,7 @@ import { CaptionsPane, type CaptionsActions } from './CaptionsPane';
 import { CategoryIcon, Empty } from './icons';
 import { FEATURED, STARRED, VoicesPane, type VoiceSample } from './VoicesPane';
 import { NarratorPane, type NarratorShape } from './NarratorPane';
+import { FreesoundPane } from './FreesoundPane';
 import { AiGenPane, type Generate } from './AiGenPane';
 import { FaceSwapPane, type ProjectMedia } from './FaceSwapPane';
 import { UsagePopover } from './UsagePopover';
@@ -38,10 +39,10 @@ import { PLAIN } from './OnPicture';
 import { isClipMotion } from '@/lib/clip-presets';
 import { useLibraryArrangement } from './arrangement';
 
-type Category = 'media' | 'skill' | 'voice' | 'narrator' | 'genimage' | 'genmusic' | 'genvideo' | 'faceswap' | 'captions' | LibraryCategory;
+type Category = 'media' | 'skill' | 'voice' | 'narrator' | 'genimage' | 'genmusic' | 'genvideo' | 'faceswap' | 'freesound' | 'captions' | LibraryCategory;
 /* Lopes.Film's order (the person's own in Settings › Advanced, lib/library-categories): the media, the skills, then the
    templates, the most a film is made with at once */
-export const CATEGORIES: Category[] = ['media', 'skill', 'template', 'captions', 'voice', 'narrator', 'sound', 'text', 'sticker', 'filter', 'effect', 'transition', 'genimage', 'genmusic', 'genvideo', 'faceswap'];
+export const CATEGORIES: Category[] = ['media', 'skill', 'template', 'captions', 'voice', 'narrator', 'sound', 'text', 'sticker', 'filter', 'effect', 'transition', 'genimage', 'genmusic', 'genvideo', 'faceswap', 'freesound'];
 
 /** The side bar's starred line: a category's things the person starred ('' is all of it, else one of its groups). */
 const FAVORITES = STARRED;
@@ -563,6 +564,7 @@ export function LibraryDrawer({ media, mediaScope, onMediaScope, mediaRequest, a
               ) : null}
               {cat === 'skill' ? <SkillsPane line={skillLine} query={query} projectId={projectId} opened={skillOpen} onOpen={setSkillOpen} onDiscover={() => pickGroup('discover')} />
                 : cat === 'genimage' || cat === 'genmusic' || cat === 'genvideo' ? <AiGenPane service={cat === 'genimage' ? 'image' : cat === 'genmusic' ? 'music' : 'video'} generate={generate} onServices={onServices} />
+                : cat === 'freesound' ? <FreesoundPane query={query} generate={generate} onServices={onServices} />
                 : cat === 'faceswap' ? <FaceSwapPane media={projectMedia} generate={generate} onServices={onServices} />
                 : cat === 'narrator' ? <NarratorPane speak={speak ? (v, a, text, shape) => speak(v, a, text, shape) : undefined} onServices={onServices} />
                 : cat === 'voice' ? <VoicesPane group={group} query={query} favorites={favorites} onServices={onServices} onAll={() => pickGroup('')} speak={speak}

@@ -224,3 +224,10 @@ test('two configurations as one', () => {
     { skills: { paths: ['a'], urls: ['u'] }, permission: { skill: { '*': 'deny' } }, experimental: { openTelemetry: true } });
   assert.deepEqual(mergeConfig({ developer_instructions: 'x' }, { skills: { config: [] } }), { developer_instructions: 'x', skills: { config: [] } });
 });
+
+import { skillsFolderText } from './agent-skills.mjs';
+test('the agent is told the whole path of the skills folder, and that a skill is not kept in the project', () => {
+  const text = skillsFolderText('/home/x/Videos/Skills');
+  assert.ok(text.includes('/home/x/Videos/Skills/<name>/SKILL.md'));
+  assert.match(text, /never in the project/);
+});

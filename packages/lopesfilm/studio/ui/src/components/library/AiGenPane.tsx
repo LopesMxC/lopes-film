@@ -8,7 +8,7 @@ import { Loader2 } from '@/lib/icons';
 import { useT } from '@/i18n';
 import { route, useAi, useEngine, useEstimate, type Engine, type Service } from '@/lib/ai-engine';
 
-export interface GenerateRequest { verb: 'image' | 'music' | 'video'; via: string; model?: string; args: Record<string, unknown>; signal?: AbortSignal }
+export interface GenerateRequest { verb: 'image' | 'music' | 'video' | 'web-music'; via: string; model?: string; args: Record<string, unknown>; signal?: AbortSignal }
 export type Generate = (req: GenerateRequest) => Promise<string | null>;
 
 const RATIOS = ['16:9', '9:16', '1:1', '4:3', '3:2'];

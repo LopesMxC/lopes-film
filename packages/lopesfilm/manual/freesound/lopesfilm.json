@@ -1,0 +1,29 @@
+{
+  "order": 24,
+  "category": "edit",
+  "icon": "music",
+  "title": {
+    "en": "Freesound",
+    "zh-CN": "Freesound",
+    "ja": "Freesound",
+    "ko": "Freesound",
+    "es": "Freesound",
+    "pt-BR": "Freesound"
+  },
+  "summary": {
+    "en": "Sound effects and music from Freesound: searching it well, its licences, placing and crediting what is taken.",
+    "zh-CN": "Freesound 的音效和音乐：如何搜索、授权条款、放置与署名。",
+    "ja": "Freesound の効果音と音楽：検索のコツ、ライセンス、配置とクレジット。",
+    "ko": "Freesound의 효과음과 음악: 검색법, 라이선스, 배치와 크레딧.",
+    "es": "Efectos y música de Freesound: cómo buscar, sus licencias, colocar y dar crédito.",
+    "pt-BR": "Efeitos sonoros e músicas do Freesound: como buscar, as licenças, onde colocar e como creditar."
+  },
+  "details": {
+    "en": "When it is used: every time a sound or music is taken from Freesound.\nWhat it teaches: searching it, its licences, placing and crediting what is taken.\nTurned off: agents may use sounds without the credit their licence asks for.",
+    "pt-BR": "Quando é usada: sempre que um som ou música é puxado do Freesound.\nO que ensina: como buscar, as licenças, onde colocar e como creditar.\nDesligada: os agentes podem usar sons sem o crédito que a licença exige.",
+    "es": "Cuándo se usa: cada vez que se toma un sonido o música de Freesound.\nQué enseña: cómo buscar, sus licencias, colocar y dar crédito.\nSi se desactiva: los agentes pueden usar sonidos sin el crédito que pide la licencia.",
+    "zh-CN": "When it is used: every time a sound or music is taken from Freesound.\nWhat it teaches: searching it, its licences, placing and crediting what is taken.\nTurned off: agents may use sounds without the credit their licence asks for.",
+    "ja": "When it is used: every time a sound or music is taken from Freesound.\nWhat it teaches: searching it, its licences, placing and crediting what is taken.\nTurned off: agents may use sounds without the credit their licence asks for.",
+    "ko": "When it is used: every time a sound or music is taken from Freesound.\nWhat it teaches: searching it, its licences, placing and crediting what is taken.\nTurned off: agents may use sounds without the credit their licence asks for."
+  }
+}

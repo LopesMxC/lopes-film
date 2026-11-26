@@ -45,6 +45,7 @@ import supertonic from './supertonic.mjs';
 import localimage from './localimage.mjs';
 import localvideo from './localvideo.mjs';
 import jamendo from './jamendo.mjs';
+import freesound from './freesound.mjs';
 import azure from './azure.mjs';
 import doubao from './doubao.mjs';
 import mimo from './mimo.mjs';
@@ -59,7 +60,7 @@ import { addedProblems, addedProviders } from './added.mjs';
  */
 
 /** The providers paid with the person's own key, and Local services, which takes none. */
-const BUILT_IN = [elevenlabs, inworld, cartesia, openai, google, fal, openrouter, pexels, pixabay, unsplash, coverr, openverse, wikimedia, nasa, brave, tavily, keenable, jina, searxng, wikipedia, groq, azure, doubao, mimo, jamendo, voicestudio, supertonic, acestep, stableaudio, localimage, localvideo, local];
+const BUILT_IN = [elevenlabs, inworld, cartesia, openai, google, fal, openrouter, pexels, pixabay, unsplash, coverr, openverse, wikimedia, nasa, brave, tavily, keenable, jina, searxng, wikipedia, groq, azure, doubao, mimo, jamendo, freesound, voicestudio, supertonic, acestep, stableaudio, localimage, localvideo, local];
 /** Those, then the ones the person added (added.mjs), as last read (changed in place). */
 const OWN = [...BUILT_IN];
 

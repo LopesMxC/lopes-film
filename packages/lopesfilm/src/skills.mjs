@@ -433,7 +433,7 @@ export const isAlways = (skill, prefs) => {
 };
 
 /** Lopes.Film's own skills by name, in the order agents are given them: how a film is made, its media, its canvas. */
-export const CORE_SKILLS = Object.freeze(['edit', 'media', 'canvas', 'cutting', 'design', 'motion', 'gsap', 'remotion', 'shorts', 'ads', 'explainer', 'grading', 'sound', 'listen', 'dataviz', 'from-video', 'recreate', 'breakdown', 'economy', 'economy-input', 'economy-output', 'economy-prompt', 'caveman', 'craft', 'smooth']);
+export const CORE_SKILLS = Object.freeze(['edit', 'media', 'canvas', 'cutting', 'design', 'motion', 'gsap', 'remotion', 'shorts', 'ads', 'explainer', 'grading', 'sound', 'listen', 'freesound', 'dataviz', 'from-video', 'recreate', 'breakdown', 'economy', 'economy-input', 'economy-output', 'economy-prompt', 'caveman', 'craft', 'smooth']);
 
 /** Lopes.Film's own skills (coreSkillsDir), which every agent has unless turned off, in CORE_SKILLS's order. @returns {Skill[]} */
 export function coreSkills() {

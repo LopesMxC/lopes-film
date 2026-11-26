@@ -18,7 +18,7 @@ const settings = (keys = {}, use = {}) => ({ keys, use, model: {} });
 const id = async (promise) => (await promise)?.id ?? null;
 
 test('the own-key providers, then Local services, in the order Settings lists them', () => {
-  assert.deepEqual(listProviders().map((p) => p.id), ['elevenlabs', 'inworld', 'cartesia', 'openai', 'google', 'fal', 'openrouter', 'pexels', 'pixabay', 'unsplash', 'coverr', 'openverse', 'wikimedia', 'nasa', 'brave', 'tavily', 'keenable', 'jina', 'searxng', 'wikipedia', 'groq', 'azure', 'doubao', 'mimo', 'jamendo', 'voicestudio', 'supertonic', 'acestep', 'stableaudio', 'localimage', 'localvideo', 'local']);
+  assert.deepEqual(listProviders().map((p) => p.id), ['elevenlabs', 'inworld', 'cartesia', 'openai', 'google', 'fal', 'openrouter', 'pexels', 'pixabay', 'unsplash', 'coverr', 'openverse', 'wikimedia', 'nasa', 'brave', 'tavily', 'keenable', 'jina', 'searxng', 'wikipedia', 'groq', 'azure', 'doubao', 'mimo', 'jamendo', 'freesound', 'voicestudio', 'supertonic', 'acestep', 'stableaudio', 'localimage', 'localvideo', 'local']);
 });
 
 test('each provider paid with a key of its own links its own pricing page; Lopes.Film\'s service and Local services none', () => {

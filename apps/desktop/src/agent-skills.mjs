@@ -311,7 +311,7 @@ export async function sessionSkills(agent, o) {
      not write it there (refused, or written elsewhere) and the skill was never saved */
   const mine = o.mine ?? (await skillsLib()).mySkillsDir();
   try { mkdirSync(mine, { recursive: true }); } catch { /* the agent's own write says why */ }
-  return { ...r, additionalDirectories: [...new Set([...(r.additionalDirectories ?? []), mine])] };
+  return { ...r, mine, additionalDirectories: [...new Set([...(r.additionalDirectories ?? []), mine])] };
 }
 async function sessionSkillsOf(agent, { cwd, env = {}, dataDir, mine, prefsHome, allowed = [], mcpAllowed = [], home = homedir() }) {
   const { mySkillsDir, offeredSkills } = await skillsLib();
@@ -377,6 +377,13 @@ export function mergeConfig(a, b) {
   for (const [k, v] of Object.entries(b)) out[k] = k in out ? mergeConfig(out[k], v) : v;
   return out;
 }
+
+/**
+ * Where a new skill is kept: the person's own skills folder, by its whole path, never the project (a skill saved in
+ * the project stays in that one film and is not in the library with the others).
+ * @param {string} dir
+ */
+export const skillsFolderText = (dir) => `When you create or change a skill for the person, save it in their skills folder, \`${dir}\`, as \`${dir}/<name>/SKILL.md\` (that exact absolute path, one folder per skill, with the name and description in its frontmatter): never in the project, never in a \`Skills\` or \`.claude\` folder inside it. A skill saved in the project stays in that one film and does not appear in the library with the others.`;
 
 /**
  * The skills a session applies without being asked (lopesfilm/skills alwaysSkills: `economy`, `ponytail`, cutting and
