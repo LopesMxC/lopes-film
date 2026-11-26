@@ -305,7 +305,15 @@ function defaultsFile(dir, name, settings) {
  * @param {{ cwd: string, env?: Record<string, string>, dataDir: string, mine?: string, prefsHome?: string, allowed?: string[],
  *   mcpAllowed?: string[], home?: string }} o
  */
-export async function sessionSkills(agent, { cwd, env = {}, dataDir, mine, prefsHome, allowed = [], mcpAllowed = [], home = homedir() }) {
+export async function sessionSkills(agent, o) {
+  const r = await sessionSkillsOf(agent, o);
+  /* the person's own skills folder lies outside the project: without being let in, an agent asked to make a skill could
+     not write it there (refused, or written elsewhere) and the skill was never saved */
+  const mine = o.mine ?? (await skillsLib()).mySkillsDir();
+  try { mkdirSync(mine, { recursive: true }); } catch { /* the agent's own write says why */ }
+  return { ...r, additionalDirectories: [...new Set([...(r.additionalDirectories ?? []), mine])] };
+}
+async function sessionSkillsOf(agent, { cwd, env = {}, dataDir, mine, prefsHome, allowed = [], mcpAllowed = [], home = homedir() }) {
   const { mySkillsDir, offeredSkills } = await skillsLib();
   /* Lopes.Film's own first (how a film is made, its media, its canvas), unless turned off; then those installed and on.
      Each by the name the agent is given it by: its own, but a second of a name told apart by whose it is */

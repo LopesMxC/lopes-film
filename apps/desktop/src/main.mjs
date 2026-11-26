@@ -12,7 +12,8 @@
 import { BaseWindow, Menu, Notification, WebContentsView, app, clipboard, dialog, ipcMain, nativeImage, nativeTheme, safeStorage, screen, shell } from 'electron';
 import { execFile, execFileSync, spawn } from 'node:child_process';
 import { appendFileSync, copyFileSync, existsSync, mkdirSync } from 'node:fs';
-import { basename, dirname, join } from 'node:path';
+import { homedir } from 'node:os';
+import { basename, dirname, join, resolve } from 'node:path';
 import { migrateLegacyHome, seedProviders } from './legacy-home.mjs';
 import { fileURLToPath } from 'node:url';
 import { FLAVOR, IDENTITY, PRODUCT_NAME } from './flavor.mjs';
@@ -646,13 +647,28 @@ async function start() {
     seedProviders(ownHome, here('../build/providers.seed.json'));
   }
 
+  /* Windows can keep the Videos folder somewhere other than ~/Videos (OneDrive, another disk): where the person's films
+     are, when they are there, and not a second Lopes.Film folder made in ~/Videos beside it */
+  if (windows && !process.env.LOPESFILM_VIDEOS) {
+    try {
+      const real = app.getPath('videos');
+      const plain = join(homedir(), 'Videos');
+      const holds = (dir) => ['Lopes.Film', 'GlobalFilm', 'VerkzFilm', 'OpenFilm'].some((n) => existsSync(join(dir, n)));
+      if (real && resolve(real) !== resolve(plain) && holds(real)) process.env.LOPESFILM_VIDEOS = real;
+    } catch { /* ~/Videos then */ }
+  }
+  const inVideos = (path) => {
+    const plain = join(homedir(), 'Videos');
+    return process.env.LOPESFILM_VIDEOS && path && resolve(path).startsWith(plain) ? join(process.env.LOPESFILM_VIDEOS, resolve(path).slice(plain.length)) : path;
+  };
   const shellEnv = await loginShellEnvironment();
   const env = childEnvironment({
     shell: shellEnv,
     extra: {
       LOPESFILM_HOME: IDENTITY.studioHome ?? process.env.LOPESFILM_HOME ?? join(app.getPath('home'), IDENTITY.homeDir ?? '.lopesfilm'),
       ...(FLAVOR !== 'release' ? { LOPESFILM_ACCOUNT_DEVICE: PRODUCT_NAME } : {}),
-      ...((IDENTITY.library ?? process.env.LOPESFILM_LIBRARY) ? { LOPESFILM_LIBRARY: IDENTITY.library ?? process.env.LOPESFILM_LIBRARY } : {}),
+      ...(process.env.LOPESFILM_VIDEOS ? { LOPESFILM_VIDEOS: process.env.LOPESFILM_VIDEOS } : {}),
+      ...((IDENTITY.library ?? process.env.LOPESFILM_LIBRARY) ? { LOPESFILM_LIBRARY: inVideos(IDENTITY.library ?? process.env.LOPESFILM_LIBRARY) } : {}),
       /* a flavour with a home of its own still shares the person's library (src/locations.mjs) */
       ...(IDENTITY.sharedHome ? { LOPESFILM_SHARED_HOME: IDENTITY.sharedHome } : {}),
       /* the app names Studio's home, which would put exports inside it (Studio's rule for a home kept apart): the
@@ -820,7 +836,14 @@ async function start() {
   /* the person's own skills: Skills/ beside this app's projects (~/Movies/Lopes.Film/Skills), as its `lopesfilm` finds them */
   /* which official skills are installed and which skills are off: the prefs.json every Lopes.Film here shares (lopesfilm/skills usableSkills) */
   const prefsHome = env.LOPESFILM_SHARED_HOME || env.LOPESFILM_HOME;
-  const mySkills = process.env.LOPESFILM_SKILLS || (env.LOPESFILM_LIBRARY ? join(dirname(env.LOPESFILM_LIBRARY), 'Skills') : (await import('lopesfilm/skills')).mySkillsDir());
+  /* beside the projects' folder as the person chose it in Settings, else beside the default one */
+  const mySkills = process.env.LOPESFILM_SKILLS || (await import('lopesfilm/skills')).mySkillsDir({ library: env.LOPESFILM_LIBRARY ?? null, ...(prefsHome ? { home: prefsHome } : {}) });
+  /* skills that were made where the folder used to be (beside the default projects folder) come along to the new one */
+  try {
+    const { migrateMySkills } = await import('lopesfilm/skills');
+    const before = join(env.LOPESFILM_VIDEOS ?? join(homedir(), 'Videos'), 'Lopes.Film', 'Skills');
+    if (!process.env.LOPESFILM_SKILLS && process.platform === 'win32' && resolve(before) !== resolve(mySkills)) migrateMySkills({ from: before, to: mySkills });
+  } catch { /* they stay where they are */ }
   localAgents = registerLocalAgentIpc(ipcMain, {
     trusted: fromPage,
     log,
@@ -838,6 +861,7 @@ async function start() {
     env: {
       LOPESFILM_HOME: env.LOPESFILM_HOME,
       ...(env.LOPESFILM_API_URL ? { LOPESFILM_API_URL: env.LOPESFILM_API_URL } : {}),
+      ...(env.LOPESFILM_VIDEOS ? { LOPESFILM_VIDEOS: env.LOPESFILM_VIDEOS } : {}),
       ...(env.LOPESFILM_LIBRARY ? { LOPESFILM_LIBRARY: env.LOPESFILM_LIBRARY } : {}),
       ...(env.LOPESFILM_SHARED_HOME ? { LOPESFILM_SHARED_HOME: env.LOPESFILM_SHARED_HOME } : {}),
     },

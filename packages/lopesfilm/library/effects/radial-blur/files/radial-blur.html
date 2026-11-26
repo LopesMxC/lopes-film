@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Radial blur</title>
+<style>
+html, body { margin: 0; height: 100%; overflow: hidden; background: transparent; }
+.l { position: fixed; inset: 0; pointer-events: none; }
+:root { --amount: 24; --size: 35; --pulse: 1; }
+.r { position: fixed; inset: 0; pointer-events: none; }
+</style>
+</head>
+<body>
+<div class="r"></div><div class="r"></div><div class="r"></div><div class="r"></div><div class="r"></div>
+<script>
+/*
+ * Radial blur: Blur that grows from a sharp centre out to the edges, in soft rings, breathing slowly. A page of Lopes.Film's library (CC0), by Lopes. It blurs what lies beneath it (backdrop-filter);
+ * what it shows at t comes from t alone, so each frame is the same in the preview and in the export.
+ */
+const root = document.documentElement;
+const num = (n, d) => { const v = parseFloat(getComputedStyle(root).getPropertyValue(n)); return Number.isFinite(v) ? v : d; };
+const rings = [...document.querySelectorAll('.r')];
+function draw(t) {
+  const amount = num('--amount', 24), size = num('--size', 35), pulse = num('--pulse', 1);
+  const k = 1 + 0.08 * pulse * Math.sin(t * 1.4);
+  const n = rings.length;
+  rings.forEach((el, i) => {
+    const inner = Math.min(95, size * k + i * (95 - size) / n);
+    const m = 'radial-gradient(ellipse at center, transparent ' + inner + '%, #000 ' + Math.min(100, inner + (100 - size) / n * 1.6) + '%)';
+    el.style.cssText = 'backdrop-filter: blur(' + (amount * (i + 1) / n) + 'px); -webkit-backdrop-filter: blur(' + (amount * (i + 1) / n) + 'px); -webkit-mask-image: ' + m + '; mask-image: ' + m;
+  });
+}
+window.film = { frame(t) { draw(t); } };
+draw(0);
+if (!window.filmHost) {
+  const t0 = performance.now();
+  const loop = () => { const t = (performance.now() - t0) / 1000; window.film.frame(window.film.duration ? t % window.film.duration : t); requestAnimationFrame(loop); };
+  loop();
+}
+</script>
+</body>
+</html>

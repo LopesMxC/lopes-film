@@ -251,7 +251,7 @@ export const FilmInspector = React.memo(function FilmInspector({
   /** Clean a clip's sound (noise, voice isolation): the file made and put in the clip's place; why not, or null. */
   enhanceAudio?: (block: TimelineBlock, how: { denoise: string; dereverb?: string; voice: boolean; stem?: 'voice' | 'instrumental'; fx?: string; amount?: number }) => Promise<string | null>;
   fixEyes?: (block: TimelineBlock, how: { strength: number }) => Promise<string | null>;
-  runVideoTool?: (block: TimelineBlock, tool: 'stabilize' | 'cutout-video' | 'camera-track', level?: string) => Promise<string | null>;
+  runVideoTool?: (block: TimelineBlock, tool: 'stabilize' | 'cutout-video' | 'camera-track' | 'face-follow', level?: string) => Promise<string | null>;
   subjectTool?: SubjectTool;
   /** The template of the library the picked clips all belong to, shown first (TemplateSection); null when they are not one template's. */
   templateSection?: (blocks: readonly TimelineBlock[]) => React.ReactNode;
@@ -1405,7 +1405,7 @@ function ClipPanel({
   propsHostOf?: (block: TimelineBlock) => PropsHost | null;
   enhanceAudio?: (block: TimelineBlock, how: { denoise: string; dereverb?: string; voice: boolean; stem?: 'voice' | 'instrumental'; fx?: string; amount?: number }) => Promise<string | null>;
   fixEyes?: (block: TimelineBlock, how: { strength: number }) => Promise<string | null>;
-  runVideoTool?: (block: TimelineBlock, tool: 'stabilize' | 'cutout-video' | 'camera-track', level?: string) => Promise<string | null>;
+  runVideoTool?: (block: TimelineBlock, tool: 'stabilize' | 'cutout-video' | 'camera-track' | 'face-follow', level?: string) => Promise<string | null>;
   subjectTool?: SubjectTool;
   replaceEntries?: (block: TimelineBlock) => ContextMenuEntry[];
   /** The template of the library the picked clips all belong to, shown first (TemplateSection); null when they are not one template's. */
@@ -2212,7 +2212,7 @@ function EyesFields({ block, run, t }: { block: TimelineBlock; run: (block: Time
  * Video tools on a clip, made on this computer (studio/server/media-fx.mjs): steady a shaky shot, take the background
  * out, follow the camera. The new file takes the clip's place (Undo brings the first back); the camera data is only saved.
  */
-function VideoToolsFields({ block, run, t, subject }: { block: TimelineBlock; run: (block: TimelineBlock, tool: 'stabilize' | 'cutout-video' | 'camera-track', level?: string) => Promise<string | null>; t: T; subject?: SubjectTool }) {
+function VideoToolsFields({ block, run, t, subject }: { block: TimelineBlock; run: (block: TimelineBlock, tool: 'stabilize' | 'cutout-video' | 'camera-track' | 'face-follow', level?: string) => Promise<string | null>; t: T; subject?: SubjectTool }) {
   const [level, setLevel] = React.useState('medium');
   const [busy, setBusy] = React.useState<string | null>(null);
   const [error, setError] = React.useState<string | null>(null);
@@ -2226,15 +2226,16 @@ function VideoToolsFields({ block, run, t, subject }: { block: TimelineBlock; ru
   }, [busy]);
   const elapsed = busy ? Math.max(0, Math.round((Date.now() - since) / 1000)) : 0;
   const clock = `${Math.floor(elapsed / 60)}:${String(elapsed % 60).padStart(2, '0')}`;
-  const go = async (tool: 'stabilize' | 'cutout-video' | 'camera-track') => {
+  const go = async (tool: 'stabilize' | 'cutout-video' | 'camera-track' | 'face-follow') => {
     setSince(Date.now()); setDone(null);
     setBusy(tool); setError(null);
     const why = await run(block, tool, level);
     setBusy(null);
     if (why) setError(why);
+    else if (tool === 'face-follow') setDone(t('inspector.vtools.faceDone'));
     else if (tool !== 'camera-track') setDone(t(tool === 'stabilize' ? 'inspector.vtools.stabilized' : 'inspector.vtools.cutoutDone'));
   };
-  const button = (tool: 'stabilize' | 'cutout-video' | 'camera-track', label: string, hint: string) => (
+  const button = (tool: 'stabilize' | 'cutout-video' | 'camera-track' | 'face-follow', label: string, hint: string) => (
     <div className="flex flex-col gap-1">
       <button type="button" disabled={busy !== null} onClick={() => { void go(tool); }}
         className="flex h-8 items-center justify-center gap-1.5 rounded-[10px] border border-[var(--border)] px-2 text-[12px] text-[var(--text)] transition hover:bg-[var(--bg-hover)] disabled:opacity-50">
@@ -2258,6 +2259,7 @@ function VideoToolsFields({ block, run, t, subject }: { block: TimelineBlock; ru
       />
       {button('stabilize', t('inspector.vtools.stabilize'), t('inspector.vtools.stabilizeHint'))}
       {button('cutout-video', t('inspector.vtools.cutout'), t('inspector.vtools.cutoutHint'))}
+      {button('face-follow', t('inspector.vtools.face'), t('inspector.vtools.faceHint'))}
       {button('camera-track', t('inspector.vtools.track'), t('inspector.vtools.trackHint'))}
       {subject ? <SubjectPicker block={block} tool={subject} t={t} /> : null}
       {done ? <p className="text-[11px] text-[var(--ok,#3fb67a)]">{done}</p> : null}

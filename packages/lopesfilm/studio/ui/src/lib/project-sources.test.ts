@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {
   SourceError, createSpeedMeter, examplesCollapsed, fetchErrorKey, followFetch, formatBytes, formatSeconds, looksLikeRepoUrl,
   pathCrumbs, secondsLeft, setExamplesCollapsed, seenSkills, sourcesApi, type FetchJob,
-  SKILLS_CHANGED, watchSkills, seenCatalog, type SkillEntry,
+  SKILLS_CHANGED, SKILLS_CHANGED_QUIET, watchSkills, seenCatalog, type SkillEntry,
 } from './project-sources.ts';
 
 test('older skills responses cannot erase a refreshed catalog or overwrite its newer list', async (t) => {
@@ -197,4 +197,22 @@ test('the examples\' fold is kept, and a storage that throws is no fold', () => 
 test('a length past an hour keeps its hours, as the timeline names it', () => {
   assert.equal(formatSeconds(3723), '1:02:03');
   assert.equal(formatSeconds(89), '1:29');
+});
+
+test('an open gallery finds a skill an agent wrote on its own, and keeps quiet while nothing changed', async (t) => {
+  const events = new EventTarget();
+  const lists: SkillEntry[][] = [];
+  let skills: SkillEntry[] = [];
+  t.mock.method(globalThis, 'fetch', async () => new Response(JSON.stringify({ skills })));
+  const stop = watchSkills(null, (list) => lists.push(list), events, 0);
+  await new Promise(setImmediate);
+  events.dispatchEvent(new Event(SKILLS_CHANGED_QUIET));
+  await new Promise(setImmediate);
+  assert.equal(lists.length, 1);
+  skills = [{ name: 'made-by-agent', description: '', source: 'mine', scripts: 0 }];
+  events.dispatchEvent(new Event(SKILLS_CHANGED_QUIET));
+  await new Promise(setImmediate);
+  assert.deepEqual(lists.at(-1), skills);
+  assert.equal(lists.length, 2);
+  stop();
 });

@@ -48,7 +48,7 @@ import { upscale, STYLES as UPSCALE_STYLES } from './upscale.mjs';
 import { eyes } from './eyes.mjs';
 import { webDownload } from './webdl.mjs';
 import { runListening } from './listening.mjs';
-import { cutoutVideo, stabilize, STABILIZE_LEVELS, stems, STEM_MODES, track, trackSubject } from './media-fx.mjs';
+import { cutoutVideo, stabilize, STABILIZE_LEVELS, stems, trackFace, STEM_MODES, track, trackSubject } from './media-fx.mjs';
 import { effectcraft, FORMAT_NAMES as MOTION_FORMATS } from './effectcraft.mjs';
 import { design, DESIGNS, IMAGE_FORMATS } from './designcraft.mjs';
 import { interpolate, MODES as INTERPOLATE_MODES } from './interpolate.mjs';
@@ -150,6 +150,11 @@ export const VERBS = /** @type {Record<string, VerbSpec>} */ ({
       w: { value: 'n', min: 0, max: 1, required: true }, h: { value: 'n', min: 0, max: 1, required: true },
       from: { value: 'n', min: 0 }, to: { value: 'n', min: 0 },
     },
+  },
+  'face-track': {
+    help: 'Follow a face through a video on this computer, with no box drawn: the largest face found by itself, then the same one (--from seconds, to --to; a moment with a face turned to the camera). A JSON with the face box on every frame (x, y, w, h, 0 to 1 of the picture), smoothed, for a zoom or a framing that keeps the face where you want it, or a title that follows it. The first time it installs its detector (about 180 MB). Returns its path.',
+    dir: 'assets/data', timeoutSec: 1800,
+    options: { src: { value: 'path', required: true, path: 'media' }, out, from: { value: 'n', min: 0 }, to: { value: 'n', min: 0 } },
   },
   'cutout-video': {
     help: 'Take the background out of a short video on this computer (the local IS-Net, frame by frame, slow): a transparent WebM at --fps (default 12; at most 240 frames). Needs the local background model installed. Returns the new clip.',
@@ -324,7 +329,7 @@ const NO_OWN_SERVICES = 'The person has added no services of their own. In Studi
 
 /** Each kind of media, in words (finding voices is part of voice-over). */
 const WORDS = /** @type {Record<string, string>} */ ({
-  tts: 'voice-over', music: 'music', sfx: 'sound effects', asr: 'transcripts', cutout: 'backgrounds taken out', image: 'images', 'image-search': 'image search', 'video-search': 'video search', 'web-music': 'web music', 'audio-clean': 'audio cleanup', stabilize: 'video stabilization', 'camera-track': 'camera tracking', 'subject-track': 'subject tracking', 'web-download': 'downloads from links', 'youtube-music': 'music from YouTube', listen: 'listening', 'sound-find': 'sound search', 'sound-review': 'sound review', breakdown: 'video breakdowns', earshot: 'listening', 'rea-video': 'video breakdowns', 'cutout-video': 'video background removal', stems: 'voice and music split', upscale: 'upscaling', eyes: 'eye contact', effectcraft: 'motion graphics', figcraft: 'design', vectorcraft: 'vector drawings', interpolate: 'smooth slow motion', autoedit: 'automatic cuts', soundcraft: 'sound mixing', anicraft: 'animation', browse: 'browser',
+  tts: 'voice-over', music: 'music', sfx: 'sound effects', asr: 'transcripts', cutout: 'backgrounds taken out', image: 'images', 'image-search': 'image search', 'video-search': 'video search', 'web-music': 'web music', 'audio-clean': 'audio cleanup', stabilize: 'video stabilization', 'camera-track': 'camera tracking', 'subject-track': 'subject tracking', 'face-track': 'face tracking', 'web-download': 'downloads from links', 'youtube-music': 'music from YouTube', listen: 'listening', 'sound-find': 'sound search', 'sound-review': 'sound review', breakdown: 'video breakdowns', earshot: 'listening', 'rea-video': 'video breakdowns', 'cutout-video': 'video background removal', stems: 'voice and music split', upscale: 'upscaling', eyes: 'eye contact', effectcraft: 'motion graphics', figcraft: 'design', vectorcraft: 'vector drawings', interpolate: 'smooth slow motion', autoedit: 'automatic cuts', soundcraft: 'sound mixing', anicraft: 'animation', browse: 'browser',
   video: 'video', translate: 'subtitle translation', 'web-search': 'web search',
 });
 /** The media services `get` can use, by name (none comes first), what each makes, and where the person connects them. */
@@ -504,9 +509,9 @@ export async function runGet(root, verb, given, { via, model, yes = false, ask, 
     const done = await runListening(root, verb, /** @type {any} */ (args), signal).catch((e) => { throw new GetError(e.message); });
     return show(done);
   }
-  if (verb === 'stabilize' || verb === 'camera-track' || verb === 'subject-track' || verb === 'cutout-video' || verb === 'stems') {
+  if (verb === 'stabilize' || verb === 'camera-track' || verb === 'subject-track' || verb === 'face-track' || verb === 'cutout-video' || verb === 'stems') {
     const a = /** @type {any} */ (args);
-    const done = await (verb === 'stabilize' ? stabilize(root, a, signal) : verb === 'camera-track' ? track(root, a) : verb === 'subject-track' ? trackSubject(root, a) : verb === 'stems' ? stems(root, a) : cutoutVideo(root, a, signal, () => {})).catch((e) => { throw new GetError(e.message); });
+    const done = await (verb === 'stabilize' ? stabilize(root, a, signal) : verb === 'camera-track' ? track(root, a) : verb === 'subject-track' ? trackSubject(root, a) : verb === 'face-track' ? trackFace(root, a, signal) : verb === 'stems' ? stems(root, a) : cutoutVideo(root, a, signal, () => {})).catch((e) => { throw new GetError(e.message); });
     return show(done);
   }
   if (verb === 'upscale' || verb === 'eyes') {
@@ -800,7 +805,7 @@ export async function catalog(only, { web = false } = {}) {
   const all = await Promise.all(listed.map(async ([verb, spec]) => ({
     verb, help: verb === 'call' && own.length ? `${spec.help} The person's services: ${servicesHelp(own).join('; ')}` : spec.help,
     ...(spec.dir ? { dir: spec.dir } : {}), options: spec.options,
-    usable: verb === 'call' ? own.length > 0 : verb === 'audio-clean' || verb === 'stabilize' || verb === 'camera-track' || verb === 'subject-track' || verb === 'cutout-video' || verb === 'stems' || verb === 'web-download' || verb === 'youtube-music' || verb === 'listen' || verb === 'sound-find' || verb === 'sound-review' || verb === 'breakdown' || verb === 'earshot' || verb === 'rea-video' || verb === 'upscale' || verb === 'eyes' || verb === 'effectcraft' || verb === 'figcraft' || verb === 'vectorcraft' || verb === 'interpolate' || verb === 'autoedit' || verb === 'soundcraft' || verb === 'anicraft' || verb === 'browse' ? true : Boolean(await chooseProvider(/** @type {Verb} */ (verb), { settings })) || (verb === 'asr' && whisperAvailable()),
+    usable: verb === 'call' ? own.length > 0 : verb === 'audio-clean' || verb === 'stabilize' || verb === 'camera-track' || verb === 'subject-track' || verb === 'face-track' || verb === 'cutout-video' || verb === 'stems' || verb === 'web-download' || verb === 'youtube-music' || verb === 'listen' || verb === 'sound-find' || verb === 'sound-review' || verb === 'breakdown' || verb === 'earshot' || verb === 'rea-video' || verb === 'upscale' || verb === 'eyes' || verb === 'effectcraft' || verb === 'figcraft' || verb === 'vectorcraft' || verb === 'interpolate' || verb === 'autoedit' || verb === 'soundcraft' || verb === 'anicraft' || verb === 'browse' ? true : Boolean(await chooseProvider(/** @type {Verb} */ (verb), { settings })) || (verb === 'asr' && whisperAvailable()),
   })));
   const missing = all.filter((v) => !v.usable && v.verb !== 'call').map((v) => v.verb);
   if (only === undefined && !all.some((v) => v.usable)) return { verbs: [], note: nothing(), services: services() };

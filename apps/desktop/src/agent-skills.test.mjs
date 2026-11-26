@@ -95,7 +95,8 @@ test("Codex: each of the person's own not let in turned off by its file, Lopes.F
     [[join(w.home, '.codex/skills/old-lopesfilm/SKILL.md'), false], [join(w.home, '.codex/plugins/cache/someone/pets/0.1/skills/pet/SKILL.md'), false]]);
   assert.equal(s.codexConfig['mcp_servers.my-db.enabled'], false, 'the person\'s server turned off by itself, the rest of it left');
   assert.ok(!('mcp_servers.node_repl.enabled' in s.codexConfig), 'the servers its own apps put there stay');
-  assert.equal(s.additionalDirectories.length, 1);
+  assert.equal(s.additionalDirectories.length, 2, "Lopes.Film's folder, and the person's own skills folder an agent makes a skill in");
+  assert.equal(s.additionalDirectories.at(-1), join(w.lopesfilmHome, 'skills'));
   assert.ok(existsSync(join(s.additionalDirectories[0], '.agents', 'skills', 'project-brand', 'SKILL.md')), 'by its full name');
 });
 

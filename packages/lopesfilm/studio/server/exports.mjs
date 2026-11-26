@@ -99,6 +99,7 @@ import { mediaReferences, referenceSource } from '../../src/media-links.mjs';
 import { PROJECT_PARTS, TOOL_DIR } from './projects.mjs';
 import { exportsRoot } from '../../src/locations.mjs';
 import { recordProblem } from '../../src/problems.mjs';
+import { saveVideoNote } from './obsidian.mjs';
 
 /** The exports folder: the one chosen in Settings, else the Desktop, where a file just made is found (src/locations.mjs). */
 export { exportsRoot };
@@ -1696,6 +1697,8 @@ export function createExports({ onChange = () => {}, captions = subtitlesForExpo
       if (abort.signal.aborted) throw new Error('cancelled');
       const bytes = job.outputs.reduce((n, f) => n + (existsSync(f) ? statSync(f).size : 0), 0);
       update(job, { status: 'done', progress: 1, phase: null, etaMs: null, bytes, finishedAt: Date.now() });
+      /* a finished video goes into the person's Obsidian (server/obsidian.mjs); never at the cost of the export */
+      void saveVideoNote(job, { root }).catch((e) => recordProblem({ area: 'export', step: 'obsidian', what: e instanceof Error ? e.message : String(e), project: root }));
     } catch (e) {
       /* what a cancelled or failed export left half written is not an export */
       for (const f of job.outputs) await rm(f, { force: true }).catch(() => {});

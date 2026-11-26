@@ -35,7 +35,7 @@ import { randomUUID } from 'node:crypto';
 import { moveToTrash } from '../studio/server/trash.mjs';
 import { pictureType } from '../studio/server/cover.mjs';
 import { parseRepoUrl } from '../studio/server/fetch-repo.mjs';
-import { libraryDefault, setSharedPref, sharedHome, sharedPref } from './locations.mjs';
+import { chosenFolder, libraryDefault, setSharedPref, sharedHome, sharedPref } from './locations.mjs';
 
 const mkdirSyncSafe = (/** @type {string} */ dir) => mkdirSync(dir, { recursive: true });
 /** a folder moved to another place: renamed, else (another disk) copied and then removed */
@@ -97,7 +97,8 @@ export const coreSkillsDir = () => join(dirname(fileURLToPath(import.meta.url)),
  * ~/Movies/Lopes.Film/Projects on macOS, ~/Videos/Lopes.Film/Projects elsewhere: locations.mjs libraryDefault). They stay
  * there when new projects are set to go elsewhere.
  */
-export const mySkillsDir = () => process.env.LOPESFILM_SKILLS || join(dirname(libraryDefault()), 'Skills');
+export const mySkillsDir = ({ library = null, home = sharedHome() } = {}) =>
+  process.env.LOPESFILM_SKILLS || join(dirname(chosenFolder('projectsFolder', home) ?? library ?? libraryDefault()), 'Skills');
 /** Where the person's own skills were kept before: `skills/` in Studio's home. */
 export const oldSkillsDir = () => join(process.env.LOPESFILM_HOME || join(homedir(), '.lopesfilm'), 'skills');
 

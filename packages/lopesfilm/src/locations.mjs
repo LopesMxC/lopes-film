@@ -49,7 +49,11 @@ export function setSharedPref(key, value, home = sharedHome()) {
 
 /** Where new projects go unless the person chose: LOPESFILM_LIBRARY, else ~/Movies/Lopes.Film/Projects on macOS, ~/Videos/Lopes.Film/Projects elsewhere. */
 export const libraryDefault = () => process.env.LOPESFILM_LIBRARY
-  || join(homedir(), process.platform === 'darwin' ? 'Movies' : 'Videos', 'Lopes.Film', 'Projects');
+  || join(videosFolder(), 'Lopes.Film', 'Projects');
+
+/** The computer's Videos folder (Movies on a Mac): LOPESFILM_VIDEOS (the app sets it from the system's own, which is not
+ *  ~/Videos when Windows keeps the user's folders in OneDrive or elsewhere), else ~/Videos. */
+export const videosFolder = () => process.env.LOPESFILM_VIDEOS || join(homedir(), process.platform === 'darwin' ? 'Movies' : 'Videos');
 
 /**
  * Where exports go unless a folder is picked when exporting: LOPESFILM_EXPORTS, else `exports` in LOPESFILM_HOME when
@@ -71,8 +75,8 @@ export const savedRoot = () => process.env.LOPESFILM_SAVED || join(dirname(libra
 export const LOCATION_KEYS = /** @type {const} */ ({ projects: 'projectsFolder' });
 
 /** A folder the person chose, as kept in prefs.json: an absolute path, or null (none chosen, or not one). */
-export function chosenFolder(/** @type {'projectsFolder'} */ key) {
-  const value = sharedPref(key);
+export function chosenFolder(/** @type {'projectsFolder'} */ key, home = sharedHome()) {
+  const value = sharedPref(key, home);
   return typeof value === 'string' && isAbsolute(value) ? resolve(value) : null;
 }
 

@@ -13,6 +13,7 @@ import { dirname, join } from 'node:path';
 import { inside } from './files.mjs';
 import { ffmpeg } from '../../src/shared.mjs';
 import { ffmpegFilters } from './audio-clean.mjs';
+import { runPyTool } from './pytools.mjs';
 
 /** @param {string} file @returns {Promise<{ fps: number, seconds: number, width: number, height: number, audio: boolean }>} */
 async function probe(file) {
@@ -246,4 +247,25 @@ export async function trackSubject(root, a) {
   }
   await writeFile(abs, JSON.stringify({ src: a.src, fps, width: info.width, height: info.height, from, frames }, null, 1));
   return { src: rel, frames: frames.length, fps, path: frames.filter((_, i) => i % Math.max(1, Math.round(frames.length / 120)) === 0).map((f) => ({ t: f.t, x: f.x + f.w / 2, y: f.y + f.h / 2 })), note: 'Per frame: t (seconds in the clip), the box x, y, w, h (0 to 1 of the picture) and sure (0 to 1). A graphic placed at the box\'s centre follows the subject.' };
+}
+
+/**
+ * A face followed through a clip with no box drawn: found by MediaPipe's face detector (studio/server/py/facetrack.py, in
+ * a Python of its own that installs the first time), the largest face and then the same one, the path smoothed. Saved in
+ * the form subject-track makes: per frame its time and the box, 0 to 1 of the picture, and how sure it was.
+ * @param {string} root @param {{ src: string, out: string, from?: number, to?: number }} a @param {AbortSignal} [signal]
+ */
+export async function trackFace(root, a, signal) {
+  const input = inside(root, a.src);
+  const info = await probe(input);
+  const from = Math.max(0, a.from ?? 0);
+  const to = Math.min(info.seconds || Infinity, a.to ?? Infinity, from + 300);
+  const { rel, abs } = await target(root, 'data', a.out, 'json', input);
+  const said = await runPyTool('facetrack', [input, abs, String(from), String(Number.isFinite(to) ? to : 0)], { ...(signal ? { signal } : {}), timeoutMs: 20 * 60_000 })
+    .catch((/** @type {Error} */ e) => { throw new Error(/no face found/.test(e.message) ? 'no face was found in that stretch: pick a moment with a face turned to the camera (--from, --to), or follow it by hand with subject-track' : e.message); });
+  const line = said.split('\n').filter(Boolean).at(-1) ?? '{}';
+  const made = JSON.parse(line);
+  const data = JSON.parse(await readFile(abs, 'utf8'));
+  const frames = /** @type {Array<{ t: number, x: number, y: number, w: number, h: number }>} */ (data.frames);
+  return { src: rel, frames: made.frames, found: made.found, fps: made.fps, width: data.width, height: data.height, path: frames.filter((_, i) => i % Math.max(1, Math.round(frames.length / 240)) === 0).map((f) => ({ t: f.t, x: f.x + f.w / 2, y: f.y + f.h / 2, size: Number(Math.max(f.w, f.h).toFixed(4)) })), note: 'Per frame: t (seconds in the clip), the face box x, y, w, h (0 to 1 of the picture) and sure (0 to 1). Frame it with the box\'s centre and size: a clip scaled and moved so the face stays where you want it.' };
 }

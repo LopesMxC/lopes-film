@@ -17,7 +17,7 @@ import { ProjectStarters } from '@/components/ProjectStarters';
 import { AttachmentPreview, type AttachmentPreviewItem } from '@/components/AttachmentPreview';
 import { ModelPopover } from '@/components/ModelPopover';
 import { AddSkillDialog, type PickedSkill } from '@/components/AddSkill';
-import { SKILLS_CHANGED } from 'lopesfilm/studio-ui/lib/project-sources.ts';
+import { SKILLS_CHANGED, SKILLS_CHANGED_QUIET } from 'lopesfilm/studio-ui/lib/project-sources.ts';
 import { CardActions, CardButton, ComposerCard } from '@/components/ComposerCard';
 import { AgentPermissionCard } from '@/components/AgentPermissionCard';
 import { LocalAgentQuestionCard } from '@/components/TurnQuestionCard';
@@ -485,11 +485,24 @@ function ChatPane({ project, banners, selection, shownFilm, assetsOpen, assetsOv
      again, and the agents' sessions take it up; "make one with the agent" there: its message put in the composer */
   React.useEffect(() => {
     const changed = () => { void reloadSkills(); void app.skills?.changed?.().catch(() => {}); };
-    const make = () => { composerRef.current?.setText(t('skills.makePrompt').replace('{folder}', skillListing?.mine ?? '')); composerRef.current?.focus(); };
+    const make = async () => {
+      /* the folder is read now when the list had not come yet: an empty one sent the agent to save it anywhere */
+      const folder = skillListing?.mine || (await app.skills?.list(project.path, agent).catch(() => null))?.mine || '';
+      composerRef.current?.setText(t('skills.makePrompt').replace('{folder}', folder));
+      composerRef.current?.focus();
+    };
     window.addEventListener(SKILLS_CHANGED, changed);
     window.addEventListener(MAKE_SKILL, make);
     return () => { window.removeEventListener(SKILLS_CHANGED, changed); window.removeEventListener(MAKE_SKILL, make); };
-  }, [reloadSkills, skillListing, t]);
+  }, [reloadSkills, skillListing, t, project.path, agent]);
+  /* a skill the agent made while it worked, or one put in the folder by hand: listed when the turn ends and when the
+     window is back in front, without closing the app */
+  React.useEffect(() => {
+    const again = () => { void reloadSkills(); window.dispatchEvent(new Event(SKILLS_CHANGED_QUIET)); };
+    window.addEventListener('focus', again);
+    return () => window.removeEventListener('focus', again);
+  }, [reloadSkills]);
+
   const mentionProviders = React.useMemo<MentionProvider[]>(() => {
     const picked = selection?.refs ?? [];
     const range = selection ? selectionRange(selection) : null;
@@ -973,6 +986,12 @@ function ChatPane({ project, banners, selection, shownFilm, assetsOpen, assetsOv
     () => new Map(allRunning.filter((r) => r.projectId === projectKey).map((r) => [r.sessionId, r.id])),
     [allRunning, projectKey],
   );
+  const wasWorking = React.useRef(false);
+  React.useEffect(() => {
+    const working = allRunning.length > 0;
+    if (wasWorking.current && !working) { void reloadSkills(); window.dispatchEvent(new Event(SKILLS_CHANGED_QUIET)); }
+    wasWorking.current = working;
+  }, [allRunning, reloadSkills]);
   /* those that stopped while another was shown, and how their last turn ended: lit until shown */
   const [unseen, setUnseen] = React.useState<Map<string, 'done' | 'error'>>(() => new Map());
   const wasRunning = React.useRef(running);

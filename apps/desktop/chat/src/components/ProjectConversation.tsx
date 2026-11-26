@@ -4,7 +4,7 @@ import React from 'react';
 import { AGENT_DEFINITIONS, isAgentId } from '../../../src/agent-definitions.mjs';
 import type { PublicProgressSnapshot, TurnAttachment } from '@lopesfilm/shared';
 import { BellRing, Check, ChevronRight, Copy, KeyRound, Undo2 } from '@/lib/icons';
-import { AgentActivityList, formatWorkDuration, StatusLine, type AgentActivityItem } from './AgentActivityRow';
+import { AgentActivityList, formatWorkDuration, PlanProgress, StatusLine, type AgentActivityItem } from './AgentActivityRow';
 import { AgentIcon, hasAgentIcon } from './AgentIcons';
 import { BrandLogo } from './BrandLogo';
 import { StickToBottomContext } from './useStickToBottom';
@@ -419,6 +419,7 @@ const ConversationTurn = React.memo(function ConversationTurn({
           in the tree: a log opened from it stays open as the turn finishes. An interruption doesn't
           show Failed here: the reason and Resume appear above the composer (the last turn's, even after a
           restart); an older one's reason is on its footer's Interrupted, on hover. */}
+      {running ? <PlanProgress items={items} /> : null}
       {running ? <StatusLine items={rows ?? NO_ROWS} fallback={liveActivity} ownAgent={entry.agent === 'byok' || entry.agent === 'lopesfilm'} /> : null}
       <TurnFooter entry={entry} items={items} running={running} last={isLast} />
       </div>

@@ -314,7 +314,7 @@ function filmDuration(/** @type {string} */ folder) {
  */
 /** The libraries of every Lopes.Film brand on this computer (Lopes.Film, GlobalFilm, VerkzFilm, OpenFilm), and the chosen one. */
 function knownLibraries() {
-  const base = join(homedir(), process.platform === 'darwin' ? 'Movies' : 'Videos');
+  const base = process.env.LOPESFILM_VIDEOS || join(homedir(), process.platform === 'darwin' ? 'Movies' : 'Videos');
   const names = ['Lopes.Film', 'GlobalFilm', 'VerkzFilm', 'OpenFilm', 'Lopes.Film Preview'];
   return [libraryRoot(), ...names.map((n) => join(base, n, 'Projects')), ...names.map((n) => join(homedir(), 'Documents', n, 'Projects'))]
     .filter((d, i, all) => all.indexOf(d) === i && existsSync(d));

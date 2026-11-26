@@ -1734,6 +1734,9 @@ export const ptBR: Words = {
       subjectRun: 'Rastrear',
       subjectClose: 'Fechar',
       subjectDone: 'Trajeto salvo em {file}.',
+      face: "Seguir o rosto",
+      faceHint: "Acha o rosto sozinho e dá zoom, movendo a imagem para ele ficar no centro. Desfazer traz de volta.",
+      faceDone: "Pronto: o clipe agora segue o rosto (Desfazer volta ao original).",
     },
     clean: {
       noise: 'Ruído e voz',
@@ -3094,6 +3097,13 @@ export const ptBR: Words = {
       open: "Abrir o guia",
       browser: "Meu navegador para pesquisa",
       browserHint: "O agente pode abrir as referências que encontrar no seu navegador padrão, para você ver também.",
+    },
+    obsidian: {
+      group: "Obsidian",
+      on: "Salvar vídeos finalizados no Obsidian",
+      onHint: "Cada vídeo que você termina de exportar vira uma nota no seu cofre do Obsidian, ligada a um índice que o mapa mental pode usar.",
+      folder: "Pasta do cofre",
+      folderHint: "Deixe vazio para usar Mapas de Estudo > Aprendizados Claude, quando existir neste computador.",
     },
     title: "Configurações",
     done: "Concluído",

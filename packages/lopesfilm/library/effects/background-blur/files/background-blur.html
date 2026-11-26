@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Background blur</title>
+<style>
+html, body { margin: 0; height: 100%; overflow: hidden; background: transparent; }
+.l { position: fixed; inset: 0; pointer-events: none; }
+:root { --amount: 28; --width: 46; --height: 78; --dim: 0.12; }
+.l { will-change: mask-image; }
+</style>
+</head>
+<body>
+<div class="l"></div>
+<script>
+/*
+ * Background blur: The sides of the picture blur and dim while a clear central window keeps the subject sharp; it eases in over the first moments. A page of Lopes.Film's library (CC0), by Lopes. It blurs what lies beneath it (backdrop-filter);
+ * what it shows at t comes from t alone, so each frame is the same in the preview and in the export.
+ */
+const root = document.documentElement;
+const num = (n, d) => { const v = parseFloat(getComputedStyle(root).getPropertyValue(n)); return Number.isFinite(v) ? v : d; };
+const el = document.querySelector('.l');
+function draw(t) {
+  const amount = num('--amount', 28), w = num('--width', 46), h = num('--height', 78), dim = num('--dim', 0.12);
+  const ramp = Math.min(1, t / 0.6);
+  const a = amount * ramp;
+  const sx = 50 - w / 2, ex = 50 + w / 2, sy = 50 - h / 2, ey = 50 + h / 2;
+  const clear = 'linear-gradient(#000, #000)';
+  const m = 'linear-gradient(90deg, #000 ' + sx + '%, transparent ' + (sx + 6) + '%, transparent ' + (ex - 6) + '%, #000 ' + ex + '%), linear-gradient(0deg, #000 ' + sy + '%, transparent ' + (sy + 6) + '%, transparent ' + (ey - 6) + '%, #000 ' + ey + '%)';
+  const s = 'blur(' + a + 'px)';
+  el.style.cssText = 'backdrop-filter: ' + s + '; -webkit-backdrop-filter: ' + s + '; background: rgba(0,0,0,' + dim * ramp + '); -webkit-mask-image: ' + m + '; mask-image: ' + m + '; -webkit-mask-composite: source-over; mask-composite: add';
+}
+window.film = { frame(t) { draw(t); } };
+draw(0);
+if (!window.filmHost) {
+  const t0 = performance.now();
+  const loop = () => { const t = (performance.now() - t0) / 1000; window.film.frame(window.film.duration ? t % window.film.duration : t); requestAnimationFrame(loop); };
+  loop();
+}
+</script>
+</body>
+</html>

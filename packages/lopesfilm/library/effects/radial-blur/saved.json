@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "kind": "clip",
+  "clip": {
+    "src": "radial-blur.html",
+    "time": [
+      0,
+      4
+    ],
+    "attrs": {
+      "data-props": "[{\"name\": \"Amount\", \"type\": \"var\", \"var\": \"--amount\"}, {\"name\": \"Size\", \"type\": \"var\", \"var\": \"--size\"}, {\"name\": \"Pulse\", \"type\": \"var\", \"var\": \"--pulse\"}]"
+    }
+  },
+  "durationMs": 4000
+}

@@ -186,6 +186,8 @@ Work fast; the person is waiting:
   \`look <from>-<to>\`) on the moment it changed. Then say it is done in one line.
 - \`${run} look\` with no time (the whole film) only after you made a new film or changed most of it, once, at the end;
   never after each step. Render nothing: the person exports from Studio.
+- A new film, or a change to most of one: first set a plan, a short list of its steps (4 to 8), and tick the steps off as
+  you finish them; the person sees a percentage from it. Make no plan for a small change.
 - Pieces that are ready together go in one \`${run} edit\` call, not one call each. Run commands that do not depend on
   each other at the same time.
 

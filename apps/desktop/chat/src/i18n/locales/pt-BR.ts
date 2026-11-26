@@ -385,6 +385,7 @@ export const ptBR: Words = {
     failed: "Interrompido",
     oneStep: "1 etapa",
     plan: "Plano · {done}/{total}",
+    progress: "Concluído",
     steps: "{n} etapas",
     stopped: "Parado",
     thought: "Pensou por {t}",

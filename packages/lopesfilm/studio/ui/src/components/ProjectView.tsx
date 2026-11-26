@@ -161,6 +161,7 @@ import type { LayerPropsActions } from './FilmInspector';
 import { SAVED, refreshSaved, savedActions, savedSources, useSavedListing } from '@/lib/saved';
 import { batchMap } from '@/lib/batch-map';
 import { groupInsertAt, groupInsertOps, keyframesOps } from '@/lib/saved-insert';
+import { faceFollowMotion } from '@/lib/face-follow';
 import { pageClips, pageMayHave, similarEdits } from '@/lib/similar-layers';
 import type { MaskSession } from '@/lib/stage-mask';
 import type { MaskShape } from '@/lib/clip-mask';
@@ -2454,9 +2455,24 @@ export function ProjectView({ projectId, onProject, onTimeline, nested, onLeave 
     },
   }), [projectId, loaded?.project.path, t]);
   /* stabilize / remove the background / follow the camera on a video clip (studio/server/media-fx.mjs): the new file takes the clip's place, except the camera data, which is only saved */
-  const runVideoTool = React.useCallback(async (block: TimelineBlock, tool: 'stabilize' | 'cutout-video' | 'camera-track', level?: string): Promise<string | null> => {
+  const runVideoTool = React.useCallback(async (block: TimelineBlock, tool: 'stabilize' | 'cutout-video' | 'camera-track' | 'face-follow', level?: string): Promise<string | null> => {
     if (!block.loc || !block.src || !loaded?.project.path) return t('inspector.vtools.failed');
     const [file = '', frag = ''] = block.src.split('#', 2) as [string, string?];
+    /* the face followed: found by itself, then the clip is zoomed in and panned so it stays at the centre (its motion, kept as the clip's keyframes) */
+    if (tool === 'face-follow') {
+      try {
+        const from = (block.inMs ?? 0) / 1000;
+        const speed = block.speed ?? 1;
+        const to = from + ((block.endMs - block.startMs) * speed) / 1000;
+        const text = await api.make(loaded.project.path, 'face-track', { src: file, out: `${outName(file, 'video')}-rosto`, from, to }, {});
+        const done = JSON.parse(text) as { width?: number; height?: number; path?: Array<{ t: number; x: number; y: number }> };
+        const motion = faceFollowMotion((done.path ?? []).map((p) => ({ t: (p.t - from) / speed, x: p.x, y: p.y })), { w: done.width ?? 0, h: done.height ?? 0 }, stageRef.current ?? { w: 1920, h: 1080 });
+        if (!motion) return t('inspector.vtools.failed');
+        return await editBlocks([{ loc: block.loc, prop: 'motion', value: motion as never }]);
+      } catch (e) {
+        return e instanceof Error ? e.message : t('inspector.vtools.failed');
+      }
+    }
     const suffix = tool === 'stabilize' ? 'estavel' : tool === 'cutout-video' ? 'sem-fundo' : 'camera';
     const base = outName(file.replace(/-(estavel|sem-fundo|camera)(-\d+)?(\.[^./]+)?$/, ''), 'video');
     try {

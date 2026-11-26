@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Motion blur</title>
+<style>
+html, body { margin: 0; height: 100%; overflow: hidden; background: transparent; }
+.l { position: fixed; inset: 0; pointer-events: none; }
+:root { --amount: 26; --angle: 0; --pulse: 1; }
+.l { backdrop-filter: url(#mb); }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:fixed"><filter id="mb" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feGaussianBlur id="g" stdDeviation="0 0"/></filter></svg>
+<div class="l"></div>
+<script>
+/*
+ * Motion blur: A one-direction smear over the whole picture, like a fast pan or a whip: choose the angle and the strength, and let it surge in and out. A page of Lopes.Film's library (CC0), by Lopes. It blurs what lies beneath it (backdrop-filter);
+ * what it shows at t comes from t alone, so each frame is the same in the preview and in the export.
+ */
+const root = document.documentElement;
+const num = (n, d) => { const v = parseFloat(getComputedStyle(root).getPropertyValue(n)); return Number.isFinite(v) ? v : d; };
+const g = document.getElementById('g');
+function draw(t) {
+  const amount = num('--amount', 26), angle = num('--angle', 0) * Math.PI / 180, pulse = num('--pulse', 1);
+  const k = 1 - pulse * 0.5 + pulse * 0.5 * (0.5 + 0.5 * Math.sin(t * 2.2));
+  const a = amount * k;
+  g.setAttribute('stdDeviation', (a * Math.abs(Math.cos(angle))).toFixed(2) + ' ' + (a * Math.abs(Math.sin(angle))).toFixed(2));
+}
+window.film = { frame(t) { draw(t); } };
+draw(0);
+if (!window.filmHost) {
+  const t0 = performance.now();
+  const loop = () => { const t = (performance.now() - t0) / 1000; window.film.frame(window.film.duration ? t % window.film.duration : t); requestAnimationFrame(loop); };
+  loop();
+}
+</script>
+</body>
+</html>

@@ -104,6 +104,14 @@ export const PY_TOOLS = {
     cli: 'whisperfast', module: '',
     script: fileURLToPath(new URL('./py/whisperfast.py', import.meta.url)).replace(/app\.asar([\\/])/, 'app.asar.unpacked$1'),
   },
+  /* Lopes.Film's face follower (py/facetrack.py): MediaPipe's face detector, whose model comes in the wheel (nothing else
+     to download); 0.10.14 is the last with the solutions API, for Python 3.12 */
+  facetrack: {
+    id: 'facetrack', name: 'Rastreador de rosto (MediaPipe)', license: 'Apache-2.0', by: 'Google, Lopes', bytes: 180 * 2 ** 20,
+    spec: ['mediapipe==0.10.14', 'opencv-python-headless<5', 'numpy<2'],
+    cli: 'facetrack', module: '', python: '3.12',
+    script: fileURLToPath(new URL('./py/facetrack.py', import.meta.url)).replace(/app\.asar([\\/])/, 'app.asar.unpacked$1'),
+  },
   reavideo: {
     id: 'reavideo', name: 'rea-video', license: 'Apache-2.0', by: 'JuneYaooo', bytes: 600 * 2 ** 20,
     spec: ['rea-video[ocr] @ https://github.com/JuneYaooo/rea-video/archive/refs/heads/main.zip'],

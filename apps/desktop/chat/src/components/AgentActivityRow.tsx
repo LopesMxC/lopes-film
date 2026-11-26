@@ -714,3 +714,32 @@ function PendingElapsed({ startedAt }: { startedAt: AgentActivityItem['startedAt
     </span>
   );
 }
+
+/**
+ * How far the agent is with the film, as a percentage: the steps of the plan it set itself that are done (a step in
+ * progress counts as half). Drawn while the turn runs, under its work; none until the agent has a plan.
+ */
+export function PlanProgress({ items }: { items: Array<{ kind: string; plan?: AgentActivityItem['plan'] }> }) {
+  const t = useT();
+  let plan: NonNullable<AgentActivityItem['plan']> = [];
+  for (let i = items.length - 1; i >= 0; i -= 1) {
+    const item = items[i]!;
+    if (item.kind === 'plan' && item.plan?.length) { plan = item.plan; break; }
+  }
+  if (!plan.length) return null;
+  const done = plan.filter((entry) => entry.status === 'completed').length;
+  const working = plan.find((entry) => entry.status === 'in_progress');
+  const percent = Math.min(99, Math.round(((done + (working ? 0.5 : 0)) / plan.length) * 100));
+  const shown = done === plan.length ? 100 : percent;
+  return (
+    <div className="min-w-0 py-1.5" role="progressbar" aria-label={t('turnFrame.progress')} aria-valuemin={0} aria-valuemax={100} aria-valuenow={shown}>
+      <div className="mb-1 flex items-baseline justify-between gap-3 text-[12.5px] text-[var(--text-faint)]">
+        <span className="min-w-0 truncate">{working?.content ?? t('turnFrame.progress')}</span>
+        <span className="shrink-0 tabular-nums text-[var(--text)]">{shown}%</span>
+      </div>
+      <div className="h-1 overflow-hidden rounded-full bg-[var(--bg-field)]">
+        <div className="h-full rounded-full bg-[var(--primary)] transition-[width] duration-500" style={{ width: `${shown}%` }} />
+      </div>
+    </div>
+  );
+}

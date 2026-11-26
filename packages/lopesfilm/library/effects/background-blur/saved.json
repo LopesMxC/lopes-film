@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "kind": "clip",
+  "clip": {
+    "src": "background-blur.html",
+    "time": [
+      0,
+      4
+    ],
+    "attrs": {
+      "data-props": "[{\"name\": \"Amount\", \"type\": \"var\", \"var\": \"--amount\"}, {\"name\": \"Width\", \"type\": \"var\", \"var\": \"--width\"}, {\"name\": \"Height\", \"type\": \"var\", \"var\": \"--height\"}, {\"name\": \"Dim\", \"type\": \"var\", \"var\": \"--dim\"}]"
+    }
+  },
+  "durationMs": 4000
+}

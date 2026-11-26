@@ -23,10 +23,10 @@ import { chooseFolder, chosenFolder } from '../../src/locations.mjs';
 
 /** @typedef {{ scheme: string, custom: Record<string, { base: string, keys: Record<string, string[]> }> }} Keys */
 /** @typedef {{ order: string[], off: string[] }} LibraryCategories */
-/** @typedef {{ proxies: { on: boolean, height: 540 | 720 | 1080 }, seenVersion: string | null, projectsFolder: string | null, keys: Keys | null, autoVersions: boolean, showAutoVersions: boolean, libraryCategories: LibraryCategories | null, researchBrowser: boolean }} Prefs */
+/** @typedef {{ proxies: { on: boolean, height: 540 | 720 | 1080 }, seenVersion: string | null, projectsFolder: string | null, keys: Keys | null, autoVersions: boolean, showAutoVersions: boolean, libraryCategories: LibraryCategories | null, researchBrowser: boolean, obsidianOn: boolean, obsidianFolder: string | null }} Prefs */
 
 /** Proxies on by default, at 720p; versions saved by the person only, and only theirs listed. */
-export const DEFAULT_PREFS = /** @type {Prefs} */ ({ proxies: { on: true, height: 720 }, seenVersion: null, projectsFolder: null, keys: null, autoVersions: false, showAutoVersions: false, libraryCategories: null, researchBrowser: false });
+export const DEFAULT_PREFS = /** @type {Prefs} */ ({ proxies: { on: true, height: 720 }, seenVersion: null, projectsFolder: null, keys: null, autoVersions: false, showAutoVersions: false, libraryCategories: null, researchBrowser: false, obsidianOn: true, obsidianFolder: null });
 const VERSION = /^\d+\.\d+\.\d+(?:-[\w.]+)?$/;
 const HEIGHTS = [540, 720, 1080];
 
@@ -73,7 +73,7 @@ export function libraryCategoriesOf(raw) {
 
 /** What is kept, each field checked; anything missing or wrong is its default. @param {unknown} raw @returns {Prefs} */
 export function prefsOf(raw) {
-  const p = /** @type {{ proxies?: { on?: unknown, height?: unknown }, seenVersion?: unknown, projectsFolder?: unknown, keys?: unknown, autoVersions?: unknown, showAutoVersions?: unknown, libraryCategories?: unknown, researchBrowser?: unknown } | null} */ (raw && typeof raw === 'object' ? raw : null);
+  const p = /** @type {{ proxies?: { on?: unknown, height?: unknown }, seenVersion?: unknown, projectsFolder?: unknown, keys?: unknown, autoVersions?: unknown, showAutoVersions?: unknown, libraryCategories?: unknown, researchBrowser?: unknown, obsidianOn?: unknown, obsidianFolder?: unknown } | null} */ (raw && typeof raw === 'object' ? raw : null);
   const folder = (/** @type {unknown} */ v) => (typeof v === 'string' && isAbsolute(v) ? resolve(v) : null);
   const height = Number(p?.proxies?.height);
   return {
@@ -88,6 +88,8 @@ export function prefsOf(raw) {
     showAutoVersions: p?.showAutoVersions === true,
     libraryCategories: libraryCategoriesOf(p?.libraryCategories),
     researchBrowser: p?.researchBrowser === true,
+    obsidianOn: p?.obsidianOn !== false,
+    obsidianFolder: folder(p?.obsidianFolder),
   };
 }
 
@@ -107,7 +109,7 @@ export function readPrefs() {
  */
 export function writePrefs(patch) {
   const now = readPrefs();
-  const asked = /** @type {{ proxies?: object, seenVersion?: unknown, projectsFolder?: unknown, keys?: unknown, autoVersions?: unknown, showAutoVersions?: unknown, libraryCategories?: unknown, researchBrowser?: unknown }} */ (patch && typeof patch === 'object' ? patch : {});
+  const asked = /** @type {{ proxies?: object, seenVersion?: unknown, projectsFolder?: unknown, keys?: unknown, autoVersions?: unknown, showAutoVersions?: unknown, libraryCategories?: unknown, researchBrowser?: unknown, obsidianOn?: unknown, obsidianFolder?: unknown }} */ (patch && typeof patch === 'object' ? patch : {});
   const next = prefsOf({ ...now, ...asked, proxies: { ...now.proxies, ...(asked.proxies ?? {}) } });
   const at = file();
   let kept = {};

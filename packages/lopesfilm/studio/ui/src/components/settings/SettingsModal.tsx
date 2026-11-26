@@ -24,7 +24,7 @@ import { DiagnosticsGroup } from './DiagnosticsGroup';
 import { ModelsSection } from './ModelsSection';
 import { SettingsSelect } from './SettingsSelect';
 import { ShortcutsSection } from './ShortcutsSection';
-import { SettingsButton, SettingsGroup, SettingsItem, SettingsPage, SettingsSegmented, SettingsSwitch } from './ui';
+import { SettingsButton, SettingsField, SettingsGroup, SettingsItem, SettingsPage, SettingsSegmented, SettingsSwitch } from './ui';
 import { useThemeMode, isSkin, SKINS, type ThemeMode } from './theme';
 import { StorageGroup } from './StorageGroup';
 import { LARGE_DIALOG_SIZE } from '../dialog-chrome';
@@ -269,6 +269,7 @@ function GeneralSection() {
       <StyleMemoryGroup />
       <UpdatesGroup />
       <GuideGroup />
+      <ObsidianGroup />
       <StorageGroup />
       <AboutGroup />
     </SettingsPage>
@@ -440,6 +441,31 @@ function GuideGroup() {
           control={<SettingsSwitch checked={prefs.researchBrowser === true} onChange={(on) => { setPrefs({ ...prefs, researchBrowser: on }); void api.setPrefs({ researchBrowser: on }).then(setPrefs).catch(() => setPrefs(prefs)); }} label={t('settings.guide.browser')} />}
         />
       ) : null}
+    </SettingsGroup>
+  );
+}
+
+/** Each finished video as a note in the person's Obsidian (studio/server/obsidian.mjs). */
+function ObsidianGroup() {
+  const t = useT();
+  const [prefs, setPrefs] = React.useState<StudioPrefs | null>(null);
+  const [folder, setFolder] = React.useState('');
+  React.useEffect(() => { void api.prefs().then((p) => { setPrefs(p); setFolder(p.obsidianFolder ?? ''); }).catch(() => {}); }, []);
+  if (!prefs) return null;
+  const save = (patch: { obsidianOn?: boolean; obsidianFolder?: string | null }) => { void api.setPrefs(patch).then(setPrefs).catch(() => {}); };
+  return (
+    <SettingsGroup title={t('settings.obsidian.group')}>
+      <SettingsItem
+        title={t('settings.obsidian.on')}
+        description={t('settings.obsidian.onHint')}
+        control={<SettingsSwitch checked={prefs.obsidianOn !== false} onChange={(on) => { setPrefs({ ...prefs, obsidianOn: on }); save({ obsidianOn: on }); }} label={t('settings.obsidian.on')} />}
+      />
+      <SettingsItem
+        title={t('settings.obsidian.folder')}
+        description={t('settings.obsidian.folderHint')}
+        control={<SettingsField value={folder} placeholder="Mapas de Estudo/Aprendizados Claude" aria-label={t('settings.obsidian.folder')}
+          onChange={(e) => setFolder(e.target.value)} onBlur={() => save({ obsidianFolder: folder.trim() || null })} />}
+      />
     </SettingsGroup>
   );
 }

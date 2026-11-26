@@ -60,7 +60,7 @@ function releaseIdentity(isPackaged) {
   if (!brand || brand.id === 'lopes') return FLAVORS.release;
   return {
     productName: brand.name, bundleId: brand.appId, studioPort: brand.studioPort, studioHome: null, homeDir: brand.homeDir,
-    library: join(homedir(), process.platform === 'darwin' ? 'Movies' : 'Videos', brand.libraryDir, 'Projects'), sharedHome: null,
+    library: join(process.env.LOPESFILM_VIDEOS || join(homedir(), process.platform === 'darwin' ? 'Movies' : 'Videos'), brand.libraryDir, 'Projects'), sharedHome: null,
   };
 }
 

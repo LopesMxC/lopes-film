@@ -122,17 +122,35 @@ export const seenSkills = (projectId?: string | null): SkillEntry[] | null => se
 
 /** The desktop's add dialog and Studio's gallery share the window. */
 export const SKILLS_CHANGED = 'lopesfilm:skills-changed';
+/** Something may have changed the skills' folders on its own (an agent made one, a window came back): read them again,
+ *  and tell the list only when they differ. */
+export const SKILLS_CHANGED_QUIET = 'lopesfilm:skills-maybe-changed';
+/** How often an open gallery looks at the skills' folders (a skill an agent just wrote shows without closing the app). */
+const SKILLS_LOOK_MS = 4000;
 
-/** Read an open gallery's skills again after an addition; a stale request must not replace the newer list. */
-export function watchSkills(projectId: string | null | undefined, changed: (skills: SkillEntry[]) => void, events: EventTarget = window): () => void {
+/** Read an open gallery's skills again after an addition, and now and then on its own; a stale request must not replace
+ *  the newer list. */
+export function watchSkills(projectId: string | null | undefined, changed: (skills: SkillEntry[]) => void, events: EventTarget = window, lookMs = SKILLS_LOOK_MS): () => void {
   let revision = 0;
-  const refresh = () => {
+  let last = '';
+  const refresh = (quiet: boolean) => {
     const request = ++revision;
-    void sourcesApi.skills(projectId).then((skills) => { if (request === revision) changed(skills); });
+    void sourcesApi.skills(projectId).then((skills) => {
+      if (request !== revision) return;
+      const sign = JSON.stringify(skills);
+      if (quiet && sign === last) return;
+      last = sign;
+      changed(skills);
+    });
   };
-  events.addEventListener(SKILLS_CHANGED, refresh);
-  refresh();
-  return () => { ++revision; events.removeEventListener(SKILLS_CHANGED, refresh); };
+  const loud = () => refresh(false);
+  const quiet = () => refresh(true);
+  events.addEventListener(SKILLS_CHANGED, loud);
+  events.addEventListener(SKILLS_CHANGED_QUIET, quiet);
+  refresh(false);
+  const hidden = () => typeof document !== 'undefined' && document.visibilityState === 'hidden';
+  const timer = lookMs > 0 ? setInterval(() => { if (!hidden()) quiet(); }, lookMs) : null;
+  return () => { ++revision; events.removeEventListener(SKILLS_CHANGED, loud); events.removeEventListener(SKILLS_CHANGED_QUIET, quiet); if (timer) clearInterval(timer); };
 }
 
 export const sourcesApi = {

@@ -111,6 +111,9 @@ export interface StudioPrefs {
   libraryCategories?: { order: string[]; off: string[] } | null;
   /** the person linked their own browser for the agent's research (`get browse`; studio/server/research-browser.mjs) */
   researchBrowser?: boolean;
+  /** each finished video is saved as a note in the person's Obsidian (studio/server/obsidian.mjs); the vault's folder, null: found by itself */
+  obsidianOn?: boolean;
+  obsidianFolder?: string | null;
 }
 /** Where the projects library is (src/locations.mjs): the folder, its default, whether the person chose it, the free space on its disk, how many projects are in it. */
 export interface StudioLocation { path: string; default: string; chosen: boolean; free: number | null; count: number }
@@ -154,7 +157,7 @@ export const api = {
   revealProject: (id: string) => call<object>(`projects/${encodeURIComponent(id)}/reveal`, { method: 'POST', json: {} }),
   /** one of them in the system's file manager */
   openLocation: (which: keyof StudioLocations) => call<{ ok: true }>(`locations/${which}`, { method: 'POST', json: {} }),
-  setPrefs: (patch: { proxies?: Partial<StudioPrefs['proxies']>; seenVersion?: string; projectsFolder?: string | null; keys?: unknown; autoVersions?: boolean; researchBrowser?: boolean; libraryCategories?: StudioPrefs['libraryCategories'] }) => call<StudioPrefs>('prefs', { method: 'PATCH', json: patch }).then((prefs) => {
+  setPrefs: (patch: { proxies?: Partial<StudioPrefs['proxies']>; seenVersion?: string; projectsFolder?: string | null; keys?: unknown; autoVersions?: boolean; researchBrowser?: boolean; obsidianOn?: boolean; obsidianFolder?: string | null; libraryCategories?: StudioPrefs['libraryCategories'] }) => call<StudioPrefs>('prefs', { method: 'PATCH', json: patch }).then((prefs) => {
     window.dispatchEvent(new Event(PREFS_EVENT));
     return prefs;
   }),

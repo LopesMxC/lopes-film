@@ -389,6 +389,7 @@ export const enUS = {
     failed: 'Interrupted',
     oneStep: '1 step',
     plan: 'Plan · {done}/{total}',
+    progress: 'Done',
     steps: '{n} steps',
     stopped: 'Stopped',
     thought: 'Thought for {t}',

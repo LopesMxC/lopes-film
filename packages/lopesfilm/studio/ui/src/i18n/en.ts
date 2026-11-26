@@ -1626,6 +1626,9 @@ export const en = {
       subjectRun: 'Track',
       subjectClose: 'Close',
       subjectDone: 'Path saved to {file}.',
+      face: "Follow the face",
+      faceHint: "Finds the face by itself and zooms in, moving the picture so it stays centred. Undo takes it back.",
+      faceDone: "Done: the clip now follows the face (Undo takes it back).",
     },
     clean: {
       noise: 'Noise & voice',
@@ -2767,6 +2770,13 @@ export const en = {
       open: "Open the guide",
       browser: "My browser for research",
       browserHint: "The agent can open the references it finds in your default browser, so you see them too.",
+    },
+    obsidian: {
+      group: "Obsidian",
+      on: "Save finished videos in Obsidian",
+      onHint: "Each video you finish exporting becomes a note in your Obsidian vault, linked from an index the mind map can use.",
+      folder: "Vault folder",
+      folderHint: "Leave empty to use Mapas de Estudio > Aprendizados Claude when it is found on this computer.",
     },
     title: 'Settings',
     done: 'Done',
