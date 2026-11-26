@@ -114,6 +114,14 @@ export interface StudioHost {
     claudeAccounts?: {
       add: (name: string) => Promise<{ ok: boolean; error?: string; id?: string }>;
       use: (id: string | null) => Promise<{ ok: boolean; error?: string }>;
+      /** Share the use between the accounts: when one's limit is up, the next carries on. */
+      share?: (on: boolean) => Promise<{ ok: boolean }>;
+      /** Each account's use of its plan (null: the computer's own), the windows null when it cannot say. */
+      usage?: () => Promise<Array<{ id: string | null; five: { pct: number; resetsAt: number | null } | null; seven: { pct: number; resetsAt: number | null } | null }>>;
+      /** A new conversation: begin on the account with the most room left (`idle`: nothing else is running). */
+      balance?: (idle: boolean) => Promise<{ ok: boolean; changed?: boolean }>;
+      /** The active account is used up (until, ms since 1970): the next one becomes the active one. */
+      rotate?: (until?: number) => Promise<{ ok: boolean; id?: string | null; allUsedUp?: boolean; error?: string }>;
       rename: (id: string, name: string) => Promise<{ ok: boolean }>;
       remove: (id: string) => Promise<{ ok: boolean }>;
       program: (id: string, words?: { title?: string; button?: string; kind?: 'file' | 'folder' }) => Promise<{ ok: boolean; error?: string }>;
@@ -288,7 +296,7 @@ export interface HostAgent {
   id: HostAgentId;
   name: string;
   /** Claude Code: its accounts (`active` null: the computer's own sign-in) */
-  claudeAccounts?: { active: string | null; list: Array<{ id: string; name: string; path?: string }> };
+  claudeAccounts?: { active: string | null; share?: boolean; list: Array<{ id: string; name: string; path?: string }> };
   shown: boolean;
   status: 'ready' | 'off' | 'sign-in' | 'waiting' | 'missing' | 'key' | 'unavailable' | 'checking';
   install?: string | null;

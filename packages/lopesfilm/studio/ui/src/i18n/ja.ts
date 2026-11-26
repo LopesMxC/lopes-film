@@ -2694,7 +2694,7 @@ export const ja: Words = {
       disconnect: '接続を解除',
       disconnectHint: 'Lopes.Film での利用を止めます。サインインはそのままです。',
       switchAccount: 'アカウントを切り替え',
-      claudeAccounts: {"title": "Claude Code のアカウント", "own": "このコンピューターのアカウント", "ownHint": "Claude Code がここで既にサインインしているアカウント", "programAuto": "通常どおり見つかった Claude Code", "program": "別の Claude Code を使う(または通常に戻す)", "programTitle": "このアカウントで使う Claude Code のフォルダーを選択", "remove": "削除", "removeConfirm": "アカウント {name} を削除しますか?このコンピューターでのサインインは消去されます。", "add": "アカウントを追加", "addRun": "追加してサインイン", "defaultName": "Claude", "namePlaceholder": "アカウント名(例: 仕事)", "hint": "各アカウントは別々にサインインし、それぞれのサインインを保持するので、切り替えてもサインアウトされません。"},
+      claudeAccounts: {"share": "Share the use between the accounts", "shareHint": "When one account's limit is up, the next one carries on the same task, so every plan is used before another agent is asked. Includes this computer's account.", "title": "Claude Code のアカウント", "own": "このコンピューターのアカウント", "ownHint": "Claude Code がここで既にサインインしているアカウント", "programAuto": "通常どおり見つかった Claude Code", "program": "別の Claude Code を使う(または通常に戻す)", "programTitle": "このアカウントで使う Claude Code のフォルダーを選択", "remove": "削除", "removeConfirm": "アカウント {name} を削除しますか?このコンピューターでのサインインは消去されます。", "add": "アカウントを追加", "addRun": "追加してサインイン", "defaultName": "Claude", "namePlaceholder": "アカウント名(例: 仕事)", "hint": "各アカウントは別々にサインインし、それぞれのサインインを保持するので、切り替えてもサインアウトされません。"},
       switchConfirm: '{name} をこのコンピュータでサインアウトし（ターミナルでも同様です）、別のアカウントを選べるようにサインインを開きます。{name} との会話は新しいアカウントで続きます。',
       switchRun: 'サインアウトして切り替え',
       switchElsewhere: '{name} のアカウントはここで切り替えます：{where}。切り替えたら「完了」を選んでください。Lopes.Film がそのときサインインしているアカウントで再接続します。',

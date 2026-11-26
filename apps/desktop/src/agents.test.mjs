@@ -742,3 +742,17 @@ test('a Claude Code older than the one the chat was tried with is said, with how
   assert.equal(claudeOutdated('/x/claude', at('2.2.0')), null);
   assert.equal(claudeOutdated('/x/claude', at(null)), null);
 });
+
+import { setClaudeTeam, teamSession } from './agents.mjs';
+test('a session is given the team only when the use is shared between two or more accounts', () => {
+  setClaudeTeam(() => null);
+  assert.deepEqual(teamSession('lf'), { env: {}, text: '' });
+  setClaudeTeam(() => [{ name: 'A', configDir: null, path: null }]);
+  assert.equal(teamSession('lf').text, '', 'one account is no team');
+  setClaudeTeam(() => [{ name: 'A', configDir: null, path: null }, { name: 'B', configDir: '/b', path: null }]);
+  const t = teamSession('/x/lf');
+  assert.equal(JSON.parse(t.env.LOPESFILM_TEAM).length, 2);
+  assert.equal(t.env.LOPESFILM_TEAM_RUN, '/x/lf');
+  assert.match(t.text, /\/x\/lf team run --task/);
+  setClaudeTeam(null);
+});

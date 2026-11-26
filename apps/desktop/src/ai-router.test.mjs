@@ -138,3 +138,25 @@ test('every model out: the next agent is asked, told where it comes from; none l
   clearExhausted();
   await assert.rejects(runRouted({ agent: 'byok', model: 'a', models: () => ['a', 'b'], roster: () => roster(['byok']), run }), /x/);
 });
+
+test('another account of the same agent carries on before another agent is asked', async () => {
+  const calls = [];
+  const out = await runRouted({
+    agent: 'claude', roster: () => roster(['claude'], ['codex']),
+    rotate: async (agent) => { calls.push(['rotate', agent]); return calls.filter((c) => c[0] === 'rotate').length < 3; },
+    run: async (agent, from) => { calls.push([agent, from]); if (calls.filter((c) => c[0] === 'claude').length < 3) throw new Error('5-hour limit reached'); return 'done'; },
+  });
+  assert.equal(out.result, 'done');
+  assert.equal(out.agent, 'claude', 'still the same agent');
+  assert.ok(!isExhausted('claude'), 'the agent is not left alone: only its account was used up');
+  assert.deepEqual(calls.filter((c) => c[0] === 'claude').map((c) => c[1]), [null, 'claude', 'claude'], 'told where it comes from, so the new session gets what was said');
+});
+
+test('every account used up: on to the next agent', async () => {
+  const out = await runRouted({
+    agent: 'claude', roster: () => roster(['claude'], ['codex']),
+    rotate: async () => false,
+    run: async (agent) => { if (agent === 'claude') throw new Error('usage limit reached'); return 'by codex'; },
+  });
+  assert.equal(out.agent, 'codex');
+});

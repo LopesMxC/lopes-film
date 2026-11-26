@@ -16,6 +16,17 @@ export function ClaudeAccounts({ agent, onError }: { agent: HostAgent; onError: 
   const [adding, setAdding] = React.useState(false);
   const [name, setName] = React.useState('');
   const accounts = agent.claudeAccounts;
+  /* how much of its plan each account has used, as the plan says it (when sharing, or on a look) */
+  const [used, setUsed] = React.useState<Record<string, { five: number | null; seven: number | null }>>({});
+  const key = JSON.stringify([accounts?.list.map((a) => a.id), accounts?.active]);
+  React.useEffect(() => {
+    let live = true;
+    void host?.usage?.().then((all) => {
+      if (!live) return;
+      setUsed(Object.fromEntries(all.map((u) => [u.id ?? 'own', { five: u.five?.pct ?? null, seven: u.seven?.pct ?? null }])));
+    }).catch(() => {});
+    return () => { live = false; };
+  }, [host, key]);
   if (!host || !accounts) return null;
   const run = (job: () => Promise<{ ok?: boolean; error?: string } | unknown>) => {
     setBusy(true);
@@ -51,6 +62,12 @@ export function ClaudeAccounts({ agent, onError }: { agent: HostAgent; onError: 
                 <span className="min-w-0 flex-1">
                   <span className="block truncate text-[14px] text-[var(--text)]">{a.name}</span>
                   <span className="block truncate text-[12px] text-[var(--text-muted)]">
+                    {(() => {
+                      const u = used[a.id ?? 'own'];
+                      return u && (u.five != null || u.seven != null)
+                        ? `${u.five != null ? `5 h ${Math.round(u.five)}%` : ''}${u.five != null && u.seven != null ? ' · ' : ''}${u.seven != null ? `7 d ${Math.round(u.seven)}%` : ''}  ·  `
+                        : '';
+                    })()}
                     {a.id === null ? t('settings.agents.claudeAccounts.ownHint') : a.path ? a.path : t('settings.agents.claudeAccounts.programAuto')}
                   </span>
                 </span>
@@ -73,6 +90,16 @@ export function ClaudeAccounts({ agent, onError }: { agent: HostAgent; onError: 
           );
         })}
       </div>
+      {accounts.list.length >= 1 && host.share ? (
+        <label className="flex cursor-pointer items-start gap-2.5 rounded-[8px] px-2.5 py-2 hover:bg-[var(--bg-field)]">
+          <input type="checkbox" className="mt-1 h-4 w-4 accent-[var(--accent)]" checked={accounts.share === true} disabled={busy}
+            onChange={(e) => run(() => host.share!(e.target.checked))} />
+          <span className="min-w-0 flex-1">
+            <span className="block text-[14px] text-[var(--text)]">{t('settings.agents.claudeAccounts.share')}</span>
+            <span className="block text-[12px] text-[var(--text-muted)]">{t('settings.agents.claudeAccounts.shareHint')}</span>
+          </span>
+        </label>
+      ) : null}
       {adding ? (
         <form className="flex items-center gap-2" onSubmit={(e) => { e.preventDefault(); setAdding(false); run(() => host.add(name.trim() || t('settings.agents.claudeAccounts.defaultName'))); }}>
           <input autoFocus value={name} maxLength={60} onChange={(e) => setName(e.target.value)} placeholder={t('settings.agents.claudeAccounts.namePlaceholder')}

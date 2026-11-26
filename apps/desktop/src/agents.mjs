@@ -268,6 +268,20 @@ const withClaudeAccount = (shell) => (claudeAccount ? { ...shell, CLAUDE_CONFIG_
 /** The program chosen for an agent: the Claude Code account's own, else the one chosen in Settings. */
 const chosenFor = (id) => (id === 'claude' && claudeAccount?.path) || chosenPaths[id] || null;
 
+/**
+ * The accounts the use is shared between (Settings › Agents › Claude Code), as `{ name, configDir, path }`, or null
+ * when it is not shared: a getter, read as each session starts, so a change is there for the next one.
+ */
+let claudeTeamOf = () => null;
+export function setClaudeTeam(getter) { claudeTeamOf = typeof getter === 'function' ? getter : () => null; }
+/** What a session is given to share a request between the accounts: LOPESFILM_TEAM (the accounts), and the words that tell the agent. */
+export function teamSession(run) {
+  const accounts = claudeTeamOf();
+  if (!Array.isArray(accounts) || accounts.length < 2) return { env: {}, text: '' };
+  const text = `This session has a team: ${accounts.length} Claude Code accounts share the work. When a request has parts that do not depend on each other (for example captions, effects and cuts), do not do them one after another: give each part to \`${run} team run --task "<what it is to do>" --title <short> --files <the files it will edit>\`, all of them at the same time as parallel commands, and each runs on the account with the most room left, while the board \`.lopesfilm/team.md\` keeps the plan and the results. Parts that edit the same file wait for each other. Read what they print, check the film once, and answer. A small change, or parts that depend on each other, you do yourself.`;
+  return { env: { LOPESFILM_TEAM: JSON.stringify(accounts), LOPESFILM_TEAM_RUN: run }, text };
+}
+
 let chosenPaths = {};
 export function setChosenPaths(paths) {
   chosenPaths = Object.fromEntries(Object.entries(paths ?? {}).filter(([id, path]) => isAgentId(id) && typeof path === 'string' && path));
@@ -1389,7 +1403,9 @@ export class AgentSession {
     const optimizer = this.opts.agent === 'claude' ? await tokenProxyEnv().catch(() => ({})) : {};
     /* who it is, as `lopesfilm canvas` marks what it puts on the board (LOPESFILM_AGENT) */
     const economy = this.opts.agent === 'claude' ? economyEnv({ shell }) : {};
-    const extra = { ...agentDefaults(this.opts.agent, shell), ...economy, ...this.opts.env, ...(native ? native.env : node.env), ...(cli && this.spec.env ? this.spec.env(cli.path) : {}), ...own, ...skills?.env, ...this.logging?.env, ...optimizer,
+    const team = teamSession(runCommand ?? 'lopesfilm');
+    if (team.text) instructions = `${instructions}\n\n${team.text}`;
+    const extra = { ...agentDefaults(this.opts.agent, shell), ...economy, ...team.env, ...this.opts.env, ...(native ? native.env : node.env), ...(cli && this.spec.env ? this.spec.env(cli.path) : {}), ...own, ...skills?.env, ...this.logging?.env, ...optimizer,
       LOPESFILM_AGENT: this.spec.label };
     /* OpenCode's inline configuration carries both its skills and, in Developer mode, its logging */
     if (skills?.env?.OPENCODE_CONFIG_CONTENT && this.logging?.env?.OPENCODE_CONFIG_CONTENT) {

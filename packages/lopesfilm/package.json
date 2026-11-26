@@ -24,6 +24,8 @@
     "./render": "./src/render.mjs",
     "./problems": "./src/problems.mjs",
     "./skills": "./src/skills.mjs",
+    "./claude-usage": "./src/claude-usage.mjs",
+    "./team": "./src/team.mjs",
     "./skills-cli": "./src/skills-cli.mjs",
     "./studio": "./studio/server/server.mjs",
     "./studio-ui/*": "./studio/ui/src/*",

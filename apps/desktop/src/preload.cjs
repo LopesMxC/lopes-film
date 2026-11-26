@@ -58,6 +58,10 @@ contextBridge.exposeInMainWorld('lopesfilmNative', {
     claudeAccounts: {
       add: (name) => ipcRenderer.invoke('desktop:agents:claude-account-add', { name }),
       use: (id) => ipcRenderer.invoke('desktop:agents:claude-account-use', { id }),
+      share: (on) => ipcRenderer.invoke('desktop:agents:claude-account-share', { on: on === true }),
+      usage: () => ipcRenderer.invoke('desktop:agents:claude-account-usage'),
+      balance: (idle) => ipcRenderer.invoke('desktop:agents:claude-account-balance', { idle: idle === true }),
+      rotate: (until) => ipcRenderer.invoke('desktop:agents:claude-account-rotate', { until }),
       rename: (id, name) => ipcRenderer.invoke('desktop:agents:claude-account-rename', { id, name }),
       remove: (id) => ipcRenderer.invoke('desktop:agents:claude-account-remove', { id }),
       program: (id, words) => ipcRenderer.invoke('desktop:agents:claude-account-program', { id, words }),

@@ -97,6 +97,8 @@ export function readChoices(dataDir) {
     paths,
     claudeAccounts,
     claudeAccount: claudeAccounts.some((a) => a.id === raw.claudeAccount) ? raw.claudeAccount : null,
+    /* the accounts share the use: when one's limit is up the next carries on (rotateClaudeAccount) */
+    claudeShare: raw.claudeShare === true,
   };
 }
 
@@ -267,6 +269,30 @@ export function createRoster(deps) {
     deps.useClaudeAccount?.(active ? { configDir: accountFolder(active.id), path: active.path ?? null } : null);
   };
   useAccount();
+  /* the accounts the use is shared between, read as a session starts: the computer's own, and the app's */
+  deps.useClaudeTeam?.(() => (choices.claudeShare === true && choices.claudeAccounts.length
+    ? [{ name: 'Claude (este computador)', configDir: null, path: null }, ...choices.claudeAccounts.map((a) => ({ name: a.name, configDir: accountFolder(a.id), path: a.path ?? null }))] : null));
+  /** Claude Code accounts that ran out, by id (null: the computer's own): until when they are left alone */
+  const usedUp = new Map();
+  /** an account's usage (null: the computer's own), as Anthropic says it for that account's sign-in; null when it cannot say */
+  const accountUsage = async (/** @type {string | null} */ id) => {
+    const u = deps.claudeUsage ? await deps.claudeUsage(id === null ? null : accountFolder(id)) : null;
+    return u ? { five: u.five, seven: u.seven } : null;
+  };
+  const fullOf = (u) => { const all = [u?.five?.pct, u?.seven?.pct].filter((n) => typeof n === 'number'); return all.length ? Math.max(...all) : null; };
+  /**
+   * The account with the most room left, of those not used up (an account that cannot say is taken as half full).
+   * `keep`: the active account stays unless the best has this many points more room (0: always the best).
+   */
+  const bestAccount = async (/** @type {(string | null)[]} */ ids, /** @type {string | null} */ active, { keep = 0 } = {}) => {
+    const now = Date.now();
+    for (const [id, t] of usedUp) if (t <= now) usedUp.delete(id);
+    const scored = await Promise.all(ids.map(async (id) => ({ id, full: fullOf(await accountUsage(id)) })));
+    const open = scored.filter((a) => !usedUp.has(a.id) && (a.full ?? 50) < 99);
+    if (!open.length) return null;
+    const rank = (a) => (a.full ?? 50) + (a.id === active ? -keep : 0);
+    return open.reduce((best, a) => (rank(a) < rank(best) ? a : best));
+  };
   /** what is happening now, beyond what is kept: a sign-in or an install waited for, an error to show */
   const live = { waiting: {}, installing: {}, errors: {}, connectionIssues: {} };
   let local = null;
@@ -329,7 +355,7 @@ export function createRoster(deps) {
       ...(live.connectionIssues[id] ? { connectionIssue: { ...live.connectionIssues[id] } } : {}),
       ...(configurationRevision.has(id) ? { configurationRevision: configurationRevision.get(id) } : {}),
       ...(id === 'byok' && choices.byok ? { byok: { models: choices.byok.models.map((m) => ({ ...m, levels: [...m.levels] })) } } : {}),
-      ...(id === 'claude' ? { claudeAccounts: { active: choices.claudeAccount, list: choices.claudeAccounts.map((a) => ({ ...a })) } } : {}),
+      ...(id === 'claude' ? { claudeAccounts: { active: choices.claudeAccount, share: choices.claudeShare === true, list: choices.claudeAccounts.map((a) => ({ ...a })) } } : {}),
     }));
   }
 
@@ -541,6 +567,50 @@ export function createRoster(deps) {
       save({ ...choices, claudeAccounts: [...choices.claudeAccounts, { id, name: label }] });
       const used = await this.useClaudeAccount(id);
       return used.ok ? { ...used, id } : used;
+    },
+    /** Each account's usage, for Settings: `[{ id, five, seven }]` (null: the computer's own), the windows null when it cannot say. */
+    async claudeAccountsUsage() {
+      const ids = [null, ...choices.claudeAccounts.map((a) => a.id)];
+      return Promise.all(ids.map(async (id) => ({ id, ...(await accountUsage(id)) ?? { five: null, seven: null } })));
+    },
+    /**
+     * A new conversation begins on the account with the most room left, when the use is shared and nothing else is
+     * running on the active one (switching closes its sessions). Moves only for a real difference: the active one is
+     * used up, or at least 10 points fuller than the best. `{ ok, changed, id }`.
+     * @param {{ idle?: boolean }} [o]
+     */
+    async balanceClaudeAccount({ idle = false } = {}) {
+      if (choices.claudeShare !== true || !idle) return { ok: true, changed: false };
+      const ids = [null, ...choices.claudeAccounts.map((a) => a.id)];
+      if (ids.length < 2) return { ok: true, changed: false };
+      const active = choices.claudeAccount ?? null;
+      const best = await bestAccount(ids, active, { keep: 10 });
+      if (!best || best.id === active) return { ok: true, changed: false };
+      const used = await this.useClaudeAccount(best.id);
+      return used.ok === false ? used : { ok: true, changed: true, id: best.id };
+    },
+    /** Share the use between the accounts (the computer's own and the app's): the next carries on when one is used up. */
+    setClaudeShare(on) {
+      save({ ...choices, claudeShare: on === true });
+      return { ok: true };
+    },
+    /**
+     * The active Claude Code account has used up its limit (until `until`, ms since 1970): the next account that is not
+     * used up becomes the active one: the one with the most room left (the order of the list when none can say). `{ ok: false }` when sharing
+     * is off, or every account is used up: the turn then goes on to another agent, as the router does.
+     */
+    async rotateClaudeAccount(until) {
+      if (choices.claudeShare !== true) return { ok: false };
+      const now = Date.now();
+      const ids = [null, ...choices.claudeAccounts.map((a) => a.id)];
+      if (ids.length < 2) return { ok: false };
+      const cool = Number.isFinite(Number(until)) && Number(until) > now ? Math.min(Number(until), now + 8 * 3_600_000) : now + 30 * 60_000;
+      usedUp.set(choices.claudeAccount ?? null, cool);
+      for (const [id, t] of usedUp) if (t <= now) usedUp.delete(id);
+      const best = await bestAccount(ids, choices.claudeAccount ?? null);
+      if (!best) return { ok: false, allUsedUp: true };
+      const used = await this.useClaudeAccount(best.id);
+      return used.ok === false ? used : { ok: true, id: best.id };
     },
     async useClaudeAccount(id) {
       const next = id == null || id === '' ? null : String(id);

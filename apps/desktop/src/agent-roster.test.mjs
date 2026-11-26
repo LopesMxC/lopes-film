@@ -762,7 +762,7 @@ test("Claude Code's accounts: added, chosen and removed without signing anyone o
   assert.equal(active.configDir, folder);
   assert.deepEqual(opened.at(-1), ['claude', folder], 'its sign-in opened with its own folder');
   const listed = r.list().find((a) => a.id === 'claude').claudeAccounts;
-  assert.deepEqual(listed, { active: added.id, list: [{ id: added.id, name: 'Trabalho' }] });
+  assert.deepEqual(listed, { active: added.id, share: false, list: [{ id: added.id, name: 'Trabalho' }] });
   assert.equal((await r.addClaudeAccount('Trabalho')).ok, true);
   assert.deepEqual(r.list().find((a) => a.id === 'claude').claudeAccounts.list.map((a) => a.name), ['Trabalho', 'Trabalho 2']);
   await r.useClaudeAccount(null);
@@ -774,4 +774,53 @@ test("Claude Code's accounts: added, chosen and removed without signing anyone o
   assert.equal((await r.removeClaudeAccount(added.id)).ok, true);
   assert.equal(active, null, 'back to the computer\'s own');
   assert.equal(r.list().find((a) => a.id === 'claude').claudeAccounts.list.length, 1);
+});
+
+test('sharing the use between Claude accounts: the next one that is not used up carries on, and when all are, none', async () => {
+  const dir = mkdtempSync(join(tmpdir(), 'of-claude-share-'));
+  const r = roster(dir, undefined, {
+    useClaudeAccount() {},
+    localAgent: async (id) => ({ id, cli: { path: '/bin/claude' }, signedIn: true }),
+    openSignIn: async () => ({ ok: true }),
+    signInWait: { ms: 200, pollMs: 10 },
+  });
+  assert.deepEqual(await r.rotateClaudeAccount(), { ok: false }, 'off: nothing is done');
+  const a = await r.addClaudeAccount('Pro 1');
+  const b = await r.addClaudeAccount('Max');
+  r.setClaudeShare(true);
+  await r.useClaudeAccount(null);
+  const later = Date.now() + 3_600_000;
+  assert.equal((await r.rotateClaudeAccount(later)).id, a.id, "the computer's own is used up: the next in the list");
+  assert.equal((await r.rotateClaudeAccount(later)).id, b.id);
+  const last = await r.rotateClaudeAccount(later);
+  assert.equal(last.ok, false);
+  assert.equal(last.allUsedUp, true);
+});
+
+test('a new conversation begins on the account with the most room left, only for a real difference and when idle', async () => {
+  const dir = mkdtempSync(join(tmpdir(), 'of-claude-balance-'));
+  const full = new Map();
+  const r = roster(dir, undefined, {
+    useClaudeAccount() {},
+    claudeUsage: async (folder) => { const f = full.get(folder === null ? 'own' : folder.split(/[\\/]/).pop()); return f == null ? null : { five: { pct: f, resetsAt: null }, seven: null }; },
+    localAgent: async (id) => ({ id, cli: { path: '/bin/claude' }, signedIn: true }),
+    openSignIn: async () => ({ ok: true }),
+    signInWait: { ms: 200, pollMs: 10 },
+  });
+  const a = await r.addClaudeAccount('Pro 1');
+  const b = await r.addClaudeAccount('Max');
+  await r.useClaudeAccount(null);
+  full.set('own', 80); full.set(a.id, 75); full.set(b.id, 20);
+  assert.equal((await r.balanceClaudeAccount({ idle: true })).changed, false, 'sharing off');
+  r.setClaudeShare(true);
+  assert.equal((await r.balanceClaudeAccount({ idle: false })).changed, false, 'something is running on the active one');
+  const moved = await r.balanceClaudeAccount({ idle: true });
+  assert.deepEqual([moved.changed, moved.id], [true, b.id], 'the Max, with the most room');
+  full.set(a.id, 15);
+  assert.equal((await r.balanceClaudeAccount({ idle: true })).changed, false, '5 points apart: stays');
+  full.set(a.id, 5);
+  assert.equal((await r.balanceClaudeAccount({ idle: true })).id, a.id, '15 points apart: moves');
+  const usage = await r.claudeAccountsUsage();
+  assert.equal(usage.length, 3);
+  assert.equal(usage.find((u) => u.id === b.id).five.pct, 20);
 });

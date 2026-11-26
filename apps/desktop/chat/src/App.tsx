@@ -793,7 +793,11 @@ function ChatPane({ project, banners, selection, shownFilm, assetsOpen, assetsOv
        with the next, in the same session, before another agent is asked */
     const ownModels = (a: LocalAgentId): string[] => (a === 'byok' ? useLocalAgents.getState().roster?.find((r) => r.id === 'byok')?.byok?.models.map((m) => m.id) ?? [] : []);
     let retried = false;
-    const run = Promise.all([prepared, ready]).then(([{ text, images, skills, said }]) => runRouted({
+    /* sharing the Claude accounts: a new conversation begins on the one with the most room left, if nothing else is running */
+    const balanced = agent === 'claude' && !resume
+      ? ((globalThis as { lopesfilmHost?: { agents?: { claudeAccounts?: { balance?: (idle: boolean) => Promise<unknown> } } } }).lopesfilmHost?.agents?.claudeAccounts?.balance?.(runs.current.size === 0) ?? Promise.resolve()).catch(() => undefined)
+      : Promise.resolve();
+    const run = Promise.all([prepared, ready, balanced]).then(([{ text, images, skills, said }]) => runRouted({
       agent,
       model: typeof prefs.model === 'string' ? prefs.model : null,
       models: ownModels,
@@ -801,9 +805,16 @@ function ChatPane({ project, banners, selection, shownFilm, assetsOpen, assetsOv
       settings: readRouterSettings(),
       /* the limit is up: the turn goes on in the next model or agent, told what was said so far; the person is told */
       onSwitch: () => { retried = true; turn.notice('agent.routerSwitched'); },
+      /* Claude Code's accounts, shared (Settings › Agents): the next account carries on before another agent is asked */
+      rotate: async (a, until) => {
+        const host = (globalThis as { lopesfilmHost?: { agents?: { claudeAccounts?: { rotate?: (until?: number) => Promise<{ ok?: boolean }> } } } }).lopesfilmHost?.agents?.claudeAccounts;
+        if (a !== 'claude' || !host?.rotate) return false;
+        return (await host.rotate(until))?.ok === true;
+      },
       run: (by, switchedFrom, model) => {
         /* its own session of this conversation (the first agent's one after a restart too); none: a new one */
-        const own = by === agent ? resume : (sessions.find((s) => s.id === sessionId)?.agentSessions?.[by] ?? null);
+        /* a turn that goes on in another account of the same agent has no session there: it is told what was said so far */
+        const own = switchedFrom === by ? null : by === agent ? resume : (sessions.find((s) => s.id === sessionId)?.agentSessions?.[by] ?? null);
         const history = switchedFrom && !own;
         const sent = retried ? withTakeOver(text) : text;
         return runLocalAgentTurn({

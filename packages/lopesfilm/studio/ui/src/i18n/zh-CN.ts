@@ -2695,7 +2695,7 @@ export const zhCN: Words = {
       disconnect: '断开连接',
       disconnectHint: '停止在 Lopes.Film 中使用，它的登录保持不变。',
       switchAccount: '切换账号',
-      claudeAccounts: {"title": "Claude Code 账号", "own": "这台电脑的账号", "ownHint": "Claude Code 在这里已登录的账号", "programAuto": "照常找到的 Claude Code", "program": "使用另一个 Claude Code 安装(或恢复默认)", "programTitle": "选择此账号使用的 Claude Code 安装文件夹", "remove": "移除", "removeConfirm": "移除账号 {name}?它在这台电脑上的登录会被清除。", "add": "添加账号", "addRun": "添加并登录", "defaultName": "Claude", "namePlaceholder": "账号名称(如:工作)", "hint": "每个账号单独登录并保留各自的登录,切换时不会退出任何账号。"},
+      claudeAccounts: {"share": "Share the use between the accounts", "shareHint": "When one account's limit is up, the next one carries on the same task, so every plan is used before another agent is asked. Includes this computer's account.", "title": "Claude Code 账号", "own": "这台电脑的账号", "ownHint": "Claude Code 在这里已登录的账号", "programAuto": "照常找到的 Claude Code", "program": "使用另一个 Claude Code 安装(或恢复默认)", "programTitle": "选择此账号使用的 Claude Code 安装文件夹", "remove": "移除", "removeConfirm": "移除账号 {name}?它在这台电脑上的登录会被清除。", "add": "添加账号", "addRun": "添加并登录", "defaultName": "Claude", "namePlaceholder": "账号名称(如:工作)", "hint": "每个账号单独登录并保留各自的登录,切换时不会退出任何账号。"},
       switchConfirm: '{name} 会在这台电脑上退出登录（终端里也一样），然后打开它的登录，让你选择另一个账号。和它的对话会接着用新账号。',
       switchRun: '退出并切换',
       switchElsewhere: '{name} 的账号在这里切换：{where}。切换好后点「完成」，Lopes.Film 会用那时登录的账号重新连接。',

@@ -2690,7 +2690,7 @@ export const ko: Words = {
       disconnect: '연결 해제',
       disconnectHint: 'Lopes.Film에서 사용을 멈춥니다. 로그인은 그대로입니다.',
       switchAccount: '계정 전환',
-      claudeAccounts: {"title": "Claude Code 계정", "own": "이 컴퓨터의 계정", "ownHint": "Claude Code가 여기서 이미 로그인한 계정", "programAuto": "평소대로 찾은 Claude Code", "program": "다른 Claude Code 설치 사용(또는 기본으로 되돌리기)", "programTitle": "이 계정에 사용할 Claude Code 설치 폴더를 선택하세요", "remove": "제거", "removeConfirm": "{name} 계정을 제거할까요? 이 컴퓨터의 로그인이 지워집니다.", "add": "계정 추가", "addRun": "추가하고 로그인", "defaultName": "Claude", "namePlaceholder": "계정 이름(예: 업무)", "hint": "각 계정은 따로 로그인하고 자신의 로그인을 유지하므로 전환해도 로그아웃되지 않습니다."},
+      claudeAccounts: {"share": "Share the use between the accounts", "shareHint": "When one account's limit is up, the next one carries on the same task, so every plan is used before another agent is asked. Includes this computer's account.", "title": "Claude Code 계정", "own": "이 컴퓨터의 계정", "ownHint": "Claude Code가 여기서 이미 로그인한 계정", "programAuto": "평소대로 찾은 Claude Code", "program": "다른 Claude Code 설치 사용(또는 기본으로 되돌리기)", "programTitle": "이 계정에 사용할 Claude Code 설치 폴더를 선택하세요", "remove": "제거", "removeConfirm": "{name} 계정을 제거할까요? 이 컴퓨터의 로그인이 지워집니다.", "add": "계정 추가", "addRun": "추가하고 로그인", "defaultName": "Claude", "namePlaceholder": "계정 이름(예: 업무)", "hint": "각 계정은 따로 로그인하고 자신의 로그인을 유지하므로 전환해도 로그아웃되지 않습니다."},
       switchConfirm: '이 컴퓨터에서 {name}을(를) 로그아웃하고(터미널에서도 마찬가지입니다) 다른 계정을 고를 수 있도록 로그인을 엽니다. {name}과의 채팅은 새 계정으로 이어집니다.',
       switchRun: '로그아웃하고 전환',
       switchElsewhere: '{name}의 계정은 여기에서 바꿉니다: {where}. 바꾼 뒤 「완료」를 누르면 Lopes.Film이 그때 로그인된 계정으로 다시 연결합니다.',

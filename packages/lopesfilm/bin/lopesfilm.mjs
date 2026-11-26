@@ -8,6 +8,7 @@ const USAGE = `lopesfilm — a film is a function of time: given t, it draws tha
   lopesfilm look    [what] [t | a-b]    check the film and draw it: a contact sheet with its sound and loudness
   lopesfilm measure <what> <video>      numbers from a reference video: cuts, moves and their easing, text size, colours, remake vs reference
   lopesfilm render  [a-b]               the MP4, saved beside film.html
+  lopesfilm team    run | status        a part of the work to another Claude account, at the same time (only when the app says there is a team)
   lopesfilm get     [what] [--options]  media: free from Lopes.Film's library (music, sounds, transitions…), else a connected service
   lopesfilm edit    <ops>               edit the film on the timeline: the person's cursor-driven editor makes each operation, live
   lopesfilm canvas  [apply <steps>]     the canvas beside the edit: read it, or lay out notes, files and what to make on it
@@ -168,7 +169,13 @@ const keptNotice = async (/** @type {string} */ from = '.') => {
   console.error(note.line);
   await note.said();
 };
-if (RAW[0] === 'get') {
+if (RAW[0] === 'team') {
+  /* the work shared between Claude Code accounts (src/team.mjs): a part given to the account with the most room left */
+  const { teamCommand } = await import('../src/team.mjs');
+  const result = await teamCommand(RAW.slice(1), { log: (line) => console.error(line) });
+  for (const line of result.lines) console.log(line);
+  process.exitCode = result.code;
+} else if (RAW[0] === 'get') {
   await keptNotice();
   let result;
   try { result = await (await import('../studio/client.mjs')).getMedia(RAW.slice(1), (line) => console.error(line)); }

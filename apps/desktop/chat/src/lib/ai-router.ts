@@ -143,6 +143,11 @@ export function pickModelFallback(agent: LocalAgentId, from: string | null, mode
   return null;
 }
 
+/** When a limit that was hit is over, as `markExhausted` reads it (ms since 1970). */
+export function limitUntil(message = '', now = Date.now()): number {
+  return Math.min(resetTime(message, now) ?? now + COOLDOWN_MS, now + MAX_COOLDOWN_MS);
+}
+
 export interface RoutedRun<T> {
   result: T;
   /** the agent the turn ended on */
@@ -160,7 +165,7 @@ export interface RoutedRun<T> {
  * only the model changes (`model`; null: the one the person picked). Any other error goes up as it is. `roster` is
  * read again at each switch: an agent can sign out meanwhile.
  */
-export async function runRouted<T>({ agent, model: first = null, models = () => [], roster, settings = DEFAULT_ROUTER, run, onSwitch, now = Date.now }: {
+export async function runRouted<T>({ agent, model: first = null, models = () => [], roster, settings = DEFAULT_ROUTER, run, onSwitch, rotate, now = Date.now }: {
   agent: LocalAgentId;
   /** the model the person picked on the agent, if it has several */
   model?: string | null;
@@ -169,6 +174,8 @@ export async function runRouted<T>({ agent, model: first = null, models = () => 
   settings?: RouterSettings;
   run: (agent: LocalAgentId, switchedFrom: LocalAgentId | null, model: string | null) => Promise<T>;
   onSwitch?: (from: LocalAgentId, to: LocalAgentId, model?: string) => void;
+  /** the agent's own accounts, shared: called when its limit is up with when it is over; true once the next account is the active one (the turn then goes on in it, as the same agent) */
+  rotate?: (agent: LocalAgentId, until: number) => Promise<boolean>;
   now?: () => number;
 }): Promise<RoutedRun<T>> {
   const switches: RoutedRun<T>['switches'] = [];
@@ -207,6 +214,13 @@ export async function runRouted<T>({ agent, model: first = null, models = () => 
     } catch (error) {
       if (!settings.enabled || !isLimitError(error)) throw error;
       const said = error instanceof Error ? error.message : String(error);
+      /* another account of the same agent first: its limit is its own, not the agent's */
+      if (rotate && (await rotate(current, limitUntil(said, now())).catch(() => false))) {
+        switches.push({ from: current, to: current });
+        onSwitch?.(current, current);
+        from = current;
+        continue;
+      }
       const own = models(current);
       if (own.length > 1) markExhausted(modelKey(current, model ?? own[0]!), said, now());
       else markExhausted(current, said, now());

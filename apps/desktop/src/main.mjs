@@ -30,8 +30,9 @@ import { registerLocalAgentIpc } from './local-agents-ipc.mjs';
 import { readPreferences, registerChatIpc } from './chat-ipc.mjs';
 import { registerSkillsIpc } from './skills-ipc.mjs';
 import { createRoster } from './agent-roster.mjs';
-import { AGENTS, checkAgentProgram, closeEverySession, diagnoseAgent, forgetAgentStatus, ensureGitBash, installClaudeCodeQuietly, listAgents, localAgent, openAgentInstaller, openAgentSignIn, setChosenPaths, setClaudeAccount, signOutAgent } from './agents.mjs';
+import { setClaudeTeam, AGENTS, checkAgentProgram, closeEverySession, diagnoseAgent, forgetAgentStatus, ensureGitBash, installClaudeCodeQuietly, listAgents, localAgent, openAgentInstaller, openAgentSignIn, setChosenPaths, setClaudeAccount, signOutAgent } from './agents.mjs';
 import { agentUsage, forgetAgentUsage } from './agent-usage.mjs';
+import { claudeUsage } from './claude-usage.mjs';
 import { installOpenfilmCommand } from './lopesfilm-command.mjs';
 import { keepTaskbarPin } from './taskbar-pin.mjs';
 import { startUpdates } from './updates.mjs';
@@ -905,6 +906,8 @@ async function start() {
     usePaths: setChosenPaths,
     /* the Claude Code account in use: its own folder (CLAUDE_CONFIG_DIR) and program */
     useClaudeAccount: setClaudeAccount,
+    useClaudeTeam: setClaudeTeam,
+    claudeUsage: (dir) => claudeUsage(dir),
     pickProgram: async (_id, words) => {
       const { canceled, filePaths } = await dialog.showOpenDialog(win, programDialogOptions(words));
       return canceled || !filePaths[0] ? null : filePaths[0];
@@ -943,6 +946,10 @@ async function start() {
   /* Claude Code's accounts: each signed in apart, chosen without signing anyone out */
   agentHandle('desktop:agents:claude-account-add', ({ name }) => roster.addClaudeAccount(String(name ?? '')));
   agentHandle('desktop:agents:claude-account-use', ({ id }) => roster.useClaudeAccount(id == null ? null : String(id)));
+  agentHandle('desktop:agents:claude-account-share', ({ on }) => roster.setClaudeShare(on === true));
+  agentHandle('desktop:agents:claude-account-usage', () => roster.claudeAccountsUsage());
+  agentHandle('desktop:agents:claude-account-balance', ({ idle }) => roster.balanceClaudeAccount({ idle: idle === true }));
+  agentHandle('desktop:agents:claude-account-rotate', ({ until }) => roster.rotateClaudeAccount(until));
   agentHandle('desktop:agents:claude-account-rename', ({ id, name }) => roster.renameClaudeAccount(String(id), String(name ?? '')));
   agentHandle('desktop:agents:claude-account-remove', ({ id }) => roster.removeClaudeAccount(String(id)));
   agentHandle('desktop:agents:claude-account-program', ({ id, words }) => roster.chooseClaudeAccountProgram(String(id), words));
