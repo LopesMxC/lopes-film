@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { createRoster, keyAddress, probeRequest, readChoices } from './agent-roster.mjs';
@@ -823,4 +823,25 @@ test('a new conversation begins on the account with the most room left, only for
   const usage = await r.claudeAccountsUsage();
   assert.equal(usage.length, 3);
   assert.equal(usage.find((u) => u.id === b.id).five.pct, 20);
+});
+
+test('Claude Code sign-ins are kept outside the account folders: put back when one is lost, gone only when the account is removed', async () => {
+  const { createKeeper } = await import('./claude-keeper.mjs');
+  const dir = mkdtempSync(join(tmpdir(), 'of-claude-keep-'));
+  const home = join(dir, 'home');
+  mkdirSync(home, { recursive: true });
+  const keeper = createKeeper({ keepDir: join(dir, 'claude-keep'), env: {}, home });
+  const deps = { keeper, useClaudeAccount() {}, localAgent: async (id) => ({ id, cli: { path: '/bin/claude' }, signedIn: true }), openSignIn: async () => ({ ok: true }), signInWait: { ms: 200, pollMs: 10 } };
+  const r = roster(dir, undefined, deps);
+  const added = await r.addClaudeAccount('Pro 1');
+  const live = join(dir, 'claude-accounts', added.id, '.credentials.json');
+  writeFileSync(live, JSON.stringify({ claudeAiOauth: { accessToken: 'a'.repeat(20), refreshToken: 'r'.repeat(30), expiresAt: 1 } }));
+  r.keepSessions();
+  /* an update that wiped the folder: the next start puts the sign-in back */
+  rmSync(live);
+  roster(dir, undefined, deps);
+  assert.equal(existsSync(live), true);
+  /* removed by the person: the folder and the copy are gone, nothing comes back */
+  assert.equal((await r.removeClaudeAccount(added.id)).ok, true);
+  assert.equal(existsSync(join(dir, 'claude-keep', added.id)), false);
 });

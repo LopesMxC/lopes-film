@@ -1023,6 +1023,7 @@ export const ja: Words = {
     cat_genvideo: "AI動画",
     cat_faceswap: "顔入れ替え",
     cat_freesound: "Freesound",
+    fsAll: "All",
     fsSfx: "Sound effects",
     fsMusic: "Music",
     fsConnectText: "Connect Freesound in Settings → Services to see its sounds here.",

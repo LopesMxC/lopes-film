@@ -41,6 +41,7 @@
  */
 import { randomBytes } from 'node:crypto';
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { createKeeper } from './claude-keeper.mjs';
 import { join } from 'node:path';
 import { setTimeout as delay } from 'node:timers/promises';
 import { PI_APIS, contextLength, modelEffort } from './pi-config.mjs';
@@ -263,6 +264,13 @@ export function createRoster(deps) {
   deps.usePaths?.(choices.paths);
   /* the Claude Code account in use: its folder (made when first used) and its own program, if it has one */
   const accountFolder = (/** @type {string} */ id) => join(dataDir, 'claude-accounts', id);
+  /* the sign-ins are copied outside the account folders and put back when one goes missing (claude-keeper.mjs) */
+  const keeper = deps.keeper ?? createKeeper({ keepDir: join(dataDir, 'claude-keep') });
+  const keepSessions = ({ restore = false } = {}) => {
+    const all = [{ dir: null, key: 'own' }, ...choices.claudeAccounts.map((a) => ({ dir: accountFolder(a.id), key: a.id }))];
+    for (const one of all) { try { if (restore) keeper.restore(one.dir, one.key); keeper.snapshot(one.dir, one.key); } catch { /* a copy is a safety net, never a failure */ } }
+  };
+  keepSessions({ restore: true });
   const useAccount = () => {
     const active = choices.claudeAccounts.find((a) => a.id === choices.claudeAccount) ?? null;
     if (active) mkdirSync(accountFolder(active.id), { recursive: true });
@@ -499,6 +507,9 @@ export function createRoster(deps) {
       changed();
     },
 
+    /** The sign-ins copied again (when they changed): before an update, after one, and every few minutes. */
+    keepSessions() { keepSessions(); },
+
     /** Connect: back on here; its own sign-in when it needs one. */
     async connect(id) {
       if (!isAgentId(id)) return { ok: false, error: `No agent ${id}` };
@@ -545,6 +556,8 @@ export function createRoster(deps) {
       const out = await deps.signOut(id).catch((e) => ({ ok: false, error: e instanceof Error ? e.message : String(e) }));
       if (!out.ok) { live.errors[id] = out.error || `${AGENT_NAMES[id]} did not sign out.`; changed(); return { ok: false, error: live.errors[id] }; }
       delete live.connectionIssues[id];
+      /* the person signed it out: its kept copy goes too, or it would come back */
+      if (id === 'claude') keeper.forget(choices.claudeAccount ?? 'own');
       /* signed out now: said at once, and kept over an older answer still on its way */
       local = (local ?? []).map((a) => (a.id === id ? { ...a, signedIn: false, account: null } : a));
       revision.set(id, (revision.get(id) ?? 0) + 1);
@@ -639,6 +652,7 @@ export function createRoster(deps) {
       save({ ...choices, claudeAccounts: choices.claudeAccounts.filter((a) => a.id !== id), claudeAccount: wasActive ? null : choices.claudeAccount });
       if (wasActive) await this.useClaudeAccount(null);
       try { rmSync(accountFolder(id), { recursive: true, force: true }); } catch { /* kept if it cannot be removed */ }
+      keeper.forget(id);
       return { ok: true };
     },
     /** The Claude Code program an account of the app's uses (a second install), chosen and tried; `null` path: found as usual. */

@@ -1020,6 +1020,7 @@ export const ko: Words = {
     cat_genvideo: "AI 영상",
     cat_faceswap: "얼굴 바꾸기",
     cat_freesound: "Freesound",
+    fsAll: "All",
     fsSfx: "Sound effects",
     fsMusic: "Music",
     fsConnectText: "Connect Freesound in Settings → Services to see its sounds here.",

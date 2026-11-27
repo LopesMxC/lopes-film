@@ -1024,6 +1024,7 @@ export const zhCN: Words = {
     cat_genvideo: "AI 视频",
     cat_faceswap: "换脸",
     cat_freesound: "Freesound",
+    fsAll: "All",
     fsSfx: "Sound effects",
     fsMusic: "Music",
     fsConnectText: "Connect Freesound in Settings → Services to see its sounds here.",

@@ -532,3 +532,25 @@ test('skills applied in every session: a few by default, the person\'s switch wi
   assert.equal(tight.applied.length, 0, 'over the limit nothing is put in whole');
   assert.ok(tight.left.length > 0, 'and they are named instead');
 });
+
+test('the skills released with the package are put among the installed ones once, never over a change or after an uninstall', async () => {
+  const { mkdtempSync, existsSync, rmSync, writeFileSync, readFileSync, readdirSync } = await import('node:fs');
+  const { tmpdir } = await import('node:os');
+  const { join } = await import('node:path');
+  const { seedBundledSkills, bundledSkillsDir, listSkills } = await import('./skills.mjs');
+  const to = mkdtempSync(join(tmpdir(), 'bundled-'));
+  const put = seedBundledSkills({ to });
+  assert.ok(put.includes('animate') && put.includes('emil-design-eng'), put.join(','));
+  const mine = mkdtempSync(join(tmpdir(), 'mine-'));
+  const listed = listSkills({ mine, official: to });
+  const animate = listed.find((s) => s.name === 'animate');
+  assert.equal(animate.uid, 'emilkowalski/animate');
+  assert.equal(animate.source, 'official');
+  assert.ok(existsSync(join(animate.folder, 'RECIPES.md')), 'its other files come with it');
+  assert.deepEqual(seedBundledSkills({ to }), [], 'a second run puts nothing');
+  rmSync(animate.folder, { recursive: true });
+  writeFileSync(join(to, 'emilkowalski-ask-emil', 'SKILL.md'), readFileSync(join(to, 'emilkowalski-ask-emil', 'SKILL.md'), 'utf8') + '\nmine');
+  assert.deepEqual(seedBundledSkills({ to }), [], 'uninstalled stays uninstalled; a changed one is left');
+  assert.ok(!existsSync(join(to, 'emilkowalski-animate')));
+  assert.ok(readdirSync(bundledSkillsDir()).includes('LICENSE-emilkowalski.txt'));
+});

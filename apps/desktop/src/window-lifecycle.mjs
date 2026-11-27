@@ -33,10 +33,12 @@ export function closeTabOrWindow(win, { mac, activeId, closeTab }) {
 
 /** Mark Quit before window close can run, even before Studio has started or after startup failed. */
 export function quitAfterStudio(event, { quitting, markQuitting, studio, closeAgents, quit }) {
-  closeAgents();
+  /* closing the agents may take a moment (they end on their own first, so a sign-in being renewed is not cut short) */
+  const closing = closeAgents();
   if (quitting) return;
   markQuitting();
   if (!studio) return;
   event.preventDefault();
-  void studio.quit().then(quit, quit);
+  const stop = () => studio.quit();
+  void (typeof closing?.then === 'function' ? closing.catch(() => {}).then(stop) : stop()).then(quit, quit);
 }

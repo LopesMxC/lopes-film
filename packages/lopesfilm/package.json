@@ -32,6 +32,7 @@
     "./package.json": "./package.json"
   },
   "files": [
+    "skills-bundled",
     "README.md",
     "SPEC.md",
     "COMPAT.md",

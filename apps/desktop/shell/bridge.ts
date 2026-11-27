@@ -19,7 +19,7 @@ type Theme = 'light' | 'dark';
 
 interface Native {
   platform: string;
-  hello(): Promise<{ flavor: string; version: string; ffmpeg: unknown; update: unknown; chatOpen: boolean; chatWidth: number; chatMin: number; studioMin: number; fullScreen: boolean }>;
+  hello(): Promise<{ flavor: string; version: string; ffmpeg: unknown; update: unknown; chatOpen: boolean; chatWidth: number; chatMin: number; studioMin: number; fullScreen: boolean; maximized?: boolean }>;
   pathForFile(file: File): string;
   revealPath(path: string): Promise<void>;
   pickFolder(options?: { title?: string; button?: string; at?: string }): Promise<string | null>;
@@ -37,6 +37,8 @@ interface Native {
   setTheme(theme: Theme): void;
   setLanguage(language: string): void;
   onFullScreen(listener: Listener<boolean>): Stop;
+  windowControl(action: 'minimize' | 'maximize' | 'close'): void;
+  onWindowState(listener: Listener<{ maximized: boolean; fullScreen: boolean }>): Stop;
   onToggleChat(listener: Listener<void>): Stop;
   onOpenSettings(listener: Listener<void>): Stop;
   onStudioBrowser(listener: Listener<unknown>): Stop;
@@ -191,7 +193,9 @@ const asked = events<{ text: string; refs: StudioRef[] }>();
 const hover = signal<StudioRef | null>(null);
 let command: ((command: StudioCommand) => void) | null = null;
 const fullScreen = signal(false);
+const maximized = signal(false);
 native.onFullScreen((full) => fullScreen.set(full));
+native.onWindowState?.((s) => { maximized.set(s.maximized); fullScreen.set(s.fullScreen); });
 
 /*
  * ── a reference's picture of the viewer (StudioRefImage `viewer`): what the person sees there now, taken by the app as
@@ -313,7 +317,7 @@ const windows = native.platform === 'win32';
 /** the window's own controls: macOS's traffic lights end at 66 px (Studio's logo a little after them); Windows draws
     its buttons over the top bar's right */
 const INSET = 74;
-const INSET_RIGHT = 138;
+const INSET_RIGHT = 138; /* the app's own three buttons, 46 px each */
 
 /** The build's brand (vite `define`, brands/load.mjs): Lopes.Film, GlobalFilm or Lopes.Film. */
 declare const __APP_BRAND__: { name: string } | undefined;
@@ -324,6 +328,17 @@ export const host: StudioHost = {
   projectChanged,
   ...(mac ? { titlebar: { get inset() { return fullScreen.get() ? 0 : INSET; }, onChange: (listener: Listener<number>) => { fullScreen.on((full) => listener(full ? 0 : INSET)); } } } : {}),
   ...(windows ? { titlebar: { get inset() { return fullScreen.get() ? 0 : 6; }, insetRight: INSET_RIGHT, onChange: (listener: Listener<number>) => { fullScreen.on(full => listener(full ? 0 : 6)); } } } : {}),
+  ...(windows ? { windowControls: {
+    state: () => ({ maximized: maximized.get(), fullScreen: fullScreen.get() }),
+    onChange: (listener: Listener<{ maximized: boolean; fullScreen: boolean }>) => {
+      const tell = () => listener({ maximized: maximized.get(), fullScreen: fullScreen.get() });
+      const a = maximized.on(tell); const c = fullScreen.on(tell);
+      return () => { a(); c(); };
+    },
+    minimize: () => native.windowControl('minimize'),
+    toggleMaximize: () => native.windowControl('maximize'),
+    close: () => native.windowControl('close'),
+  } } : {}),
   /* in order, each with its picture: two pointed at quickly must not swap or share a screenshot */
   refer: (ref) => {
     if (!layout.open) setChatOpen(true);
@@ -377,6 +392,7 @@ const ready = hello.then((h) => {
   layout.min = h.chatMin;
   layout.studioMin = h.studioMin;
   fullScreen.set(h.fullScreen);
+  maximized.set(Boolean(h.maximized));
   chatOpenSignal.set(layout.open);
   place();
   return h;

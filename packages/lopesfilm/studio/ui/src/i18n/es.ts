@@ -1023,6 +1023,7 @@ export const es: Words = {
     cat_genvideo: "Vídeo IA",
     cat_faceswap: "Cambio de rostro",
     cat_freesound: "Freesound",
+    fsAll: "Todo",
     fsSfx: "Sound effects",
     fsMusic: "Music",
     fsConnectText: "Connect Freesound in Settings → Services to see its sounds here.",

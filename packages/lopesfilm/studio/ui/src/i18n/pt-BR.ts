@@ -1366,6 +1366,7 @@ export const ptBR: Words = {
     cat_genvideo: "Vídeo IA",
     cat_faceswap: "Face Swap",
     cat_freesound: "Freesound",
+    fsAll: "Tudo",
     fsSfx: "Efeitos sonoros",
     fsMusic: "Músicas",
     fsConnectText: "Conecte o Freesound em Configurações → Serviços para ver os sons aqui.",

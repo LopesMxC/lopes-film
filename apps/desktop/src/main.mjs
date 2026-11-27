@@ -30,7 +30,7 @@ import { registerLocalAgentIpc } from './local-agents-ipc.mjs';
 import { readPreferences, registerChatIpc } from './chat-ipc.mjs';
 import { registerSkillsIpc } from './skills-ipc.mjs';
 import { createRoster } from './agent-roster.mjs';
-import { setClaudeTeam, AGENTS, checkAgentProgram, closeEverySession, diagnoseAgent, forgetAgentStatus, ensureGitBash, installClaudeCodeQuietly, listAgents, localAgent, openAgentInstaller, openAgentSignIn, setChosenPaths, setClaudeAccount, signOutAgent } from './agents.mjs';
+import { setClaudeTeam, AGENTS, checkAgentProgram, closeEverySession, closeEverySessionGently, diagnoseAgent, forgetAgentStatus, ensureGitBash, installClaudeCodeQuietly, listAgents, localAgent, openAgentInstaller, openAgentSignIn, setChosenPaths, setClaudeAccount, signOutAgent } from './agents.mjs';
 import { agentUsage, forgetAgentUsage } from './agent-usage.mjs';
 import { claudeUsage } from './claude-usage.mjs';
 import { installOpenfilmCommand } from './lopesfilm-command.mjs';
@@ -48,8 +48,6 @@ import { restartDelay } from './studio-restart.mjs';
 const here = (path) => fileURLToPath(new URL(path, import.meta.url));
 const mac = process.platform === 'darwin';
 const windows = process.platform === 'win32';
-/** Windows' window buttons over the top bar: the board's color, and the text's */
-const overlayColours = (t) => ({ color: t === 'dark' ? '#15151a' : '#e4e4e8', symbolColor: t === 'dark' ? '#ebebed' : '#161619', height: 32 });
 
 /* HTML-in-Canvas in Studio's viewer, as in the renderer (the `lopesfilm` package's src/host.mjs) */
 app.commandLine.appendSwitch('enable-blink-features', 'CanvasDrawElement');
@@ -165,6 +163,7 @@ function guard(contents, allowed) {
 }
 
 /** IPC only from a tab's page, its own main frame. */
+const windowState = () => ({ maximized: Boolean(win?.isMaximized()), fullScreen: Boolean(win?.isFullScreen()) });
 const fromPage = (event) => tabOf(event.sender) != null && event.senderFrame === event.sender.mainFrame;
 
 /** A page for a tab: Studio's editor at its project (or its launcher), on Studio's origin. */
@@ -412,7 +411,6 @@ function setTheme(next) {
   nativeTheme.themeSource = theme;
   win?.setBackgroundColor(BACKGROUND[theme]);
   for (const v of views.values()) v.setBackgroundColor(BACKGROUND[theme]);
-  if (windows) win?.setTitleBarOverlay?.(overlayColours(theme));
 }
 
 /**
@@ -627,8 +625,13 @@ async function start() {
     /* what before-quit would do, done first (`quitting`), so the quit Squirrel starts is not held up or cancelled */
     beforeInstall: async () => {
       quitting = true;
+      /* the sign-ins copied before, and again after the agents have ended on their own: an update never cuts a Claude
+         Code sign-in short (claude-keeper.mjs) */
+      roster?.keepSessions();
+      await closeEverySessionGently().catch(() => {});
       localAgents?.closeAll();
       closeEverySession();
+      roster?.keepSessions();
       for (const v of views.values()) v.webContents.on('will-prevent-unload', (event) => event.preventDefault());
       await studio?.quit();
       updates?.close();
@@ -709,8 +712,9 @@ async function start() {
     title: PRODUCT_NAME,
     backgroundColor: BACKGROUND[theme],
     ...(mac ? { titleBarStyle: 'hiddenInset', trafficLightPosition: { x: 14, y: 10 } } : {}),
-    /* Windows: no title bar either; its own buttons drawn over Studio's top bar, at its right, in its colors */
-    ...(windows ? { titleBarStyle: 'hidden', titleBarOverlay: overlayColours(theme), autoHideMenuBar: true, icon: here('../build/icon.png') } : {}),
+    /* Windows: no title bar and none of Windows' buttons: the app draws its own at the right of Studio's top bar
+       (studio ui `WindowControls`, driven by `desktop:window-control`) */
+    ...(windows ? { titleBarStyle: 'hidden', autoHideMenuBar: true, icon: here('../build/icon.png') } : {}),
   });
   if (state.maximized) win.maximize();
   launch.dismiss();
@@ -720,8 +724,16 @@ async function start() {
   if (windows) win.on('focus', () => win?.flashFrame(false));
   win.on('resized', saveState);
   win.on('moved', saveState);
-  win.on('enter-full-screen', () => broadcast('desktop:full-screen', true));
-  win.on('leave-full-screen', () => broadcast('desktop:full-screen', false));
+  win.on('enter-full-screen', () => { broadcast('desktop:full-screen', true); broadcast('desktop:window-state', windowState()); });
+  win.on('leave-full-screen', () => { broadcast('desktop:full-screen', false); broadcast('desktop:window-state', windowState()); });
+  for (const name of ['maximize', 'unmaximize']) win.on(name, () => broadcast('desktop:window-state', windowState()));
+  /* the app's own minimize, maximize and close buttons (Windows) */
+  ipcMain.on('desktop:window-control', (event, action) => {
+    if (!fromPage(event) || !win || win.isDestroyed()) return;
+    if (action === 'minimize') win.minimize();
+    else if (action === 'maximize') (win.isMaximized() ? win.unmaximize() : win.maximize());
+    else if (action === 'close') win.close();
+  });
   cancelWindowClose = keepWindowOnClose(win, { mac, isQuitting: () => quitting, save: saveState });
   win.on('closed', () => { win = null; views.clear(); pagePresentation = null; app.quit(); });
 
@@ -745,7 +757,7 @@ async function start() {
   });
   ipcMain.handle('desktop:hello', (event) => {
     if (!fromPage(event)) throw new Error('not the window\'s page');
-    return { flavor: FLAVOR, version: app.getVersion(), ffmpeg: ffmpegFound, update: updates?.snapshot() ?? null, chatOpen: state.chatOpen, chatWidth: state.chatWidth, chatMin: CHAT_MIN, studioMin: STUDIO_MIN, fullScreen: Boolean(win?.isFullScreen()) };
+    return { flavor: FLAVOR, version: app.getVersion(), ffmpeg: ffmpegFound, update: updates?.snapshot() ?? null, chatOpen: state.chatOpen, chatWidth: state.chatWidth, chatMin: CHAT_MIN, studioMin: STUDIO_MIN, fullScreen: Boolean(win?.isFullScreen()), maximized: Boolean(win?.isMaximized()) };
   });
   /* the chat's column as the person left it (the page sizes it; the window keeps it for next time) */
   ipcMain.on('desktop:layout', (event, next) => {
@@ -841,7 +853,9 @@ async function start() {
   const mySkills = process.env.LOPESFILM_SKILLS || (await import('lopesfilm/skills')).mySkillsDir({ library: env.LOPESFILM_LIBRARY ?? null, ...(prefsHome ? { home: prefsHome } : {}) });
   /* skills that were made where the folder used to be (beside the default projects folder) come along to the new one */
   try {
-    const { migrateMySkills } = await import('lopesfilm/skills');
+    const { migrateMySkills, seedBundledSkills } = await import('lopesfilm/skills');
+    /* the design and animation skills that come with the app, put among the installed ones once (skills-bundled/) */
+    seedBundledSkills();
     const before = join(env.LOPESFILM_VIDEOS ?? join(homedir(), 'Videos'), 'Lopes.Film', 'Skills');
     if (!process.env.LOPESFILM_SKILLS && process.platform === 'win32' && resolve(before) !== resolve(mySkills)) migrateMySkills({ from: before, to: mySkills });
   } catch { /* they stay where they are */ }
@@ -915,6 +929,8 @@ async function start() {
     checkProgram: checkAgentProgram,
     diagnose: (id) => diagnoseAgent(id, { appVersion: app.getVersion() }),
   });
+  /* the Claude Code sign-ins copied every few minutes (claude-keeper.mjs): a token renewed since is kept too */
+  setInterval(() => roster?.keepSessions(), 5 * 60_000).unref?.();
   const agentHandle = (channel, fn) => ipcMain.handle(channel, (event, opts) => {
     if (!fromPage(event)) throw new Error('not the window\'s page');
     return fn(opts ?? {});
@@ -1078,6 +1094,10 @@ app.on('before-quit', (event) => {
   quitAfterStudio(event, {
     quitting, markQuitting: () => { quitting = true; }, studio,
     /* and the ones opened only to ask (signed in? its options?), which belong to no chat */
-    closeAgents: () => { localAgents?.closeAll(); closeEverySession(); }, quit: () => app.quit(),
+    closeAgents: () => {
+      roster?.keepSessions();
+      return closeEverySessionGently(2500).catch(() => {}).then(() => { localAgents?.closeAll(); closeEverySession(); roster?.keepSessions(); });
+    },
+    quit: () => app.quit(),
   });
 });

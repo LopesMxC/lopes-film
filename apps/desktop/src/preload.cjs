@@ -157,6 +157,9 @@ contextBridge.exposeInMainWorld('lopesfilmNative', {
   /* the page's language, for what the app shows before a page is up */
   setLanguage: (language) => ipcRenderer.send('desktop:language', String(language)),
   onFullScreen: on('desktop:full-screen'),
+  /* the app's own window buttons (Windows): minimize, maximize and close; the window's state as it changes */
+  windowControl: (action) => ipcRenderer.send('desktop:window-control', action === 'minimize' || action === 'close' ? action : 'maximize'),
+  onWindowState: on('desktop:window-state'),
   /* View → Chat in the app's menu */
   onToggleChat: on('desktop:toggle-chat'),
   /* Native Settings menu and Cmd/Ctrl+,; no renderer can invoke a privileged action here. */

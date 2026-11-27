@@ -756,3 +756,19 @@ test('a session is given the team only when the use is shared between two or mor
   assert.match(t.text, /\/x\/lf team run --task/);
   setClaudeTeam(null);
 });
+
+test('steadyStatus: not signed out on one bad answer while the sign-in is on disk', async () => {
+  const { steadyStatus } = await import('./agents.mjs');
+  const waited = [];
+  const sleep = async (ms) => { waited.push(ms); };
+  let n = 0;
+  const flaky = async () => ({ signedIn: ++n < 3 ? false : true });
+  assert.equal((await steadyStatus(flaky, () => true, [2000, 5000], sleep)).signedIn, true);
+  assert.deepEqual(waited, [2000, 5000]);
+  /* sign-in gone: believed at once */
+  waited.length = 0;
+  assert.equal((await steadyStatus(async () => ({ signedIn: false }), () => false, [2000, 5000], sleep)).signedIn, false);
+  assert.deepEqual(waited, []);
+  /* on disk and the answers keep saying no: signed out after the waits */
+  assert.equal((await steadyStatus(async () => ({ signedIn: false }), () => true, [1, 1], sleep)).signedIn, false);
+});

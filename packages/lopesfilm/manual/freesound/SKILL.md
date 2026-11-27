@@ -11,7 +11,7 @@ Freesound is a library of sounds made by people, each under its own Creative Com
 
 ## Search
 - Words in English, short and concrete: "door slam wood", "rain window", "crowd cheer", not a sentence.
-- `get web-music --via freesound --kind sfx --prompt "<words>" --out <name> --n 3` for effects (under 30 s, saved in `assets/audio/sfx/`); `--kind music` (default) for pieces over 30 s, in `assets/audio/music/`. `--id <number>` takes one sound the person picked in the Library tab.
+- `get web-music --via freesound --kind sfx --prompt "<words>" --out <name> --n 3` for effects only (under 30 s, saved in `assets/audio/sfx/`); `--kind music` for pieces over 30 s only, in `assets/audio/music/`; with no `--kind` the whole library is searched, no length filter (under 30 s lands in sfx, longer in music), and with no `--prompt` it takes the most downloaded. `--id <number>` takes one sound the person picked in the Library tab.
 - Take 2 or 3 to choose from, then listen before judging (the listen skill): never say a sound fits without hearing it.
 - What lands is Freesound's high-quality MP3 preview. It is enough for a film; say so if the person asks for the original file.
 

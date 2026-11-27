@@ -99,6 +99,39 @@ export const coreSkillsDir = () => join(dirname(fileURLToPath(import.meta.url)),
  */
 export const mySkillsDir = ({ library = null, home = sharedHome() } = {}) =>
   process.env.LOPESFILM_SKILLS || join(dirname(chosenFolder('projectsFolder', home) ?? library ?? libraryDefault()), 'Skills');
+/** The skills released with this package that are put among the installed ones once (skills-bundled/), each as it came from its repository. */
+export const bundledSkillsDir = () => join(dirname(fileURLToPath(import.meta.url)), '..', 'skills-bundled');
+/** What was put among the installed skills, kept beside them: what the person uninstalled is not put back. */
+const BUNDLED_MARK = '.bundled.json';
+
+/**
+ * Put the skills released with this package among the installed ones (officialSkillsDir): each only once, so one the
+ * person uninstalls stays uninstalled, and one they changed is never written over. Run as the app starts.
+ * @param {{ from?: string, to?: string }} [where] → the names put there
+ */
+export function seedBundledSkills({ from = bundledSkillsDir(), to = officialSkillsDir() } = {}) {
+  /** @type {string[]} */
+  let names = [];
+  try { names = readdirSync(from).filter((n) => !n.startsWith('.') && statSync(join(from, n)).isDirectory()); } catch { return []; }
+  const markFile = join(to, BUNDLED_MARK);
+  /** @type {string[]} */
+  let seeded = [];
+  try { const raw = JSON.parse(readFileSync(markFile, 'utf8')); if (Array.isArray(raw)) seeded = raw.filter((n) => typeof n === 'string'); } catch { /* none yet */ }
+  const fresh = names.filter((n) => !seeded.includes(n));
+  if (!fresh.length) return [];
+  mkdirSync(to, { recursive: true });
+  /** @type {string[]} */
+  const put = [];
+  for (const name of fresh) {
+    const skill = readSkill(join(from, name), 'official');
+    if (!skill) continue;
+    const dest = join(to, skill.uid.replace('/', '-'));
+    if (!existsSync(dest)) { cpSync(join(from, name), dest, { recursive: true }); put.push(name); }
+  }
+  writeFileSync(markFile, JSON.stringify([...new Set([...seeded, ...fresh])].sort(), null, 2));
+  return put;
+}
+
 /** Where the person's own skills were kept before: `skills/` in Studio's home. */
 export const oldSkillsDir = () => join(process.env.LOPESFILM_HOME || join(homedir(), '.lopesfilm'), 'skills');
 

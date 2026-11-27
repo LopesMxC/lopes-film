@@ -9,13 +9,13 @@ import { useT } from '@/i18n';
 import type { Generate } from './AiGenPane';
 
 interface Found { id: number; name: string; by: string; licence: string; dur: number; page: string; preview: string; tags: string[] }
-type Kind = 'sfx' | 'music';
+type Kind = 'all' | 'sfx' | 'music';
 
 const clock = (s: number) => (s < 60 ? `${Math.round(s * 10) / 10} s` : `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`);
 
 export function FreesoundPane({ query, generate, onServices }: { query: string; generate?: Generate; onServices: () => void }) {
   const t = useT();
-  const [kind, setKind] = React.useState<Kind>('sfx');
+  const [kind, setKind] = React.useState<Kind>('all');
   const [found, setFound] = React.useState<Found[]>([]);
   const [connected, setConnected] = React.useState(true);
   const [more, setMore] = React.useState(false);
@@ -67,10 +67,10 @@ export function FreesoundPane({ query, generate, onServices }: { query: string; 
   return (
     <div className="flex min-h-0 flex-1 flex-col" data-freesound>
       <div role="radiogroup" className="mx-3 mb-2 flex h-8 shrink-0 gap-1 rounded-[10px] bg-[var(--bg-raised)] p-1">
-        {(['sfx', 'music'] as const).map((k) => (
+        {(['all', 'sfx', 'music'] as const).map((k) => (
           <button key={k} type="button" role="radio" aria-checked={kind === k} onClick={() => { stop(); setKind(k); }}
             className={`flex-1 rounded-[7px] text-[11.5px] font-semibold ${kind === k ? 'bg-[var(--accent)] text-[var(--on-accent,#fff)]' : 'text-[var(--text-muted)] hover:text-[var(--text)]'}`}>
-            {t(k === 'sfx' ? 'assetDrawer.fsSfx' : 'assetDrawer.fsMusic')}
+            {t(k === 'all' ? 'assetDrawer.fsAll' : k === 'sfx' ? 'assetDrawer.fsSfx' : 'assetDrawer.fsMusic')}
           </button>
         ))}
       </div>

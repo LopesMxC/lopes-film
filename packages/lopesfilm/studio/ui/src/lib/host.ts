@@ -31,6 +31,14 @@ export interface StudioHost {
    * new left inset (a full-screen window has no controls to make room for).
    */
   titlebar?: { inset: number; insetRight?: number; onChange?: (listener: (inset: number) => void) => void };
+  /** The app draws its own minimize, maximize and close buttons at the top bar's right (Windows): Studio shows them (`WindowControls`). */
+  windowControls?: {
+    state: () => { maximized: boolean; fullScreen: boolean };
+    onChange: (listener: (state: { maximized: boolean; fullScreen: boolean }) => void) => () => void;
+    minimize: () => void;
+    toggleMaximize: () => void;
+    close: () => void;
+  };
   /**
    * The app has a chat: whatever the person points at becomes a reference in the message being written. Studio calls
    * this from "Reference in chat" on its menus (clips, layers, tracks, media), from ⌘L (what is selected; the range

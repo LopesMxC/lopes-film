@@ -32,6 +32,7 @@ test('licences read as short credits', () => {
   assert.equal(licenceOf('https://creativecommons.org/licenses/by-nc/4.0/'), 'CC BY-NC 4.0');
   assert.equal(licenceOf('https://creativecommons.org/publicdomain/zero/1.0/'), 'CC0');
   assert.match(lengthFilter('sfx'), /0 TO 30/);
+  assert.equal(lengthFilter('all'), '');
 });
 
 test('a search sends the token and the length filter, and keeps what has a preview', async (t) => {
@@ -50,9 +51,19 @@ test('web-music by words lands the previews under assets/audio/sfx with their cr
   assert.equal(r.receipt.skill, 'freesound');
 });
 
-test('web-music by id takes that one sound; music lands in assets/audio/music', async (t) => {
+test('with no kind the whole library is searched: no length filter, and no words browse it', async (t) => {
+  const seen = await fake(t);
+  const all = await search({ key: 'K', query: '', kind: 'all', signal: ctx().signal });
+  assert.equal(all.found.length, 2);
+  assert.equal(seen[0].searchParams.has('filter'), false);
+  const r = await freesound.run('web-music', { out: 'b', n: 1 }, ctx());
+  assert.equal(seen.filter((u) => u.pathname === '/apiv2/search/text/').at(-1).searchParams.get('sort'), 'downloads_desc');
+  assert.equal(r.files[0].path, 'assets/audio/sfx/b.mp3', 'a sound under 30 s lands in sfx');
+});
+
+test('web-music by id takes that one sound; its length says where it lands', async (t) => {
   await fake(t);
-  const r = await freesound.run('web-music', { id: 77, out: 'x' }, ctx());
+  const r = await freesound.run('web-music', { id: 77, out: 'x', kind: 'music' }, ctx());
   assert.equal(r.files[0].path, 'assets/audio/music/x.mp3');
   assert.equal(r.receipt.tracks[0].title, 'Whoosh 77');
 });

@@ -47,6 +47,7 @@ import { nodeBinary } from './node-runtime.mjs';
 import { lopesfilmCommand } from './lopesfilm-command.mjs';
 import { outOfBalance } from './pi-config.mjs';
 import { AGENT_DEFINITIONS } from './agent-definitions.mjs';
+import { folderOf, readSignIn } from './claude-keeper.mjs';
 import { PRODUCT_NAME } from './flavor.mjs';
 
 const require = createRequire(import.meta.url);
@@ -491,8 +492,30 @@ export async function agentStatus(id, cliPath, { fresh = false } = {}) {
   if (!spec || !cliPath) return { signedIn: null, account: null };
   if (!spec.auth) return { signedIn: await acpSignedIn(id, { fresh }), account: null };
   const how = starting(cliPath, spec.auth);
-  const r = await run(how.cmd, how.args, 10_000, { env: childEnvironment({ shell: agentShell(id, await loginShellVariables()), extra: how.env }), options: how.options });
-  return readAgentStatus(id, r.stdout, r.out);
+  const env = childEnvironment({ shell: agentShell(id, await loginShellVariables()), extra: how.env });
+  const ask = async () => {
+    const r = await run(how.cmd, how.args, 10_000, { env, options: how.options });
+    return readAgentStatus(id, r.stdout, r.out);
+  };
+  /* Claude Code that says "not signed in" with a whole sign-in on disk is more often busy (renewing its token, an
+     update starting up, no network yet) than signed out: asked again before it is believed */
+  return id === 'claude' ? steadyStatus(ask, () => readSignIn(join(folderOf(claudeAccount?.configDir ?? null, env), '.credentials.json')) !== null) : ask();
+}
+
+/**
+ * A sign-in status that is not shown as signed out on one bad answer: while the sign-in is on disk, whole, and the
+ * answer is not "signed in", it is asked again after each wait. Signed out only when the sign-in is gone or the answers
+ * keep saying so.
+ * @param {() => Promise<{ signedIn: boolean | null }>} ask @param {() => boolean} onDisk
+ */
+export async function steadyStatus(ask, onDisk, waits = [2000, 5000], sleep = (/** @type {number} */ ms) => new Promise((done) => setTimeout(done, ms))) {
+  let answer = await ask();
+  for (const ms of waits) {
+    if (answer.signedIn === true || !onDisk()) return answer;
+    await sleep(ms);
+    answer = await ask();
+  }
+  return answer;
 }
 
 /**
@@ -1633,6 +1656,22 @@ export class AgentSession {
     stopTree(this.child);
     this.logging?.close();
   }
+
+  /**
+   * Closed as an update asks it: its connection is ended first, which lets the agent finish what it is writing (Claude
+   * Code renews its sign-in's token in the background, and a process killed in the middle of that loses the sign-in),
+   * and the process is stopped only if it has not ended within `ms`.
+   */
+  async closeGently(ms = 3000) {
+    LIVE.delete(this);
+    try { this.conn?.close(); } catch { /* gone already */ }
+    const child = this.child;
+    if (child && child.exitCode === null && child.signalCode === null) {
+      await new Promise((done) => { child.once('exit', done); setTimeout(done, ms).unref?.(); });
+    }
+    stopTree(child);
+    this.logging?.close();
+  }
 }
 
 /**
@@ -1668,6 +1707,10 @@ const LIVE = new Set();
  */
 export function closeEverySession() {
   for (const session of [...LIVE]) session.close();
+}
+/** Every agent process closed gently (AgentSession.closeGently), all at once: for an update, which must not cut a sign-in short. */
+export async function closeEverySessionGently(ms = 3000) {
+  await Promise.all([...LIVE].map((session) => session.closeGently(ms)));
 }
 /* and as the process ends without quitting the usual way: none outlives it */
 process.once('exit', closeEverySession);

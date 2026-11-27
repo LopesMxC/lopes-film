@@ -12,6 +12,9 @@ Studio's editor (`studio/ui/dist`) bundles:
   d3-zoom, d3-transition, d3-interpolate, d3-dispatch, d3-color, d3-ease, d3-timer: ISC License, © Mike Bostock; the
   easing of d3-ease also BSD 3-Clause License, © Robert Penner).
 
+The skills in `skills-bundled/` (design and animation) are **Emil Kowalski's skills** (https://github.com/emilkowalski/skills, MIT
+License, © 2026 Emil Kowalski; `skills-bundled/LICENSE-emilkowalski.txt`), unchanged, at the commit each `.source.json` names.
+
 The CLI depends on **playwright-core** (Apache License 2.0), which downloads a headless Chromium on first use.
 
 The library's semantic search (`src/library-semantic.mjs`) fetches on first use, and its vectors (`library/vectors.i8`)
